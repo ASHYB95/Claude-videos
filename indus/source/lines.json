@@ -1,0 +1,8 @@
+[
+ {"id":"v1","text":"Four and a half thousand years ago, while Egypt built its pyramids, a city on the Indus had drains under every street.","voice":"am_michael","speed":1.0},
+ {"id":"v2","text":"This is Mohenjo-daro. With Harappa, it was the heart of the Indus Valley Civilisation.","voice":"am_michael","speed":1.0},
+ {"id":"v3","text":"Streets ran in a grid. Bricks were baked to the same proportions. Most homes had their own bathroom.","voice":"am_michael","speed":1.02},
+ {"id":"v4","text":"Merchants stamped their goods with seals, in a script no one can read, to this day.","voice":"am_michael","speed":1.0},
+ {"id":"v5","text":"Around nineteen hundred B C E, the rivers shifted, the monsoon weakened, and the cities emptied.","asr":"Around 1900 BCE, the rivers shifted, the monsoon weakened, and the cities emptied.","voice":"am_michael","speed":1.0},
+ {"id":"v6","text":"Four thousand years later, archaeologists dug into a mound called Mohenjo-daro. The Mound of the Dead.","voice":"am_michael","speed":0.97}
+]

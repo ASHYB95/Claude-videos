@@ -1,0 +1,12 @@
+The Mound of the Dead — Mohenjo-daro & Harappa (Isometric Picture Book)
+
+Music: original score composed in score.py (harp-like plucks, tanpura-style drone, frame drum and flute; not based on any raga or existing melody).
+Samples (CC0): VS Chamber Orchestra: Community Edition (Versilian Studios) — flute.
+Modelled instruments: harp and kalimba (Lemo-Opuscar pluck.py, MIT); drone and frame drum synthesised in score.py.
+Voice: Kokoro-82M TTS, voice am_michael (Apache-2.0).
+Foley and ambience: synthesised (Lemo-Opuscar sfx.py, MIT) and in mix.py.
+Font (SIL Open Font License 1.1, via @fontsource): Newsreader.
+Drawing engine: Lemo-Opuscar isometric-picture-book kit (MIT).
+History: mature Harappan phase c. 2600–1900 BCE; covered street drains; standard brick ratio 1:2:4; household bathing areas and wells;
+  undeciphered Indus script on seals; decline linked to river shifts and a weakening monsoon; Harappa excavated 1921, Mohenjo-daro 1922
+  ("Mohenjo-daro" ≈ "Mound of the Dead", Sindhi). The city plan is a simplified illustration; script signs on screen are invented look-alikes.
