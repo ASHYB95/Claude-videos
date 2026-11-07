@@ -1,0 +1,140 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Carousel 2 — The messages get kept</title>
+<style>
+@font-face{font-family:Play;font-weight:900;src:url(../thirty-one-years/fonts/playfair-display-latin-900-normal.woff2)}
+@font-face{font-family:Play;font-weight:900;font-style:italic;src:url(../thirty-one-years/fonts/playfair-display-latin-900-italic.woff2)}
+@font-face{font-family:Fig;font-weight:900;src:url(../thirty-one-years/fonts/figtree-latin-900-normal.woff2)}
+@font-face{font-family:Inter;font-weight:500;src:url(../thirty-one-years/fonts/inter-latin-500-normal.woff2)}
+@font-face{font-family:Mark;src:url(../thirty-one-years/fonts/permanent-marker-latin-400-normal.woff2)}
+@font-face{font-family:Hand;font-weight:700;src:url(../thirty-one-years/fonts/caveat-latin-700-normal.woff2)}
+@font-face{font-family:Type;font-weight:700;src:url(../thirty-one-years/fonts/courier-prime-latin-700-normal.woff2)}
+:root{--ink:#2f2f32;--paper:#fffcf8;--yel:#f9b910;--pink:#f0abd1;--mint:#bcefe1;--lilac:#cfb0f0;--orange:#fc9e59;--sky:#a3def5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#ddd;display:flex;flex-direction:column;gap:40px;padding:40px;color:var(--ink)}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--paper)}
+.bgn{position:absolute;inset:-40px;background:url(../thirty-one-years/assets/newsbg.jpg) center/cover}
+.grid{position:absolute;background-color:var(--paper);background-image:linear-gradient(rgba(47,47,50,.12) 2px,transparent 2px),linear-gradient(90deg,rgba(47,47,50,.12) 2px,transparent 2px);background-size:60px 60px;box-shadow:6px 12px 0 rgba(47,47,50,.16)}
+.a{position:absolute}
+.cut{position:absolute;filter:drop-shadow(6px 10px 0 rgba(47,47,50,.18))}
+.circ{position:absolute;border-radius:50%}
+.serif{font-family:Play;font-weight:900;letter-spacing:-.02em;line-height:.98}
+.ital{font-family:Play;font-style:italic;font-weight:900}
+.bar{display:inline-block;background:var(--yel);font:900 44px/1 Fig;letter-spacing:.04em;text-transform:uppercase;padding:14px 22px 12px}
+.mark{position:absolute;font-family:Mark;line-height:1.05}
+.type{font-family:Type;font-weight:700}
+.strip{position:absolute;background:var(--paper);padding:16px 28px;box-shadow:4px 8px 0 rgba(47,47,50,.15)}
+.note{position:absolute;background:var(--paper);padding:44px 50px 38px;box-shadow:6px 12px 0 rgba(47,47,50,.16);font:700 78px/1.05 Hand}
+.note .by{font:700 32px Type;margin-top:22px}
+.tape{position:absolute;width:170px;height:50px;background:rgba(252,158,89,.6);mix-blend-mode:multiply}
+.pin{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:var(--yel);box-shadow:2px 3px 0 rgba(47,47,50,.35),inset -4px -4px 0 rgba(47,47,50,.18)}
+.hlw{background-image:linear-gradient(var(--yel),var(--yel));background-repeat:no-repeat;background-position:0 88%;background-size:100% 42%;padding:0 .06em}
+svg.ink{position:absolute;left:0;top:0;width:1080px;height:1350px;overflow:visible}
+svg.ink path{fill:none;stroke:var(--ink);stroke-width:9;stroke-linecap:round;stroke-linejoin:round}
+.grain{position:absolute;inset:0;background:url(../thirty-one-years/assets/grain.png);opacity:.08;mix-blend-mode:multiply;pointer-events:none}
+.sw{position:absolute;right:50px;bottom:50px;width:76px;height:76px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.sw svg{width:34px;height:34px;stroke:var(--paper);stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ct{position:absolute;right:56px;top:56px;font:700 28px Type;background:var(--paper);padding:6px 14px}
+</style></head><body>
+
+<!-- 1 · cover -->
+<section class="slide"><div class="bgn"></div>
+  <div class="circ" style="left:150px;top:520px;width:780px;height:780px;background:var(--yel)"></div>
+  <img class="cut" src="../thirty-one-years/assets/margaret_phone.png" style="left:200px;top:500px;width:680px" alt="">
+  <div class="a serif" style="left:60px;top:110px;font-size:90px">The gift gets spent.<br><span class="ital"><span class="hlw">The messages</span> get kept.</span></div>
+  <div class="mark" style="left:800px;top:1030px;font-size:54px;transform:rotate(-8deg)">read<br>twice ↺</div>
+  <div class="strip type" style="left:60px;top:1230px;font-size:30px;border:4px solid var(--ink);transform:rotate(-2deg)">4 ways to write one they'll keep</div>
+  <div class="sw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="grain"></div>
+</section>
+
+<!-- 2 · think about it -->
+<section class="slide"><div class="bgn"></div>
+  <div class="grid" style="left:50px;top:70px;width:980px;height:1210px;transform:rotate(-1deg)"></div>
+  <div class="ct">2/7</div>
+  <div class="a serif" style="left:110px;top:150px;font-size:96px;width:860px">Think about the last leaving card <span class="ital">you got.</span></div>
+  <div class="strip type" id="vch" style="left:120px;top:620px;font-size:60px;padding:24px 36px;border:6px solid var(--ink);transform:rotate(-5deg)">£25 VOUCHER</div>
+  <div class="note" style="left:470px;top:760px;width:500px;font-size:66px;background:var(--pink);transform:rotate(4deg)">“You made Mondays bearable.”<div class="by">— Dev</div></div>
+  <div class="mark" style="left:110px;top:1020px;font-size:50px;transform:rotate(-4deg)">you forget<br>the amount…</div>
+  <div class="mark" style="left:520px;top:1150px;font-size:50px;transform:rotate(-3deg)">you keep the words.</div>
+  <svg class="ink" viewBox="0 0 1080 1350"><path id="x1" d="M110 600 L560 760"/><path id="loop2" d=""/></svg>
+  <div class="sw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="grain"></div>
+</section>
+
+<!-- 3 · be specific -->
+<section class="slide"><div class="bgn"></div>
+  <div class="ct">3/7</div>
+  <div class="a" style="left:60px;top:90px"><span class="bar">Tip 01</span></div>
+  <div class="a serif" style="left:60px;top:190px;font-size:140px">Be specific.</div>
+  <div class="note" style="left:70px;top:470px;width:940px;font-size:88px;background:var(--pink);transform:rotate(-2deg)">“You made my first day <span class="hlw">less scary.</span>”<div class="by">— Aisha, joined 2019</div></div>
+  <img class="cut" src="../thirty-one-years/assets/colleagues_2.png" style="left:740px;top:850px;width:290px;transform:rotate(7deg)" alt="">
+  <div class="tape" style="left:820px;top:830px;transform:rotate(-8deg)"></div>
+  <div class="mark" style="left:80px;top:960px;font-size:60px;transform:rotate(-4deg)">a moment<br>beats a<br>compliment</div>
+  <svg class="ink" viewBox="0 0 1080 1350"><path d="M420 1040 Q 560 1000 700 1040 M 650 1010 L700 1040 L655 1075"/></svg>
+  <div class="sw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="grain"></div>
+</section>
+
+<!-- 4 · name the small thing -->
+<section class="slide"><div class="bgn"></div>
+  <div class="ct">4/7</div>
+  <div class="a" style="left:60px;top:90px"><span class="bar">Tip 02</span></div>
+  <div class="a serif" style="left:60px;top:190px;font-size:126px">Name the<br><span class="ital">small thing.</span></div>
+  <div class="note" style="left:70px;top:580px;width:940px;font-size:88px;background:var(--mint);transform:rotate(1.5deg)">“You never forgot my <span class="hlw">kids' names.</span>”<div class="by">— Tom, IT</div></div>
+  <div class="circ" style="left:600px;top:930px;width:400px;height:400px;background:var(--sky)"></div>
+  <img class="cut" src="../thirty-one-years/assets/props_0.png" style="left:620px;top:950px;width:370px;transform:rotate(-5deg)" alt="">
+  <div class="mark" style="left:90px;top:1030px;font-size:58px;transform:rotate(-5deg)">milk,<br>one sugar ✓</div>
+  <svg class="ink" viewBox="0 0 1080 1350"><path d="M360 1120 Q 480 1180 600 1110 M 560 1090 L604 1108 L575 1150"/></svg>
+  <div class="sw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="grain"></div>
+</section>
+
+<!-- 5 · let everyone in -->
+<section class="slide"><div class="bgn"></div>
+  <div class="ct">5/7</div>
+  <div class="a" style="left:60px;top:90px"><span class="bar">Tip 03</span></div>
+  <div class="a serif" style="left:60px;top:190px;font-size:126px">Let everyone in.</div>
+  <img class="a" src="../thirty-one-years/assets/ukmap.jpg" style="left:190px;top:360px;width:720px;box-shadow:8px 14px 0 rgba(47,47,50,.18);transform:rotate(-2deg)" alt="">
+  <div id="pins"></div>
+  <div class="a" style="left:60px;top:1150px"><span class="bar" style="font-size:32px">One link reaches people an envelope can't</span></div>
+  <div class="sw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="grain"></div>
+</section>
+
+<!-- 6 · bring the receipts -->
+<section class="slide"><div class="bgn"></div>
+  <div class="ct">6/7</div>
+  <div class="a" style="left:60px;top:90px"><span class="bar">Tip 04</span></div>
+  <div class="a serif" style="left:60px;top:190px;font-size:126px">Bring the<br><span class="ital">receipts.</span></div>
+  <div class="a" style="left:520px;top:300px;width:470px;transform:rotate(6deg)"><img src="../thirty-one-years/assets/m1994.png" style="width:470px;display:block" alt=""><div class="tape" style="left:150px;top:-20px;transform:rotate(-5deg)"></div></div>
+  <div class="mark" style="left:110px;top:560px;font-size:84px;transform:rotate(-8deg)">1994!!</div>
+  <svg class="ink" viewBox="0 0 1080 1350"><path d="M330 620 Q 430 560 520 600 M 478 568 L522 600 L478 628"/></svg>
+  <div class="note" style="left:60px;top:960px;width:640px;font-size:64px;background:var(--lilac);transform:rotate(-3deg)">Add the old photo, a GIF, even a video.</div>
+  <img class="cut" src="../thirty-one-years/assets/hand_pencil.png" style="left:640px;top:880px;width:500px" alt="">
+  <div class="sw"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><div class="grain"></div>
+</section>
+
+<!-- 7 · CTA -->
+<section class="slide"><div class="bgn"></div>
+  <div class="a" style="left:0;right:0;top:80px;text-align:center"><div class="strip logo" style="position:relative;display:inline-block;padding:28px 44px;transform:rotate(-1.5deg)"><img src="../thirty-one-years/brand/LogoCharcoal.svg" style="width:560px;height:48px;display:block" alt=""></div></div>
+  <div class="a serif" style="left:0;right:0;top:270px;text-align:center;font-size:100px">Collect together,<br><span class="ital"><span class="hlw">celebrate together.</span></span></div>
+  <div class="circ" style="left:250px;top:560px;width:580px;height:580px;background:var(--yel)"></div>
+  <img class="cut" src="../thirty-one-years/assets/margaret_laugh.png" style="left:300px;top:560px;width:480px" alt="">
+  <div class="a" style="left:0;right:0;top:1020px;display:flex;justify-content:center;gap:14px"><img src="../thirty-one-years/brand/filledChipFace.svg" style="width:104px" alt=""><img src="../thirty-one-years/brand/pinkChip.svg" style="width:104px" alt=""><img src="../thirty-one-years/brand/greenChip.svg" style="width:104px" alt=""><img src="../thirty-one-years/brand/oragengeChip.svg" style="width:104px" alt=""><img src="../thirty-one-years/brand/purpleChip.svg" style="width:104px" alt=""></div>
+  <div class="a" style="left:0;right:0;top:1160px;text-align:center"><span class="bar" style="font-size:52px;padding:20px 34px">Start a Pot — it's free</span></div>
+  <div class="a type" style="left:0;right:0;top:1272px;text-align:center;font-size:36px">collectionpot.com</div>
+  <div class="grain"></div>
+</section>
+
+<script>
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647; const R = (a, b) => a + (b - a) * rnd();
+function torn(el, amp = 10, n = 34) { const p = [], j = a => R(0, a).toFixed(1);
+  for (let i = 0; i <= n; i++) p.push(`${(i / n * 100).toFixed(2)}% ${j(amp)}px`);
+  for (let i = 0; i <= 12; i++) p.push(`calc(100% - ${j(amp * .6)}px) ${(i / 12 * 100).toFixed(2)}%`);
+  for (let i = n; i >= 0; i--) p.push(`${(i / n * 100).toFixed(2)}% calc(100% - ${j(amp)}px)`);
+  for (let i = 12; i >= 0; i--) p.push(`${j(amp * .6)}px ${(i / 12 * 100).toFixed(2)}%`);
+  el.style.clipPath = `polygon(${p.join(',')})`; }
+document.querySelectorAll('.note, .strip').forEach(n => torn(n, 10));
+const loop = (cx, cy, rx, ry, turns = 1.15) => { let d = ''; const n = Math.round(90 * turns), p1 = R(0, 6), p2 = R(0, 6); for (let i = 0; i <= n; i++) { const a = -1.9 + i / 90 * Math.PI * 2, r = 1 + .05 * Math.sin(a * 2 + p1) + .03 * Math.sin(a * 3 + p2) + i / n * .06; d += `${i ? 'L' : 'M'}${(cx + Math.cos(a) * rx * r).toFixed(1)} ${(cy + Math.sin(a) * ry * r).toFixed(1)}`; } return d; };
+document.getElementById('loop2').setAttribute('d', loop(720, 900, 300, 190, 1.15));
+document.getElementById('x1').setAttribute('d', 'M120 590 L520 760 M520 590 L120 760');
+const PINS = [[380, 900, 'colleagues_2', 'WORKS FROM HOME'], [680, 1000, 'colleagues_3', 'WORKS FROM HOME'], [650, 720, 'colleagues_0', 'LEFT IN 2016']];
+document.getElementById('pins').innerHTML = PINS.map((p, i) => `<div class="pin" style="left:${p[0]}px;top:${p[1]}px"></div><div class="a" style="left:${p[0] - 120}px;top:${p[1] - 330}px;width:240px;transform:rotate(${i % 2 ? 6 : -6}deg)"><img class="cut" src="../thirty-one-years/assets/${p[2]}.png" style="position:relative;width:240px" alt=""><div class="strip type" style="left:14px;bottom:-34px;font-size:24px;padding:6px 12px;border:3px solid var(--ink)">${p[3]}</div></div>`).join('');
+document.querySelectorAll('#pins .strip').forEach(n => torn(n, 6));
+</script>
+</body></html>
