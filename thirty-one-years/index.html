@@ -144,7 +144,7 @@ svg.ink path{fill:none;stroke:var(--ink);stroke-width:9;stroke-linecap:round;str
       <div class="msgs"><div class="m" id="sm0">Happy retirement Margaret! x<b>Aisha</b></div><div class="m" id="sm1">The kettle will miss you.<b>Tom</b></div></div>
     </div></div>
   </div>
-  <div class="p" id="s4logo" style="left:0;right:0;top:150px;text-align:center"><div class="strip" style="position:relative;display:inline-block;padding:28px 44px;transform:rotate(-2deg)"><img src="brand/LogoCharcoal.svg" style="width:600px;display:block" alt=""></div></div>
+  <div class="p" id="s4logo" style="left:0;right:0;top:150px;text-align:center"><div class="strip" style="position:relative;display:inline-block;padding:28px 44px;transform:rotate(-2deg)"><img src="brand/LogoCharcoal.svg" style="width:600px;height:52px;display:block" alt=""></div></div>
   <div class="p serif" id="s4so" style="left:70px;top:330px;font-size:84px">So she starts a</div>
   <div class="strip type" id="s4link" style="left:40px;top:1470px;font-size:34px;transform:rotate(-3deg);border:4px solid var(--ink)">collectionpot.com/margaret</div>
   <div class="note" id="s4chat" style="left:40px;top:300px;width:330px;transform:rotate(-5deg);font-size:44px;background:var(--mint)">Team chat</div>
@@ -204,7 +204,7 @@ svg.ink path{fill:none;stroke:var(--ink);stroke-width:9;stroke-linecap:round;str
   <div class="bgn" id="s8bg"></div>
   <div class="circ" id="s8c" style="left:190px;top:760px;width:700px;height:700px;background:var(--yel)"></div>
   <img class="cut" id="s8m" src="assets/margaret_laugh.png" style="left:250px;top:760px;width:600px" alt="">
-  <div class="p" id="s8logo" style="left:0;right:0;top:140px;text-align:center"><div class="strip" style="position:relative;display:inline-block;padding:30px 46px;transform:rotate(-1.5deg)"><img src="brand/LogoCharcoal.svg" style="width:640px;display:block" alt=""></div></div>
+  <div class="p" id="s8logo" style="left:0;right:0;top:140px;text-align:center"><div class="strip" style="position:relative;display:inline-block;padding:30px 46px;transform:rotate(-1.5deg)"><img src="brand/LogoCharcoal.svg" style="width:640px;height:55px;display:block" alt=""></div></div>
   <div class="p serif" id="s8t" style="left:0;right:0;top:360px;text-align:center;font-size:118px"><span class="ln1">Collect together,</span><br><span class="ital ln2"><span class="hlw" id="s8hl">celebrate together.</span></span></div>
   <div id="s8chips" class="p" style="left:0;right:0;top:1380px;display:flex;justify-content:center;gap:18px"><img src="brand/filledChipFace.svg" style="width:120px" alt=""><img src="brand/pinkChip.svg" style="width:120px" alt=""><img src="brand/greenChip.svg" style="width:120px" alt=""><img src="brand/oragengeChip.svg" style="width:120px" alt=""><img src="brand/purpleChip.svg" style="width:120px" alt=""></div>
   <div class="p" id="s8cta" style="left:0;right:0;top:1560px;text-align:center"><span class="bar" style="font-size:64px;padding:22px 40px">Create a Pot — it's free</span></div>
@@ -223,12 +223,13 @@ let seed = 31; const rnd = () => (seed = (seed * 16807) % 2147483647) / 21474836
 const R = (a, b) => a + (b - a) * rnd();
 
 /* ---- torn paper edges (deterministic) ---- */
-function torn(el, amp = 10, step = 22) {
-  const w = el.offsetWidth || 400, h = el.offsetHeight || 200, pts = [];
-  for (let x = 0; x <= w; x += step) pts.push(`${x}px ${R(0, amp)}px`);
-  for (let y = 0; y <= h; y += step) pts.push(`${w - R(0, amp * .6)}px ${y}px`);
-  for (let x = w; x >= 0; x -= step) pts.push(`${x}px ${h - R(0, amp)}px`);
-  for (let y = h; y >= 0; y -= step) pts.push(`${R(0, amp * .6)}px ${y}px`);
+// percentage-based torn edge: fits the element at whatever size it ends up (images/fonts loading later can't clip it)
+function torn(el, amp = 10, n = 34) {
+  const pts = [], j = a => R(0, a).toFixed(1);
+  for (let i = 0; i <= n; i++) pts.push(`${(i / n * 100).toFixed(2)}% ${j(amp)}px`);
+  for (let i = 0; i <= 12; i++) pts.push(`calc(100% - ${j(amp * .6)}px) ${(i / 12 * 100).toFixed(2)}%`);
+  for (let i = n; i >= 0; i--) pts.push(`${(i / n * 100).toFixed(2)}% calc(100% - ${j(amp)}px)`);
+  for (let i = 12; i >= 0; i--) pts.push(`${j(amp * .6)}px ${(i / 12 * 100).toFixed(2)}%`);
   el.style.clipPath = `polygon(${pts.join(',')})`;
 }
 function edge(el, top) { const pts = []; for (let x = 0; x <= 1160; x += 26) pts.push(`${x}px ${top ? 60 - R(0, 48) : R(0, 48)}px`); el.style.clipPath = top ? `polygon(0 60px,${pts.join(',')},1160px 60px)` : `polygon(0 0,${pts.join(',')},1160px 0)`; }
@@ -285,7 +286,7 @@ const tearAt = T => tl.fromTo('#tear', { y: 2000 }, { y: -2760, duration: .8, ea
 // grain jitter (stop-motion texture)
 tl.to('#grain', { x: 180, y: 140, duration: 61.5, ease: 'steps(740)' }, 0);
 gsap.set('.cut, .note, .strip', {}); // ensure transforms are GSAP-managed
-$$('.note, .strip').forEach(n => torn(n, 9, 24));
+$$('.note, .strip').forEach(n => torn(n, 9));
 
 /* S1 */
 push('#s1bg', 0, 6.6, 1.0, 1.08);

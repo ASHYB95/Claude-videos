@@ -22,7 +22,7 @@ out += mus * duck[:, None] * db(-13)
 
 names = ['tear', 'tape', 'marker', 'stamp', 'typer', 'pencil', 'slide', 'flutter', 'pin', 'whoosh', 'pop']
 S = {n: load(f'{here}/sfx_{n}.mp3') for n in names}
-TRIM = {'tear': -12, 'tape': -1, 'marker': 4, 'stamp': 0, 'typer': 3, 'pencil': -6, 'slide': 16, 'flutter': 18, 'pin': 17, 'whoosh': -12, 'pop': 6}
+TRIM = {'tear': -12, 'tape': -1, 'marker': -4, 'stamp': 0, 'typer': 3, 'pencil': -6, 'slide': 16, 'flutter': 18, 'pin': 17, 'whoosh': -12, 'pop': 6}
 cues = [('slide', 0.6, -10), ('slide', 2.4, -10), ('stamp', 2.55, -6), ('typer', 2.8, -14, 1.0), ('marker', 3.35, -10), ('slide', 5.1, -12)]
 cues += [('tear', T - 0.35, -8) for T in (6.6, 13.3, 20.0, 23.7, 33.3, 41.2, 48.4, 55.3)]
 cues += [('slide', 6.6, -12), ('slide', 7.75, -10), ('marker', 8.1, -10), ('slide', 9.65, -10), ('marker', 9.95, -10), ('slide', 10.5, -9), ('marker', 11.1, -8), ('marker', 11.95, -10),
@@ -31,7 +31,7 @@ cues += [('slide', 6.6, -12), ('slide', 7.75, -10), ('marker', 8.1, -10), ('slid
          ('slide', 20.05, -10), ('slide', 20.35, -10), ('slide', 21.2, -12), ('marker', 22.3, -8), ('marker', 22.45, -8), ('stamp', 22.5, -8),
          ('slide', 24.3, -8), ('stamp', 24.65, -8), ('slide', 26.25, -10), ('slide', 27.0, -10), ('marker', 27.05, -11), ('slide', 28.5, -10), ('marker', 28.55, -11),
          ('slide', 30.1, -9), ('tape', 30.55, -8), ('tape', 30.65, -10), ('marker', 30.6, -12), ('slide', 31.7, -10),
-         ('stamp', 33.5, -7), ('typer', 33.7, -14, 3.0), ('flutter', 33.85, -8), ('flutter', 34.9, -9), ('pencil', 34.4, -14), ('pencil', 36.2, -16),
+         ('stamp', 33.5, -7), ('typer', 33.7, -14, 3.0), ('flutter', 33.85, -8), ('flutter', 34.9, -9), ('pencil', 34.4, -28), ('pencil', 36.2, -30),
          ('slide', 35.8, -10), ('slide', 37.2, -10), ('slide', 38.55, -10), ('stamp', 39.4, -8),
          ('slide', 41.3, -13), ('marker', 42.4, -16), ('slide', 43.7, -13), ('marker', 44.6, -16), ('slide', 45.9, -13), ('marker', 46.45, -16),
          ('slide', 48.6, -10), ('slide', 51.3, -12), ('slide', 52.3, -12), ('flutter', 52.85, -9), ('marker', 53.55, -10), ('marker', 53.8, -12),
