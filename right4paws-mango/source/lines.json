@@ -1,0 +1,10 @@
+[
+ {"id":"v1","text":"Right. Confession time. I used to be a terribly fussy eater.","voice":"bm_fable","speed":1.0,"lang":"en-gb"},
+ {"id":"v2","text":"Same brown pellets. Every. Single. Day.","voice":"bm_fable","speed":0.95,"lang":"en-gb"},
+ {"id":"v3","text":"Then one morning... something new turned up.","voice":"bm_fable","speed":1.0,"lang":"en-gb"},
+ {"id":"v4","text":"Real chicken! Fresh eggs! Veggies, berries... even sardines!","voice":"bm_fable","speed":1.05,"lang":"en-gb"},
+ {"id":"v5","text":"Now I wake up thinking about breakfast.","voice":"bm_fable","speed":1.0,"lang":"en-gb"},
+ {"id":"v6","text":"I sit by my bowl. I wait. Very nicely.","voice":"bm_fable","speed":0.95,"lang":"en-gb"},
+ {"id":"v7","text":"Best. Bit. Of my day.","voice":"bm_fable","speed":0.95,"lang":"en-gb"},
+ {"id":"v8","text":"Right for Paws Ultimate Diet. Raw, made right.","asr":"Right for Paws Ultimate Diet. Raw, made right.","voice":"bm_fable","speed":0.95,"lang":"en-gb"}
+]
