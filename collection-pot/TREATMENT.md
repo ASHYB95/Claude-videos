@@ -1,4 +1,4 @@
-# Collection Pot — "Set Up in Under a Minute" (draft v2, awaiting approval)
+# Collection Pot — "Set Up in Under a Minute" (approved v2, built)
 
 Screen-led walkthrough with AI B-roll (Higgsfield). 1080×1920 (9:16) · ~35 s · VO: Alice (ElevenLabs).
 Real collectionpot.com screens (reference/screens) shown in a phone; cinematic B-roll between them.
@@ -23,3 +23,11 @@ Charcoal #2f2f32 · cream #fffcf8 · pot yellow #f9b910 · pastels pink #f0abd1,
 - Environment "claude-videos" allows www/app.collectionpot.com and collectionpot-static.b-cdn.net.
 - Headless Chrome on collectionpot.com 404s some /_next/static chunks; reference/capture-flow.js routes those through curl.
 - Create flow seen so far: occasion → "Should everyone chip in?" + currency → (further steps not yet captured; stop before sign-up).
+
+## Build (as made)
+- Fast cut: B-roll shots on screen 1.0–2.8 s each; whip pans, a match cut through the phone screen, yellow and double (yellow + charcoal) wipes.
+- Clip 2 screen replacement: the real collectionpot.com homepage is tracked onto the phone in the hand, then the cut goes through the screen into the 3D phone.
+- Setup shown as 3 steps with a running 0:00 → 0:48 timer; screens rebuilt on-brand (cream #fffcf8, charcoal #2f2f32, yellow #f9b910, Figtree Black + Inter, real occasion icons, Chip avatars, real QR to collectionpot.com).
+- Camera: push-ins that follow each tap, tilt down to NEXT, pull-backs for 3D pop-outs (link, QR, team, messages, spend cards).
+- Audio: VO at 1.08× pace, music 120 BPM C major, ducked under VO, mastered to -14 LUFS.
+- Regenerate: voices/tts.py → audio/sfx.py → audio/score.py → audio/mix.py → `npx hyperframes render -q delivery -o renders/collection-pot.mp4`.

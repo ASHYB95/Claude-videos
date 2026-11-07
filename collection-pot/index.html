@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>Collection Pot — Set Up in Under a Minute</title>
+<script src="vendor/gsap.min.js"></script>
+<style>
+@font-face{font-family:Fig;font-weight:700;src:url(fonts/figtree-latin-700-normal.woff2);font-display:block}
+@font-face{font-family:Fig;font-weight:800;src:url(fonts/figtree-latin-800-normal.woff2);font-display:block}
+@font-face{font-family:Fig;font-weight:900;src:url(fonts/figtree-latin-900-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:400;src:url(fonts/inter-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:500;src:url(fonts/inter-latin-500-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:700;src:url(fonts/inter-latin-700-normal.woff2);font-display:block}
+@font-face{font-family:Emo;src:url(fonts/NotoColorEmoji.ttf);font-display:block}
+:root{--char:#2f2f32;--cream:#fffcf8;--yel:#f9b910;--pink:#f0abd1;--mint:#bcefe1;--lilac:#cfb0f0;--orange:#fc9e59;--sky:#a3def5;--green:#00ca86;--line:#e7e2da}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--cream)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--cream);font-family:Inter,sans-serif;color:var(--char)}
+.clip{position:absolute;inset:0}
+.emo{font-family:Emo,sans-serif}
+.fig{font-family:Fig,sans-serif;font-weight:900;letter-spacing:-.02em}
+video.clip{width:1080px;height:1920px;object-fit:cover}
+
+/* ---------- UI stage ---------- */
+#uiWrap{overflow:hidden}
+#bg{position:absolute;inset:0;background:var(--cream)}
+.shape{position:absolute}
+#stage{position:absolute;inset:0;perspective:2600px;perspective-origin:50% 50%}
+.p3{position:absolute;transform-style:preserve-3d}
+#rig{left:540px;top:1000px;width:0;height:0}
+#phone{left:-300px;top:-620px;width:600px;height:1240px}
+.slab{position:absolute;inset:0;border-radius:88px}
+#pface{position:absolute;inset:0;border-radius:88px;background:linear-gradient(150deg,#46464b,#2a2a2d 45%,#1f1f22);box-shadow:0 0 0 2px rgba(255,255,255,.10) inset}
+#pback{position:absolute;inset:0;border-radius:88px;transform:translateZ(-40px) rotateY(180deg);background:#2a2a2d}
+#shadow{position:absolute;left:-330px;top:560px;width:660px;height:200px;border-radius:50%;background:radial-gradient(closest-side,rgba(47,47,50,.35),rgba(47,47,50,0));transform:rotateX(90deg) translateZ(-40px)}
+#scr{position:absolute;left:22px;top:22px;width:556px;height:1196px;border-radius:66px;overflow:hidden;background:#fff;transform:translateZ(1px)}
+#island{position:absolute;left:208px;top:20px;width:140px;height:40px;border-radius:20px;background:#000;z-index:50}
+#glare{position:absolute;inset:0;border-radius:66px;pointer-events:none;z-index:49;background:linear-gradient(115deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,0) 30%)}
+.page{position:absolute;inset:0;overflow:hidden;background:#fffcf8}
+.lg{position:absolute;left:0;top:0;width:430px;height:925px;transform:scale(1.293);transform-origin:0 0}
+.top{position:absolute;left:0;right:0;top:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:30px 18px 0;background:#fffcf8;z-index:5}
+.top img{width:150px}
+.burger{width:22px;height:16px;display:flex;flex-direction:column;justify-content:space-between}.burger i{height:2px;background:var(--char);border-radius:1px}
+h1.t{font-family:Fig;font-weight:900;letter-spacing:-.02em;font-size:36px;line-height:1.08;text-align:center;margin:0 22px}
+p.s{font:400 15px/1.55 Inter;text-align:center;margin:14px 24px 0}
+.pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:20px 14px 0}
+.pill{height:40px;padding:0 14px 0 10px;border:1.5px solid var(--char);border-radius:21px;display:flex;align-items:center;gap:7px;font:600 14.5px Inter;background:#fffcf8}
+.pill img{width:22px;height:22px}
+.pill.on{background:var(--yel);border-color:#f7cf5c}
+.btn{position:absolute;left:16px;right:16px;bottom:22px;height:50px;border-radius:25px;display:flex;align-items:center;justify-content:center;font:500 18px Inter;letter-spacing:.5px;background:#fbe4a3;color:#b9a77d}
+.btn.go{background:var(--yel);color:var(--char)}
+.cards{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:22px}
+.opt{width:300px;padding:22px 18px;border:2px solid var(--char);border-radius:22px;background:#fffcf8;font:800 22px/1.2 Fig;text-align:center}
+.opt.on{background:var(--yel);border-color:var(--yel)}
+h2.c{font-family:Fig;font-weight:900;font-size:30px;text-align:center;margin-top:26px}
+.sel{margin:14px 40px 0;height:46px;border:1.5px solid var(--char);border-radius:24px;display:flex;align-items:center;justify-content:center;gap:8px;font:500 15px Inter}
+.btns{position:absolute;left:16px;right:16px;bottom:22px;display:flex;gap:10px}
+.btns div{flex:1;height:50px;border-radius:25px;display:flex;align-items:center;justify-content:center;font:500 17px Inter}
+.btns .b{border:1.5px solid var(--char)}.btns .n{background:var(--yel)}
+/* pot page */
+#pot .lg{overflow:hidden}
+#potScroll{position:absolute;left:0;top:0;width:430px}
+.pcard{position:relative;margin:10px 12px;background:#fff;border-radius:18px;box-shadow:0 2px 10px rgba(47,47,50,.08);padding:16px}
+.raised{display:flex;align-items:flex-end;justify-content:center;gap:8px}
+.amt{position:relative;height:52px;overflow:hidden;font:900 48px/52px Fig;letter-spacing:-.02em;min-width:150px;text-align:center}
+.amt span{position:absolute;left:0;right:0;top:0}
+.lbl{font:500 13px Inter;color:#6e6e73;text-align:center;margin-top:2px}
+.avs{display:flex;justify-content:center;margin-top:8px;height:34px}
+.avs img{width:34px;height:34px;border-radius:50%;margin-left:-8px;border:2px solid #fff;background:#fff;opacity:0}
+.by{font:400 14px Inter;text-align:center;margin-top:8px}.by b{font-weight:600}
+.add{margin-top:12px;height:46px;border-radius:23px;background:var(--yel);display:flex;align-items:center;justify-content:center;font:500 16px Inter;letter-spacing:.3px}
+.meta{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:12px;font:600 13px Inter}
+.inv{display:flex;align-items:center;gap:8px;font:500 15px Inter}
+.cover{margin:10px 12px;height:210px;border-radius:18px;overflow:hidden;background:var(--sky);display:flex;align-items:center;justify-content:center}
+.cover img{height:200px}
+.ptitle{margin:16px 18px 0;font:900 44px/1 Fig;letter-spacing:-.03em}
+.pdesc{margin:12px 18px 0;font:400 15px/1.5 Inter}
+.msg{margin:12px;background:#fff;border-radius:18px;box-shadow:0 2px 10px rgba(47,47,50,.08);padding:16px 16px 14px;font:400 14.5px/1.45 Inter}
+.msg b{display:block;font:600 13px Inter;margin-top:8px}
+.msg .loc{display:inline-block;margin-top:6px;font:500 11px Inter;padding:3px 8px;border-radius:10px;background:#f3efe8}
+.conf{position:absolute;border-radius:50%}
+#sheet{position:absolute;left:0;right:0;bottom:0;height:600px;background:#fff;border-radius:28px 28px 0 0;box-shadow:0 -10px 40px rgba(47,47,50,.18);padding:14px 20px;z-index:20}
+#sheet .grab{width:40px;height:5px;border-radius:3px;background:#d8d4cc;margin:0 auto 16px}
+#sheet h3{font:900 26px Fig;letter-spacing:-.02em}
+#sheet .sub{font:400 14px Inter;color:#6e6e73;margin-top:4px}
+.link{margin-top:16px;height:50px;border-radius:14px;background:#f6f3ee;border:1.5px solid var(--line);display:flex;align-items:center;padding:0 6px 0 14px;gap:8px;font:500 13.5px Inter;white-space:nowrap;overflow:hidden}
+.link .u{flex:1;overflow:hidden;text-overflow:ellipsis}
+.copy{position:relative;width:86px;height:38px;border-radius:19px;background:var(--yel);font:600 13px Inter;overflow:hidden;flex:none}
+.copy span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.qrbox{margin:18px auto 0;width:190px;height:190px;padding:14px;border-radius:18px;border:1.5px solid var(--line)}
+.qrbox img{width:100%;height:100%}
+.share{display:flex;justify-content:space-around;margin-top:18px}
+.share div{display:flex;flex-direction:column;align-items:center;gap:6px;font:500 12px Inter}
+.share i{width:52px;height:52px;border-radius:50%;background:#f3efe8;display:flex;align-items:center;justify-content:center;font-style:normal}
+.share svg{width:24px;height:24px;fill:none;stroke:var(--char);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* spend */
+.bal{margin:16px 14px 0;border-radius:20px;background:var(--char);color:var(--cream);padding:18px;text-align:center}
+.bal .v{font:900 40px Fig;color:var(--yel);letter-spacing:-.02em}
+.bal .k{font:500 13px Inter;opacity:.8}
+.sp{margin:10px 14px 0;background:#fff;border-radius:16px;box-shadow:0 2px 10px rgba(47,47,50,.07);padding:13px 14px;display:flex;align-items:center;gap:12px}
+.sp .ic{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex:none}
+.sp .ic svg{width:22px;height:22px;fill:none;stroke:var(--char);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sp .tx b{display:block;font:600 15.5px Inter}.sp .tx span{font:400 12.5px/1.35 Inter;color:#6e6e73}
+.sp .tag{margin-left:auto;font:700 11px Inter;padding:4px 8px;border-radius:10px;background:var(--mint);white-space:nowrap}
+#tap{position:absolute;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(47,47,50,.22);border:3px solid rgba(255,255,255,.9);opacity:0;z-index:60}
+#ring{position:absolute;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;border:4px solid var(--yel);opacity:0;z-index:59}
+
+/* 3D pop-outs */
+.pop{position:absolute;background:#fff;border-radius:30px;box-shadow:0 30px 70px rgba(47,47,50,.22),0 0 0 1px rgba(47,47,50,.05)}
+#qrCard{left:-150px;top:-185px;width:300px;height:370px;padding:26px;text-align:center}
+#qrCard img{width:248px;height:248px}
+#qrCard div{font:700 24px Inter;margin-top:16px}
+#linkCard{left:-290px;top:-48px;width:580px;height:96px;border-radius:48px;display:flex;align-items:center;gap:16px;padding:0 14px 0 30px;font:600 25px Inter;white-space:nowrap}
+#linkCard .ok{margin-left:auto;height:68px;padding:0 26px;border-radius:34px;background:var(--green);color:#fff;display:flex;align-items:center;font:700 22px Inter}
+.av3{position:absolute;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;background:#fff;box-shadow:0 20px 50px rgba(47,47,50,.22);padding:4px}
+.av3 img{width:100%;height:100%;border-radius:50%}
+.m3{position:absolute;width:420px;padding:26px 28px;border-radius:30px;background:#fff;box-shadow:0 30px 70px rgba(47,47,50,.2);font:400 25px/1.4 Inter}
+.m3 b{display:block;font:700 22px Inter;margin-top:12px}
+.m3 .loc{display:inline-block;margin-top:10px;font:600 18px Inter;padding:6px 14px;border-radius:16px;background:#f3efe8}
+.big3{position:absolute;width:420px;height:350px;border-radius:40px;padding:34px;box-shadow:0 40px 90px rgba(47,47,50,.25)}
+.big3 .k{font:700 22px Inter;letter-spacing:4px}
+.big3 .v{font:900 150px/1 Fig;letter-spacing:-.04em;margin-top:18px;display:flex;align-items:baseline}
+.big3 .w{font:800 46px Fig;letter-spacing:-.01em;margin-top:6px}
+.gc{position:absolute;width:330px;height:208px;border-radius:24px;box-shadow:0 24px 60px rgba(47,47,50,.22)}
+.gc i{position:absolute;left:26px;bottom:24px;width:120px;height:14px;border-radius:7px;background:rgba(47,47,50,.25)}
+.gc u{position:absolute;right:26px;top:24px;width:56px;height:40px;border-radius:10px;background:rgba(255,255,255,.55)}
+.odo{display:inline-flex;overflow:hidden;height:1em;line-height:1em}
+.odo .col{display:inline-block;overflow:hidden;height:1em}
+.odo .strip{display:flex;flex-direction:column}
+.odo .strip span{height:1em;display:block;text-align:center}
+
+/* headlines (2D) */
+.hl{position:absolute;left:0;right:0;text-align:center;opacity:0}
+.big{font-family:Fig;font-weight:900;letter-spacing:-.03em;font-size:108px;line-height:1.02}
+.blk{display:inline-block;padding:.02em .22em .08em;border-radius:.18em}
+.by-y{background:var(--yel);color:var(--char)}.by-c{background:var(--cream);color:var(--char)}.by-k{background:var(--char);color:var(--cream)}
+.ln{display:block;overflow:hidden;padding:.04em .1em .08em}
+.li{display:inline-block}
+#timer{position:absolute;left:50%;top:118px;width:330px;margin-left:-165px;height:96px;border-radius:48px;background:var(--char);color:var(--cream);display:flex;align-items:center;justify-content:center;gap:16px;font:900 58px Fig;opacity:0}
+#timer svg{width:46px;height:46px;fill:none;stroke:var(--yel);stroke-width:3;stroke-linecap:round}
+#timer .done{position:absolute;right:-8px;top:-8px;width:52px;height:52px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;opacity:0}
+.step{position:absolute;left:0;right:0;top:250px;text-align:center;opacity:0}
+.step .n{display:inline-flex;width:64px;height:64px;border-radius:50%;background:var(--yel);font:900 40px Fig;align-items:center;justify-content:center;vertical-align:middle;margin-right:18px;position:relative;top:-8px}
+.step .w{font:900 76px/1.05 Fig;letter-spacing:-.03em}
+
+/* B-roll overlays */
+.kt{position:absolute;left:0;right:0;text-align:center}
+.shd{text-shadow:0 4px 30px rgba(0,0,0,.35)}
+.toast{position:absolute;left:70px;width:940px;height:150px;border-radius:44px;background:rgba(255,252,248,.97);box-shadow:0 20px 60px rgba(0,0,0,.28);display:flex;align-items:center;gap:26px;padding:0 34px 0 24px;opacity:0}
+.toast img{width:104px;height:104px;border-radius:50%;background:#fff}
+.toast b{display:block;font:700 38px Inter;letter-spacing:-.5px}
+.toast span{font:500 27px Inter;color:#6e6e73}
+.toast .pt{margin-left:auto;width:64px;height:64px}
+.cf{position:absolute;left:540px;top:1700px;width:26px;height:40px;border-radius:7px;opacity:0}
+.wipe{position:absolute;left:-200px;top:0;width:1480px;height:2200px;border-radius:140px}
+
+/* end card */
+#end{background:var(--cream)}
+#endLogo{position:absolute;left:250px;top:230px;width:580px}
+#heroCard{position:absolute;left:60px;top:380px;width:960px;height:1170px;border-radius:64px;background:var(--char);overflow:hidden}
+#heroT{position:absolute;left:0;right:0;top:80px;text-align:center;color:var(--yel);font:900 112px/.98 Fig;letter-spacing:-.035em}
+#heroT .ln{padding:0 .1em .02em}
+#chips{position:absolute;left:0;right:0;top:530px;display:flex;justify-content:center;gap:22px}
+#chips img{width:142px;height:142px}
+#heroP{position:absolute;left:90px;right:90px;top:715px;text-align:center;color:var(--cream);font:400 36px/1.5 Inter}
+#cta{position:absolute;left:150px;right:150px;top:1300px;height:150px;border-radius:75px;background:var(--yel);display:flex;align-items:center;justify-content:center;font:600 54px Inter;letter-spacing:2px;overflow:hidden;box-shadow:0 20px 50px rgba(249,185,16,.35)}
+#cta i{position:absolute;top:-30%;left:0;width:160px;height:160%;transform:translateX(-300px) rotate(20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent)}
+#endSub{position:absolute;left:0;right:0;top:1615px;text-align:center;font:600 38px Inter}
+#endSub span{color:#8a8a8f;font-weight:500}
+#ctaRing{position:absolute;left:540px;top:1375px;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:6px solid var(--char);opacity:0}
+#flash{background:#fff;opacity:0}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="32.2" data-width="1080" data-height="1920" data-motion-blur="on" data-motion-blur-shutter="180">
+
+  <!-- B-roll 1 & 2 (under the UI) -->
+  <video id="vA" class="clip" src="broll/b1.mp4" muted data-start="0" data-duration="2.05" data-media-start="0.1" data-track-index="1"></video>
+  <video id="vB" class="clip" src="broll/b1.mp4" muted data-start="2.05" data-duration="2.6" data-media-start="2.4" data-track-index="2"></video>
+  <video id="vC" class="clip" src="broll/b2_comp.mp4" muted data-start="4.45" data-duration="2.83" data-media-start="0" data-track-index="3"></video>
+  <img id="vCfreeze" class="clip" src="broll/b2_last.png" data-start="7.2" data-duration="0.6" data-track-index="3" alt="">
+
+  <!-- UI scene -->
+  <div id="uiWrap" class="clip" data-start="7.2" data-duration="16.85" data-track-index="4">
+    <div id="bg"></div>
+    <div id="stage">
+      <div id="rig" class="p3">
+        <div id="shadow"></div>
+        <div id="phone" class="p3">
+          <div id="slabs"></div>
+          <div id="pback"></div>
+          <div id="pface"></div>
+          <div id="scr">
+            <div class="page" id="home"><img src="reference/screens/01_home.png" style="width:556px;height:1196px;display:block" alt=""></div>
+            <div class="page" id="occ"><div class="lg">
+              <div class="top"><img src="brand/LogoCharcoal.svg" alt=""><div class="burger"><i></i><i></i><i></i></div></div>
+              <div style="height:96px"></div>
+              <h1 class="t">What can we help with?</h1>
+              <p class="s">Create a free Collection Pot™ in under a minute to <b>collect money, just messages, or both</b> — for someone else, yourself or your group.</p>
+              <div class="pills" id="pills"></div>
+              <div class="btn" id="occNext">NEXT</div>
+            </div></div>
+            <div class="page" id="chip"><div class="lg">
+              <div class="top"><img src="brand/LogoCharcoal.svg" alt=""><div class="burger"><i></i><i></i><i></i></div></div>
+              <div style="height:96px"></div>
+              <h1 class="t">Should everyone chip in?</h1>
+              <p class="s" style="font-size:14.5px">Everyone can leave a message, whatever you decide — and you can change this later if you like.</p>
+              <div class="cards">
+                <div class="opt" id="o1">Everyone must chip in money</div>
+                <div class="opt" id="o2">Chipping in money is optional</div>
+                <div class="opt" id="o3">Just collect messages</div>
+              </div>
+              <h2 class="c">Pick a currency</h2>
+              <div class="sel"><span class="emo">🇬🇧</span> British Pound (GBP)</div>
+              <div class="btns"><div class="b">BACK</div><div class="n" id="chipNext">NEXT</div></div>
+            </div></div>
+            <div class="page" id="pot"><div class="lg">
+              <div id="potBg"></div>
+              <div id="potScroll">
+                <div style="height:70px"></div>
+                <div class="pcard" id="topCard">
+                  <div class="raised"><div class="amt" id="amt"></div></div>
+                  <div class="lbl">raised so far</div>
+                  <div class="avs" id="avs"></div>
+                  <div class="by">Created by <b>Alex</b> <span style="color:var(--green)">✔</span></div>
+                  <div class="add">ADD TO THIS POT</div>
+                  <div class="meta"><div>14 days left ✎</div><div class="inv" id="inv"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2f2f32" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Invite others</div></div>
+                </div>
+                <div class="cover"><img src="brand/speechBubbleChip.svg" alt=""></div>
+                <div class="ptitle">Sarah's leaving pot.</div>
+                <div class="pdesc">Sad to see you go! Chip in for Sarah's leaving gift and sign the card <span class="emo">💛</span></div>
+                <div id="board"></div>
+              </div>
+              <div class="top" style="z-index:6"><img src="brand/LogoCharcoal.svg" alt=""><div class="burger"><i></i><i></i><i></i></div></div>
+              <div id="sheet">
+                <div class="grab"></div>
+                <h3>Invite others</h3>
+                <div class="sub">Share one link with the whole team</div>
+                <div class="link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2f2f32" stroke-width="2" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><span class="u">collectionpot.com/pot/sarahs-leaving-pot</span><div class="copy"><span id="cp1">COPY</span><span id="cp2" style="opacity:0;background:var(--green);color:#fff">COPIED ✓</span></div></div>
+                <div class="qrbox"><img src="brand/qr.svg" alt=""></div>
+                <div class="share">
+                  <div><i><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.2-4.6A8 8 0 1 1 21 12z"/></svg></i>Message</div>
+                  <div><i><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></i>Email</div>
+                  <div><i><svg viewBox="0 0 24 24"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></i>Copy link</div>
+                  <div><i><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4"/></svg></i>QR code</div>
+                </div>
+              </div>
+            </div></div>
+            <div class="page" id="spend"><div class="lg">
+              <div class="top"><img src="brand/LogoCharcoal.svg" alt=""><div class="burger"><i></i><i></i><i></i></div></div>
+              <div style="height:84px"></div>
+              <h1 class="t" style="text-align:left;margin:0 18px">Spend your Pot</h1>
+              <div class="bal"><div class="v">£285.00</div><div class="k">ready to spend · no fees to cash out</div></div>
+              <div id="spList"></div>
+            </div></div>
+            <div id="tap"></div><div id="ring"></div>
+            <div id="island"></div><div id="glare"></div>
+          </div>
+        </div>
+        <!-- 3D pop-outs -->
+        <div class="pop p3" id="linkCard"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#2f2f32" stroke-width="2.2" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>collectionpot.com/pot/sarah…<div class="ok">Copied ✓</div></div>
+        <div class="pop p3" id="qrCard"><img src="brand/qr.svg" alt=""><div>Scan to chip in</div></div>
+        <div id="team" class="p3"></div>
+        <div id="msgs3" class="p3"></div>
+        <div id="spend3" class="p3"></div>
+      </div>
+    </div>
+    <!-- 2D headlines over the UI -->
+    <div id="timer"><svg viewBox="0 0 48 48"><circle cx="24" cy="27" r="17"/><path d="M24 27V17M19 5h10M24 5v5"/></svg><span>0:<span id="tOdo"></span></span><div class="done"><svg viewBox="0 0 24 24" style="width:30px;height:30px;stroke:#fff;stroke-width:3.5"><path d="m5 12 5 5 9-10"/></svg></div></div>
+    <div class="step" id="st1"><span class="n">1</span><span class="w">Pick the occasion</span></div>
+    <div class="step" id="st2"><span class="n">2</span><span class="w">Money, messages<br>or both</span></div>
+    <div class="step" id="st3"><span class="n">3</span><span class="w">Share one link</span></div>
+    <div class="hl" id="hAll" style="top:150px"><span class="ln"><span class="li big">Everyone chips in</span></span><span class="ln"><span class="li big"><span class="blk by-y">from anywhere</span></span></span></div>
+    <div class="hl" id="hCash" style="top:150px"><span class="ln"><span class="li big">Cash out <span class="blk by-y">free</span></span></span></div>
+    <div class="hl" id="hGift" style="top:265px"><span class="ln"><span class="li big">or send an e-gift</span></span></div>
+  </div>
+
+  <!-- B-roll 3 (over the UI) -->
+  <video id="vD" class="clip" src="broll/b3.mp4" muted data-start="15.5" data-duration="1.15" data-media-start="0.3" data-track-index="5"></video>
+  <video id="vE" class="clip" src="broll/b3.mp4" muted data-start="16.65" data-duration="1.3" data-media-start="3.4" data-track-index="6"></video>
+  <!-- B-roll 4 -->
+  <video id="vF" class="clip" src="broll/b4.mp4" muted data-start="23.95" data-duration="1.05" data-media-start="1.6" data-track-index="7"></video>
+  <video id="vG" class="clip" src="broll/b4.mp4" muted data-start="25.0" data-duration="1.5" data-media-start="3.4" data-track-index="8"></video>
+
+  <!-- overlays over footage -->
+  <div id="ov" class="clip" data-start="0" data-duration="26.6" data-track-index="9">
+    <div class="kt" id="k1" style="top:1250px">
+      <div class="ln"><span class="li shd" style="font:700 46px Inter;letter-spacing:6px;color:#fff">ORGANISING A</span></div>
+      <div class="ln"><span class="li big"><span class="blk by-y">leaving gift?</span></span></div>
+    </div>
+    <div class="kt" id="k2" style="top:80px">
+      <div class="ln"><span class="li big shd" style="color:#fff">Forget the</span></div>
+      <div class="ln" style="position:relative"><span class="li big"><span class="blk by-c" id="envW" style="position:relative">envelope<i id="strike" style="position:absolute;left:4%;right:4%;top:52%;height:14px;border-radius:7px;background:var(--char);transform-origin:0 50%"></i></span></span></div>
+      <div class="ln"><span class="li shd" style="font:600 50px Inter;color:#fff" id="laps">doing laps of the office <span class="emo">🔁</span></span></div>
+    </div>
+    <div class="kt" id="kLogo" style="top:150px"><span class="blk by-c" style="padding:34px 56px;border-radius:60px;box-shadow:0 20px 60px rgba(0,0,0,.25)"><img src="brand/LogoCharcoal.svg" style="width:560px;display:block" alt=""></span></div>
+    <div id="toasts"></div>
+    <div class="hl" id="hSet" style="top:150px"><span class="ln"><span class="li big">Set one up in</span></span><span class="ln"><span class="li big"><span class="blk by-y">under a minute</span></span></span></div>
+    <div class="kt" id="k3" style="top:1330px">
+      <div class="ln"><span class="li big"><span class="blk by-y">Less admin.</span></span></div>
+      <div class="ln"><span class="li big"><span class="blk by-c">More celebrating.</span></span></div>
+    </div>
+    <div id="confetti"></div>
+  </div>
+
+  <!-- wipes -->
+  <div id="wipes" class="clip" data-start="15.2" data-duration="9.2" data-track-index="10">
+    <div class="wipe" id="wY" style="background:var(--yel)"></div>
+    <div class="wipe" id="wK" style="background:var(--char)"></div>
+  </div>
+
+  <!-- end card -->
+  <div id="end" class="clip" data-start="26.2" data-duration="6.0" data-track-index="11">
+    <img id="endLogo" src="brand/LogoCharcoal.svg" alt="">
+    <div id="heroCard">
+      <div id="heroT"><span class="ln"><span class="li">Collect together,</span></span><span class="ln"><span class="li">celebrate</span></span><span class="ln"><span class="li">together.</span></span></div>
+      <div id="chips"><img src="brand/filledChipFace.svg" alt=""><img src="brand/pinkChip.svg" alt=""><img src="brand/greenChip.svg" alt=""><img src="brand/oragengeChip.svg" alt=""><img src="brand/purpleChip.svg" alt=""></div>
+      <div id="heroP">Collect money and messages with one simple link — for any occasion, big or small.</div>
+    </div>
+    <div id="cta"><i></i>CREATE A POT</div>
+    <div id="ctaRing"></div>
+    <div id="endSub">Free to set up <span>·</span> collectionpot.com</div>
+  </div>
+
+  <div id="flash" class="clip" data-start="0" data-duration="32.2" data-track-index="12"></div>
+
+  <audio id="mix" src="audio/mix.wav" data-start="0" data-duration="32.2" data-track-index="20"></audio>
+</div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+// deterministic PRNG
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+/* ---------- build ---------- */
+let sl = ''; for (let i = 1; i <= 13; i++) sl += `<div class="slab" style="transform:translateZ(${-i * 3}px);background:hsl(240,3%,${22 - i * 0.8}%)"></div>`;
+$('#slabs').innerHTML = sl; $('#slabs').style.cssText = 'position:absolute;inset:0';
+
+// stage background: flat brand shapes (no gradients)
+const SH = [['#f0abd1', -220, 120, 560, '50%', 0], ['#a3def5', 760, 40, 420, '50%', 0], ['#bcefe1', 820, 1380, 460, '120px', 18], ['#fc9e59', -160, 1560, 380, '50%', 0], ['#cfb0f0', 40, 980, 120, '50%', 0], ['#f9b910', 930, 900, 90, '50%', 0]];
+$('#bg').innerHTML = SH.map((s, i) => `<div class="shape" id="sh${i}" style="background:${s[0]};left:${s[1]}px;top:${s[2]}px;width:${s[3]}px;height:${s[3]}px;border-radius:${s[4]};transform:rotate(${s[5]}deg)"></div>`).join('') +
+  [...Array(14)].map((_, i) => `<div class="shape cfz" style="left:${60 + rnd() * 960}px;top:${80 + rnd() * 1760}px;width:${16 + rnd() * 18}px;height:${30 + rnd() * 20}px;border-radius:8px;background:${['#f9b910', '#f0abd1', '#a3def5', '#bcefe1', '#fc9e59', '#cfb0f0'][i % 6]};transform:rotate(${rnd() * 180}deg);opacity:.9"></div>`).join('');
+
+// occasion pills (real list + real icons)
+const P = [['Leaver', 'hand-wave'], ['Honeymoon', 'island-tropical'], ['Birthday', 'birthday-cake'], ['Retirement', 'hands-clapping'], ['University', 'chalkboard-user'], ['New Home', 'comment-heart'], ['Engagement', 'party-horn'], ['New Baby', 'person-pregnant'], ['Wedding', 'party-horn'], ['Anniversary', 'comment-heart'], ['Teacher', 'chalkboard-user'], ['In Memory', 'wheat'], ['Get Well Soon', 'comment-heart'], ['Promotion', 'hands-clapping'], ['Sports Club', 'party-horn'], ['Just Because', 'comment-heart'], ['New Job', 'hand-wave'], ['Say Thanks', 'comment-heart']];
+$('#pills').innerHTML = P.map((p, i) => `<div class="pill" id="pl${i}"><img src="brand/icons/${p[1]}.svg" alt="">${p[0]}</div>`).join('');
+
+// pot page decoration + board
+const PB = [['#fc9e59', -70, 120, 170], ['#a3def5', 360, 330, 120], ['#f0abd1', -40, 560, 110], ['#bcefe1', 380, 760, 150]];
+$('#potBg').innerHTML = PB.map(c => `<div class="conf" style="background:${c[0]};left:${c[1]}px;top:${c[2]}px;width:${c[3]}px;height:${c[3]}px"></div>`).join('');
+const MSG = [['Good luck Sarah! The office won\'t be the same without your bakes <span class="emo">🍰</span>', 'Priya', '📍 London'], ['Go smash it! Who\'s fixing the printer now?! <span class="emo">😂</span>', 'Tom', '📍 Manchester'], ['Thank you for everything — keep in touch x', 'Jess', '📍 Working from home'], ['Proud of you. Enjoy the new adventure! <span class="emo">🚀</span>', 'Marcus', '📍 Bristol']];
+$('#board').innerHTML = MSG.map((m, i) => `<div class="msg" id="bm${i}">${m[0]}<b>${m[1]}</b><span class="loc"><span class="emo">📍</span>${m[2].slice(2)}</span></div>`).join('');
+const AV = ['pinkChip', 'greenChip', 'oragengeChip', 'purpleChip', 'filledChipFace', 'pinkChip'];
+$('#avs').innerHTML = AV.map((a, i) => `<img id="av${i}" src="brand/${a}.svg" alt="">`).join('');
+// raised amount ticker (seek-safe stepped values)
+const AMT = [0, 10, 30, 55, 85, 120, 160, 205, 245, 285];
+$('#amt').innerHTML = AMT.map((v, i) => `<span id="am${i}" style="opacity:${i ? 0 : 1}">£${v}</span>`).join('');
+
+// spend list (copy from the site)
+const SPI = { cash: '<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/>', card: '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>', print: '<path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/>', flower: '<circle cx="12" cy="9" r="3"/><path d="M12 12v9M8 17c2 0 4 1 4 4M16 17c-2 0-4 1-4 4"/>', gift: '<rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1s6 1 6 1 6 2 6-1-4-3-6 1"/>' };
+const SP = [['cash', '#bcefe1', 'Take as cash', 'Instant transfer to your own bank account', 'No fees'], ['card', '#f0abd1', 'Gift cards', 'Buy physical gift cards (securely posted)', ''], ['print', '#a3def5', 'Printed cards', 'Turn your e-card into a physical card', ''], ['flower', '#cfb0f0', 'Flowers or hampers', 'Order gifts direct and pay from the Pot', ''], ['gift', '#f9b910', 'Send as e-gift', 'Recipients can spend the Pot at 60+ retailers', '60+']];
+$('#spList').innerHTML = SP.map((s, i) => `<div class="sp" id="sp${i}"><div class="ic" style="background:${s[1]}"><svg viewBox="0 0 24 24">${SPI[s[0]]}</svg></div><div class="tx"><b>${s[2]}</b><span>${s[3]}</span></div>${s[4] ? `<div class="tag">${s[4]}</div>` : ''}</div>`).join('');
+
+// 3D: team avatars, message cards, spend cards
+const TEAM = ['filledChipFace', 'pinkChip', 'greenChip', 'oragengeChip', 'purpleChip'];
+$('#team').innerHTML = TEAM.map((a, i) => `<div class="av3 p3" id="tm${i}"><img src="brand/${a}.svg" alt=""></div>`).join('');
+$('#msgs3').innerHTML = MSG.slice(0, 3).map((m, i) => `<div class="m3 p3" id="m3${i}">${m[0]}<b>${m[1]}</b><span class="loc"><span class="emo">📍</span>${m[2].slice(2)}</span></div>`).join('');
+const GC = ['#f0abd1', '#a3def5', '#bcefe1', '#cfb0f0', '#fc9e59'];
+$('#spend3').innerHTML = GC.map((c, i) => `<div class="gc p3" id="gc${i}" style="background:${c}"><u></u><i></i></div>`).join('') +
+  `<div class="big3 p3" id="cash3" style="background:#bcefe1"><div class="k">TAKE AS CASH</div><div class="v">£0</div><div class="w">fees</div></div>` +
+  `<div class="big3 p3" id="gift3" style="background:#f9b910"><div class="k">SEND AS E-GIFT</div><div class="v"><span class="odo" id="g60"></span>+</div><div class="w">retailers</div></div>`;
+
+// toasts over B-roll 3
+const TO = [['pinkChip', 'Priya chipped in £10'], ['greenChip', 'Tom signed the card <span class="emo">✍️</span>'], ['oragengeChip', 'Jess chipped in £20']];
+$('#toasts').innerHTML = TO.map((t, i) => `<div class="toast" id="to${i}" style="top:${1160 + i * 176}px"><img src="brand/${t[0]}.svg" alt=""><div><b>${t[1]}</b><span>Sarah's leaving pot · now</span></div><img class="pt" src="brand/potYellowTick.svg" alt=""></div>`).join('');
+
+// confetti pieces
+$('#confetti').innerHTML = [...Array(46)].map((_, i) => `<div class="cf" id="cf${i}" style="background:${['#f9b910', '#f0abd1', '#a3def5', '#bcefe1', '#fc9e59', '#cfb0f0', '#fffcf8'][i % 7]}"></div>`).join('');
+
+// odometers
+function odo(el, maxV, blankLead) {
+  const cols = String(maxV).length; let h = '';
+  for (let c = 0; c < cols; c++) {
+    const p = cols - 1 - c, L = Math.floor(maxV / 10 ** p) + 1;
+    let s = ''; for (let k = 0; k < L; k++) s += `<span>${(blankLead && p > 0 && k === 0) ? '&nbsp;' : k % 10}</span>`;
+    h += `<span class="col"><span class="strip" data-p="${p}" data-l="${L}">${s}</span></span>`;
+  }
+  el.innerHTML = h;
+}
+odo($('#tOdo'), 48, false);
+odo($('#g60'), 60, true);
+document.querySelector('#tOdo').classList.add('odo');
+
+/* ---------- timeline ---------- */
+const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
+const E = 'expo.inOut';
+const runOdo = (sel, from, to, t, d, ease = 'power2.out') => $$(sel + ' .strip').forEach(s => {
+  const p = +s.dataset.p, L = +s.dataset.l, i0 = Math.floor(from / 10 ** p), i1 = Math.floor(to / 10 ** p);
+  tl.fromTo(s, { yPercent: -i0 / L * 100 }, { yPercent: -i1 / L * 100, duration: d, ease, immediateRender: true }, t);
+});
+const lines = (sel, t, st = 0.08) => tl.fromTo(sel + ' .li', { yPercent: 115 }, { yPercent: 0, duration: 0.7, ease: 'expo.out', stagger: st }, t);
+const out = (sel, t) => tl.to(sel, { opacity: 0, y: -40, filter: 'blur(10px)', duration: 0.28, ease: 'power2.in' }, t);
+const S = 1.293; // logical → screen px
+// centre of a screen element in logical px, measured lazily (after fonts load) so taps land exactly
+const ctr = sel => { const el = $(sel); let x = 0, y = 0, e = el; while (e && !e.classList.contains('lg')) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; } return [x + el.offsetWidth / 2, y + el.offsetHeight / 2]; };
+// tap on screen at logical (x,y)
+const tap = (x, y, t) => {
+  const X = typeof x === 'string' ? () => ctr(x)[0] * S : x * S, Y = typeof x === 'string' ? () => ctr(x)[1] * S : y * S;
+  tl.set('#tap', { x: X, y: Y }, t - 0.2).set('#ring', { x: X, y: Y }, t - 0.2);
+  tl.fromTo('#tap', { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.16, ease: 'power2.out', immediateRender: false }, t - 0.2)
+    .to('#tap', { scale: 0.78, duration: 0.08, ease: 'power2.in' }, t - 0.04)
+    .to('#tap', { scale: 1, opacity: 0, duration: 0.22, ease: 'power2.out' }, t + 0.06)
+    .fromTo('#ring', { opacity: 0.9, scale: 0.6 }, { opacity: 0, scale: 2.3, duration: 0.45, ease: 'expo.out', immediateRender: false }, t);
+};
+const press = (sel, t) => tl.to(sel, { scale: 0.94, duration: 0.07, ease: 'power2.in' }, t - 0.03).to(sel, { scale: 1, duration: 0.3, ease: 'back.out(3)' }, t + 0.05);
+const goPage = (a, b, t) => { tl.to(a, { xPercent: -30, duration: 0.42, ease: E }, t).to(b, { xPercent: 0, duration: 0.42, ease: E }, t); };
+
+gsap.set(['#occ', '#chip', '#pot', '#spend'], { xPercent: 100 });
+gsap.set('#sheet', { yPercent: 105 });
+gsap.set(['#linkCard', '#qrCard', '.av3', '.m3', '.big3', '.gc'], { opacity: 0 });
+gsap.set('#rig', { x: 8.5, y: -86.5, scale: 1.113 });
+gsap.set('#strike', { scaleX: 0 });
+gsap.set(['#wY', '#wK'], { y: 2200 });
+
+/* --- SH1/2: B-roll 1 with kinetic type --- */
+tl.fromTo('#vA', { scale: 1.12 }, { scale: 1.02, duration: 2.05, ease: 'power1.out' }, 0);
+lines('#k1', 0.25, 0.42);
+tl.fromTo('#k1 .blk', { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 0.45, ease: 'expo.out' }, 0.62);
+tl.to('#k1', { opacity: 0, duration: 0.01 }, 2.04);
+tl.fromTo('#vB', { scale: 1.18 }, { scale: 1.05, duration: 2.4, ease: 'power2.out' }, 2.05);
+lines('#k2', 2.05, 0.16);
+tl.to('#strike', { scaleX: 1, duration: 0.35, ease: 'power3.inOut' }, 3.0)
+  .to('#envW', { rotation: -3, duration: 0.2 }, 3.05)
+  .fromTo('#laps .emo', { rotation: 0 }, { rotation: 360, duration: 0.8, ease: 'power2.inOut', display: 'inline-block' }, 3.2);
+tl.to('#k2', { opacity: 0, duration: 0.01 }, 4.44);
+// whip pan B1 → B2
+tl.to('#vB', { x: -1080, duration: 0.2, ease: 'power3.in' }, 4.45)
+  .fromTo('#vC', { x: 1080 }, { x: 0, duration: 0.24, ease: 'power3.out' }, 4.45);
+// logo lower-third on "Collection Pot"
+tl.fromTo('#kLogo', { opacity: 0, y: -30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: 'back.out(2)' }, 4.9)
+  .to('#kLogo', { opacity: 0, y: -30, duration: 0.22, ease: 'power2.in' }, 6.0);
+// headline starts over B2 and carries into the UI
+tl.set('#hSet', { opacity: 1 }, 6.15); lines('#hSet', 6.15, 0.1);
+tl.fromTo('#hSet .blk', { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 0.45, ease: 'expo.out' }, 6.85);
+
+/* --- match cut through the phone screen into the UI (7.2) --- */
+tl.fromTo('#uiWrap', { clipPath: 'inset(246px 223px 339px 240px round 74px)' }, { clipPath: 'inset(0px 0px 0px 0px round 0px)', duration: 0.5, ease: 'expo.inOut' }, 7.22);
+tl.to('#rig', { x: 0, y: 300, scale: 0.95, rotationY: -16, rotationX: 7, duration: 0.95, ease: E }, 7.25);
+tl.fromTo('.cfz', { y: 60, rotation: '-=40' }, { y: 0, rotation: '+=40', duration: 1.4, ease: 'expo.out' }, 7.3);
+tl.fromTo('.shape:not(.cfz)', { scale: 0.6 }, { scale: 1, duration: 1.2, ease: 'expo.out', stagger: 0.04 }, 7.3);
+// tap CREATE A POT on the real homepage screen
+tap(215, 588, 8.05); press('#home img', 8.05);
+goPage('#home', '#occ', 8.18);
+// headline → timer chip
+out('#hSet', 8.1);
+tl.fromTo('#timer', { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'back.out(2)' }, 8.2);
+runOdo('#tOdo', 0, 48, 8.3, 6.45, 'none');
+
+/* --- STEP 1: occasion (8.3–9.5) --- */
+tl.set('#st1', { opacity: 1 }, 8.3); tl.fromTo('#st1', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'expo.out' }, 8.3);
+tl.to('#rig', { x: 120, rotationY: -4, rotationX: 5, scale: 1.3, y: 205, duration: 0.6, ease: E }, 8.22)
+  .to('#rig', { x: 0, rotationY: 6, rotationX: 10, scale: 1.0, y: -37, duration: 0.42, ease: E }, 8.9);
+tl.fromTo('.pill', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.015, ease: 'power2.out' }, 8.3);
+tap('#pl0', 0, 8.75); tl.set('#pl0', { className: 'pill on' }, 8.75); press('#pl0', 8.75);
+tl.set('#occNext', { className: 'btn go' }, 8.8);
+tap('#occNext', 0, 9.3); press('#occNext', 9.3);
+goPage('#occ', '#chip', 9.42);
+out('#st1', 9.42);
+
+/* --- STEP 2: money / messages / both (9.5–11.9) --- */
+tl.set('#st2', { opacity: 1 }, 9.5); tl.fromTo('#st2', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'expo.out' }, 9.5);
+tl.to('#rig', { rotationY: 10, rotationX: 5, scale: 1.2, y: 185, duration: 0.7, ease: E }, 9.4)
+  .to('#rig', { rotationY: -4, rotationX: 9, scale: 1.0, y: -37, duration: 0.38, ease: E }, 11.28);
+const hint = (sel, t) => tl.to(sel, { scale: 1.05, borderColor: '#f9b910', boxShadow: '0 8px 24px rgba(249,185,16,.35)', duration: 0.18 }, t).to(sel, { scale: 1, borderColor: '#2f2f32', boxShadow: '0 0 0 rgba(0,0,0,0)', duration: 0.25 }, t + 0.38);
+hint('#o1', 9.92); hint('#o3', 10.37);
+tap('#o2', 0, 11.15); tl.set('#o2', { className: 'opt on' }, 11.15); press('#o2', 11.15);
+tap('#chipNext', 0, 11.68); press('#chipNext', 11.68);
+goPage('#chip', '#pot', 11.8);
+out('#st2', 11.8);
+
+/* --- STEP 3: share one link / QR / whole team (11.9–15.4) --- */
+tl.set('#st3', { opacity: 1 }, 11.9); tl.fromTo('#st3', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'expo.out' }, 11.9);
+tl.to('#rig', { rotationY: -10, rotationX: 5, scale: 1.15, y: 150, duration: 0.7, ease: E }, 11.8)
+  .to('#rig', { scale: 1.05, y: 30, duration: 0.5, ease: 'power3.inOut' }, 12.25)
+  .to('#rig', { scale: 0.78, y: 330, x: 0, duration: 0.55, ease: E }, 14.2);
+tap('#inv', 0, 12.15);
+tl.to('#sheet', { yPercent: 0, duration: 0.45, ease: 'expo.out' }, 12.2);
+tap('.copy', 0, 12.72); tl.to('#cp1', { opacity: 0, duration: 0.1 }, 12.72).to('#cp2', { opacity: 1, duration: 0.1 }, 12.72);
+// link + QR fly out of the phone into 3D
+tl.fromTo('#linkCard', { opacity: 0, x: 0, y: 260, z: 0, scale: 0.5, filter: 'blur(10px)' }, { opacity: 1, x: -120, y: -430, z: 260, scale: 0.8, rotationY: 14, filter: 'blur(0px)', duration: 0.6, ease: 'back.out(1.4)' }, 12.78);
+tl.fromTo('#qrCard', { opacity: 0, x: 0, y: 120, z: 0, scale: 0.5, filter: 'blur(10px)' }, { opacity: 1, x: 330, y: -40, z: 320, scale: 1, rotationY: -16, filter: 'blur(0px)', duration: 0.65, ease: 'back.out(1.4)' }, 13.3);
+tl.to('#rig', { rotationY: -22, duration: 1.6, ease: 'sine.inOut' }, 13.0);
+// whole team: avatars burst around the phone
+const TP = [[-430, -300], [-470, 120], [-380, 520], [420, -470], [440, 560]];
+TP.forEach((p, i) => tl.fromTo(`#tm${i}`, { opacity: 0, x: 0, y: 0, z: 0, scale: 0.3 }, { opacity: 1, x: p[0], y: p[1], z: 200, scale: 1, rotationY: 12, duration: 0.55, ease: 'back.out(1.7)' }, 14.45 + i * 0.06));
+tl.to('#timer .done', { opacity: 1, scale: 1, duration: 0.3, ease: 'back.out(3)' }, 14.75);
+tl.fromTo('#timer', { scale: 1 }, { scale: 1.08, duration: 0.15, yoyo: true, repeat: 1, ease: 'power2.out', immediateRender: false }, 14.75);
+// yellow pot wipe → B-roll 3
+tl.fromTo('#wY', { y: 2200 }, { y: -100, duration: 0.3, ease: 'power3.in', immediateRender: false }, 15.2)
+  .to('#wY', { y: -2400, duration: 0.32, ease: 'power3.out' }, 15.52);
+tl.set(['#timer', '#st3'], { opacity: 0 }, 15.5);
+
+/* --- B-roll 3 with notification toasts (15.5–17.95) --- */
+tl.fromTo('#vD', { scale: 1.16 }, { scale: 1.04, duration: 1.15, ease: 'power2.out' }, 15.5);
+tl.fromTo('#vE', { scale: 1.12 }, { scale: 1.02, duration: 1.3, ease: 'power2.out' }, 16.65);
+[15.95, 16.72, 17.2].forEach((t, i) => tl.fromTo(`#to${i}`, { opacity: 0, y: 80, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'back.out(1.8)' }, t));
+tl.to('.toast', { opacity: 0, y: -40, duration: 0.2, ease: 'power2.in', stagger: 0.03 }, 17.62);
+// whip back into the UI
+tl.to('#vE', { x: 1080, duration: 0.22, ease: 'power3.in' }, 17.75);
+tl.set(['#linkCard', '#qrCard', '.av3'], { opacity: 0 }, 17.7);
+tl.set('#sheet', { yPercent: 105 }, 17.7);
+tl.fromTo('#uiWrap', { x: -900 }, { x: 0, duration: 0.3, ease: 'power3.out', immediateRender: false }, 17.8);
+tl.set('#rig', { rotationY: 14, rotationX: 6, scale: 0.95, y: 330 }, 17.75);
+
+/* --- the Pot fills up (17.8–19.1) --- */
+tl.set('#hAll', { opacity: 1 }, 17.85); lines('#hAll', 17.85, 0.1);
+tl.fromTo('#hAll .blk', { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 0.4, ease: 'expo.out' }, 18.2);
+AMT.forEach((v, i) => { if (!i) return; const t = 17.95 + i * 0.11; tl.to(`#am${i - 1}`, { yPercent: -100, opacity: 0, duration: 0.1, ease: 'none' }, t).fromTo(`#am${i}`, { yPercent: 100, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.1, ease: 'power2.out', immediateRender: false }, t); });
+$$('#avs img').forEach((a, i) => tl.fromTo(a, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.25, ease: 'back.out(3)', immediateRender: false }, 18.0 + i * 0.12));
+tl.to('#potScroll', { y: -440, duration: 1.0, ease: E }, 18.35);
+const MP = [[-470, -330, -8], [470, -40, 8], [-440, 380, -6]];
+MP.forEach((p, i) => tl.fromTo(`#m3${i}`, { opacity: 0, x: 0, y: 0, z: 0, scale: 0.4, filter: 'blur(10px)' }, { opacity: 1, x: p[0], y: p[1], z: 260, scale: 0.82, rotationY: -p[2] * 2, rotation: p[2] / 2, filter: 'blur(0px)', duration: 0.6, ease: 'back.out(1.5)' }, 17.95 + i * 0.22));
+tl.to('#rig', { rotationY: -8, duration: 1.3, ease: 'sine.inOut' }, 17.9);
+out('#hAll', 19.0);
+tl.to('.m3', { opacity: 0, z: 700, duration: 0.3, ease: 'power2.in', stagger: 0.04 }, 19.0);
+
+/* --- spend it (19.1–23.9) --- */
+goPage('#pot', '#spend', 19.05);
+tl.fromTo('.sp', { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.05, ease: 'power3.out' }, 19.2);
+tl.to('#rig', { x: 170, rotationY: -18, rotationX: 6, scale: 0.9, y: 380, duration: 0.9, ease: E }, 19.05);
+tl.set('#hCash', { opacity: 1 }, 19.4); lines('#hCash', 19.4);
+tl.fromTo('#hCash .blk', { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 0.4, ease: 'expo.out' }, 19.95);
+tl.fromTo('#cash3', { opacity: 0, x: 0, y: -300, z: 0, scale: 0.4, filter: 'blur(12px)' }, { opacity: 1, x: -400, y: -300, z: 320, scale: 0.9, rotationY: 22, rotation: -4, filter: 'blur(0px)', duration: 0.6, ease: 'back.out(1.5)' }, 19.5);
+tap('#sp0', 0, 19.55);
+tl.set('#hGift', { opacity: 1 }, 20.85); lines('#hGift', 20.85);
+tl.to('#rig', { x: -170, rotationY: 16, duration: 1.0, ease: E }, 20.8);
+tl.to('#cash3', { x: -470, y: -560, z: 120, scale: 0.7, opacity: 0.0, duration: 0.6, ease: 'power2.inOut' }, 20.9);
+GC.forEach((c, i) => tl.fromTo(`#gc${i}`, { opacity: 0, x: 0, y: 200, z: 0, scale: 0.4, rotation: 0 }, { opacity: 1, x: 235 + (i - 2) * 36, y: 170 + (i - 2) * -30, z: 120 + i * 30, scale: 0.9, rotation: (i - 2) * 9, rotationY: -18, duration: 0.55, ease: 'back.out(1.5)' }, 21.4 + i * 0.07));
+tl.fromTo('#gift3', { opacity: 0, x: 0, y: -100, z: 0, scale: 0.4, filter: 'blur(12px)' }, { opacity: 1, x: 225, y: -250, z: 380, scale: 0.92, rotationY: -20, rotation: 3, filter: 'blur(0px)', duration: 0.6, ease: 'back.out(1.5)' }, 21.5);
+runOdo('#g60', 0, 60, 21.9, 0.9, 'power3.out');
+tap('#sp4', 0, 21.5);
+tl.to('#rig', { rotationY: 6, rotationX: 2, scale: 0.86, duration: 1.4, ease: 'sine.inOut' }, 22.0);
+out('#hCash', 23.55); out('#hGift', 23.6);
+// double wipe → B-roll 4
+tl.fromTo('#wY', { y: 2200 }, { y: -100, duration: 0.28, ease: 'power3.in', immediateRender: false }, 23.67)
+  .to('#wY', { y: -2400, duration: 0.3, ease: 'power3.out' }, 23.97);
+tl.fromTo('#wK', { y: 2200 }, { y: -100, duration: 0.28, ease: 'power3.in', immediateRender: false }, 23.73)
+  .to('#wK', { y: -2400, duration: 0.3, ease: 'power3.out' }, 24.02);
+
+/* --- B-roll 4: the payoff (23.95–26.2) --- */
+tl.fromTo('#vF', { scale: 1.15 }, { scale: 1.04, duration: 1.05, ease: 'power2.out' }, 23.95);
+tl.fromTo('#vG', { scale: 1.2 }, { scale: 1.06, duration: 1.5, ease: 'power2.out' }, 25.0);
+tl.set('#k3', { opacity: 1 }, 24.0);
+tl.fromTo('#k3 .ln:nth-child(1) .li', { yPercent: 115 }, { yPercent: 0, duration: 0.6, ease: 'expo.out' }, 24.05);
+tl.fromTo('#k3 .ln:nth-child(2) .li', { yPercent: 115 }, { yPercent: 0, duration: 0.6, ease: 'expo.out' }, 24.85);
+$$('.cf').forEach((c, i) => {
+  const a = (rnd() - 0.5) * 2.2, v = 900 + rnd() * 900, x = Math.sin(a) * v * 0.9, peak = -Math.cos(a) * v * 1.15 - 300;
+  tl.set(c, { opacity: 1 }, 24.85)
+    .fromTo(c, { x: 0 }, { x: x, duration: 1.4, ease: 'power1.out', immediateRender: false }, 24.85)
+    .fromTo(c, { y: 0 }, { y: peak, duration: 0.6, ease: 'power2.out', immediateRender: false }, 24.85)
+    .to(c, { y: peak + 1500, duration: 1.0, ease: 'power2.in' }, 25.45)
+    .fromTo(c, { rotation: 0 }, { rotation: (rnd() - 0.5) * 900, duration: 1.6, ease: 'none', immediateRender: false }, 24.85);
+});
+tl.to('#k3', { opacity: 0, duration: 0.2 }, 26.15);
+
+/* --- end card (26.2–32.2) --- */
+tl.fromTo('#end', { yPercent: 100 }, { yPercent: 0, duration: 0.42, ease: 'expo.out' }, 26.2);
+tl.fromTo('#endLogo', { opacity: 0, y: -30 }, { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' }, 26.4);
+tl.fromTo('#heroCard', { scale: 0.86, y: 120, borderRadius: 140 }, { scale: 1, y: 0, borderRadius: 64, duration: 0.7, ease: 'expo.out' }, 26.35);
+tl.fromTo('#heroT .li', { yPercent: 115 }, { yPercent: 0, duration: 0.7, ease: 'expo.out', stagger: 0.18 }, 27.45);
+tl.fromTo('#chips img', { y: 120, scale: 0.3, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.55, ease: 'back.out(2)', stagger: 0.07 }, 28.3);
+tl.fromTo('#heroP', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, 28.8);
+tl.fromTo('#cta', { opacity: 0, scale: 0.6, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: 'back.out(2)' }, 29.55);
+tl.fromTo('#endSub', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, 29.9);
+tl.to('#cta', { scale: 0.95, duration: 0.07, ease: 'power2.in' }, 30.2).to('#cta', { scale: 1, duration: 0.35, ease: 'back.out(3)' }, 30.28);
+tl.fromTo('#ctaRing', { opacity: 0.8, scale: 0.4 }, { opacity: 0, scale: 3.2, duration: 0.8, ease: 'expo.out', immediateRender: false }, 30.25);
+tl.fromTo('#cta i', { x: -300 }, { x: 1000, duration: 0.8, ease: 'power2.inOut', immediateRender: false }, 30.6);
+tl.fromTo('#chips img', { y: 0 }, { y: -16, duration: 0.35, ease: 'power2.out', yoyo: true, repeat: 1, stagger: 0.06, immediateRender: false }, 30.9);
+tl.to('#heroCard', { scale: 1.02, duration: 1.6, ease: 'sine.inOut' }, 30.4);
+
+window.__timelines = window.__timelines || {};
+window.__timelines['main'] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

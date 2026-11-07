@@ -1,0 +1,11 @@
+Collection Pot — "Set Up in Under a Minute" (30s vertical ad)
+
+Brand: Collection Pot™ name, logo, Chip mascot, icons and UI belong to Collection Pot Limited. App screens are rebuilt in
+HTML/CSS from collectionpot.com (real copy and layout); the homepage screen is a capture of collectionpot.com.
+Pot content (Sarah, Alex, messages, amounts) is fictional.
+B-roll: generated with Higgsfield (Seedance 2.5, 1080p). Screen replacement on clip 2 done with OpenCV (broll/screen_replace.py).
+Voice: ElevenLabs, voice "Alice" (eleven_multilingual_v2).
+Sound effects: ElevenLabs Sound Effects (audio/sfx.py) and the Delulu Keyboard SFX set.
+Music: original score, synthesised in audio/score.py (no samples).
+Fonts (SIL Open Font License 1.1): Figtree (stand-in for the brand's Faro), Inter. Emoji: Noto Color Emoji (OFL).
+Animation: GSAP 3.15; built and rendered with HyperFrames 0.9.20 (motion blur on, 180° shutter).
