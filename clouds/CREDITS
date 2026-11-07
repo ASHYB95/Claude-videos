@@ -1,0 +1,11 @@
+How a Cloud Is Made — Mid-century Cartoon explainer
+
+Music: original cool-jazz score composed in score.py.
+Samples (CC0): VS Chamber Orchestra: Community Edition (Versilian Studios) — flute, double bass pizzicato;
+  Versilian Community Sample Library (Versilian Studios) — vibraphone, glockenspiel, snare brushes/taps.
+Ride, snaps and brush swish synthesised in score.py.
+Voice: Kokoro-82M TTS, voice bm_george (Apache-2.0).
+Foley: synthesised (Lemo-Opuscar sfx.py, MIT) and in mix.py.
+Fonts (SIL Open Font License 1.1, via @fontsource): Oleo Script, Alfa Slab One, Jost.
+Drawing engine: Lemo-Opuscar midcentury-toon engine (MIT), presenter restyled for this film.
+Science: dry adiabatic lapse rate ≈ 9.8 °C/km; cloud droplets ≈ 10–20 µm; condensation nuclei (dust, sea salt).

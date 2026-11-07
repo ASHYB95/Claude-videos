@@ -1,0 +1,17 @@
+{
+  "name": "clouds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fontsource/alfa-slab-one": "^5.3.0",
+    "@fontsource/jost": "^5.3.0",
+    "@fontsource/oleo-script": "^5.3.0"
+  }
+}

@@ -1,0 +1,9 @@
+[
+ {"id":"v1","text":"Ever wondered how a cloud is made? It takes just four steps.","voice":"bm_george","speed":0.95,"lang":"en-gb"},
+ {"id":"v2","text":"Step one. The sun warms water in seas, lakes and puddles.","voice":"bm_george","speed":0.95,"lang":"en-gb"},
+ {"id":"v3","text":"Step two. Some of it turns into invisible water vapour, and rises with the warm air.","voice":"bm_george","speed":0.98,"lang":"en-gb"},
+ {"id":"v4","text":"Step three. As the air climbs, it spreads out and cools. Nearly ten degrees for every kilometre.","voice":"bm_george","speed":0.98,"lang":"en-gb"},
+ {"id":"v5","text":"Step four. Cool air can't hold as much vapour. It clings to specks of dust and salt, and becomes tiny droplets.","voice":"bm_george","speed":1.0,"lang":"en-gb"},
+ {"id":"v6","text":"Billions of droplets, side by side. That's a cloud.","voice":"bm_george","speed":0.95,"lang":"en-gb"},
+ {"id":"v7","text":"And when the droplets grow too heavy... they fall as rain.","voice":"bm_george","speed":0.95,"lang":"en-gb"}
+]
