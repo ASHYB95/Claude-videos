@@ -1,0 +1,10 @@
+Delulu Check — "Your chat already knows" (Living Screencast explainer)
+
+Brand: Delulu Check name, logo, product UI and copy belong to Delulu Check; redrawn in HTML/CSS from the client's
+screenshots at the client's request. Demo chat content (Aarav, the meme, the replies) is fictional.
+Music: original R&B score, synthesised in score.py (no samples).
+Voice: Kokoro-82M TTS, voice af_heart (Apache-2.0).
+Foley: synthesised (Lemo-Opuscar sfx.py, MIT) and in mix.py.
+Fonts (SIL Open Font License 1.1, via @fontsource): Inter, Inter Tight, Bebas Neue, JetBrains Mono, Anton.
+Emoji: Noto Color Emoji (SIL OFL 1.1).
+Toolkit: Lemo-Opuscar render tools (MIT).

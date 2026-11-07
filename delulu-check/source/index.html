@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Delulu Check</title>
+<style>
+@font-face{font-family:Inter;font-weight:400;src:url(fonts/inter-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2);font-display:block}
+@font-face{font-family:'Inter Tight';font-weight:700;src:url(fonts/inter-tight-latin-700-normal.woff2);font-display:block}
+@font-face{font-family:'Inter Tight';font-weight:800;src:url(fonts/inter-tight-latin-800-normal.woff2);font-display:block}
+@font-face{font-family:Bebas;src:url(fonts/bebas-neue-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:JBM;font-weight:500;src:url(fonts/jetbrains-mono-latin-500-normal.woff2);font-display:block}
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2);font-display:block}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#07060a}
+*{box-sizing:border-box}
+#stage{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden;
+  background:radial-gradient(1100px 900px at 50% 38%,#3a1240 0%,#1a0b22 45%,#07060a 80%)}
+#world{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0}
+#hud{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none}
+.phone{position:absolute;left:100px;top:96px;width:880px;height:1680px;border-radius:118px;background:#1b1a20;
+  box-shadow:0 0 0 3px #3a3842,0 40px 120px rgba(0,0,0,.65),0 0 160px rgba(192,46,224,.22)}
+.screen{position:absolute;left:22px;top:22px;width:836px;height:1636px;border-radius:98px;overflow:hidden;background:#0b0a10}
+.island{position:absolute;left:298px;top:26px;width:240px;height:70px;border-radius:40px;background:#000;z-index:50}
+.abs{position:absolute}
+.grad{background:linear-gradient(90deg,#c02ee0,#7a4cf0 55%,#3b63f0)}
+.gtext{background:linear-gradient(90deg,#ff3fb4,#a24cf0 60%,#5b6cf5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.px{position:absolute}
+</style></head><body>
+<div id="stage"><div id="world"></div><div id="hud"></div></div>
+<script type="module" src="main.js"></script>
+</body></html>
