@@ -25,13 +25,18 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ground)}
 .emo{font-family:Emo,sans-serif}
 
 /* ---------- background ---------- */
-#bg{background:radial-gradient(1200px 1100px at 50% 38%,#3a1340 0%,#1c0b22 45%,#0b0a10 80%)}
-.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55}
-#floor{position:absolute;left:-600px;right:-600px;top:1180px;height:1400px;transform-origin:50% 0;
-  transform:perspective(900px) rotateX(72deg);
-  background-image:linear-gradient(rgba(192,46,224,.28) 2px,transparent 2px),linear-gradient(90deg,rgba(122,76,240,.28) 2px,transparent 2px);
-  background-size:120px 120px;-webkit-mask-image:linear-gradient(#000,transparent 70%);mask-image:linear-gradient(#000,transparent 70%)}
-#grain{position:absolute;inset:0;opacity:.07;mix-blend-mode:overlay;
+#bg{background:#08080a}
+#spot{position:absolute;left:-200px;right:-200px;top:-500px;height:2000px;
+  background:radial-gradient(ellipse 700px 1100px at 50% 0%,rgba(235,232,240,.13) 0%,rgba(235,232,240,.05) 40%,rgba(0,0,0,0) 72%)}
+#horizon{position:absolute;left:0;right:0;top:1480px;height:440px;background:linear-gradient(#0d0d10,#060607)}
+#hline{position:absolute;left:0;right:0;top:1480px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14) 30%,rgba(255,255,255,.14) 70%,transparent)}
+#pool{position:absolute;left:190px;width:700px;top:1440px;height:160px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.07),transparent)}
+#vig{position:absolute;inset:0;background:radial-gradient(ellipse 900px 1300px at 50% 45%,transparent 55%,rgba(0,0,0,.65) 100%)}
+#floor{position:absolute;left:-600px;right:-600px;top:1480px;height:1400px;transform-origin:50% 0;
+  transform:perspective(700px) rotateX(70deg);
+  background-image:radial-gradient(circle,rgba(255,255,255,.22) 1.6px,transparent 2.2px);
+  background-size:64px 64px;-webkit-mask-image:linear-gradient(rgba(0,0,0,.25),#000 30%,transparent 80%);mask-image:linear-gradient(rgba(0,0,0,.25),#000 30%,transparent 80%)}
+#grain{position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;
   background-image:repeating-radial-gradient(circle at 17% 31%,#fff 0 1px,transparent 1px 3px)}
 
 /* ---------- stage / 3D ---------- */
@@ -94,10 +99,14 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ground)}
 .card .lab{font:500 16px Mono;letter-spacing:3px;color:#d08bff;margin-bottom:10px}
 .card .tx{font:600 30px/1.3 Inter;color:#fff}
 .reply{width:560px}
-.appcard{width:230px;height:230px;border-radius:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
-  border:1.5px solid rgba(255,255,255,.18);box-shadow:0 30px 70px rgba(0,0,0,.5)}
-.appcard .ic{font-size:92px;line-height:1}
-.appcard .nm{font:600 24px Inter;color:#fff}
+.appcard{position:absolute;width:210px;height:240px;border-radius:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+  background:linear-gradient(160deg,#1d1c22 0%,#121115 100%);border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 1px 0 rgba(255,255,255,.10) inset,0 40px 80px rgba(0,0,0,.6)}
+.appcard .ic{width:96px;height:96px;border-radius:28px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10)}
+.appcard .ic svg{width:54px;height:54px;fill:none;stroke:#f2eff6;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.appcard .nm{font:500 17px Mono;letter-spacing:4px;color:#b9b4c2}
+.appcard .kb{display:flex;gap:4px}.appcard .kb i{width:14px;height:6px;border-radius:2px;background:linear-gradient(90deg,#ff3fb4,#7a4cf0)}
 .tone3d{position:absolute;height:96px;padding:0 34px;border-radius:48px;display:flex;align-items:center;gap:14px;
   font:400 50px Bebas;letter-spacing:3px;color:#fff;background:rgba(40,26,56,.85);border:2px solid rgba(255,255,255,.18);box-shadow:0 24px 60px rgba(0,0,0,.5);white-space:nowrap}
 .tone3d .emo{font-size:46px}
@@ -133,10 +142,12 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ground)}
 <div id="root" data-composition-id="main" data-start="0" data-duration="32.5" data-width="1080" data-height="1920">
 
   <div id="bg" class="clip" data-start="0" data-duration="32.5" data-track-index="0">
-    <div class="orb" id="o1" style="left:-220px;top:180px;width:760px;height:760px;background:#c02ee0"></div>
-    <div class="orb" id="o2" style="left:560px;top:820px;width:720px;height:720px;background:#3b63f0"></div>
-    <div class="orb" id="o3" style="left:120px;top:1380px;width:620px;height:620px;background:#7a4cf0"></div>
+    <div id="spot"></div>
+    <div id="horizon"></div>
     <div id="floor"></div>
+    <div id="hline"></div>
+    <div id="pool"></div>
+    <div id="vig"></div>
     <div id="grain"></div>
   </div>
 
@@ -174,7 +185,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ground)}
       </div>
 
       <!-- app ring (S3) -->
-      <div id="ring" class="p3" style="left:0;top:-200px"></div>
+      <div id="ring" class="p3" style="left:0;top:0"></div>
 
       <!-- reply cards (S4) -->
       <div id="replies" class="p3" style="left:0;top:0"></div>
@@ -270,8 +281,17 @@ $('#rows').innerHTML = R.map((r, i) => `<div class="row">${i === 2 ? '<div class
   `<div class="row"><div class="k w">123</div><div class="k w emo">🙂</div><div class="k sp">space</div><div class="k go">send</div></div>`;
 
 // app ring
-const RING = [['💬', 'Messages', '#2f7cf6,#3b63f0'], ['🟢', 'Chats', '#1f9d63,#137a4c'], ['📸', 'DMs', '#ff3fb4,#c02ee0'], ['🔥', 'Dating', '#ff7a3d,#e0453a'], ['✉️', 'Mail', '#6a5cf5,#3b2ab0'], ['💼', 'Work', '#5b6b8a,#2c3550']];
-$('#ring').innerHTML = RING.map((a, i) => `<div class="appcard p3 rc" style="left:-115px;top:-115px;background:linear-gradient(150deg,${a[2]});transform:rotateY(${i * 60}deg) translateZ(560px)"><div class="ic emo">${a[0]}</div><div class="nm">${a[1]}</div></div>`).join('');
+const ICON = {
+  chat: '<path d="M8 12h32a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H22l-9 7v-7H8a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4z"/><path d="M14 22h20M14 29h12"/>',
+  dm: '<path d="M44 6 4 22l16 6 6 16z"/><path d="M20 28 44 6"/>',
+  msg: '<circle cx="24" cy="24" r="19"/><path d="M15 21h18M15 28h11"/>',
+  heart: '<path d="M24 41S6 30 6 18a9 9 0 0 1 18-3 9 9 0 0 1 18 3c0 12-18 23-18 23z"/>',
+  mail: '<rect x="5" y="10" width="38" height="28" rx="4"/><path d="m6 13 18 13 18-13"/>',
+  work: '<rect x="5" y="15" width="38" height="25" rx="4"/><path d="M17 15v-4a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4M5 26h38"/>'
+};
+const RING = [['chat', 'CHATS'], ['dm', 'DMS'], ['msg', 'MESSAGES'], ['heart', 'DATING'], ['mail', 'MAIL'], ['work', 'WORK']];
+const TPOS = [[-430, -330], [430, -330], [-430, -40], [430, -40], [-430, 250], [430, 250]];
+$('#ring').innerHTML = RING.map((a, i) => `<div class="appcard p3 rc" id="rc${i}" style="left:${TPOS[i][0] - 105}px;top:${TPOS[i][1] - 120}px"><div class="ic"><svg viewBox="0 0 48 48">${ICON[a[0]]}</svg></div><div class="nm">${a[1]}</div><div class="kb"><i></i><i></i><i></i></div></div>`).join('');
 
 // reply cards
 const REPL = ['Haha we\'re good 😌 brunch Sunday? my treat', 'All good! Friday was a lot 😅 coffee this week?', 'We\'re good, I was just busy. Miss me already? 😏'];
@@ -295,10 +315,8 @@ gsap.set('#kb', { z: 0 });
 gsap.set('.hl', { y: 30 });
 
 // background life
-tl.to('#o1', { x: 220, y: 160, duration: 32.5, ease: 'sine.inOut' }, 0)
-  .to('#o2', { x: -260, y: -200, duration: 32.5, ease: 'sine.inOut' }, 0)
-  .to('#o3', { x: 180, y: -260, duration: 32.5, ease: 'sine.inOut' }, 0)
-  .to('#floor', { backgroundPosition: '0px 960px', duration: 32.5, ease: 'none' }, 0);
+tl.to('#floor', { backgroundPosition: '0px 640px', duration: 32.5, ease: 'none' }, 0)
+  .fromTo('#spot', { x: -40 }, { x: 40, duration: 32.5, ease: 'sine.inOut' }, 0);
 
 const hlIn = (id, t, out) => { tl.to(id, { opacity: 1, y: 0, duration: 0.5 }, t).to(id, { opacity: 0, y: -30, duration: 0.35, ease: 'power2.in' }, out); };
 
@@ -321,14 +339,21 @@ hlIn('#h2', 4.4, 6.0);
 /* S3 6.2–10.7: works in every app — ring orbits */
 tl.set('#rig', { rotationY: 14 }, 6.1);
 tl.to('#kb', { z: 0, y: 0, rotationX: 0, duration: 0.6, ease: 'power2.inOut' }, 6.1);
-tl.to('#rig', { rotationY: -8, rotationX: 8, z: -420, y: 220, scale: 0.86, duration: 1.0, ease: E }, 6.1);
-tl.fromTo('#ring', { opacity: 0, rotationY: 30, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.9 }, 6.4);
-tl.to('#ring', { rotationY: -300, duration: 4.4, ease: 'sine.inOut' }, 6.4);
+tl.to('#rig', { rotationY: 0, rotationX: 6, z: -420, y: 40, scale: 0.86, duration: 1.0, ease: E }, 6.1);
+tl.to('#rig', { rotationY: 8, duration: 3.4, ease: 'sine.inOut' }, 7.1);
+document.querySelectorAll('.rc').forEach((c, i) => {
+  tl.fromTo(c, { opacity: 0, z: -700, rotationY: i % 2 ? -50 : 50 }, { opacity: 1, z: 0, rotationY: i % 2 ? -14 : 14, duration: 0.8, ease: 'power3.out' }, 6.45 + i * 0.07);
+});
+const lit = (i, on, off) => {
+  tl.to(`#rc${i}`, { z: 180, scale: 1.08, borderColor: 'rgba(255,63,180,.9)', boxShadow: '0 0 0 1px rgba(255,63,180,.6), 0 30px 90px rgba(192,46,224,.35)', duration: 0.3 }, on)
+    .to(`#rc${i}`, { z: 0, scale: 1, borderColor: 'rgba(255,255,255,.12)', boxShadow: '0 1px 0 rgba(255,255,255,.10) inset, 0 40px 80px rgba(0,0,0,.6)', duration: 0.3 }, off);
+};
+lit(0, 6.9, 7.55); lit(1, 7.6, 8.7); lit(2, 8.75, 9.65); lit(3, 9.7, 10.25);
 [7.6, 8.75, 9.7].forEach((t, i) => {               // header swaps app by app
   tl.to(`#ah${i}`, { opacity: 0, duration: 0.15 }, t).to(`#ah${i + 1}`, { opacity: 1, duration: 0.15 }, t);
   tl.to('#kb', { y: 22, duration: 0.08, ease: 'none' }, t).to('#kb', { y: 0, duration: 0.35, ease: 'back.out(2)' }, t + 0.08);
 });
-tl.to('#ring', { opacity: 0, scale: 1.3, duration: 0.5, ease: 'power2.in' }, 10.3);
+tl.to('.rc', { opacity: 0, z: -600, duration: 0.45, ease: 'power2.in', stagger: 0.03 }, 10.3);
 hlIn('#h3', 6.5, 10.4);
 
 /* S4 10.7–16: God Mode */
