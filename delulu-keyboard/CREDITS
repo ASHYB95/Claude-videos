@@ -1,0 +1,8 @@
+Delulu Keyboard — "Say It Right" (3D SaaS promo)
+
+Brand: Delulu Check / Delulu Keyboard name, logo and product UI belong to Delulu Check; redrawn in HTML/CSS. Chat content is fictional.
+Voice: ElevenLabs, voice "Alice" (eleven_multilingual_v2).
+Sound effects: generated with ElevenLabs Sound Effects (audio/sfx.py).
+Music: original electronic score, synthesised in audio/score.py (no samples).
+Fonts (SIL Open Font License 1.1, via @fontsource): Inter, Inter Tight, Bebas Neue, JetBrains Mono. Emoji: Noto Color Emoji (SIL OFL 1.1).
+Animation: GSAP 3.15; built and rendered with HyperFrames 0.9.20 (motion blur on, 180° shutter).
