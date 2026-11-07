@@ -1,0 +1,13 @@
+.hyperframes/
+node_modules/
+renders/
+work/dl/
+work/*.raw
+work/*.mp4
+work/*.mp3
+work/*.wav
+work/*.png
+work/*.jpg
+work/*.npy
+work/check.json
+work/render.log

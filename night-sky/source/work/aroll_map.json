@@ -1,0 +1,38 @@
+{
+ "s1": {
+  "vo_start": 0.0,
+  "aroll_start": 0.297,
+  "rate": 1.09,
+  "corr": 0.957
+ },
+ "s2": {
+  "vo_start": 2.715,
+  "aroll_start": 3.36,
+  "rate": 1.19,
+  "corr": 0.913
+ },
+ "s3": {
+  "vo_start": 4.76,
+  "aroll_start": 5.968,
+  "rate": 1.145,
+  "corr": 0.991
+ },
+ "s8": {
+  "vo_start": 20.845,
+  "aroll_start": 7.809,
+  "rate": 1.14,
+  "corr": 0.952
+ },
+ "s9": {
+  "vo_start": 23.055,
+  "aroll_start": 10.613,
+  "rate": 1.14,
+  "corr": 0.955
+ },
+ "s10": {
+  "vo_start": 25.196,
+  "aroll_start": 13.081,
+  "rate": 1.065,
+  "corr": 0.984
+ }
+}

@@ -1,0 +1,12 @@
+The Night Sky Is a Museum, Not a Photograph (Lookback Time) — 9:16 talking-head Reel, 28.8 s
+
+Presenter (A-roll): AI-generated presenter. Portrait by GPT Image 2.6, lip-synced talking head by Higgsfield Intone (via Higgsfield).
+B-roll: Seedance 2.5 via Higgsfield — rooftop step-out (presenter as reference) and Milky Way starfield.
+Collage stills: GPT Image 2.6 via Higgsfield — speed-limit sign, Moon, Sun (H-alpha), Earth, gilded frame, navy paper texture.
+  These are generated look-alikes, not NASA/observatory photographs.
+Voice: ElevenLabs TTS, voice "Jessica" (eleven_multilingual_v2); pauses tightened in source/work/tighten.py.
+Music: ElevenLabs Music v2.5 via Higgsfield (instrumental, generated for this film).
+Sound effects: ElevenLabs sound generation.
+Fonts (SIL Open Font License 1.1, via @fontsource): Barlow, Barlow Condensed, Courier Prime.
+Toolkit: HyperFrames (HeyGen, Apache-2.0) 0.9.20, GSAP 3.15.
+Era labels on stars ("LEFT 2017" … "LEFT 2000 BCE") are illustrative years for unnamed stars, not catalogue data.

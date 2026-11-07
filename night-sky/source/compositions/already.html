@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0e1527; }
+    #already-whip { position: absolute; inset: 0; }
+    #already-cam { position: absolute; inset: 0; transform-origin: 50% 38%; }
+    #already-video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+  </style>
+  <div id="root" data-composition-id="already" data-width="1080" data-height="1920">
+    <div id="already-whip">
+      <div id="already-cam">
+        <video id="already-video" class="clip" src="assets/aroll/aroll.mp4" data-start="0" data-duration="1.45"
+          data-media-start="5.899" data-playback-rate="1.145" muted playsinline data-track-index="0"></video>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Back to her, tighter: the punch-in is the cut.
+      tl.set("#already-cam", { scale: 1.16 }, 0);
+      // Whip up: the camera tilts to the sky, so the frame drops away with a vertical smear.
+      tl.fromTo("#already-whip", { y: 0, filter: "blur(0px)" }, { y: 520, filter: "blur(18px)", duration: 0.22, ease: "power3.in" }, 1.23);
+      window.__timelines["already"] = tl;
+    })();
+  </script>
+</template>

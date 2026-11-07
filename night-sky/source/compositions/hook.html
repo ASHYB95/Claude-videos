@@ -1,0 +1,41 @@
+<template>
+  <style>
+    @font-face { font-family: "Barlow Condensed"; font-weight: 800; src: url("assets/fonts/barlow-condensed-latin-800-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Courier Prime"; font-weight: 700; src: url("assets/fonts/courier-prime-latin-700-normal.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0e1527; }
+    #hook-cam { position: absolute; inset: 0; transform-origin: 50% 40%; z-index: 0; }
+    #hook-video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #hook-tag { position: absolute; left: 96px; top: 212px; z-index: 2; }
+    #hook-tag-inner {
+      display: block; padding: 18px 30px 14px;
+      background: #f3ead7; color: #16213e; box-shadow: 0 12px 22px rgba(0,0,0,.45);
+      font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 92px; line-height: .9; letter-spacing: .01em;
+    }
+    #hook-tag-inner small {
+      display: block; margin-top: 18px; font-family: "Courier Prime", monospace; font-weight: 700; font-size: 31px; letter-spacing: .04em;
+    }
+    #hook-tag-inner .hl { background: linear-gradient(transparent 12%, #ffd43b 12%, #ffd43b 92%, transparent 92%); padding: 0 6px; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-cam">
+      <video id="hook-video" class="clip" src="assets/aroll/aroll.mp4" data-start="0" data-duration="2.62"
+        data-media-start="0.21" data-playback-rate="1.09" muted playsinline data-track-index="0"></video>
+    </div>
+    <div id="hook-tag" class="clip" data-start="0" data-duration="2.62" data-track-index="1">
+      <span id="hook-tag-inner"><span class="hl">LOOKBACK</span> TIME<small>NO TIME MACHINE NEEDED</small></span>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Frame 0 is the thumbnail: face + tag already on screen, dead still.
+      tl.set("#hook-cam", { scale: 1.0 }, 0);
+      tl.set("#hook-tag-inner", { opacity: 1, rotation: -3, filter: "blur(0px)" }, 0);
+      // Hard punch-in on "past".
+      tl.set("#hook-cam", { scale: 1.12 }, 1.72);
+      // Tag leaves word-cleanly before the cut.
+      tl.to("#hook-tag-inner", { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in" }, 2.3);
+      window.__timelines["hook"] = tl;
+    })();
+  </script>
+</template>
