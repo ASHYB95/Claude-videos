@@ -27,22 +27,28 @@ def split(i, minarea=30000):
 
 def duo(img, name, extra=()):
     tmp = os.path.join(ROOT, 'art', '_t.png'); cv2.imwrite(tmp, img)
-    subprocess.run([sys.executable, '-I', DUO, tmp, os.path.join(A, name + '.png'), *extra], check=True, capture_output=True)
-    os.remove(tmp)
+    out = os.path.join(ROOT, 'art', '_d.png')
+    subprocess.run([sys.executable, '-I', DUO, tmp, out, *extra], check=True, capture_output=True)
+    cv2.imwrite(os.path.join(A, name + '.webp'), cv2.imread(out, cv2.IMREAD_UNCHANGED), [cv2.IMWRITE_WEBP_QUALITY, 90])
+    os.remove(tmp); os.remove(out)
 
 # sheet -> names in reading order (rows top->bottom, then left->right); None = skip
 NAMES = {
     's0': ['bulb', 'magnifier', 'book', 'pouch'],
-    's1': None,  # filled in after inspecting the split
+    's1': ['ball', 'diya', 'bat', 'bauble'],
     's2': ['hand_plug', 'hand_phone'],
     's3': ['tv', 'masks'],
     's4': ['face_smile', 'face_cry', 'face_laugh'],
     's5': ['face_empathy', 'face_sympathy', 'hob', 'hony'],
     's6': ['crowd'],
+    # v2 people: modern metro-city consumers (replace s4/s5/s6 people)
+    'p0': ['crowd'],
+    'p1': ['face_smile', 'face_cry', 'face_laugh'],
+    'p2': ['face_empathy', 'face_sympathy', 'hob'],
 }
 YEL = {'hand_phone', 'tv'}
 if __name__ == '__main__':
-    only = sys.argv[1:] or list(NAMES)
+    only = sys.argv[1:] or [k for k in NAMES if k not in ('s4', 's5', 's6')]
     for sh in only:
         src = os.path.join(RB, sh + '.png')
         if not os.path.exists(src): print('missing', src); continue
