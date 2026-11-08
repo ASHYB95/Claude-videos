@@ -1,0 +1,187 @@
+<template>
+  <style>
+    @font-face { font-family: "Barlow Condensed"; font-weight: 800; src: url("assets/fonts/barlow-condensed-latin-800-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Courier Prime"; font-weight: 700; src: url("assets/fonts/courier-prime-latin-700-normal.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #22335e; }
+    #plates-whip { position: absolute; inset: 0; }
+    #plates-paper { position: absolute; left: -40px; top: -40px; width: 1160px; height: 2000px; object-fit: cover; }
+    #plates-specks { position: absolute; left: -160px; top: -340px; width: 1400px; height: 2600px; opacity: .9; }
+    #plates-grain {
+      position: absolute; left: -256px; top: -256px; width: 1592px; height: 2432px;
+      background-image: url("assets/img/grain.png"); background-size: 512px 512px;
+      mix-blend-mode: overlay; opacity: .16; pointer-events: none;
+    }
+    .p-tag {
+      position: absolute; padding: 12px 22px 10px; background: #f3ead7; color: #16213e; white-space: nowrap;
+      font-family: "Courier Prime", monospace; font-weight: 700; font-size: 38px; letter-spacing: .03em; line-height: 1.1;
+      box-shadow: 0 10px 18px rgba(0,0,0,.45);
+    }
+    .p-stamp {
+      position: absolute; padding: 10px 22px 6px; background: #f3ead7; color: #d7372b; white-space: nowrap;
+      border: 5px solid #d7372b; outline: 3px solid #d7372b; outline-offset: -14px;
+      font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: .02em;
+      box-shadow: 0 10px 18px rgba(0,0,0,.45);
+    }
+    .p-stamp b { color: #16213e; }
+
+    /* --- speed limit --- */
+    #speed-group { position: absolute; inset: 0; }
+    #speed-cam { position: absolute; inset: 0; transform-origin: 50% 45%; }
+    .beam {
+      position: absolute; left: 0; width: 460px; height: 12px; border-radius: 6px;
+      background: linear-gradient(90deg, rgba(255,212,59,0) 0%, #ffd43b 72%, #fff4c8 100%);
+    }
+    #beam-a { top: 432px; } #beam-b { top: 706px; } #beam-c { top: 1046px; }
+    #sign-wrap { position: absolute; left: 240px; top: 300px; width: 600px; height: 848px; }
+    #sign-card { position: absolute; inset: 0; }
+    #sign-img { position: absolute; left: 0; top: 0; width: 600px; height: 848px; }
+    #sign-hl {
+      position: absolute; left: 56px; top: 482px; width: 488px; height: 134px;
+      background: #ffd43b; mix-blend-mode: multiply; opacity: .92; transform-origin: 0% 50%;
+    }
+    #laps-wrap { position: absolute; left: 0; width: 1080px; top: 196px; text-align: center; }
+    #laps-tag { position: relative; display: inline-block; }
+    #laps-tag .hl { background: linear-gradient(transparent 10%, #ffd43b 10%, #ffd43b 94%, transparent 94%); }
+
+    /* --- lookback ladder --- */
+    #ladder-group { position: absolute; inset: 0; }
+    #ladder-slide { position: absolute; inset: 0; }
+    #ladder-world { position: absolute; left: 0; top: 0; width: 1080px; height: 3100px; }
+    #ladder-lines { position: absolute; left: 0; top: 0; width: 1080px; height: 3100px; overflow: visible; }
+    #sun-wrap { position: absolute; left: 210px; top: 210px; width: 700px; height: 700px; }
+    #moon-wrap { position: absolute; left: 520px; top: 1490px; width: 420px; height: 420px; }
+    #earth-wrap { position: absolute; left: 150px; top: 2430px; width: 500px; height: 500px; }
+    #sun-img, #moon-img, #earth-img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    #you-tag { left: 600px; top: 2262px; }
+    #stamp-moon { left: 470px; top: 1940px; }
+    #stamp-sun { left: 330px; top: 905px; }
+    .photon {
+      position: absolute; left: 0; top: 0; width: 34px; height: 34px; border-radius: 50%;
+      background: #ffd43b; border: 5px solid #f3ead7; box-shadow: 0 4px 10px rgba(0,0,0,.35);
+    }
+  </style>
+  <div id="root" data-composition-id="plates" data-width="1080" data-height="1920">
+    <div id="plates-whip">
+      <img id="plates-paper" src="assets/img/paper-navy.jpg" alt="" />
+      <img id="plates-specks" src="assets/img/specks.svg" alt="" />
+
+      <!-- 1. The cosmic speed limit -->
+      <div id="speed-group">
+        <div id="speed-cam">
+          <div id="beam-a" class="beam" data-layout-ignore></div>
+          <div id="beam-b" class="beam" data-layout-ignore></div>
+          <div id="beam-c" class="beam" data-layout-ignore></div>
+          <div id="sign-wrap" class="clip" data-start="0.5" data-duration="4.1" data-track-index="0">
+            <div id="sign-card">
+              <img id="sign-img" src="assets/img/sign-cut.png" alt="Speed limit 300,000 km per second" />
+              <div id="sign-hl"></div>
+            </div>
+          </div>
+          <div id="laps-wrap" class="clip" data-start="1.15" data-duration="3.45" data-layout-allow-overlap data-track-index="1">
+            <div id="laps-tag" class="p-tag">&asymp; <span class="hl">7.5 LAPS OF EARTH</span>, EVERY SECOND</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. The lookback ladder -->
+      <div id="ladder-group" class="clip" data-start="4.3" data-duration="5.55" data-track-index="2">
+       <div id="ladder-slide">
+        <div id="ladder-world">
+          <svg id="ladder-lines" viewBox="0 0 1080 3100">
+            <defs>
+              <mask id="mask-moon-line" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="3100">
+                <line id="reveal-moon-line" x1="676" y1="1846" x2="506" y2="2500" stroke="#fff" stroke-width="16"
+                  pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+              </mask>
+              <mask id="mask-sun-line" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="3100">
+                <line id="reveal-sun-line" x1="404" y1="830" x2="356" y2="2486" stroke="#fff" stroke-width="16"
+                  pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+              </mask>
+            </defs>
+            <g mask="url(#mask-moon-line)">
+              <line x1="676" y1="1846" x2="506" y2="2500" stroke="#f3ead7" stroke-width="6" stroke-dasharray="18 14" stroke-linecap="round" />
+              <path d="M488 2462 L506 2500 L534 2470" fill="none" stroke="#f3ead7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <g mask="url(#mask-sun-line)">
+              <line x1="404" y1="830" x2="356" y2="2486" stroke="#f3ead7" stroke-width="6" stroke-dasharray="18 14" stroke-linecap="round" />
+            </g>
+          </svg>
+          <div id="earth-wrap"><img id="earth-img" src="assets/img/earth-cut.png" alt="Earth" /></div>
+          <div id="you-tag" class="p-tag">YOU, TONIGHT</div>
+          <div id="moon-wrap"><img id="moon-img" src="assets/img/moon-cut.png" alt="The Moon" /></div>
+          <div id="stamp-moon" class="p-stamp">1.3 SECONDS OLD</div>
+          <div id="sun-wrap"><img id="sun-img" src="assets/img/sun-cut.png" alt="The Sun" /></div>
+          <div id="stamp-sun" class="p-stamp">8 MINUTES OLD</div>
+          <div id="photon-moon" class="photon"></div>
+          <div id="photon-sun" class="photon"></div>
+        </div>
+       </div>
+      </div>
+
+      <div id="plates-grain"></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const land = (sel, t, from) =>
+        tl.fromTo(sel, Object.assign({ opacity: 0, scale: 1.18, rotation: 4 }, from || {}),
+          { opacity: 1, scale: 1, rotation: -2, duration: 0.4, ease: "back.out(1.6)" }, t);
+      const stamp = (sel, t, rot) =>
+        tl.fromTo(sel, { opacity: 0, scale: 1.35, rotation: rot }, { opacity: 1, scale: 1, rotation: rot, duration: 0.12, ease: "power4.out" }, t);
+
+      // Arrive: the camera is still tilting up, so the paper drops in from the top and sharpens.
+      tl.fromTo("#plates-whip", { y: -520, filter: "blur(18px)" }, { y: 0, filter: "blur(0px)", duration: 0.28, ease: "power3.out" }, 0);
+
+      // --- Speed limit (root 6.15 - 10.55) ---
+      tl.fromTo("#speed-cam", { scale: 1 }, { scale: 1.035, duration: 4.1, ease: "none" }, 0.3);
+      land("#sign-card", 0.52, { y: -60 });
+      // Light zipping past at constant speed, behind the sign.
+      [["#beam-a", 1.7], ["#beam-b", 1.82], ["#beam-c", 1.96], ["#beam-a", 2.5], ["#beam-c", 2.66]].forEach(([b, t]) => {
+        tl.fromTo(b, { x: -560 }, { x: 1640, duration: 0.36, ease: "none", immediateRender: false }, t);
+      });
+      tl.set([".beam"], { x: -560 }, 0);
+      tl.set([".beam"], { opacity: 0 }, 3.1);
+      // Highlighter swipe across 300,000 as she says it.
+      tl.fromTo("#sign-hl", { scaleX: 0, rotation: -1.5 }, { scaleX: 1, rotation: -1.5, duration: 0.55, ease: "power2.out" }, 2.0);
+      land("#laps-tag", 1.2, { y: -20 });
+
+      // Horizontal whip into the ladder; the paper ground stays.
+      tl.to("#speed-group", { x: -1080, filter: "blur(16px)", duration: 0.3, ease: "power3.in" }, 4.18);
+      tl.fromTo("#ladder-slide", { x: 1080, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.38, ease: "power3.out" }, 4.4);
+      tl.fromTo("#plates-specks", { x: 0, y: 0 }, { x: -330, y: 0, duration: 0.68, ease: "power3.inOut" }, 4.18);
+
+      // --- Lookback ladder (root 10.55 - 15.95) ---
+      tl.set("#ladder-world", { y: -1180 }, 0);
+      tl.set(["#moon-wrap", "#sun-wrap", "#you-tag", "#stamp-moon", "#stamp-sun", "#photon-moon", "#photon-sun"], { opacity: 0 }, 0);
+      land("#you-tag", 4.78, { y: -16 });
+      land("#moon-wrap", 4.85, { y: -40 });
+      tl.fromTo("#reveal-moon-line", { attr: { "stroke-dashoffset": 110 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.45, ease: "power2.out" }, 5.2);
+      // The photon takes exactly 1.3 s from the Moon to Earth.
+      tl.set("#photon-moon", { opacity: 1, x: 676 - 17, y: 1846 - 17 }, 5.75);
+      tl.to("#photon-moon", { x: 506 - 17, y: 2500 - 17, duration: 1.3, ease: "none" }, 5.75);
+      tl.to("#photon-moon", { opacity: 0, scale: 0.4, duration: 0.12, ease: "power2.in" }, 7.05);
+      stamp("#stamp-moon", 6.38, -6);
+
+      // Tilt up to the Sun.
+      tl.fromTo("#ladder-world", { y: -1180 }, { y: 0, duration: 0.62, ease: "power2.inOut", immediateRender: false }, 7.16);
+      tl.fromTo("#plates-specks", { y: 0 }, { y: 354, duration: 0.62, ease: "power2.inOut", immediateRender: false }, 7.16);
+      land("#sun-wrap", 7.58, { y: -50 });
+      tl.fromTo("#reveal-sun-line", { attr: { "stroke-dashoffset": 110 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 7.8);
+      tl.set("#photon-sun", { opacity: 1, x: 404 - 17, y: 830 - 17 }, 8.05);
+      tl.to("#photon-sun", { x: 380 - 17, y: 1660 - 17, duration: 1.2, ease: "none" }, 8.05);
+      stamp("#stamp-sun", 8.62, 5);
+
+      // Whip up and out, into the real sky.
+      tl.to("#plates-whip", { y: 540, filter: "blur(18px)", duration: 0.17, ease: "power3.in" }, 9.68);
+
+      // Film grain: re-positioned every 2 frames from a seeded sequence.
+      let s = 1234567;
+      const rnd = () => ((s = (s * 1103515245 + 12345) % 2147483648) / 2147483648);
+      for (let t = 0; t < 9.85; t += 1 / 15) {
+        tl.set("#plates-grain", { x: Math.round(rnd() * 256), y: Math.round(rnd() * 256) }, t);
+      }
+      window.__timelines["plates"] = tl;
+    })();
+  </script>
+</template>

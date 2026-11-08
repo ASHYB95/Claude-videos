@@ -1,0 +1,45 @@
+<template>
+  <style>
+    @font-face { font-family: "Barlow Condensed"; font-weight: 800; src: url("assets/fonts/barlow-condensed-latin-800-normal.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0e1527; }
+    #photo-cam { position: absolute; inset: 0; transform-origin: 50% 36%; }
+    #photo-video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #photo-flash { position: absolute; inset: 0; background: #fffaf0; opacity: 0; }
+    #photo-tag { position: absolute; left: 0; top: 214px; width: 1080px; text-align: center; }
+    #photo-card {
+      position: relative; display: inline-block; padding: 16px 34px 10px; background: #f3ead7; color: #16213e;
+      font-family: "Barlow Condensed", sans-serif; font-weight: 800; font-size: 112px; line-height: .95; letter-spacing: .01em;
+      box-shadow: 0 12px 22px rgba(0,0,0,.45);
+    }
+    #photo-strike { position: absolute; left: -26px; top: 18px; width: calc(100% + 52px); height: 90px; overflow: visible; }
+  </style>
+  <div id="root" data-composition-id="photo" data-width="1080" data-height="1920">
+    <div id="photo-cam">
+      <video id="photo-video" class="clip" src="assets/aroll/aroll.mp4" data-start="0" data-duration="2.3"
+        data-media-start="10.265" data-playback-rate="1.14" muted playsinline data-track-index="0"></video>
+    </div>
+    <div id="photo-flash"></div>
+    <div id="photo-tag" class="clip" data-start="1.15" data-duration="1.15" data-track-index="1">
+      <div id="photo-card">
+        A PHOTOGRAPH
+        <svg id="photo-strike" viewBox="0 0 600 90" preserveAspectRatio="none">
+          <path id="photo-strike-path" d="M6 62 C 160 40, 380 34, 594 22" fill="none" stroke="#d7372b" stroke-width="14"
+            stroke-linecap="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.set("#photo-cam", { scale: 1.05 }, 0);
+      // "...a photograph": a camera flash, the word lands as a print...
+      tl.fromTo("#photo-flash", { opacity: 0 }, { opacity: 0.75, duration: 0.03, ease: "none" }, 1.15);
+      tl.to("#photo-flash", { opacity: 0, duration: 0.2, ease: "power2.out" }, 1.18);
+      tl.fromTo("#photo-card", { opacity: 0, scale: 1.2, rotation: 3 }, { opacity: 1, scale: 1, rotation: -2, duration: 0.32, ease: "back.out(1.6)" }, 1.17);
+      // ...and is struck out: it isn't one.
+      tl.fromTo("#photo-strike-path", { attr: { "stroke-dashoffset": 110 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.24, ease: "power2.out" }, 1.6);
+      window.__timelines["photo"] = tl;
+    })();
+  </script>
+</template>
