@@ -1,0 +1,6 @@
+footage/*.mp4
+footage/*.mov
+work/
+node_modules/
+renders/
+previews/

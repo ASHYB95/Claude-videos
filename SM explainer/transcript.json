@@ -1,0 +1,1598 @@
+[
+{
+"text": "At",
+"start": 0.053,
+"end": 0.133,
+"seg": 0
+},
+{
+"text": "Purple",
+"start": 0.193,
+"end": 0.473,
+"seg": 0
+},
+{
+"text": "Seed,",
+"start": 0.553,
+"end": 0.753,
+"seg": 0
+},
+{
+"text": "we've",
+"start": 0.813,
+"end": 0.953,
+"seg": 0
+},
+{
+"text": "now",
+"start": 0.993,
+"end": 1.093,
+"seg": 0
+},
+{
+"text": "worked",
+"start": 1.213,
+"end": 1.393,
+"seg": 0
+},
+{
+"text": "with",
+"start": 1.433,
+"end": 1.553,
+"seg": 0
+},
+{
+"text": "maybe",
+"start": 1.593,
+"end": 1.833,
+"seg": 0
+},
+{
+"text": "over",
+"start": 1.893,
+"end": 2.053,
+"seg": 0
+},
+{
+"text": "a",
+"start": 2.093,
+"end": 2.153,
+"seg": 0
+},
+{
+"text": "thousand,",
+"start": 2.193,
+"end": 2.553,
+"seg": 0
+},
+{
+"text": "fifteen",
+"start": 2.633,
+"end": 2.913,
+"seg": 0
+},
+{
+"text": "hundred",
+"start": 2.953,
+"end": 3.173,
+"seg": 0
+},
+{
+"text": "brands,",
+"start": 3.233,
+"end": 3.673,
+"seg": 0
+},
+{
+"text": "and",
+"start": 3.88,
+"end": 4.02,
+"seg": 1
+},
+{
+"text": "we've",
+"start": 4.06,
+"end": 4.24,
+"seg": 1
+},
+{
+"text": "worked",
+"start": 4.26,
+"end": 4.44,
+"seg": 1
+},
+{
+"text": "with",
+"start": 4.48,
+"end": 4.6,
+"seg": 1
+},
+{
+"text": "almost",
+"start": 4.66,
+"end": 5.02,
+"seg": 1
+},
+{
+"text": "every",
+"start": 5.08,
+"end": 5.32,
+"seg": 1
+},
+{
+"text": "major",
+"start": 5.44,
+"end": 5.78,
+"seg": 1
+},
+{
+"text": "social",
+"start": 5.86,
+"end": 6.2,
+"seg": 1
+},
+{
+"text": "platform",
+"start": 6.3,
+"end": 6.74,
+"seg": 1
+},
+{
+"text": "that",
+"start": 6.8,
+"end": 6.92,
+"seg": 1
+},
+{
+"text": "exists",
+"start": 6.96,
+"end": 7.36,
+"seg": 1
+},
+{
+"text": "out",
+"start": 7.42,
+"end": 7.6,
+"seg": 1
+},
+{
+"text": "there.",
+"start": 7.66,
+"end": 7.86,
+"seg": 1
+},
+{
+"text": "And",
+"start": 8.08,
+"end": 8.32,
+"seg": 2
+},
+{
+"text": "here's",
+"start": 8.62,
+"end": 8.96,
+"seg": 2
+},
+{
+"text": "what",
+"start": 9.02,
+"end": 9.24,
+"seg": 2
+},
+{
+"text": "we've",
+"start": 9.433,
+"end": 9.713,
+"seg": 3
+},
+{
+"text": "understood",
+"start": 10.013,
+"end": 10.533,
+"seg": 3
+},
+{
+"text": "is",
+"start": 10.747,
+"end": 10.827,
+"seg": 4
+},
+{
+"text": "the",
+"start": 10.887,
+"end": 10.987,
+"seg": 4
+},
+{
+"text": "only",
+"start": 11.047,
+"end": 11.307,
+"seg": 4
+},
+{
+"text": "content",
+"start": 11.347,
+"end": 11.767,
+"seg": 4
+},
+{
+"text": "that",
+"start": 11.807,
+"end": 11.947,
+"seg": 4
+},
+{
+"text": "works",
+"start": 12.007,
+"end": 12.247,
+"seg": 4
+},
+{
+"text": "on",
+"start": 12.307,
+"end": 12.387,
+"seg": 4
+},
+{
+"text": "social",
+"start": 12.427,
+"end": 12.727,
+"seg": 4
+},
+{
+"text": "media",
+"start": 12.767,
+"end": 13.047,
+"seg": 4
+},
+{
+"text": "First,",
+"start": 13.247,
+"end": 13.507,
+"seg": 5
+},
+{
+"text": "you",
+"start": 13.607,
+"end": 13.647,
+"seg": 5
+},
+{
+"text": "have",
+"start": 13.687,
+"end": 13.827,
+"seg": 5
+},
+{
+"text": "educational",
+"start": 13.887,
+"end": 14.487,
+"seg": 5
+},
+{
+"text": "content.",
+"start": 14.567,
+"end": 15.047,
+"seg": 5
+},
+{
+"text": "So",
+"start": 15.267,
+"end": 15.427,
+"seg": 5
+},
+{
+"text": "think",
+"start": 15.467,
+"end": 15.787,
+"seg": 5
+},
+{
+"text": "of",
+"start": 15.993,
+"end": 16.093,
+"seg": 6
+},
+{
+"text": "how",
+"start": 16.153,
+"end": 16.373,
+"seg": 6
+},
+{
+"text": "you",
+"start": 16.433,
+"end": 16.573,
+"seg": 6
+},
+{
+"text": "could",
+"start": 16.613,
+"end": 16.813,
+"seg": 6
+},
+{
+"text": "leave",
+"start": 16.873,
+"end": 17.093,
+"seg": 6
+},
+{
+"text": "your",
+"start": 17.133,
+"end": 17.353,
+"seg": 6
+},
+{
+"text": "audience",
+"start": 17.433,
+"end": 17.813,
+"seg": 6
+},
+{
+"text": "that's",
+"start": 17.913,
+"end": 18.073,
+"seg": 6
+},
+{
+"text": "consuming",
+"start": 18.113,
+"end": 18.573,
+"seg": 6
+},
+{
+"text": "your",
+"start": 18.593,
+"end": 18.713,
+"seg": 6
+},
+{
+"text": "content",
+"start": 18.753,
+"end": 19.133,
+"seg": 6
+},
+{
+"text": "with",
+"start": 19.173,
+"end": 19.293,
+"seg": 6
+},
+{
+"text": "some",
+"start": 19.333,
+"end": 19.513,
+"seg": 6
+},
+{
+"text": "value.",
+"start": 19.593,
+"end": 19.952,
+"seg": 6
+},
+{
+"text": "Teach",
+"start": 20.193,
+"end": 20.393,
+"seg": 6
+},
+{
+"text": "them",
+"start": 20.433,
+"end": 20.573,
+"seg": 6
+},
+{
+"text": "something",
+"start": 20.613,
+"end": 20.933,
+"seg": 6
+},
+{
+"text": "they",
+"start": 20.973,
+"end": 21.093,
+"seg": 6
+},
+{
+"text": "didn't",
+"start": 21.133,
+"end": 21.333,
+"seg": 6
+},
+{
+"text": "already",
+"start": 21.413,
+"end": 21.753,
+"seg": 6
+},
+{
+"text": "know",
+"start": 21.813,
+"end": 22.013,
+"seg": 6
+},
+{
+"text": "before.",
+"start": 22.053,
+"end": 22.453,
+"seg": 6
+},
+{
+"text": "A",
+"start": 22.667,
+"end": 22.727,
+"seg": 7
+},
+{
+"text": "good",
+"start": 22.767,
+"end": 22.907,
+"seg": 7
+},
+{
+"text": "example",
+"start": 22.967,
+"end": 23.527,
+"seg": 7
+},
+{
+"text": "is",
+"start": 23.74,
+"end": 24.04,
+"seg": 8
+},
+{
+"text": "the",
+"start": 24.22,
+"end": 24.28,
+"seg": 9
+},
+{
+"text": "brand",
+"start": 24.32,
+"end": 24.58,
+"seg": 9
+},
+{
+"text": "Whole",
+"start": 24.64,
+"end": 24.8,
+"seg": 9
+},
+{
+"text": "Truth",
+"start": 24.86,
+"end": 25.08,
+"seg": 9
+},
+{
+"text": "Foods",
+"start": 25.16,
+"end": 25.5,
+"seg": 9
+},
+{
+"text": "and",
+"start": 25.62,
+"end": 25.76,
+"seg": 9
+},
+{
+"text": "how",
+"start": 25.82,
+"end": 26.0,
+"seg": 9
+},
+{
+"text": "they",
+"start": 26.08,
+"end": 26.24,
+"seg": 9
+},
+{
+"text": "have",
+"start": 26.3,
+"end": 26.6,
+"seg": 9
+},
+{
+"text": "helped",
+"start": 26.813,
+"end": 27.073,
+"seg": 10
+},
+{
+"text": "their",
+"start": 27.133,
+"end": 27.253,
+"seg": 10
+},
+{
+"text": "consumers",
+"start": 27.313,
+"end": 28.073,
+"seg": 10
+},
+{
+"text": "through",
+"start": 28.267,
+"end": 28.427,
+"seg": 11
+},
+{
+"text": "the",
+"start": 28.467,
+"end": 28.547,
+"seg": 11
+},
+{
+"text": "journey",
+"start": 28.667,
+"end": 29.047,
+"seg": 11
+},
+{
+"text": "of",
+"start": 29.127,
+"end": 29.307,
+"seg": 11
+},
+{
+"text": "understanding",
+"start": 29.507,
+"end": 30.107,
+"seg": 12
+},
+{
+"text": "the",
+"start": 30.147,
+"end": 30.227,
+"seg": 12
+},
+{
+"text": "ingredients",
+"start": 30.267,
+"end": 30.787,
+"seg": 12
+},
+{
+"text": "that",
+"start": 30.827,
+"end": 30.927,
+"seg": 12
+},
+{
+"text": "you",
+"start": 30.967,
+"end": 31.047,
+"seg": 12
+},
+{
+"text": "consume",
+"start": 31.087,
+"end": 31.527,
+"seg": 12
+},
+{
+"text": "Second",
+"start": 31.753,
+"end": 32.153,
+"seg": 13
+},
+{
+"text": "is",
+"start": 32.453,
+"end": 32.593,
+"seg": 13
+},
+{
+"text": "emotional",
+"start": 32.633,
+"end": 33.133,
+"seg": 13
+},
+{
+"text": "content.",
+"start": 33.213,
+"end": 33.673,
+"seg": 13
+},
+{
+"text": "If",
+"start": 33.867,
+"end": 33.927,
+"seg": 14
+},
+{
+"text": "you",
+"start": 33.967,
+"end": 34.067,
+"seg": 14
+},
+{
+"text": "can",
+"start": 34.107,
+"end": 34.227,
+"seg": 14
+},
+{
+"text": "make",
+"start": 34.287,
+"end": 34.447,
+"seg": 14
+},
+{
+"text": "your",
+"start": 34.487,
+"end": 34.627,
+"seg": 14
+},
+{
+"text": "audience",
+"start": 34.687,
+"end": 35.087,
+"seg": 14
+},
+{
+"text": "smile,",
+"start": 35.207,
+"end": 35.567,
+"seg": 14
+},
+{
+"text": "cry,",
+"start": 35.707,
+"end": 35.987,
+"seg": 14
+},
+{
+"text": "laugh,",
+"start": 36.127,
+"end": 36.487,
+"seg": 14
+},
+{
+"text": "feel",
+"start": 36.787,
+"end": 36.947,
+"seg": 14
+},
+{
+"text": "empathetic,",
+"start": 36.987,
+"end": 37.507,
+"seg": 14
+},
+{
+"text": "feel",
+"start": 37.587,
+"end": 37.747,
+"seg": 14
+},
+{
+"text": "sympathetic,",
+"start": 37.827,
+"end": 38.447,
+"seg": 14
+},
+{
+"text": "they",
+"start": 38.633,
+"end": 38.713,
+"seg": 15
+},
+{
+"text": "are",
+"start": 38.733,
+"end": 38.833,
+"seg": 15
+},
+{
+"text": "going",
+"start": 38.873,
+"end": 39.053,
+"seg": 15
+},
+{
+"text": "to",
+"start": 39.093,
+"end": 39.173,
+"seg": 15
+},
+{
+"text": "come",
+"start": 39.213,
+"end": 39.393,
+"seg": 15
+},
+{
+"text": "back",
+"start": 39.433,
+"end": 39.593,
+"seg": 15
+},
+{
+"text": "for",
+"start": 39.693,
+"end": 39.853,
+"seg": 15
+},
+{
+"text": "more.",
+"start": 39.913,
+"end": 40.153,
+"seg": 15
+},
+{
+"text": "Humans",
+"start": 40.393,
+"end": 40.753,
+"seg": 15
+},
+{
+"text": "are",
+"start": 40.813,
+"end": 40.973,
+"seg": 15
+},
+{
+"text": "emotional",
+"start": 41.233,
+"end": 41.693,
+"seg": 15
+},
+{
+"text": "creatures.",
+"start": 41.753,
+"end": 42.353,
+"seg": 15
+},
+{
+"text": "A",
+"start": 42.56,
+"end": 42.62,
+"seg": 16
+},
+{
+"text": "good",
+"start": 42.66,
+"end": 42.8,
+"seg": 16
+},
+{
+"text": "example",
+"start": 42.84,
+"end": 43.3,
+"seg": 16
+},
+{
+"text": "is",
+"start": 43.34,
+"end": 43.44,
+"seg": 16
+},
+{
+"text": "Humans",
+"start": 43.46,
+"end": 43.8,
+"seg": 16
+},
+{
+"text": "of",
+"start": 43.84,
+"end": 43.92,
+"seg": 16
+},
+{
+"text": "Bombay,",
+"start": 43.98,
+"end": 44.34,
+"seg": 16
+},
+{
+"text": "Humans",
+"start": 44.4,
+"end": 44.72,
+"seg": 16
+},
+{
+"text": "of",
+"start": 44.76,
+"end": 44.84,
+"seg": 16
+},
+{
+"text": "New",
+"start": 44.88,
+"end": 45.02,
+"seg": 16
+},
+{
+"text": "York.",
+"start": 45.08,
+"end": 45.36,
+"seg": 16
+},
+{
+"text": "These",
+"start": 45.44,
+"end": 45.6,
+"seg": 16
+},
+{
+"text": "pages",
+"start": 45.64,
+"end": 45.94,
+"seg": 16
+},
+{
+"text": "have",
+"start": 45.98,
+"end": 46.1,
+"seg": 16
+},
+{
+"text": "got",
+"start": 46.16,
+"end": 46.34,
+"seg": 16
+},
+{
+"text": "hundreds",
+"start": 46.38,
+"end": 46.78,
+"seg": 16
+},
+{
+"text": "of",
+"start": 46.82,
+"end": 46.9,
+"seg": 16
+},
+{
+"text": "thousands",
+"start": 46.94,
+"end": 47.34,
+"seg": 16
+},
+{
+"text": "of",
+"start": 47.4,
+"end": 47.5,
+"seg": 16
+},
+{
+"text": "followers",
+"start": 47.56,
+"end": 47.98,
+"seg": 16
+},
+{
+"text": "almost",
+"start": 48.04,
+"end": 48.46,
+"seg": 16
+},
+{
+"text": "overnight",
+"start": 48.66,
+"end": 49.22,
+"seg": 17
+},
+{
+"text": "just",
+"start": 49.44,
+"end": 49.54,
+"seg": 18
+},
+{
+"text": "because",
+"start": 49.58,
+"end": 49.82,
+"seg": 18
+},
+{
+"text": "they",
+"start": 49.84,
+"end": 49.94,
+"seg": 18
+},
+{
+"text": "were",
+"start": 49.96,
+"end": 50.06,
+"seg": 18
+},
+{
+"text": "able",
+"start": 50.12,
+"end": 50.28,
+"seg": 18
+},
+{
+"text": "to",
+"start": 50.32,
+"end": 50.4,
+"seg": 18
+},
+{
+"text": "make",
+"start": 50.46,
+"end": 50.64,
+"seg": 18
+},
+{
+"text": "their",
+"start": 50.68,
+"end": 50.8,
+"seg": 18
+},
+{
+"text": "audiences",
+"start": 50.84,
+"end": 51.36,
+"seg": 18
+},
+{
+"text": "feel",
+"start": 51.42,
+"end": 51.66,
+"seg": 18
+},
+{
+"text": "something",
+"start": 51.7,
+"end": 52.08,
+"seg": 18
+},
+{
+"text": "And",
+"start": 52.293,
+"end": 52.393,
+"seg": 19
+},
+{
+"text": "lastly,",
+"start": 52.453,
+"end": 52.873,
+"seg": 19
+},
+{
+"text": "you",
+"start": 53.013,
+"end": 53.093,
+"seg": 19
+},
+{
+"text": "have",
+"start": 53.153,
+"end": 53.293,
+"seg": 19
+},
+{
+"text": "topical",
+"start": 53.353,
+"end": 53.713,
+"seg": 19
+},
+{
+"text": "content.",
+"start": 53.793,
+"end": 54.273,
+"seg": 19
+},
+{
+"text": "This",
+"start": 54.453,
+"end": 54.633,
+"seg": 20
+},
+{
+"text": "works",
+"start": 54.753,
+"end": 55.033,
+"seg": 20
+},
+{
+"text": "really,",
+"start": 55.193,
+"end": 55.473,
+"seg": 20
+},
+{
+"text": "really",
+"start": 55.553,
+"end": 55.793,
+"seg": 20
+},
+{
+"text": "well,",
+"start": 55.833,
+"end": 56.013,
+"seg": 20
+},
+{
+"text": "probably",
+"start": 56.173,
+"end": 56.613,
+"seg": 20
+},
+{
+"text": "the",
+"start": 56.813,
+"end": 56.893,
+"seg": 21
+},
+{
+"text": "best",
+"start": 56.933,
+"end": 57.133,
+"seg": 21
+},
+{
+"text": "out",
+"start": 57.173,
+"end": 57.253,
+"seg": 21
+},
+{
+"text": "of",
+"start": 57.293,
+"end": 57.353,
+"seg": 21
+},
+{
+"text": "the",
+"start": 57.393,
+"end": 57.473,
+"seg": 21
+},
+{
+"text": "three.",
+"start": 57.513,
+"end": 57.713,
+"seg": 21
+},
+{
+"text": "If",
+"start": 57.887,
+"end": 57.987,
+"seg": 22
+},
+{
+"text": "your",
+"start": 58.027,
+"end": 58.167,
+"seg": 22
+},
+{
+"text": "audience",
+"start": 58.187,
+"end": 58.567,
+"seg": 22
+},
+{
+"text": "is",
+"start": 58.607,
+"end": 58.747,
+"seg": 22
+},
+{
+"text": "already",
+"start": 58.827,
+"end": 59.147,
+"seg": 22
+},
+{
+"text": "thinking",
+"start": 59.247,
+"end": 59.667,
+"seg": 22
+},
+{
+"text": "something,",
+"start": 59.747,
+"end": 60.147,
+"seg": 22
+},
+{
+"text": "imagine",
+"start": 60.327,
+"end": 60.727,
+"seg": 22
+},
+{
+"text": "IPL,",
+"start": 60.867,
+"end": 61.267,
+"seg": 22
+},
+{
+"text": "imagine",
+"start": 61.347,
+"end": 61.707,
+"seg": 22
+},
+{
+"text": "Diwali,",
+"start": 61.787,
+"end": 62.247,
+"seg": 22
+},
+{
+"text": "imagine",
+"start": 62.367,
+"end": 62.767,
+"seg": 22
+},
+{
+"text": "Christmas,",
+"start": 62.827,
+"end": 63.327,
+"seg": 22
+},
+{
+"text": "and",
+"start": 63.546,
+"end": 63.647,
+"seg": 23
+},
+{
+"text": "you",
+"start": 63.667,
+"end": 63.727,
+"seg": 23
+},
+{
+"text": "are",
+"start": 63.767,
+"end": 63.867,
+"seg": 23
+},
+{
+"text": "able",
+"start": 63.927,
+"end": 64.127,
+"seg": 23
+},
+{
+"text": "to",
+"start": 64.187,
+"end": 64.347,
+"seg": 23
+},
+{
+"text": "plug",
+"start": 64.387,
+"end": 64.627,
+"seg": 23
+},
+{
+"text": "in",
+"start": 64.687,
+"end": 64.787,
+"seg": 23
+},
+{
+"text": "your",
+"start": 64.827,
+"end": 65.007,
+"seg": 23
+},
+{
+"text": "product",
+"start": 65.047,
+"end": 65.447,
+"seg": 23
+},
+{
+"text": "or",
+"start": 65.487,
+"end": 65.567,
+"seg": 23
+},
+{
+"text": "service",
+"start": 65.647,
+"end": 66.107,
+"seg": 23
+},
+{
+"text": "into",
+"start": 66.3,
+"end": 66.62,
+"seg": 24
+},
+{
+"text": "the",
+"start": 66.68,
+"end": 66.78,
+"seg": 24
+},
+{
+"text": "feeling",
+"start": 66.8,
+"end": 67.08,
+"seg": 24
+},
+{
+"text": "that",
+"start": 67.12,
+"end": 67.22,
+"seg": 24
+},
+{
+"text": "they",
+"start": 67.24,
+"end": 67.32,
+"seg": 24
+},
+{
+"text": "already",
+"start": 67.36,
+"end": 67.68,
+"seg": 24
+},
+{
+"text": "have,",
+"start": 67.72,
+"end": 68.1,
+"seg": 24
+},
+{
+"text": "then",
+"start": 68.3,
+"end": 68.42,
+"seg": 25
+},
+{
+"text": "it's",
+"start": 68.46,
+"end": 68.58,
+"seg": 25
+},
+{
+"text": "going",
+"start": 68.62,
+"end": 68.8,
+"seg": 25
+},
+{
+"text": "to",
+"start": 68.84,
+"end": 68.94,
+"seg": 25
+},
+{
+"text": "work",
+"start": 68.98,
+"end": 69.18,
+"seg": 25
+},
+{
+"text": "well,",
+"start": 69.24,
+"end": 69.4,
+"seg": 25
+},
+{
+"text": "really,",
+"start": 69.593,
+"end": 69.813,
+"seg": 26
+},
+{
+"text": "really",
+"start": 69.853,
+"end": 70.073,
+"seg": 26
+},
+{
+"text": "well.",
+"start": 70.113,
+"end": 70.313,
+"seg": 26
+},
+{
+"text": "So",
+"start": 70.507,
+"end": 70.627,
+"seg": 27
+},
+{
+"text": "think",
+"start": 70.84,
+"end": 71.02,
+"seg": 28
+},
+{
+"text": "of",
+"start": 71.08,
+"end": 71.14,
+"seg": 28
+},
+{
+"text": "the",
+"start": 71.18,
+"end": 71.24,
+"seg": 28
+},
+{
+"text": "last",
+"start": 71.28,
+"end": 71.48,
+"seg": 28
+},
+{
+"text": "time",
+"start": 71.56,
+"end": 71.74,
+"seg": 28
+},
+{
+"text": "you",
+"start": 71.78,
+"end": 71.86,
+"seg": 28
+},
+{
+"text": "saw",
+"start": 71.9,
+"end": 72.02,
+"seg": 28
+},
+{
+"text": "a",
+"start": 72.08,
+"end": 72.16,
+"seg": 28
+},
+{
+"text": "brand",
+"start": 72.2,
+"end": 72.48,
+"seg": 28
+},
+{
+"text": "trying",
+"start": 72.54,
+"end": 72.76,
+"seg": 28
+},
+{
+"text": "to",
+"start": 72.8,
+"end": 72.88,
+"seg": 28
+},
+{
+"text": "integrate",
+"start": 72.96,
+"end": 73.38,
+"seg": 28
+},
+{
+"text": "IPL",
+"start": 73.5,
+"end": 73.94,
+"seg": 28
+},
+{
+"text": "into",
+"start": 74.127,
+"end": 74.387,
+"seg": 29
+},
+{
+"text": "their",
+"start": 74.447,
+"end": 74.667,
+"seg": 29
+},
+{
+"text": "brand",
+"start": 74.887,
+"end": 75.107,
+"seg": 29
+},
+{
+"text": "story.",
+"start": 75.207,
+"end": 75.527,
+"seg": 29
+},
+{
+"text": "It",
+"start": 75.727,
+"end": 75.786,
+"seg": 30
+},
+{
+"text": "just",
+"start": 75.847,
+"end": 75.967,
+"seg": 30
+},
+{
+"text": "works",
+"start": 76.027,
+"end": 76.327,
+"seg": 30
+},
+{
+"text": "Your",
+"start": 76.547,
+"end": 76.667,
+"seg": 31
+},
+{
+"text": "best",
+"start": 76.747,
+"end": 76.987,
+"seg": 31
+},
+{
+"text": "bet",
+"start": 77.047,
+"end": 77.247,
+"seg": 31
+},
+{
+"text": "is",
+"start": 77.367,
+"end": 77.467,
+"seg": 31
+},
+{
+"text": "to",
+"start": 77.507,
+"end": 77.627,
+"seg": 31
+},
+{
+"text": "try",
+"start": 77.647,
+"end": 77.847,
+"seg": 31
+},
+{
+"text": "and",
+"start": 77.867,
+"end": 77.987,
+"seg": 31
+},
+{
+"text": "merge",
+"start": 78.087,
+"end": 78.547,
+"seg": 31
+},
+{
+"text": "two",
+"start": 78.787,
+"end": 78.927,
+"seg": 31
+},
+{
+"text": "or",
+"start": 79.027,
+"end": 79.127,
+"seg": 31
+},
+{
+"text": "three",
+"start": 79.227,
+"end": 79.507,
+"seg": 31
+},
+{
+"text": "of",
+"start": 79.567,
+"end": 79.727,
+"seg": 31
+},
+{
+"text": "these",
+"start": 79.787,
+"end": 79.967,
+"seg": 31
+},
+{
+"text": "pillars",
+"start": 80.107,
+"end": 80.527,
+"seg": 31
+},
+{
+"text": "into",
+"start": 80.647,
+"end": 80.967,
+"seg": 31
+},
+{
+"text": "each",
+"start": 81.007,
+"end": 81.147,
+"seg": 31
+},
+{
+"text": "piece",
+"start": 81.207,
+"end": 81.387,
+"seg": 31
+},
+{
+"text": "of",
+"start": 81.447,
+"end": 81.527,
+"seg": 31
+},
+{
+"text": "content,",
+"start": 81.607,
+"end": 82.087,
+"seg": 31
+},
+{
+"text": "and",
+"start": 82.287,
+"end": 82.447,
+"seg": 32
+},
+{
+"text": "that's",
+"start": 82.487,
+"end": 82.647,
+"seg": 32
+},
+{
+"text": "how",
+"start": 82.687,
+"end": 82.767,
+"seg": 32
+},
+{
+"text": "you",
+"start": 82.827,
+"end": 82.887,
+"seg": 32
+},
+{
+"text": "increase",
+"start": 82.927,
+"end": 83.267,
+"seg": 32
+},
+{
+"text": "your",
+"start": 83.307,
+"end": 83.367,
+"seg": 32
+},
+{
+"text": "chances",
+"start": 83.407,
+"end": 83.747,
+"seg": 32
+},
+{
+"text": "of",
+"start": 83.787,
+"end": 83.867,
+"seg": 32
+},
+{
+"text": "going",
+"start": 83.887,
+"end": 84.047,
+"seg": 32
+},
+{
+"text": "viral",
+"start": 84.087,
+"end": 84.347,
+"seg": 32
+}
+]
