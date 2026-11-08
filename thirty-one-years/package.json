@@ -1,0 +1,19 @@
+{
+  "name": "thirty-one-years",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.9.20 preview",
+    "check": "npx --yes hyperframes@0.9.20 check",
+    "render": "npx --yes hyperframes@0.9.20 render",
+    "publish": "npx --yes hyperframes@0.9.20 publish"
+  },
+  "dependencies": {
+    "@fontsource/caveat": "^5.3.0",
+    "@fontsource/courier-prime": "^5.3.0",
+    "@fontsource/dm-serif-display": "^5.3.0",
+    "@fontsource/permanent-marker": "^5.3.0",
+    "@fontsource/playfair-display": "^5.3.0",
+    "gsap": "^3.15.0"
+  }
+}

@@ -1,0 +1,99 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Carousel 3 — Lost for words?</title>
+<style>
+@font-face{font-family:Fig;font-weight:900;src:url(../collection-pot/fonts/figtree-latin-900-normal.woff2)}
+@font-face{font-family:Fig;font-weight:800;src:url(../collection-pot/fonts/figtree-latin-800-normal.woff2)}
+@font-face{font-family:Inter;font-weight:500;src:url(../collection-pot/fonts/inter-latin-500-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(../collection-pot/fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Hand;font-weight:700;src:url(../thirty-one-years/fonts/caveat-latin-700-normal.woff2)}
+@font-face{font-family:Type;font-weight:700;src:url(../thirty-one-years/fonts/courier-prime-latin-700-normal.woff2)}
+@font-face{font-family:Mark;src:url(../thirty-one-years/fonts/permanent-marker-latin-400-normal.woff2)}
+:root{--ink:#2f2f32;--paper:#fffcf8;--yel:#f9b910;--pink:#f0abd1;--mint:#bcefe1;--lilac:#cfb0f0;--orange:#fc9e59;--sky:#a3def5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#ddd;display:flex;flex-direction:column;gap:40px;padding:40px;color:var(--ink)}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background-color:var(--paper);background-image:linear-gradient(rgba(47,47,50,.09) 2px,transparent 2px),linear-gradient(90deg,rgba(47,47,50,.09) 2px,transparent 2px);background-size:54px 54px}
+.a{position:absolute}
+.logo{position:absolute;left:60px;top:60px;width:280px}
+.ct{position:absolute;right:60px;top:58px;font:700 28px Type}
+.fig{font:900 96px/1 Fig;letter-spacing:-.035em}
+.blk{display:inline-block;background:var(--yel);padding:.02em .2em .08em}
+.lab{font:700 30px Type;letter-spacing:4px}
+.note{position:absolute;left:60px;right:60px;padding:34px 44px 30px 140px;box-shadow:6px 12px 0 rgba(47,47,50,.14);font:700 54px/1.12 Hand}
+.note .n{position:absolute;left:36px;top:34px;width:76px;height:76px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font:700 32px Type}
+.chip{position:absolute;width:150px;filter:drop-shadow(4px 6px 0 rgba(47,47,50,.18))}
+.foot{position:absolute;left:60px;bottom:56px;font:700 26px Type;letter-spacing:3px}
+.save{display:inline-flex;align-items:center;gap:16px;background:var(--ink);color:var(--paper);border-radius:40px;padding:18px 32px;font:800 32px Fig;letter-spacing:.04em}
+.save svg{width:30px;height:30px;fill:none;stroke:var(--paper);stroke-width:2.6;stroke-linejoin:round}
+.cta{display:inline-flex;align-items:center;justify-content:center;height:116px;padding:0 64px;border-radius:58px;background:var(--yel);font:600 42px Inter;letter-spacing:2px}
+</style></head><body>
+
+<!-- 1 · cover -->
+<section class="slide" style="background-color:var(--yel);background-image:linear-gradient(rgba(47,47,50,.12) 2px,transparent 2px),linear-gradient(90deg,rgba(47,47,50,.12) 2px,transparent 2px)">
+  <img class="logo" src="../collection-pot/brand/LogoCharcoal.svg" alt="">
+  <div class="a fig" style="left:60px;top:180px;font-size:156px">Lost for<br>words?</div>
+  <div class="a tear" style="left:60px;top:540px;background:var(--paper);padding:26px 36px;transform:rotate(-2deg);box-shadow:6px 12px 0 rgba(47,47,50,.18)"><div class="fig" style="font-size:66px;line-height:1.04">15 leaving-card messages<br>you can steal</div></div>
+  <div class="a tear" style="left:110px;top:850px;width:520px;background:var(--pink);padding:28px 34px;transform:rotate(-6deg);font:700 46px/1.1 Hand;box-shadow:6px 12px 0 rgba(47,47,50,.16)">Who am I supposed to send memes to now?!</div>
+  <div class="a tear" style="left:300px;top:1010px;width:500px;background:var(--mint);padding:28px 34px;transform:rotate(4deg);font:700 46px/1.1 Hand;box-shadow:6px 12px 0 rgba(47,47,50,.16)">You were the heart of this place.</div>
+  <img class="chip" src="../collection-pot/brand/filledChipFace.svg" style="left:790px;top:860px;width:240px" alt="">
+  <div class="a" style="left:60px;top:1210px"><span class="save"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>SAVE FOR LATER</span></div>
+</section>
+
+<!-- 2–6 · categories -->
+<div id="cats"></div>
+
+<!-- 7 · AI writing tool + CTA -->
+<section class="slide">
+  <img class="logo" src="../collection-pot/brand/LogoCharcoal.svg" alt=""><div class="ct">7/7</div>
+  <div class="a fig" style="left:60px;top:170px;font-size:118px">Still stuck?</div>
+  <div class="a" style="left:60px;top:320px;width:960px;font:600 44px/1.3 Inter">Collection Pot has an <span class="blk" style="font:900 44px Fig">AI writing tool</span> built in. Lost for words? Let AI help craft the perfect message for any moment.</div>
+  <div class="a" style="left:60px;top:580px;width:960px;background:#fff;border-radius:40px;box-shadow:0 24px 60px rgba(47,47,50,.16);padding:40px 44px">
+    <div style="font:700 26px Type;letter-spacing:3px;color:#8a8a8f">YOUR MESSAGE TO SARAH</div>
+    <div style="margin-top:22px;font:700 58px/1.15 Hand">Sarah, you made every Monday easier. The office won't feel the same — go and be brilliant!</div>
+    <div style="margin-top:30px;display:flex;gap:16px"><span style="background:var(--lilac);border-radius:28px;padding:14px 26px;font:600 28px Inter">Help me write</span><span style="background:var(--mint);border-radius:28px;padding:14px 26px;font:600 28px Inter">Make it funnier</span><span style="background:var(--pink);border-radius:28px;padding:14px 26px;font:600 28px Inter">Add a GIF</span></div>
+  </div>
+  <div class="a" style="left:0;right:0;top:1080px;text-align:center"><span class="cta">CREATE A POT · IT'S FREE</span></div>
+  <div class="a" style="left:0;right:0;top:1230px;text-align:center;font:600 30px Inter;color:#6e6e73">Collect money and messages with one simple link · collectionpot.com</div>
+</section>
+
+<script>
+const CATS = [
+  ['the colleague you barely know', 'var(--sky)', 'pinkChip', [
+    'We didn\'t overlap much, but the office will feel a little quieter without you. Best of luck!',
+    'Wishing you a brilliant first day somewhere new. They\'re lucky to have you.',
+    'Thanks for always holding the lift. Small thing, big energy. Good luck!']],
+  ['your work bestie', 'var(--pink)', 'greenChip', [
+    'Who am I supposed to send memes to at 9:03am now? Go be brilliant. Lunch is on you.',
+    'You made the hard days funny and the good days better. Don\'t you dare stop texting.',
+    'Officially no longer colleagues. Still very much stuck with me. Go smash it.']],
+  ['the boss', 'var(--lilac)', 'oragengeChip', [
+    'Thank you for backing me before I backed myself. I\'ll take that everywhere I go.',
+    'The best managers make you better without you noticing. We noticed. Thank you.',
+    'Thanks for the trust, the patience and the biscuit budget. You\'ll be missed.']],
+  ['someone retiring', 'var(--mint)', 'purpleChip', [
+    'Years of showing up for all of us. Now it\'s your turn. Enjoy every slow morning.',
+    'Retirement suits you already. The garden is about to get very well looked after.',
+    'You were the heart of this place. Thank you for every welcome, every story, every brew.']],
+  ['the whole team', 'var(--orange)', 'filledChipFace', [
+    'From all of us: thank you for making this a place we actually liked coming to.',
+    'We clubbed together, but honestly, nothing covers what you gave this team. Thank you.',
+    'Same team, different postcodes. We\'ll always be in your corner. Good luck from all of us!']],
+];
+const ROT = [-1.5, 1.2, -0.8];
+document.getElementById('cats').outerHTML = CATS.map((c, k) => `<section class="slide">
+  <img class="logo" src="../collection-pot/brand/LogoCharcoal.svg" alt=""><div class="ct">${k + 2}/7</div>
+  <div class="a lab" style="left:60px;top:180px">FOR…</div>
+  <div class="a fig" style="left:60px;top:228px;font-size:${c[0].length > 22 ? 80 : 96}px;line-height:1.14;width:780px"><span style="background:var(--yel);padding:0 .16em;-webkit-box-decoration-break:clone;box-decoration-break:clone">${c[0]}</span></div>
+  <img class="chip" src="../collection-pot/brand/${c[2]}.svg" style="right:56px;top:180px" alt="">
+  ${c[3].map((m, i) => `<div class="note tear" style="top:${470 + i * 270}px;background:${i === 1 ? 'var(--paper)' : c[1]};transform:rotate(${ROT[i]}deg)"><span class="n">${String(k * 3 + i + 1).padStart(2, '0')}</span>${m}</div>`).join('')}
+  <div class="foot">${k < 4 ? 'SWIPE FOR MORE →' : 'ONE MORE →'}</div>
+</section>`).join('');
+let seed = 15; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647; const R = (a, b) => a + (b - a) * rnd();
+function torn(el, amp = 10, n = 34) { const p = [], j = a => R(0, a).toFixed(1);
+  for (let i = 0; i <= n; i++) p.push(`${(i / n * 100).toFixed(2)}% ${j(amp)}px`);
+  for (let i = 0; i <= 12; i++) p.push(`calc(100% - ${j(amp * .6)}px) ${(i / 12 * 100).toFixed(2)}%`);
+  for (let i = n; i >= 0; i--) p.push(`${(i / n * 100).toFixed(2)}% calc(100% - ${j(amp)}px)`);
+  for (let i = 12; i >= 0; i--) p.push(`${j(amp * .6)}px ${(i / 12 * 100).toFixed(2)}%`);
+  el.style.clipPath = `polygon(${p.join(',')})`; }
+document.querySelectorAll('.tear').forEach(n => torn(n, 10));
+</script>
+</body></html>

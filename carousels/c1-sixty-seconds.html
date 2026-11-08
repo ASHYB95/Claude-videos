@@ -1,0 +1,151 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Carousel 1 — Sorted in 60 seconds</title>
+<style>
+@font-face{font-family:Fig;font-weight:900;src:url(../collection-pot/fonts/figtree-latin-900-normal.woff2)}
+@font-face{font-family:Fig;font-weight:800;src:url(../collection-pot/fonts/figtree-latin-800-normal.woff2)}
+@font-face{font-family:Inter;font-weight:400;src:url(../collection-pot/fonts/inter-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:500;src:url(../collection-pot/fonts/inter-latin-500-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(../collection-pot/fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Inter;font-weight:700;src:url(../collection-pot/fonts/inter-latin-700-normal.woff2)}
+:root{--ink:#2f2f32;--paper:#fffcf8;--yel:#f9b910;--pink:#f0abd1;--mint:#bcefe1;--lilac:#cfb0f0;--orange:#fc9e59;--sky:#a3def5;--green:#00ca86}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#ddd;font-family:Inter;color:var(--ink);display:flex;flex-direction:column;gap:40px;padding:40px}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--paper)}
+.abs{position:absolute}
+.logo{position:absolute;left:64px;top:64px;width:300px}
+.ct{position:absolute;right:64px;top:64px;font:600 28px Inter;color:#8a8a8f}
+.swipe{position:absolute;right:56px;bottom:56px;display:flex;align-items:center;gap:14px;font:700 26px Inter;letter-spacing:2px}
+.swipe i{width:68px;height:68px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-style:normal}
+.swipe svg{width:30px;height:30px;stroke:var(--paper);stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.h{font:900 112px/1 Fig;letter-spacing:-.035em}
+.blk{display:inline-block;background:var(--yel);padding:.02em .2em .08em;border-radius:.16em}
+.sub{font:500 38px/1.35 Inter}
+.shape{position:absolute}
+.phone{position:absolute;width:470px;height:1018px;border-radius:74px;background:#2a2a2d;padding:16px;box-shadow:0 40px 90px rgba(47,47,50,.28),0 0 0 2px rgba(255,255,255,.08) inset}
+.phone .s{position:relative;width:100%;height:100%;border-radius:58px;overflow:hidden;background:#fff}
+.phone .s img.full{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.phone .isl{position:absolute;left:50%;top:14px;width:120px;height:34px;margin-left:-60px;border-radius:17px;background:#000;z-index:3}
+.num{display:inline-flex;width:104px;height:104px;border-radius:50%;background:var(--yel);align-items:center;justify-content:center;font:900 64px Fig}
+.ring{position:absolute;border:7px solid var(--ink);border-radius:30px}
+.chips img{width:120px;height:120px}
+.card{position:absolute;background:#fff;border-radius:34px;box-shadow:0 24px 60px rgba(47,47,50,.16)}
+.toast{position:absolute;display:flex;align-items:center;gap:20px;background:#fff;border-radius:36px;padding:20px 30px 20px 20px;box-shadow:0 24px 60px rgba(47,47,50,.2)}
+.toast img{width:84px;height:84px}
+.toast b{display:block;font:700 32px Inter}.toast span{font:500 24px Inter;color:#77777c}
+/* mini pot screen (rebuilt on-brand) */
+.pot{position:absolute;inset:0;background:var(--paper);font-family:Inter}
+.pot .hd{height:96px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:14px;border-bottom:1px solid #ece6dc}
+.pot .hd img{width:190px}
+.pot .c{margin:16px;background:#fff;border-radius:24px;box-shadow:0 3px 12px rgba(47,47,50,.1);padding:22px;text-align:center}
+.pot .amt{font:900 72px Fig;letter-spacing:-.02em}
+.pot .lb{font:500 18px Inter;color:#77777c}
+.pot .av{display:flex;justify-content:center;margin-top:12px}.pot .av img{width:48px;height:48px;margin-left:-12px;border-radius:50%;border:3px solid #fff;background:#fff}
+.pot .add{margin-top:16px;height:62px;border-radius:31px;background:var(--yel);display:flex;align-items:center;justify-content:center;font:600 21px Inter;letter-spacing:.3px}
+.pot .t{margin:20px 24px 0;font:900 52px/1 Fig;letter-spacing:-.03em}
+.pot .m{margin:14px 16px 0;background:#fff;border-radius:22px;box-shadow:0 3px 12px rgba(47,47,50,.08);padding:18px 20px;font:400 20px/1.45 Inter}
+.pot .m b{display:block;font:600 18px Inter;margin-top:8px}
+.opt{position:absolute;left:64px;right:64px;height:200px;border-radius:40px;display:flex;align-items:center;gap:34px;padding:0 44px}
+.opt .ic{width:112px;height:112px;border-radius:30px;background:rgba(255,255,255,.65);display:flex;align-items:center;justify-content:center;flex:none}
+.opt .ic svg{width:60px;height:60px;stroke:var(--ink);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.opt b{display:block;font:900 52px/1.05 Fig;letter-spacing:-.02em}.opt span{font:500 30px Inter}
+.cta{display:inline-flex;align-items:center;justify-content:center;height:120px;padding:0 70px;border-radius:60px;background:var(--yel);font:600 44px Inter;letter-spacing:2px}
+</style></head><body>
+
+<!-- 1 · cover -->
+<section class="slide" id="s1">
+  <div class="shape" style="left:640px;top:-160px;width:600px;height:600px;border-radius:50%;background:var(--pink)"></div>
+  <div class="shape" style="left:-140px;top:980px;width:440px;height:440px;border-radius:110px;background:var(--mint);transform:rotate(18deg)"></div>
+  <div class="shape" style="left:900px;top:760px;width:110px;height:110px;border-radius:50%;background:var(--yel)"></div>
+  <img class="logo" src="../collection-pot/brand/LogoCharcoal.svg" alt="">
+  <div class="abs h" style="left:64px;top:190px;font-size:124px">Leaving gift,<br>sorted in<br><span class="blk">60 seconds.</span></div>
+  <div class="abs sub" style="left:64px;top:640px;width:470px">No envelope.<br>No chasing.<br><b>One link.</b></div>
+  <div class="phone" style="left:560px;top:600px;transform:rotate(7deg)"><div class="s"><div class="isl"></div><img class="full" src="screens/home.png" alt=""></div></div>
+  <div class="abs chips" style="left:60px;top:930px;display:flex;gap:6px"><img src="../collection-pot/brand/pinkChip.svg" alt=""><img src="../collection-pot/brand/greenChip.svg" alt=""><img src="../collection-pot/brand/oragengeChip.svg" alt=""></div>
+  <div class="swipe" style="left:64px;right:auto">SWIPE <i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></div>
+</section>
+
+<!-- 2 · the old way -->
+<section class="slide" id="s2" style="background:var(--ink);color:var(--paper)">
+  <img class="logo" src="../collection-pot/brand/LogoWhiteLong.svg" alt="">
+  <div class="ct">2/7</div>
+  <div class="abs h" style="left:64px;top:210px;font-size:120px">The old way</div>
+  <div id="old" class="abs" style="left:64px;top:420px;right:64px"></div>
+  <div class="abs" style="left:64px;top:1090px"><span class="blk" style="color:var(--ink);font:900 64px Fig;letter-spacing:-.02em">There's a better way →</span></div>
+</section>
+
+<!-- 3 · step 1 -->
+<section class="slide" id="s3">
+  <div class="shape" style="left:-180px;top:520px;width:620px;height:620px;border-radius:50%;background:var(--sky)"></div>
+  <img class="logo" src="../collection-pot/brand/LogoCharcoal.svg" alt=""><div class="ct">3/7</div>
+  <div class="abs" style="left:64px;top:190px"><span class="num">1</span></div>
+  <div class="abs h" style="left:64px;top:330px;font-size:100px">Pick the<br>occasion</div>
+  <div class="abs sub" style="left:64px;top:570px;width:430px">Leaver, retirement, birthday, new baby… 20+ to choose from.</div>
+  <div class="phone" style="left:540px;top:300px;transform:rotate(-5deg)"><div class="s"><div class="isl"></div><img class="full" src="screens/occasion.png" alt=""><div class="ring" style="left:12px;top:316px;width:122px;height:56px;border-radius:30px"></div></div></div>
+  <div class="swipe"><i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></div>
+</section>
+
+<!-- 4 · step 2 -->
+<section class="slide" id="s4">
+  <div class="shape" style="left:700px;top:880px;width:560px;height:560px;border-radius:140px;background:var(--lilac);transform:rotate(-14deg)"></div>
+  <img class="logo" src="../collection-pot/brand/LogoCharcoal.svg" alt=""><div class="ct">4/7</div>
+  <div class="abs" style="left:64px;top:190px"><span class="num">2</span></div>
+  <div class="abs h" style="left:64px;top:330px;font-size:100px">Money,<br>messages<br><span class="blk">or both</span></div>
+  <div class="abs sub" style="left:64px;top:690px;width:430px">Make chipping in optional, so everyone can still sign the card.</div>
+  <div class="phone" style="left:540px;top:300px;transform:rotate(5deg)"><div class="s"><div class="isl"></div><img class="full" src="screens/chipin.png" alt=""><div class="ring" style="left:62px;top:460px;width:316px;height:138px;border-radius:32px;border-color:var(--yel);border-width:9px"></div></div></div>
+  <div class="swipe"><i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></div>
+</section>
+
+<!-- 5 · step 3 -->
+<section class="slide" id="s5">
+  <div class="shape" style="left:-160px;top:-160px;width:520px;height:520px;border-radius:50%;background:var(--mint)"></div>
+  <img class="logo" src="../collection-pot/brand/LogoCharcoal.svg" alt=""><div class="ct">5/7</div>
+  <div class="abs" style="left:64px;top:190px"><span class="num">3</span></div>
+  <div class="abs h" style="left:64px;top:330px;font-size:100px">Share <span class="blk">one link</span></div>
+  <div class="abs sub" style="left:64px;top:470px;width:900px">Drop it in the team chat, email it to old colleagues, or print the QR for reception.</div>
+  <div class="card" style="left:64px;top:690px;width:952px;height:130px;border-radius:65px;display:flex;align-items:center;gap:22px;padding:0 18px 0 40px;font:600 34px Inter">
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#2f2f32" stroke-width="2.2" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+    collectionpot.com/pot/sarah…<div style="margin-left:auto;height:94px;padding:0 36px;border-radius:47px;background:var(--green);color:#fff;display:flex;align-items:center;font:700 30px Inter">Copied ✓</div></div>
+  <div id="share3" class="abs" style="left:64px;top:880px;right:64px;display:flex;gap:28px"></div>
+  <div class="swipe"><i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></div>
+</section>
+
+<!-- 6 · watch it fill up -->
+<section class="slide" id="s6">
+  <div class="shape" style="left:620px;top:420px;width:620px;height:620px;border-radius:50%;background:var(--yel)"></div>
+  <img class="logo" src="../collection-pot/brand/LogoCharcoal.svg" alt=""><div class="ct">6/7</div>
+  <div class="abs h" style="left:64px;top:190px;font-size:100px">Then watch<br>it <span class="blk">fill up</span></div>
+  <div class="abs sub" style="left:64px;top:430px;width:460px">No limit on contributors. Everyone can chip in and leave a message, from anywhere.</div>
+  <div class="phone" style="left:560px;top:250px;transform:rotate(6deg)"><div class="s"><div class="isl"></div>
+    <div class="pot">
+      <div class="hd"><img src="../collection-pot/brand/LogoCharcoal.svg" alt=""></div>
+      <div class="c"><div class="amt">£285</div><div class="lb">raised so far</div>
+        <div class="av"><img src="../collection-pot/brand/pinkChip.svg" alt=""><img src="../collection-pot/brand/greenChip.svg" alt=""><img src="../collection-pot/brand/oragengeChip.svg" alt=""><img src="../collection-pot/brand/purpleChip.svg" alt=""><img src="../collection-pot/brand/filledChipFace.svg" alt=""></div>
+        <div class="add">ADD TO THIS POT</div></div>
+      <div class="t">Sarah's leaving pot.</div>
+      <div class="m">Good luck Sarah! The office won't be the same without your bakes.<b>Priya</b></div>
+      <div class="m">Who's fixing the printer now?! Go smash it.<b>Tom</b></div>
+    </div></div></div>
+  <div class="toast" style="left:64px;top:760px;transform:rotate(-2deg)"><img src="../collection-pot/brand/pinkChip.svg" alt=""><div><b>Priya chipped in £10</b><span>Sarah's leaving pot · now</span></div></div>
+  <div class="toast" style="left:40px;top:930px;transform:rotate(1.5deg)"><img src="../collection-pot/brand/greenChip.svg" alt=""><div><b>Tom signed the card</b><span>Sarah's leaving pot · 2m</span></div></div>
+  <div class="toast" style="left:84px;top:1100px;transform:rotate(-1deg)"><img src="../collection-pot/brand/oragengeChip.svg" alt=""><div><b>Jess added a GIF</b><span>Sarah's leaving pot · 5m</span></div></div>
+  <div class="swipe"><i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></div>
+</section>
+
+<!-- 7 · spend + CTA -->
+<section class="slide" id="s7">
+  <img class="logo" src="../collection-pot/brand/LogoCharcoal.svg" alt=""><div class="ct">7/7</div>
+  <div class="abs h" style="left:64px;top:190px;font-size:104px">Spend it <span class="blk">your way</span></div>
+  <div class="opt" style="top:400px;background:var(--mint)"><div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg></div><div><b>Take it as cash</b><span>Instant transfer · no fees</span></div></div>
+  <div class="opt" style="top:630px;background:var(--yel)"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1s6 1 6 1 6 2 6-1-4-3-6 1"/></svg></div><div><b>Send an e-gift</b><span>Spend at 60+ big-name retailers</span></div></div>
+  <div class="opt" style="top:860px;background:var(--pink)"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3"/><path d="M12 12v9M8 17c2 0 4 1 4 4M16 17c-2 0-4 1-4 4"/></svg></div><div><b>Or treat them</b><span>Gift cards, flowers or hampers</span></div></div>
+  <div class="abs" style="left:0;right:0;top:1110px;text-align:center"><span class="cta">CREATE A POT · IT'S FREE</span></div>
+  <div class="abs" style="left:0;right:0;top:1260px;text-align:center;font:600 30px Inter;color:#6e6e73">collectionpot.com</div>
+</section>
+
+<script>
+const OLD = ['Pass an envelope round the office', 'Chase everyone for a fiver', 'Hope the card reaches the remote team', 'Count the coins. Then count them again.'];
+document.getElementById('old').innerHTML = OLD.map(t => `<div style="display:flex;align-items:center;gap:34px;margin-bottom:56px"><svg width="70" height="70" viewBox="0 0 24 24" style="flex:none" fill="none" stroke="#f9b910" stroke-width="3.4" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg><div style="font:600 50px/1.25 Inter;text-decoration:line-through;text-decoration-color:#f9b910;text-decoration-thickness:6px">${t}</div></div>`).join('');
+const SH = [['var(--mint)', '<path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.2-4.6A8 8 0 1 1 21 12z"/>', 'Team chat'], ['var(--lilac)', '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>', 'Email'], ['var(--orange)', '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4"/>', 'Reception QR']];
+document.getElementById('share3').innerHTML = SH.map(s => `<div style="flex:1;height:300px;border-radius:40px;background:${s[0]};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px"><svg width="110" height="110" viewBox="0 0 24 24" fill="none" stroke="#2f2f32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${s[1]}</svg><div style="font:900 42px Fig">${s[2]}</div></div>`).join('') ;
+</script>
+</body></html>

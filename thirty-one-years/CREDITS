@@ -1,0 +1,10 @@
+Thirty-One Years — Collection Pot (story-led, ~61 s, 9:16)
+
+Brand: Collection Pot™ name, logo and Chip mascots belong to Collection Pot Limited. Story, characters, company (Hartley & Co.)
+and messages are fictional.
+Art: stills generated with Higgsfield (Nano Banana Pro), backgrounds removed with Higgsfield; brand duotone applied in art/duotone.py.
+Narration: ElevenLabs voice "George"; colleague quotes: ElevenLabs "Lily", "Chris", "Jessica" (eleven_multilingual_v2).
+Sound effects: ElevenLabs Sound Effects (audio/sfx.py) + Delulu Keyboard SFX set.
+Music: original piano and strings score, synthesised in audio/score.py (no samples).
+Fonts (SIL OFL 1.1 / Apache 2.0): Playfair Display, Figtree, Inter, Permanent Marker, Caveat, Courier Prime.
+Animation: GSAP 3.15; built and rendered with HyperFrames 0.9.20 (motion blur on).

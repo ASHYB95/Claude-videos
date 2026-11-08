@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>Thirty-One Years — Collection Pot</title>
+<script src="vendor/gsap.min.js"></script>
+<style>
+@font-face{font-family:Play;font-weight:900;src:url(fonts/playfair-display-latin-900-normal.woff2);font-display:block}
+@font-face{font-family:Play;font-weight:900;font-style:italic;src:url(fonts/playfair-display-latin-900-italic.woff2);font-display:block}
+@font-face{font-family:Play;font-weight:800;font-style:italic;src:url(fonts/playfair-display-latin-800-italic.woff2);font-display:block}
+@font-face{font-family:Fig;font-weight:900;src:url(fonts/figtree-latin-900-normal.woff2);font-display:block}
+@font-face{font-family:Fig;font-weight:800;src:url(fonts/figtree-latin-800-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:500;src:url(fonts/inter-latin-500-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2);font-display:block}
+@font-face{font-family:Mark;src:url(fonts/permanent-marker-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:Hand;font-weight:700;src:url(fonts/caveat-latin-700-normal.woff2);font-display:block}
+@font-face{font-family:Type;font-weight:400;src:url(fonts/courier-prime-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:Type;font-weight:700;src:url(fonts/courier-prime-latin-700-normal.woff2);font-display:block}
+:root{--ink:#2f2f32;--paper:#fffcf8;--yel:#f9b910;--pink:#f0abd1;--mint:#bcefe1;--lilac:#cfb0f0;--orange:#fc9e59;--sky:#a3def5}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--paper)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--paper);color:var(--ink)}
+.clip{position:absolute;inset:0;overflow:hidden}
+.bgn{position:absolute;left:-60px;top:-60px;width:1200px;height:2040px;background:url(assets/newsbg.jpg) center/cover}
+.p{position:absolute;display:block}
+.cut{position:absolute;filter:drop-shadow(6px 10px 0 rgba(47,47,50,.18))}
+.circ{position:absolute;border-radius:50%}
+.serif{font-family:Play;font-weight:900;letter-spacing:-.02em;line-height:.95}
+.ital{font-family:Play;font-style:italic;font-weight:900}
+.bar{display:inline-block;background:var(--yel);font:900 54px/1 Fig;letter-spacing:.02em;text-transform:uppercase;padding:14px 22px 12px}
+.mark{font-family:Mark;color:var(--ink);line-height:1}
+.type{font-family:Type;font-weight:700;color:var(--ink)}
+.strip{position:absolute;background:var(--paper);padding:18px 30px;box-shadow:4px 8px 0 rgba(47,47,50,.15)}
+.note{position:absolute;background:var(--paper);padding:30px 34px 26px;box-shadow:5px 10px 0 rgba(47,47,50,.16);font:700 46px/1.08 Hand;color:var(--ink)}
+.tape{position:absolute;width:150px;height:46px;background:rgba(252,158,89,.55);mix-blend-mode:multiply}
+.pin{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--yel);box-shadow:2px 3px 0 rgba(47,47,50,.35),inset -4px -4px 0 rgba(47,47,50,.18)}
+.grid{position:absolute;background-color:var(--paper);background-image:linear-gradient(rgba(47,47,50,.12) 2px,transparent 2px),linear-gradient(90deg,rgba(47,47,50,.12) 2px,transparent 2px);background-size:60px 60px}
+svg.ink{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;pointer-events:none}
+svg.ink path{fill:none;stroke:var(--ink);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.hlw{background-image:linear-gradient(var(--yel),var(--yel));background-repeat:no-repeat;background-position:0 88%;background-size:0% 42%;padding:0 .08em}
+#grain{position:absolute;inset:-200px;background:url(assets/grain.png);opacity:.09;mix-blend-mode:multiply;pointer-events:none}
+#tear{position:absolute;left:-40px;top:0;width:1160px;height:2700px;background:var(--paper);transform:translateY(2000px)}
+#tear .ed{position:absolute;left:0;right:0;height:60px;background:var(--paper)}
+/* phone screen (Collection Pot UI) */
+.scr{position:absolute;overflow:hidden;background:var(--paper);border-radius:26px}
+.scr .lg{position:absolute;left:0;top:0;width:300px;height:648px;transform-origin:0 0}
+.scr .hd{height:52px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #ece6dc}
+.scr .hd img{width:150px}
+.scr .ttl{font:900 30px/1 Fig;letter-spacing:-.02em;margin:18px 18px 0}
+.scr .cv{margin:14px 14px 0;height:150px;border-radius:14px;background:var(--yel);display:flex;align-items:center;justify-content:center;font:italic 900 34px Play;color:var(--ink)}
+.scr .cd{margin:12px 14px 0;background:#fff;border-radius:14px;box-shadow:0 2px 8px rgba(47,47,50,.1);padding:14px;text-align:center}
+.scr .cd b{display:block;font:900 34px Fig}
+.scr .cd span{font:500 12px Inter;color:#77777c}
+.scr .btn{margin:12px 14px 0;height:42px;border-radius:21px;background:var(--yel);display:flex;align-items:center;justify-content:center;font:600 14px Inter;letter-spacing:.3px}
+.scr .inv{margin:12px 14px 0;height:42px;border-radius:21px;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;gap:8px;font:600 14px Inter}
+.scr .msgs{margin:12px 14px 0}
+.scr .m{background:#fff;border-radius:12px;padding:10px 12px;margin-bottom:8px;font:500 12px/1.35 Inter;box-shadow:0 1px 6px rgba(47,47,50,.08);opacity:0}
+.scr .m b{display:block;font-weight:600;margin-top:4px}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="61.5" data-width="1080" data-height="1920" data-motion-blur="on" data-motion-blur-shutter="160">
+
+<!-- ============ S1: This is Margaret (0–6.6) ============ -->
+<div id="s1" class="clip" data-start="0" data-duration="6.6" data-track-index="1">
+  <div class="bgn" id="s1bg"></div>
+  <div class="circ" id="s1c" style="left:150px;top:520px;width:800px;height:800px;background:var(--yel)"></div>
+  <img class="cut" id="s1m" src="assets/margaret_wave.png" style="left:160px;top:560px;width:780px" alt="">
+  <div class="p serif" id="s1t" style="left:70px;top:150px;font-size:210px">Margaret<span style="color:var(--yel)">.</span></div>
+  <div class="p" id="s1photo" style="left:700px;top:430px;width:300px;transform:rotate(7deg)"><img src="assets/m1994.png" style="width:300px;display:block" alt=""><div class="tape" style="left:80px;top:-18px;transform:rotate(-6deg)"></div></div>
+  <div class="strip type" id="s1yr" style="left:90px;top:1500px;font-size:96px;padding:10px 26px;transform:rotate(-4deg);border:6px solid var(--ink)"><span id="yr"></span></div>
+  <div class="p mark" id="s1yrs" style="left:520px;top:1540px;font-size:66px;transform:rotate(-5deg)">31 years!</div>
+  <div class="p" id="s1lab" style="left:0;right:0;top:1740px;text-align:center"><span class="bar">Reception · Hartley &amp; Co.</span></div>
+  <svg class="ink" viewBox="0 0 1080 1920"><path id="s1arr" pathLength="1"/></svg>
+</div>
+
+<!-- ============ S2: birthdays, tea, retires (6.6–13.3) ============ -->
+<div id="s2" class="clip" data-start="6.6" data-duration="6.7" data-track-index="2">
+  <div class="bgn" id="s2bg"></div>
+  <div class="grid" id="s2g" style="left:60px;top:240px;width:960px;height:1440px;transform:rotate(-1.5deg)"></div>
+  <div class="circ" id="s2c1" style="left:520px;top:230px;width:420px;height:420px;background:var(--pink)"></div>
+  <img class="cut" id="s2cake" src="assets/props_1.png" style="left:560px;top:260px;width:400px;transform:rotate(5deg)" alt="">
+  <div class="p mark" id="s2a" style="left:120px;top:330px;font-size:64px;transform:rotate(-6deg)">every<br>birthday ✓</div>
+  <div class="circ" id="s2c2" style="left:90px;top:760px;width:420px;height:420px;background:var(--mint)"></div>
+  <img class="cut" id="s2tea" src="assets/props_0.png" style="left:110px;top:780px;width:400px;transform:rotate(-5deg)" alt="">
+  <div class="p mark" id="s2b" style="left:560px;top:880px;font-size:60px;transform:rotate(4deg)">milk,<br>one sugar</div>
+  <div class="p" id="s2cal" style="left:240px;top:1180px;width:600px;height:560px;transform:rotate(-3deg)">
+    <div style="position:absolute;inset:0;background:var(--paper);box-shadow:6px 12px 0 rgba(47,47,50,.18)" id="calpaper"></div>
+    <div style="position:absolute;left:0;right:0;top:0;height:120px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center" class="serif"><span style="font-size:76px">March</span></div>
+    <div id="calg" style="position:absolute;left:30px;right:30px;top:150px;display:grid;grid-template-columns:repeat(7,1fr);row-gap:14px;text-align:center" class="type"></div>
+    <div class="tape" style="left:220px;top:-20px;transform:rotate(3deg)"></div>
+    <svg class="ink" viewBox="0 0 600 560" style="width:600px;height:560px"><path id="s2o" pathLength="1"/></svg>
+  </div>
+  <div class="p mark" id="s2last" style="left:470px;top:1720px;font-size:70px;transform:rotate(-6deg)">her last day</div>
+  <svg class="ink" viewBox="0 0 1080 1920"><path id="s2u" pathLength="1"/><path id="s2arr" pathLength="1"/></svg>
+</div>
+
+<!-- ============ S3a: Priya (13.3–16.1) ============ -->
+<div id="s3a" class="clip" data-start="13.3" data-duration="2.8" data-track-index="3">
+  <div class="bgn" id="s3abg"></div>
+  <div class="circ" id="s3ac" style="left:300px;top:640px;width:860px;height:860px;background:var(--pink)"></div>
+  <img class="cut" id="s3ap" src="assets/priya.png" style="left:330px;top:640px;width:760px" alt="">
+  <div class="p serif" id="s3at" style="left:60px;top:190px;font-size:200px">Priya</div>
+  <div class="p" id="s3asub" style="left:64px;top:430px"><span class="ital" style="font-size:76px;line-height:1.1"><span class="hlw" id="s3hl">wants to do<br>something special.</span></span></div>
+  <div class="p mark" id="s3aname" style="left:50px;top:720px;font-size:52px;transform:rotate(-6deg)">Margaret's<br>work-wife</div>
+  <svg class="ink" viewBox="0 0 1080 1920"><path id="s3aarr" pathLength="1"/></svg>
+</div>
+
+<!-- ============ S3b: the scattered team (16.1–20.0) ============ -->
+<div id="s3b" class="clip" data-start="16.1" data-duration="3.9" data-track-index="4">
+  <div class="bgn" id="s3bbg"></div>
+  <img class="p" id="s3map" src="assets/ukmap.jpg" style="left:90px;top:300px;width:900px;box-shadow:8px 14px 0 rgba(47,47,50,.18);transform:rotate(-2deg)" alt="">
+  <div class="p" id="s3bt" style="left:0;right:0;top:110px;text-align:center"><span class="bar" style="font-size:46px;padding:16px 26px 14px">Half the team works from home</span></div>
+  <div id="pins"></div>
+  <div class="p mark" id="s3bleft" style="left:80px;top:1560px;font-size:60px;transform:rotate(-4deg)">some left<br>years ago…</div>
+  <svg class="ink" viewBox="0 0 1080 1920" id="s3strings"></svg>
+</div>
+
+<!-- ============ S3c: the envelope (20.0–23.7) ============ -->
+<div id="s3c" class="clip" data-start="20.0" data-duration="3.7" data-track-index="5">
+  <div class="bgn" id="s3cbg"></div>
+  <div class="circ" id="s3cc" style="left:190px;top:420px;width:700px;height:700px;background:var(--sky)"></div>
+  <img class="cut" id="s3cb" src="assets/building.png" style="left:250px;top:420px;width:580px" alt="">
+  <div class="p serif" id="s3ct" style="left:60px;top:130px;font-size:120px">And the<br><span class="ital">envelope?</span></div>
+  <img class="cut" id="s3ce" src="assets/envelope.png" style="left:420px;top:1280px;width:260px" alt="">
+  <div class="p" id="s3cfl" style="left:60px;top:1500px"><span class="bar" style="font-size:52px">Stuck on the 2nd floor</span></div>
+  <svg class="ink" viewBox="0 0 1080 1920"><path id="s3cx1" pathLength="1"/><path id="s3cx2" pathLength="1"/><path id="s3cpath" pathLength="1" style="stroke-dasharray:.02 .03;stroke-width:6"/></svg>
+</div>
+
+<!-- ============ S4: the Collection Pot turn (23.7–33.3) ============ -->
+<div id="s4" class="clip" data-start="23.7" data-duration="9.6" data-track-index="6">
+  <div class="grid" id="s4g" style="left:0;top:0;width:1080px;height:1920px"></div>
+  <div class="circ" id="s4c" style="left:110px;top:520px;width:860px;height:860px;background:var(--yel)"></div>
+  <div class="p" id="s4phone" style="left:170px;top:470px;width:740px">
+    <img src="assets/hand_phone.png" style="width:740px;display:block" alt="">
+    <div class="scr" id="scr"><div class="lg" id="scrlg">
+      <div class="hd"><img src="brand/LogoCharcoal.svg" alt=""></div>
+      <div class="ttl">Margaret's retirement pot.</div>
+      <div class="cv">31 years</div>
+      <div class="cd"><b id="scrN">0</b><span>messages so far</span></div>
+      <div class="btn">ADD TO THIS POT</div>
+      <div class="inv" id="scrInv">⤴ Invite others</div>
+      <div class="msgs"><div class="m" id="sm0">Happy retirement Margaret! x<b>Aisha</b></div><div class="m" id="sm1">The kettle will miss you.<b>Tom</b></div></div>
+    </div></div>
+  </div>
+  <div class="p" id="s4logo" style="left:0;right:0;top:150px;text-align:center"><div class="strip" style="position:relative;display:inline-block;padding:28px 44px;transform:rotate(-2deg)"><img src="brand/LogoCharcoal.svg" style="width:600px;height:52px;display:block" alt=""></div></div>
+  <div class="p serif" id="s4so" style="left:70px;top:330px;font-size:84px">So she starts a</div>
+  <div class="strip type" id="s4link" style="left:40px;top:1470px;font-size:34px;transform:rotate(-3deg);border:4px solid var(--ink)">collectionpot.com/margaret</div>
+  <div class="note" id="s4chat" style="left:40px;top:300px;width:330px;transform:rotate(-5deg);font-size:44px;background:var(--mint)">Team chat</div>
+  <div class="note" id="s4mail" style="left:650px;top:330px;width:380px;transform:rotate(4deg);font-size:44px;background:var(--lilac)">Old colleagues</div>
+  <div class="p" id="s4qr" style="left:660px;top:1130px;width:380px;transform:rotate(5deg)">
+    <div style="background:var(--paper);padding:26px 26px 20px;box-shadow:6px 12px 0 rgba(47,47,50,.18);text-align:center">
+      <div class="serif" style="font-size:46px;margin-bottom:12px">Sign Margaret's card</div>
+      <img src="brand/qr.svg" style="width:300px;display:block;margin:0 auto" alt="">
+      <div class="type" style="font-size:24px;margin-top:10px">scan me · reception</div>
+    </div>
+    <div class="tape" id="qt1" style="left:-30px;top:-14px;transform:rotate(-30deg)"></div><div class="tape" id="qt2" style="right:-30px;top:-14px;transform:rotate(28deg)"></div>
+  </div>
+  <img class="cut" id="s4hand" src="assets/hand_point.png" style="left:-60px;top:1600px;width:620px;transform-origin:0 50%" alt="">
+  <svg class="ink" viewBox="0 0 1080 1920"><path id="st1" pathLength="1"/><path id="st2" pathLength="1"/><path id="st3" pathLength="1"/></svg>
+</div>
+
+<!-- ============ S5: the messages pour in (33.3–41.2) ============ -->
+<div id="s5" class="clip" data-start="33.3" data-duration="7.9" data-track-index="7">
+  <div class="bgn" id="s5bg"></div>
+  <div id="notes"></div>
+  <div class="strip type" id="s5cnt" style="left:250px;top:150px;font-size:76px;padding:12px 30px;border:6px solid var(--ink);transform:rotate(-2deg)"><span id="cnt"></span> messages</div>
+  <img class="cut" id="s5col" src="assets/colleagues_2.png" style="left:60px;top:560px;width:380px;transform:rotate(-6deg)" alt="">
+  <div class="p" id="s5leeds" style="left:40px;top:1010px;z-index:3"><span class="bar" style="font-size:50px">The Leeds office</span></div>
+  <img class="cut" id="s5kit" src="assets/kitchen.png" style="left:520px;top:860px;width:520px;transform:rotate(5deg)" alt="">
+  <div class="p" id="s5kt" style="left:560px;top:1250px"><span class="bar" style="font-size:50px;background:var(--mint)">Kitchen tables</span></div>
+  <div class="p" id="s5old" style="left:140px;top:1360px;width:380px;transform:rotate(-4deg)"><img class="cut" src="assets/colleagues_0.png" style="position:relative;width:380px" alt=""><div class="strip type" style="left:30px;bottom:-40px;font-size:34px;border:4px solid var(--ink);transform:rotate(3deg)">LAST SEEN: 2014</div></div>
+  <img class="cut" id="s5pen" src="assets/hand_pencil.png" style="left:560px;top:1380px;width:560px" alt="">
+</div>
+
+<!-- ============ S6: the quotes (41.2–48.4) ============ -->
+<div id="s6" class="clip" data-start="41.2" data-duration="7.2" data-track-index="8">
+  <div class="grid" style="left:0;top:0;width:1080px;height:1920px"></div>
+  <div id="qwrap" class="p" style="left:0;top:0;width:1080px;height:1920px">
+    <div class="note" id="qn1" style="left:90px;top:330px;width:900px;font-size:92px;padding:50px 56px;transform:rotate(-2deg);background:var(--paper)">“You made my first day <span class="hlw" id="qh1">less scary.</span>”<div class="type" style="font-size:34px;margin-top:22px">— Aisha, joined 2019</div></div>
+    <img class="cut" id="qa1" src="assets/colleagues_2.png" style="left:770px;top:150px;width:230px;transform:rotate(6deg)" alt="">
+    <div class="note" id="qn2" style="left:90px;top:860px;width:900px;font-size:92px;padding:50px 56px;transform:rotate(1.5deg);background:var(--mint)">“You never forgot my <span class="hlw" id="qh2">kids' names.</span>”<div class="type" style="font-size:34px;margin-top:22px">— Tom, IT</div></div>
+    <img class="cut" id="qa2" src="assets/colleagues_3.png" style="left:60px;top:700px;width:220px;transform:rotate(-7deg)" alt="">
+    <div class="note" id="qn3" style="left:90px;top:1390px;width:900px;font-size:92px;padding:50px 56px;transform:rotate(-1deg);background:var(--pink)">“The office <span class="hlw" id="qh3">won't be the same</span> without you.”<div class="type" style="font-size:34px;margin-top:22px">— Linda, finance</div></div>
+    <img class="cut" id="qa3" src="assets/colleagues_4.png" style="left:70px;top:1210px;width:210px;transform:rotate(-6deg)" alt="">
+  </div>
+</div>
+
+<!-- ============ S7: she opens her Pot (48.4–55.3) ============ -->
+<div id="s7" class="clip" data-start="48.4" data-duration="6.9" data-track-index="9">
+  <div class="bgn" id="s7bg"></div>
+  <div class="circ" id="s7c" style="left:140px;top:560px;width:800px;height:800px;background:var(--yel)"></div>
+  <div id="orbit"></div>
+  <img class="cut" id="s7m" src="assets/margaret_phone.png" style="left:190px;top:560px;width:700px" alt="">
+  <div class="p serif" id="s7t" style="left:60px;top:150px;font-size:110px">On Friday,<br><span class="ital">she opens her Pot.</span></div>
+  <div class="strip" id="s7gift" style="left:640px;top:1480px;transform:rotate(5deg);font:900 44px Fig;background:var(--lilac)">The gift? Lovely.</div>
+  <div class="p mark" id="s7twice" style="left:90px;top:1560px;font-size:84px;transform:rotate(-6deg)">read twice ↺</div>
+  <svg class="ink" viewBox="0 0 1080 1920"><path id="s7loop" pathLength="1"/><path id="s7loop2" pathLength="1"/></svg>
+</div>
+
+<!-- ============ S8: end card (55.3–61.5) ============ -->
+<div id="s8" class="clip" data-start="55.3" data-duration="6.2" data-track-index="10">
+  <div class="bgn" id="s8bg"></div>
+  <div class="circ" id="s8c" style="left:190px;top:760px;width:700px;height:700px;background:var(--yel)"></div>
+  <img class="cut" id="s8m" src="assets/margaret_laugh.png" style="left:250px;top:760px;width:600px" alt="">
+  <div class="p" id="s8logo" style="left:0;right:0;top:140px;text-align:center"><div class="strip" style="position:relative;display:inline-block;padding:30px 46px;transform:rotate(-1.5deg)"><img src="brand/LogoCharcoal.svg" style="width:640px;height:55px;display:block" alt=""></div></div>
+  <div class="p serif" id="s8t" style="left:0;right:0;top:360px;text-align:center;font-size:118px"><span class="ln1">Collect together,</span><br><span class="ital ln2"><span class="hlw" id="s8hl">celebrate together.</span></span></div>
+  <div id="s8chips" class="p" style="left:0;right:0;top:1380px;display:flex;justify-content:center;gap:18px"><img src="brand/filledChipFace.svg" style="width:120px" alt=""><img src="brand/pinkChip.svg" style="width:120px" alt=""><img src="brand/greenChip.svg" style="width:120px" alt=""><img src="brand/oragengeChip.svg" style="width:120px" alt=""><img src="brand/purpleChip.svg" style="width:120px" alt=""></div>
+  <div class="p" id="s8cta" style="left:0;right:0;top:1560px;text-align:center"><span class="bar" style="font-size:64px;padding:22px 40px">Create a Pot — it's free</span></div>
+  <div class="p type" id="s8url" style="left:0;right:0;top:1720px;text-align:center;font-size:44px">collectionpot.com</div>
+</div>
+
+<div id="tearL" class="clip" data-start="0" data-duration="61.5" data-track-index="11"><div id="tear"><div class="ed" id="edT" style="top:-58px"></div><div class="ed" id="edB" style="bottom:-58px"></div></div></div>
+<div id="grainL" class="clip" data-start="0" data-duration="61.5" data-track-index="12"><div id="grain"></div></div>
+
+<audio id="mix" src="audio/mix.wav" data-start="0" data-duration="61.5" data-track-index="20"></audio>
+</div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+let seed = 31; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const R = (a, b) => a + (b - a) * rnd();
+
+/* ---- torn paper edges (deterministic) ---- */
+// percentage-based torn edge: fits the element at whatever size it ends up (images/fonts loading later can't clip it)
+function torn(el, amp = 10, n = 34) {
+  const pts = [], j = a => R(0, a).toFixed(1);
+  for (let i = 0; i <= n; i++) pts.push(`${(i / n * 100).toFixed(2)}% ${j(amp)}px`);
+  for (let i = 0; i <= 12; i++) pts.push(`calc(100% - ${j(amp * .6)}px) ${(i / 12 * 100).toFixed(2)}%`);
+  for (let i = n; i >= 0; i--) pts.push(`${(i / n * 100).toFixed(2)}% calc(100% - ${j(amp)}px)`);
+  for (let i = 12; i >= 0; i--) pts.push(`${j(amp * .6)}px ${(i / 12 * 100).toFixed(2)}%`);
+  el.style.clipPath = `polygon(${pts.join(',')})`;
+}
+function edge(el, top) { const pts = []; for (let x = 0; x <= 1160; x += 26) pts.push(`${x}px ${top ? 60 - R(0, 48) : R(0, 48)}px`); el.style.clipPath = top ? `polygon(0 60px,${pts.join(',')},1160px 60px)` : `polygon(0 0,${pts.join(',')},1160px 0)`; }
+edge($('#edT'), true); edge($('#edB'), false);
+
+/* ---- hand-drawn ink paths ---- */
+const loop = (cx, cy, rx, ry, turns = 1.15, j = 0) => { let d = ''; const n = Math.round(90 * turns), p1 = R(0, 6), p2 = R(0, 6); for (let i = 0; i <= n; i++) { const a = -1.9 + i / 90 * Math.PI * 2, r = 1 + .05 * Math.sin(a * 2 + p1) + .03 * Math.sin(a * 3 + p2) + i / n * .06; d += `${i ? 'L' : 'M'}${(cx + Math.cos(a) * rx * r).toFixed(1)} ${(cy + Math.sin(a) * ry * r).toFixed(1)}`; } return d; };
+const curve = (x1, y1, x2, y2, bend = 120, head = true) => { const mx = (x1 + x2) / 2 + bend, my = (y1 + y2) / 2 - bend * .5; let d = `M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}`; if (head) { const a = Math.atan2(y2 - my, x2 - mx), L = 46; d += ` M${x2 - L * Math.cos(a - .45)} ${y2 - L * Math.sin(a - .45)} L${x2} ${y2} L${x2 - L * Math.cos(a + .45)} ${y2 - L * Math.sin(a + .45)}`; } return d; };
+const wave = (x1, x2, y) => { let d = `M${x1} ${y}`; for (let x = x1; x <= x2; x += 40) d += ` Q${x + 20} ${y + (((x - x1) / 40) % 2 ? 14 : -14)} ${x + 40} ${y}`; return d; };
+const P = (id, d) => $(id).setAttribute('d', d);
+P('#s1arr', curve(820, 800, 690, 930, -90));
+P('#s2u', wave(110, 470, 480)); P('#s2arr', curve(560, 1000, 470, 960, 60));
+P('#s3aarr', curve(200, 860, 440, 980, 70));
+P('#s3cx1', 'M420 960 L690 1220'); P('#s3cx2', 'M690 960 L420 1220');
+P('#s3cpath', 'M550 1420 C 560 1250, 520 1150, 545 1010');
+P('#s7loop', loop(540, 1080, 400, 450, 1.2)); P('#s7loop2', loop(545, 1075, 430, 480, 1.08));
+// calendar grid (March), Friday 28th circled
+const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'].map(d => `<div style="font-size:30px;opacity:.6">${d}</div>`);
+let cells = ''; for (let i = 0; i < 6; i++) cells += '<div></div>';
+for (let d = 1; d <= 31; d++) cells += `<div style="font-size:40px" ${d === 28 ? 'id="d28"' : ''}>${d}</div>`;
+$('#calg').innerHTML = days.join('') + cells;
+
+// S3b pins + colleagues on the map
+const PINS = [[300, 1200, 'colleagues_2', 'WFH'], [640, 1320, 'colleagues_3', 'WFH'], [560, 760, 'colleagues_4', '2019'], [760, 520, 'colleagues_0', '2016']];
+$('#pins').innerHTML = PINS.map((p, i) => `<div class="p pin" id="pin${i}" style="left:${p[0]}px;top:${p[1]}px"></div><div class="p" id="pc${i}" style="left:${p[0] - 110}px;top:${p[1] - 300}px;width:220px;transform:rotate(${i % 2 ? 6 : -6}deg)"><img class="cut" src="assets/${p[2]}.png" style="position:relative;width:220px" alt=""><div class="strip type" style="left:40px;bottom:-34px;font-size:30px;padding:6px 14px;border:3px solid var(--ink)">${p[3] === 'WFH' ? 'WORKS FROM HOME' : 'LEFT ' + p[3]}</div></div>`).join('');
+
+// S5 notes (pour in)
+const NOTES = ['Thank you for every<br>welcome! x', 'Enjoy the garden,<br>you\'ve earned it', 'Still have the mug<br>you gave me!', 'Best receptionist<br>ever x', 'Who will know where<br>everything is now?!', 'Happy retirement<br>Margaret!', 'Lisbon misses<br>you too x', 'You made Mondays<br>bearable', 'Cheers to 31<br>brilliant years'];
+const NC = ['var(--paper)', 'var(--pink)', 'var(--mint)', 'var(--lilac)', 'var(--sky)', 'var(--paper)', 'var(--orange)', 'var(--mint)', 'var(--pink)'];
+const NP = [[40, 300, -7], [600, 300, 6], [330, 470, -2], [700, 640, 8], [60, 1640, 5], [620, 1600, -6], [360, 1720, 3], [820, 1450, -9], [20, 1180, 7]];
+$('#notes').innerHTML = NOTES.map((n, i) => `<div class="note" id="nt${i}" style="left:${NP[i][0]}px;top:${NP[i][1]}px;width:${i % 3 ? 400 : 440}px;font-size:40px;background:${NC[i]};transform:rotate(${NP[i][2]}deg)">${n}</div>`).join('');
+// S7 orbiting notes
+const ON = ['first day less scary', 'never forgot my kids\' names', 'won\'t be the same', 'thank you x', 'best colleague ever', 'enjoy every minute'];
+$('#orbit').innerHTML = ON.map((n, i) => `<div class="note" id="on${i}" style="left:0;top:0;width:300px;font-size:34px;padding:18px 22px;background:${NC[(i + 1) % 9]}">${n}</div>`).join('');
+// odometers
+function odo(el, maxV, digits) { let h = ''; for (let c = 0; c < digits; c++) { const p = digits - 1 - c, L = Math.floor(maxV / 10 ** p) + 1; let s = ''; for (let k = 0; k < L; k++) s += `<span style="display:block;height:1em">${k % 10}</span>`; h += `<span style="display:inline-block;overflow:hidden;height:1em;line-height:1em;vertical-align:bottom"><span class="strip2" data-p="${p}" data-l="${L}" style="display:block">${s}</span></span>`; } el.innerHTML = h; }
+odo($('#cnt'), 64, 2);
+$('#yr').innerHTML = '<span style="display:inline-block;overflow:hidden;height:1em;line-height:1em;vertical-align:bottom"><span id="yrs" style="display:block">' + [...Array(32)].map((_, i) => `<span style="display:block;height:1em">${1994 + i}</span>`).join('') + '</span></span>';
+
+// phone screen placement from the detected yellow quad
+const SQ = { w: 814, cx: 397.1, cy: 490.7, rw: 278.1, rh: 600.3, ang: -10.97 };
+(() => { const s = 740 / SQ.w, w = SQ.rw * s, h = SQ.rh * s, el = $('#scr'); el.style.cssText += `left:${SQ.cx * s - w / 2}px;top:${SQ.cy * s - h / 2}px;width:${w}px;height:${h}px;transform:rotate(${SQ.ang}deg)`; $('#scrlg').style.transform = `scale(${w / 300})`; })();
+
+/* ---------- timeline ---------- */
+const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
+const E = 'expo.inOut';
+const pop = (sel, t, o = {}) => tl.fromTo(sel, { opacity: 0, y: o.y ?? 90, scale: o.s ?? .82, rotation: (o.r ?? 0) - 8 }, { opacity: 1, y: 0, scale: 1, rotation: o.r ?? 0, duration: o.d ?? .7, ease: o.e ?? 'back.out(1.6)' }, t);
+const slideIn = (sel, t, from = 'left', o = {}) => tl.fromTo(sel, { x: from === 'left' ? -1200 : from === 'right' ? 1200 : 0, y: from === 'up' ? -1400 : from === 'down' ? 1400 : 0, rotation: (o.r ?? 0) + (from === 'left' ? -14 : 14) }, { x: 0, y: 0, rotation: o.r ?? 0, duration: o.d ?? .75, ease: 'expo.out' }, t);
+const draw = (sel, t, d = .5) => tl.fromTo(sel, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: d, ease: 'power2.inOut' }, t);
+const hl = (sel, t, d = .45) => tl.fromTo(sel, { backgroundSize: '0% 42%' }, { backgroundSize: '100% 42%', duration: d, ease: 'power2.inOut' }, t);
+const scribble = (sel, t) => tl.fromTo(sel, { opacity: 0, clipPath: 'inset(0 100% 0 0)' }, { opacity: 1, clipPath: 'inset(0 0% 0 0)', duration: .5, ease: 'power1.inOut' }, t);
+const push = (sel, t, d, s0 = 1, s1 = 1.07) => tl.fromTo(sel, { scale: s0 }, { scale: s1, duration: d, ease: 'none' }, t);
+const tearAt = T => tl.fromTo('#tear', { y: 2000 }, { y: -2760, duration: .8, ease: 'power2.inOut', immediateRender: false }, T - .4);
+// grain jitter (stop-motion texture)
+tl.to('#grain', { x: 180, y: 140, duration: 61.5, ease: 'steps(740)' }, 0);
+gsap.set('.cut, .note, .strip', {}); // ensure transforms are GSAP-managed
+$$('.note, .strip').forEach(n => torn(n, 9));
+
+/* S1 */
+push('#s1bg', 0, 6.6, 1.0, 1.08);
+tl.fromTo('#s1c', { scale: 0 }, { scale: 1, duration: .8, ease: 'back.out(1.4)' }, .35);
+pop('#s1m', .6, { y: 300, s: .9, d: .9 });
+tl.fromTo('#s1m', { scale: 1 }, { scale: 1.05, duration: 5.2, ease: 'none', immediateRender: false }, 1.5);
+tl.fromTo('#s1t', { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: .7 }, 1.0);
+slideIn('#s1photo', 2.4, 'right', { r: 7 });
+tl.fromTo('#s1yr', { opacity: 0, scale: 1.8, rotation: -14 }, { opacity: 1, scale: 1, rotation: -4, duration: .25, ease: 'power4.in' }, 2.55);
+tl.fromTo('#yrs', { yPercent: 0 }, { yPercent: -31 / 32 * 100, duration: 1.0, ease: 'power2.inOut' }, 2.8);
+scribble('#s1yrs', 3.4); draw('#s1arr', 3.3, .45);
+tl.fromTo('#s1lab', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .45 }, 5.1);
+tearAt(6.6);
+
+/* S2 */
+push('#s2bg', 6.6, 6.7, 1.02, 1.08);
+tl.fromTo('#s2g', { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: 'expo.out' }, 6.6);
+tl.fromTo('#s2c1', { scale: 0 }, { scale: 1, duration: .6, ease: 'back.out(1.5)' }, 7.65); pop('#s2cake', 7.75, { r: 5 });
+scribble('#s2a', 8.1); draw('#s2u', 8.3, .4);
+tl.fromTo('#s2c2', { scale: 0 }, { scale: 1, duration: .6, ease: 'back.out(1.5)' }, 9.55); pop('#s2tea', 9.65, { r: -5 });
+scribble('#s2b', 9.95); draw('#s2arr', 10.1, .4);
+slideIn('#s2cal', 10.5, 'down', { r: -3 });
+// circle the 28th (computed after layout)
+tl.fromTo('#s2o', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .5, ease: 'power2.inOut', onStart: null }, 11.1);
+scribble('#s2last', 11.95);
+tl.to('#s2g, #s2cake, #s2tea, #s2c1, #s2c2, #s2a, #s2b', { y: -120, duration: 2.4, ease: 'sine.inOut' }, 10.6);
+tearAt(13.3);
+
+/* S3a: Priya */
+push('#s3abg', 13.3, 2.8, 1.0, 1.06);
+tl.fromTo('#s3ac', { scale: 0 }, { scale: 1, duration: .7, ease: 'back.out(1.4)' }, 13.35);
+slideIn('#s3ap', 13.4, 'right');
+tl.fromTo('#s3at', { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: .6 }, 13.5);
+tl.fromTo('#s3asub', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .5 }, 14.4); hl('#s3hl', 14.75, .5);
+scribble('#s3aname', 15.0); draw('#s3aarr', 15.2, .4);
+// S3a → S3b: fast pan (whip) instead of a tear
+tl.to('#s3a > *', { x: -1100, duration: .3, ease: 'power3.in' }, 15.82);
+
+/* S3b: the scattered team */
+tl.fromTo('#s3bbg', { x: 1100 }, { x: 0, duration: .35, ease: 'power3.out' }, 16.1);
+tl.fromTo('#s3map', { x: 1100, rotation: 6 }, { x: 0, rotation: -2, duration: .55, ease: 'expo.out' }, 16.1);
+tl.fromTo('#s3bt', { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: .45 }, 16.3);
+push('#s3map', 16.6, 3.4, 1.0, 1.06);
+[0, 1].forEach(i => { tl.fromTo(`#pin${i}`, { scale: 0 }, { scale: 1, duration: .3, ease: 'back.out(3)' }, 16.9 + i * .22); pop(`#pc${i}`, 17.0 + i * .22, { r: i % 2 ? 6 : -6, y: 60 }); });
+[2, 3].forEach((i, k) => { tl.fromTo(`#pin${i}`, { scale: 0 }, { scale: 1, duration: .3, ease: 'back.out(3)' }, 18.0 + k * .25); pop(`#pc${i}`, 18.1 + k * .25, { r: i % 2 ? 6 : -6, y: 60 }); });
+tl.to(['#pc2', '#pc3'], { opacity: .55, filter: 'grayscale(1) contrast(.8)', duration: .6 }, 18.8);
+scribble('#s3bleft', 18.3);
+tearAt(20.0);
+
+/* S3c: the envelope */
+push('#s3cbg', 20.0, 3.7, 1.0, 1.06);
+tl.fromTo('#s3cc', { scale: 0 }, { scale: 1, duration: .6, ease: 'back.out(1.3)' }, 20.0);
+tl.fromTo('#s3cb', { y: 900 }, { y: 0, duration: .7, ease: 'expo.out' }, 20.05);
+tl.fromTo('#s3ct', { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: .6 }, 20.15);
+pop('#s3ce', 20.35, { r: -4 });
+draw('#s3cpath', 21.2, .9);
+tl.to('#s3ce', { x: -10, y: -330, rotation: 3, duration: .9, ease: 'power2.inOut' }, 21.2)   // up to the 2nd floor…
+  .to('#s3ce', { rotation: -6, duration: .08, yoyo: true, repeat: 5, ease: 'none' }, 22.1);    // …and stalls
+draw('#s3cx1', 22.3, .2); draw('#s3cx2', 22.45, .2);
+tl.fromTo('#s3cfl', { opacity: 0, scale: .8 }, { opacity: 1, scale: 1, duration: .35, ease: 'back.out(2)' }, 22.5);
+// yellow tear into the turn
+tl.set('#tear, #edT, #edB', { backgroundColor: '#f9b910' }, 23.0);
+tearAt(23.7);
+tl.set('#tear, #edT, #edB', { backgroundColor: '#fffcf8' }, 24.3);
+
+/* S4: Collection Pot */
+push('#s4g', 23.7, 9.6, 1.0, 1.05);
+tl.fromTo('#s4so', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .5 }, 23.85);
+tl.fromTo('#s4logo', { opacity: 0, y: -60, rotation: -4 }, { opacity: 1, y: 0, rotation: 0, duration: .55, ease: 'back.out(1.8)' }, 24.65);
+tl.fromTo('#s4c', { scale: 0 }, { scale: 1, duration: .8, ease: 'back.out(1.3)' }, 24.2);
+tl.fromTo('#s4phone', { y: 1300, rotation: 10 }, { y: 0, rotation: 0, duration: .9, ease: 'expo.out' }, 24.3);
+tl.to(['#s4so', '#s4logo'], { opacity: 0, y: -40, duration: .3, ease: 'power2.in' }, 25.9);
+tl.to('#s4phone', { scale: .82, y: 30, duration: .8, ease: E }, 25.9);
+tl.to('#s4c', { scale: .82, duration: .8, ease: E }, 25.9);
+tl.to('#scrInv', { backgroundColor: '#f9b910', borderColor: '#f9b910', duration: .15 }, 26.15);
+slideIn('#s4link', 26.25, 'left', { r: -3 });
+slideIn('#s4chat', 27.0, 'left', { r: -5 }); draw('#st1', 27.05, .5);
+slideIn('#s4mail', 28.5, 'right', { r: 4 }); draw('#st2', 28.55, .5);
+tl.fromTo('#s4qr', { opacity: 0, scale: .6, rotation: 20 }, { opacity: 1, scale: 1, rotation: 5, duration: .55, ease: 'back.out(1.6)' }, 30.1);
+tl.fromTo(['#qt1', '#qt2'], { scaleX: 0 }, { scaleX: 1, duration: .2, stagger: .1 }, 30.55);
+draw('#st3', 30.6, .45);
+tl.fromTo('#s4hand', { x: -700, rotation: -12 }, { x: 0, rotation: 0, duration: .55, ease: 'expo.out' }, 31.7);
+tl.fromTo('#sm0', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .3 }, 31.9).fromTo('#sm1', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .3 }, 32.3);
+tearAt(33.3);
+
+/* S5: messages pour in */
+push('#s5bg', 33.3, 7.9, 1.0, 1.08);
+tl.fromTo('#s5cnt', { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: .25, ease: 'power4.in' }, 33.5);
+$$('#cnt .strip2').forEach(s => { const p = +s.dataset.p, L = +s.dataset.l; tl.fromTo(s, { yPercent: -Math.floor(1 / 10 ** p) / L * 100 }, { yPercent: -Math.floor(64 / 10 ** p) / L * 100, duration: 6.4, ease: 'power2.inOut' }, 33.7); });
+NOTES.forEach((_, i) => tl.fromTo(`#nt${i}`, { opacity: 0, y: -900, rotation: NP[i][2] + (i % 2 ? 25 : -25) }, { opacity: 1, y: 0, rotation: NP[i][2], duration: .7, ease: 'back.out(1.2)' }, 33.85 + i * .19));
+pop('#s5col', 35.8, { r: -6 }); tl.fromTo('#s5leeds', { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: .4 }, 36.1);
+slideIn('#s5kit', 37.2, 'right', { r: 5 }); tl.fromTo('#s5kt', { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: .4 }, 37.5);
+pop('#s5old', 38.55, { r: -4 }); tl.fromTo('#s5old .strip', { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: .22, ease: 'power4.in' }, 39.4);
+tl.fromTo('#s5pen', { x: 700, y: 300 }, { x: 0, y: 0, duration: .7, ease: 'expo.out' }, 34.3)
+  .to('#s5pen', { x: -30, y: 12, duration: .18, yoyo: true, repeat: 20, ease: 'sine.inOut' }, 35.0);
+tearAt(41.2);
+
+/* S6: the quotes */
+tl.fromTo('#qwrap', { y: 260 }, { y: -240, duration: 7.2, ease: 'sine.inOut' }, 41.2);
+pop('#qn1', 41.3, { r: -2, y: 60 }); pop('#qa1', 41.5, { r: 6 }); hl('#qh1', 42.4, .5);
+pop('#qn2', 43.7, { r: 1.5, y: 60 }); pop('#qa2', 43.9, { r: -7 }); hl('#qh2', 44.6, .5);
+pop('#qn3', 45.9, { r: -1, y: 60 }); pop('#qa3', 46.1, { r: 6 }); hl('#qh3', 46.45, .6);
+tearAt(48.4);
+
+/* S7: she opens her Pot */
+push('#s7bg', 48.4, 6.9, 1.0, 1.06);
+tl.fromTo('#s7c', { scale: 0 }, { scale: 1, duration: .8, ease: 'back.out(1.3)' }, 48.5);
+tl.fromTo('#s7m', { y: 900 }, { y: 0, duration: .9, ease: 'expo.out' }, 48.6);
+tl.fromTo('#s7m', { scale: 1 }, { scale: 1.08, duration: 5.6, ease: 'none', immediateRender: false }, 49.5);
+tl.fromTo('#s7t', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .6 }, 48.7);
+tl.fromTo('#s7gift', { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: .45 }, 51.3);
+tl.to('#s7gift', { opacity: .0, x: 200, rotation: 15, duration: .45, ease: 'power2.in' }, 52.3);
+// messages orbit around her
+ON.forEach((_, i) => { const a = i / ON.length * Math.PI * 2; const x = 540 + Math.cos(a) * 340 - 150, y = 1060 + Math.sin(a) * 600 - 50;
+  tl.fromTo(`#on${i}`, { opacity: 0, x: 375, y: 1000, scale: .2, rotation: 0 }, { opacity: 1, x, y, scale: 1, rotation: (i % 2 ? 7 : -7), duration: .8, ease: 'back.out(1.3)' }, 52.85 + i * .09); });
+tl.to('#orbit', { rotation: 6, duration: 2.4, ease: 'sine.inOut', transformOrigin: '540px 1080px' }, 53.0);
+draw('#s7loop', 53.55, .7); draw('#s7loop2', 53.8, .6); scribble('#s7twice', 53.7);
+tearAt(55.3);
+
+/* S8: end card */
+push('#s8bg', 55.3, 6.2, 1.0, 1.05);
+tl.fromTo('#s8logo', { opacity: 0, y: -60, rotation: -5 }, { opacity: 1, y: 0, rotation: 0, duration: .6, ease: 'back.out(1.7)' }, 55.5);
+tl.fromTo('#s8c', { scale: 0 }, { scale: 1, duration: .8, ease: 'back.out(1.3)' }, 55.6);
+tl.fromTo('#s8m', { y: 900 }, { y: 0, duration: .9, ease: 'expo.out' }, 55.7);
+tl.fromTo('#s8t .ln1', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .55 }, 56.85);
+tl.fromTo('#s8t .ln2', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .55 }, 57.8); hl('#s8hl', 58.1, .6);
+tl.fromTo('#s8chips img', { y: 80, scale: .3, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: .5, ease: 'back.out(2)', stagger: .07 }, 58.5);
+tl.fromTo('#s8cta', { opacity: 0, scale: .7 }, { opacity: 1, scale: 1, duration: .5, ease: 'back.out(2)' }, 59.2);
+tl.fromTo('#s8url', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .5 }, 59.6);
+
+window.__timelines = window.__timelines || {};
+window.__timelines['main'] = tl;
+// ink paths that depend on layout (string lines, calendar circle) are set once fonts/layout settle
+const layoutInk = () => {
+  const c = $('#d28'), g = $('#calg');
+  P('#s2o', loop(g.offsetLeft + c.offsetLeft + c.offsetWidth / 2, g.offsetTop + c.offsetTop + c.offsetHeight / 2, 46, 38, 1.2));
+  P('#st1', curve(260, 1470, 200, 470, -140)); P('#st2', curve(480, 1470, 820, 500, 140)); P('#st3', curve(640, 1490, 700, 1320, 40));
+};
+layoutInk(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutInk);
+tl.seek(0);
+</script>
+</body>
+</html>
