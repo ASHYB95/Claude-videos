@@ -121,3 +121,12 @@ Fonts (Google Fonts, the site's own):
 - **Space Grotesk 700**: headlines and kinetic type
 - **Inter**: UI and body
 - **JetBrains Mono**: kickers, labels, ₹ figures
+
+## Build (as made)
+- Composition: `index.html` (HyperFrames, vendored GSAP). 67 s, motion blur on. Beats and timings follow the shot list above, locked to the VO word timings (`voices/*.align.json`).
+- Stage: black, with a depth-of-field background. Out-of-focus bokeh at three depths (far, mid, near; near drifts fastest for parallax) in Hijack violet, lavender, teal and amber, plus four frosted-glass panels (backdrop blur, lit top/side edges, soft brand-colour glow). No gradient wash.
+- Screens: real captures (landing hero, Jack's page, song list) plus rebuilt console UI (live queue, request card with Accept/Refund, chat with mute, venue goal screen ×3, four skins, analytics, payout). Uses the site's own palette and fonts.
+- B-roll (3 clips): A = hook (shouting guest → performer), B = dedication moment with request toasts, C = payoff crowd wide.
+- VO: ElevenLabs "Chris", speed 1.08, 15 lines (`voices/lines.json`).
+- Audio: `audio/score.py` (original 120 BPM A-minor score: muffled intro, drop on the wipe into the product, breakdown under B-roll B, chorus on the payoff, final hit on "gigs"), `audio/sfx.py` (ElevenLabs SFX), `audio/mix.py` (VO on top, music ducked 8 dB under VO, loudnorm −14 LUFS).
+- Regenerate: `voices/tts.py` → `audio/sfx.py` → `audio/score.py` → `audio/mix.py` → `npx hyperframes render -q delivery -o renders/hijack-artists.mp4`.
