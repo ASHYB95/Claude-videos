@@ -1,0 +1,13 @@
+Hijack for Artists: "Lose Control On Purpose" (promo, 1080×1920, 67 s)
+
+Product, copy and screens: Hijack (hijack.co.in). Screens are rebuilt from the live site's own
+  artist landing page and product shots, plus Jack Tucker's public Hijack page (hijack.co.in/jack-tucker).
+  Every claim and quoted line comes from hijack.co.in. Rupee figures are the site's sample-account demo
+  numbers, shown with its "illustrative figures" disclaimer. Real venue names from the demo are replaced
+  with fictional ones.
+Voiceover: ElevenLabs, voice "Chris" (eleven_multilingual_v2).
+Sound effects: ElevenLabs sound generation (audio/sfx.py).
+Music: original synthesized score (audio/score.py), 120 BPM, A minor.
+B-roll: Higgsfield, Seedance 2.5 text-to-video (broll/a.mp4, b.mp4, c.mp4). All people are fictional.
+Fonts: Space Grotesk, Inter, JetBrains Mono (SIL OFL, via @fontsource). The same families the site uses.
+Built with HyperFrames + GSAP.
