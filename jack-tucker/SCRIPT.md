@@ -1,51 +1,110 @@
-# Hijack for Artists: "Lose Control On Purpose" (script draft v2)
+# Hijack for Artists: "Lose Control On Purpose" (script v3, screen-first)
 
-Screen-led promo ad (skill: `screen-led-promo-ad`). 1080×1920 (9:16) · ~70 s · 30 fps.
-**Audience: fellow gigging artists** (with a nod to DJs and venues on the end card). Goal: get them to sign up at hijack.co.in.
-Screens are rebuilt from the real hijack.co.in artist landing page (live queue, request card, chat, nightly goal, skins, analytics) and Jack Tucker's live page (hijack.co.in/jack-tucker) as the example artist page. They're shown in a 3D phone and cut against B-roll.
+SaaS-style product ad (skill: `screen-led-promo-ad`). 1080×1920 (9:16) · ~69 s · 30 fps.
+**Audience: fellow gigging artists.** Goal: sign up at hijack.co.in.
+**UI first:** about 85% of runtime is the product. Only **3 B-roll clips** (🎬 A, B, C, about 11 s in total) show the real-world context. Everything else (📱) is the Hijack UI rebuilt on-brand in a 3D phone, two phones side by side, or a venue-screen mockup.
 
-Chapter kickers are the site's own section labels (teal JetBrains Mono caps), so the video reads like the landing page.
+Chapter kickers are the site's own section labels (teal JetBrains Mono caps).
 
-| # | Time | Visual | VO |
+## Script
+
+| # | Time | Shot | VO |
 |---|---|---|---|
 | | | **HOOK** | |
-| 1 | 0–3 | 🎬 Dim bar gig. A guest shouts at the stage, a napkin request lands on the mic stand, the tip jar sits empty. Kinetic type, one word-group per hit: **SHOUTED REQUESTS. / NAPKIN NOTES. / AN EMPTY TIP JAR.** | "Shouted requests. Napkin notes. A tip jar nobody notices." |
-| 2 | 3–6.5 | 🎬→📱 Artist picks up their phone from the amp. The Hijack landing hero is tracked onto the screen. Push in and **match-cut through the screen**; the HIJACK logo slams in on a dark stage. | "What if your crowd could hijack the set, and pay you for it?" |
+| 1 | 0–3 | 🎬 **A** | "Shouted requests. Napkin notes. A tip jar nobody notices." |
+| 2 | 3–6 | 📱 | "What if your crowd could hijack the set, and pay you for it?" |
 | | | **SET UP** | |
-| 3 | 6.5–12 | 📱 Three numbered steps (amber step circles, like the site's "Five steps"): **①** Artist page builds itself (name, `hijack.co.in/yourname`, song list by genre). **②** QR table card pops out in 3D. **③** Mic icon: "One line on the mic." | "Add your songs. Print your QR cards. Announce it once per set." |
+| 3 | 6–12 | 📱 | "Add your songs. Print your QR cards. Announce it once per set." |
 | | | **HOW A SHOW RUNS** | |
-| 4 | 12–17 | 🎬→📱 Guest scans a QR card on the table. Their phone opens Jack Tucker's real song list (Pop · Rock · Folk · Soul…). | "Guests scan, and your whole song list opens on their phone. No app, no account." |
-| 5 | 17–23 | 📱 Artist's **LIVE QUEUE**: requests drop in and reorder by amount (₹1000 → ₹250 → ₹100). A **MEDLEY CHALLENGE** card expands: *Ain't No Sunshine × All Along the Watchtower*. | "Paid requests climb the queue by what's behind them. One table backs a song… the next table answers." |
-| 6 | 23–28 | 📱 Request card: *"This is my favourite song!! Can't wait to hear your version!"*, tier chips (Shout-out · Dedication shown publicly), then **Accept / Refund** buttons. Camera tilts to Accept; the tap sends the song up to the shared set list. | "Nothing plays without your yes. Decline, and they're refunded automatically." |
-| 7 | 28–32 | 🎬 Artist glances at the phone on the mic stand, reads into the mic, points to a table. The table erupts. Toast: 🎉 *"It's my mum's birthday, she's the one in the red jacket"*. | "Every request carries a name and a reason. A birthday. A dedication." |
+| 4 | 12–18 | 📱 | "Guests scan and land on your page: your songs, your bio, your next shows. No app, no account." |
+| 5 | 18–24 | 📱📱 | "Paid requests climb the queue by what's behind them. One table backs a song… the next table answers." |
+| 6 | 24–29 | 📱 | "Nothing plays without your yes. Decline, and they're refunded automatically." |
+| 7 | 29–33 | 🎬 **B** | "Every request carries a name and a reason. A birthday. A dedication." |
 | | | **WHAT THE ROOM ACTUALLY GIVES YOU** | |
-| 8 | 32–36 | 📱 LIVE CHAT scrolls; artist swipes a message and taps **Mute**. | "Chat with the room between songs, moderated on your terms." |
-| 9 | 36–41 | 🎬+📱 TV screen behind the stage: **TONIGHT'S TOTAL** goal bar fills toward its target, with top tippers listed. | "Set a nightly goal and watch the room push for it, live on every screen." |
-| 10 | 41–45 | 📱 The same queue flips through skins, one tap each: **Clean → Arcade → VHS → Velvet**. | "Clean. Arcade. VHS. Velvet. Change the whole look in one tap." |
-| 11 | 45–49 | 🎬 Phone on a tripod streaming the gig; the queue overlay slides onto the stream frame (song + dedication only). | "Streaming? One link puts the queue on your broadcast." |
+| 8 | 33–37 | 📱 | "Chat with the room between songs, moderated on your terms." |
+| 9 | 37–42 | 📺 | "Set a nightly goal and watch the room push for it, live on every screen." |
+| 10 | 42–46 | 📱 | "Clean. Arcade. VHS. Velvet. Change the whole look in one tap." |
+| 11 | 46–50 | 📱 | "Streaming? One link puts the queue on your broadcast." |
 | | | **AND YES, IT ADDS UP** | |
-| 12 | 49–54 | 📱 **YOUR NUMBERS**: Most Requested, Best Rooms, monthly bar chart. Fine print: *"Illustrative figures from a sample account."* | "See your most-requested songs, and the rooms that actually pay." |
-| 13 | 54–58 | 📱 Payout card: *Paid to your bank •••• 4821*, plus an email toast: *"Your monthly summary"*. | "Earnings are paid to your own bank account, with a summary every month." |
+| 12 | 50–55 | 📱 | "See your most-requested songs, and the rooms that actually pay." |
+| 13 | 55–58 | 📱 | "Earnings are paid to your own bank account, with a summary every month." |
 | | | **PAYOFF** | |
-| 14 | 58–63 | 🎬 Song ends, the crowd sings the last line back, phones glowing, artist grinning. Kinetic: **SAME SET. SAME VENUE FEE. SAME HOURS.** | "Same set. Same venue fee. Same hours. Just a room that's in on the show." |
-| 15 | 63–70 | End card mirroring the landing hero: kicker *FOR ARTISTS, DJS AND VENUES*, HIJACK logo, **"Ready to lose control on purpose?"**, the three cards (*I'm an artist · I'm a DJ · I'm a venue*), teal **Start earning at your gigs** button, `hijack.co.in`. Small print: *"We'll get you set up personally."* | "Hijack. Ready to lose control on purpose? Start earning at your gigs." |
+| 14 | 58–62 | 🎬 **C** | "Same set. Same venue fee. Same hours. Just a room that's in on the show." |
+| 15 | 62–69 | End card | "Hijack. Ready to lose control on purpose? Start earning at your gigs." |
 
-VO: ~180 words (~70 s at speed ~1.08). Neutral narrator, warm and confident.
+VO: ~185 words, neutral narrator, warm and confident, speed ~1.08.
+
+## Shot list (what's on screen)
+
+**1 · Hook (0–3s) 🎬 A**: Dim bar gig with warm amber bokeh. A guest leans toward the performer, cupping their hands to shout a request, and the performer strains to hear. Kinetic type (Space Grotesk Bold, white) slams in on each beat: **SHOUTED REQUESTS. / NAPKIN NOTES. / AN EMPTY TIP JAR.**
+
+**2 · The turn (3–6s) 📱**: Teal wipe to a dark #0A0E14 stage with a soft violet glow. The 3D phone rises into frame showing the real landing hero (*FOR ARTISTS, DJS AND VENUES*, HIJACK logo, *"Give them a real choice."*). The HIJACK wordmark slams in above the phone.
+
+**3 · Set up (6–12s) 📱**: Three amber numbered circles light up in turn down the left side.
+- **①** The real signup screen (*ARTIST ACCOUNT · STEP 1 OF 2*). The page address types out as `hijack.co.in/yourname`, then genre tiles fill in (Pop 63 · Folk 36 · Rock 34…).
+- **②** The camera pulls back and a QR table card pops out of the phone in 3D: real QR code, *"SCAN TO HIJACK THE SET"*.
+- **③** A mic icon with pulsing rings: *"One line on the mic."*
+
+**4 · Guest scans (12–18s) 📱**: The QR card sits in the foreground. A second phone (the guest's) slides over it while scan brackets animate. Jack Tucker's real page opens and scrolls: hero photo and *JACK TUCKER · Live looping artist* → *See the Song List* → *BOOKING* → *UPCOMING: Cafe Cotinga*. A finger taps the song list and Folk opens. Teal tags pop up: **No app** · **No account**.
+
+**5 · Live queue (18–24s) 📱📱**: Two phones side by side, labelled *GUEST* and *YOU* in mono caps.
+- Guest phone: picks a song and a paid tier, then taps send.
+- Your phone (**LIVE QUEUE**): the request slides in and climbs past the ₹250 rows. A second request comes in higher and the rows reshuffle.
+- A violet **MEDLEY CHALLENGE** card expands: *Ain't No Sunshine × All Along the Watchtower*.
+
+**6 · Your yes (24–29s) 📱**: Your phone fills the frame.
+- A request card: *Summer of '69 · Lucy · ₹250*, note *"This is my favourite song!! Can't wait to hear your version!"*, tags *Shout-out · Dedication shown publicly*.
+- A quick tap on the filter chips (*By tip · Genre · Waiting longest*), then the camera tilts to **Accept / Refund**.
+- Accept is tapped and the card flies up into *ON THE SET LIST*.
+- Small print: *Declined? Refunded in full, automatically.*
+
+**7 · The moment (29–33s) 🎬 B**: The performer reads off the phone clipped to the mic stand, leans into the mic and points at a table. Friends cheer around a woman in a red jacket. UI toasts slide over the footage: 🎉 *"It's my mum's birthday, she's the one in the red jacket"*, then *SHOUT-OUT · Summer of '69*.
+
+**8 · Live chat (33–37s) 📱**: *LIVE CHAT* scrolls ("Any chance of some Fleetwood Mac later?", "That last one was unreal 👏"). The artist replies in a violet bubble. A spammy message is swiped and **Mute / Timeout** appear; Mute is tapped.
+
+**9 · Nightly goal (37–42s) 📺**: The phone turns to landscape and expands into a 3D venue screen (TV frame) on the dark stage. On it: **TONIGHT'S TOTAL**, a bar filling toward its target (amber to teal), *TOP TIPPERS* (Sarah · Abhinav · Lucy) and a QR code with *SCAN TO HIJACK THE SET*. The bar ticks up as the VO lands.
+
+**10 · Skins (42–46s) 📱**: The same queue changes look on each beat, with the name in mono caps: **Clean** (minimal) → **Arcade** (neon) → **VHS** (scanlines, colour fringing) → **Velvet** (dark lounge).
+
+**11 · Streaming (46–50s) 📱**: A landscape stream frame (a soft, blurred still from B-roll A with a *LIVE* badge). The queue overlay slides into the lower third with song and dedication only. Text: **One link. Set once.**
+
+**12 · Analytics (50–55s) 📱**: **YOUR NUMBERS** cards (this month · requests · shows) pop out in 3D. Most Requested (Ain't No Sunshine 24× · Yellow 19× · Summer of '69 15×). Best Rooms (fictional venues: The Backline · Harbour House · Neon Room). A teal bar chart grows from March to August. Small print: *Illustrative figures from a sample account.*
+
+**13 · Payouts (55–58s) 📱**: A payout card: *Paid to your bank •••• 4821 ✓*. An email notification drops in: *"Your monthly summary"*.
+
+**14 · Payoff (58–62s) 🎬 C**: Slow-motion wide shot. The crowd sings the last line back with phones glowing and the performer smiling. Text stacks in: **SAME SET. / SAME VENUE FEE. / SAME HOURS.**
+
+**15 · End card (62–69s)**: Copies the landing hero over a blurred frame from C.
+- *FOR ARTISTS, DJS AND VENUES* → HIJACK logo → **"Ready to lose control on purpose?"**
+- Three cards stagger in: *I'm an artist · I'm a DJ · I'm a venue*.
+- A teal **Start earning at your gigs →** button pulses, with `hijack.co.in` and *"We'll get you set up personally."*
+
+## B-roll to generate (3 clips, Higgsfield, 9:16, 5 s)
+- **A**: Dim bar gig. A guest leans in and cups their hands, shouting toward a performer at a mic. Warm amber bokeh, handheld push-in.
+- **B**: Performer at the mic glances at a phone clipped to the mic stand, smiles, points to a table. Friends cheer around a woman in a red jacket.
+- **C**: Slow-motion wide of a packed small venue singing along, phones glowing, performer smiling on stage.
+
+All B-roll subjects are fictional, with no readable text and no logos.
+
+## Screen sources
+- **Real, captured:** landing hero, signup step 1, Jack Tucker's page, song list, venue display ("SCAN TO HIJACK THE SET").
+- **Rebuilt from the site's own product mock-ups:** live queue, medley card, request card with Accept/Refund, live chat, tonight's total, skins, Your Numbers.
+- **Recreated from policy wording** (couldn't be viewed without a live show or login): the guest tier picker (beat 5) and the payout card and email (beat 13).
+- Real Goa venue names in the site's demo (Elephant and Co, Tito's) are swapped for fictional ones.
 
 ## Claims used (all from hijack.co.in)
-- "Your whole song list, in every pocket in the room"; "no app to download, no account to make, no shouting a request over the PA."
+- "Your whole song list, in every pocket in the room"; "no app to download, no account to make."
 - "Paid requests climb the queue by what's behind them. One table backs a song, the next table answers."
 - "Nothing plays without your yes." Declined requests are "refunded in full, automatically."
-- "A request can carry a dedication or a shout-out — so before you play it, you already know who it's for and why."
-- Live chat "moderated on your terms — mute or timeout anyone who needs it."
-- "Set a target for the show and let the room push toward it together, live on every screen in the venue."
-- Skins: "Clean, Arcade, VHS, Velvet — swap the entire guest experience between shows in one tap."
-- Stream overlay: "Add one link to OBS, Streamlabs or PRISM"; shows "song, artist and dedications only."
-- Analytics: "Most-requested songs, best-earning venues, monthly and lifetime totals — so you can book the rooms that actually pay."
-- Payouts to "the Performer's own linked bank account" (Terms §6) and "a monthly summary of what you earned" (Privacy §7).
-- Setup: "Create your profile and song list → Print your QR table cards → Announce it once per set."
-- "Same set, same venue fee, same hours." · "Ready to lose control on purpose?" · "Start earning at your gigs" · "We'll get you set up personally — accounts aren't self-serve yet."
-- Every ₹ figure on screen comes from the site's demo UI and carries its "illustrative" disclaimer. No earnings promises.
+- Dedications and shout-outs: "you already know who it's for and why."
+- Filters: "Sort by tip, by genre, or by who's been waiting longest."
+- Live chat "moderated on your terms — mute or timeout."
+- "Set a target for the show… live on every screen in the venue."
+- Skins: "Clean, Arcade, VHS, Velvet… in one tap."
+- Stream overlay: "one link… song, artist and dedications only."
+- Analytics: "Most-requested songs, best-earning venues, monthly and lifetime totals."
+- Payouts to "the Performer's own linked bank account"; "a monthly summary of what you earned."
+- "Same set, same venue fee, same hours." · "Ready to lose control on purpose?" · "Start earning at your gigs" · "We'll get you set up personally."
 
 ## Brand (from the live site's computed styles)
 | Token | Hex | Use |
@@ -55,16 +114,10 @@ VO: ~180 words (~70 s at speed ~1.08). Neutral narrator, warm and confident.
 | Text | #EDF2F1 | headlines, UI |
 | Muted | #8A949B | body copy |
 | Teal | #3FBFA0 | kickers, CTA, icons, chart |
-| Violet | #8B5CF6 | HIJACK logo stripes, Accept, guest app |
+| Violet | #8B5CF6 | HIJACK logo stripes, Accept, medley, artist chat |
 | Amber | #E0B558 | step numbers, goal bar |
 
-Fonts (all Google Fonts, used by the site itself, no look-alikes needed):
+Fonts (Google Fonts, the site's own):
 - **Space Grotesk 700**: headlines and kinetic type
 - **Inter**: UI and body
-- **JetBrains Mono**: uppercase kickers, step numbers, ₹ figures
-
-Look: dark, warm-lit venue B-roll (amber bokeh), with UI cards that have thin borders and teal icon tiles, matching the landing page.
-
-## Notes
-- B-roll performers and guests are fictional and AI-generated. Jack Tucker appears only through his real Hijack page (beat 4).
-- Karaoke Mode is "coming soon" on the site, so it's left out.
+- **JetBrains Mono**: kickers, labels, ₹ figures
