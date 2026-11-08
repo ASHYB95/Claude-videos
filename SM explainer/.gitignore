@@ -1,9 +1,9 @@
-footage/*.mp4
-footage/*.mov
-work/
-node_modules/
-renders/
-previews/
 .hyperframes/
 art/raw/
 art/rb/
+footage/*.mov
+footage/*.mp4
+node_modules/
+previews/
+renders/
+work/
