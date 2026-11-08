@@ -42,8 +42,10 @@ svg.ink path{fill:none;stroke:var(--ink);stroke-width:9;stroke-linecap:round;str
 #tear .ed{position:absolute;left:0;right:0;height:60px;background:var(--pur)}
 /* camera: the talking head. #cam is 22px larger than the frame on every side, so its paper
    border + torn edge sit off-screen at full size and show when it shrinks into a "photo". */
-#cam{position:absolute;left:-22px;top:-22px;width:1124px;height:1964px;background:var(--paper);transform-origin:50% 50%}
-#camclip{position:absolute;left:22px;top:22px;width:1080px;height:1920px;overflow:hidden;background:#000}
+#cam{position:absolute;left:-22px;top:-22px;width:1124px;height:1964px;background:rgba(243,240,232,0);transform-origin:50% 50%}
+#camclip{position:absolute;left:22px;top:22px;width:1080px;height:1920px;overflow:hidden;background:#000;clip-path:circle(1200px at 540px 860px)}
+/* picture-in-picture ring: the camera shrinks to a circle centred here (200,1330), r=140 */
+#ring{position:absolute;left:44px;top:1174px;width:312px;height:312px;border-radius:50%;border:12px solid var(--paper);box-shadow:0 0 0 7px var(--pur),9px 14px 0 7px rgba(34,32,36,.25);opacity:0}
 #camin{position:absolute;inset:0;transform-origin:50% 42%}
 #av{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
 /* captions */
@@ -64,11 +66,31 @@ svg.ink path{fill:none;stroke:var(--ink);stroke-width:9;stroke-linecap:round;str
 <!-- paper ground (seen when the camera shrinks into a photo) -->
 <div id="paperL" class="clip" data-layout-allow-overflow data-start="0" data-duration="86.7" data-track-index="0"><div class="bgp" id="bg"></div></div>
 
+<!-- ============ P2 (collage, under the PiP): every platform (3.4 – 8.6) ============ -->
+<div id="p2" class="clip" data-start="3.4" data-duration="5.2" data-track-index="2">
+  <div class="bgp" id="p2bg"></div>
+  <svg class="ink" viewBox="0 0 1080 1920" id="p2str"></svg>
+  <div class="circ" id="p2c" style="position:absolute;left:250px;top:430px;width:580px;height:580px;border-radius:50%;background:var(--pur)"></div>
+  <div class="p sh" id="p2phone" style="left:300px;top:420px;width:480px">
+    <img src="assets/hand_phone.webp" style="width:480px;display:block" alt="">
+    <!-- live "feed" on the yellow screen (rect measured from the cut-out: centre 271.5,381.5 · 303x637 · 3.7deg, image 753 wide) -->
+    <div id="feed" style="position:absolute;left:76.4px;top:40.3px;width:193.4px;height:405.9px;transform:rotate(3.72deg);border-radius:18px;overflow:hidden;background:var(--paper)">
+      <div style="height:38px;background:var(--pur)"></div>
+      <div id="feedg" style="display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:6px"></div>
+    </div>
+  </div>
+  <div id="plats"></div>
+  <div class="p mark" id="p2all" style="left:560px;top:1230px;font-size:66px;line-height:1.05;transform:rotate(-5deg)">(almost)<br>all of them.</div>
+</div>
+
+<div id="tearL" class="clip" data-layout-allow-overflow data-start="0" data-duration="86.7" data-track-index="9"><div id="tear"><div class="ed" id="edT" style="top:-58px"></div><div class="ed" id="edB" style="bottom:-58px"></div></div></div>
+
 <!-- the talking head (A-roll, tightened in scripts/cut.py) -->
 <div id="camL" class="clip" data-layout-allow-overflow data-start="0" data-duration="86.7" data-track-index="1">
   <div id="cam"><div id="camclip" data-layout-allow-overflow><div id="camin">
     <video id="av" class="clip" src="work/aroll.mp4" data-start="0" data-duration="84.5" muted playsinline></video>
   </div></div></div>
+  <div id="ring"></div>
 </div>
 
 <!-- ============ P1: credentials (0 – 3.9) ============ -->
@@ -80,8 +102,6 @@ svg.ink path{fill:none;stroke:var(--ink);stroke-width:9;stroke-linecap:round;str
   <svg class="ink" viewBox="0 0 1080 1920"><path id="p1arr" pathLength="1"/></svg>
 </div>
 
-<!-- ============ P2: every platform (3.8 – 8.1) ============ -->
-<div id="p2" class="clip" data-start="3.8" data-duration="4.4" data-track-index="3"><div id="plats"></div></div>
 
 <!-- ============ P3: "the only content that works" — camera becomes a photo (10.45 – 13.4) ============ -->
 <div id="p3" class="clip" data-start="10.45" data-duration="2.95" data-track-index="4">
@@ -98,7 +118,6 @@ svg.ink path{fill:none;stroke:var(--ink);stroke-width:9;stroke-linecap:round;str
 <!-- captions -->
 <div id="capL" class="clip" data-start="0" data-duration="86.7" data-track-index="10"><div id="caps"></div></div>
 
-<div id="tearL" class="clip" data-layout-allow-overflow data-start="0" data-duration="86.7" data-track-index="11"><div id="tear"><div class="ed" id="edT" style="top:-58px"></div><div class="ed" id="edB" style="bottom:-58px"></div></div></div>
 <div id="grainL" class="clip" data-start="0" data-duration="86.7" data-track-index="12"><div id="grain"></div></div>
 
 <audio id="vo" src="work/voice.wav" data-start="0" data-duration="84.5" data-track-index="20"></audio>
@@ -128,9 +147,12 @@ const P = (id, d) => $(id).setAttribute('d', d);
 P('#p1arr', curve(640, 260, 545, 300, 50));
 
 /* ---- P2 platform strips (names only, no logos) ---- */
-const PL = [['Instagram', 60, 140, -6, 'var(--paper)', 'var(--ink)'], ['YouTube', 600, 110, 5, 'var(--yel)', 'var(--ink)'], ['LinkedIn', 290, 290, -2, 'var(--lil)', 'var(--ink)'],
-  ['Facebook', 690, 300, 7, 'var(--paper)', 'var(--ink)'], ['X', 40, 520, -9, 'var(--pur)', 'var(--paper)'], ['Snapchat', 740, 1400, 6, 'var(--yel)', 'var(--ink)'], ['Pinterest', 40, 1380, -5, 'var(--lil)', 'var(--ink)']];
-$('#plats').innerHTML = PL.map((p, i) => `<div class="p sh" id="pl${i}" style="left:${p[1]}px;top:${p[2]}px"><div class="strip plat" style="position:relative;background:${p[4]};color:${p[5]};transform:rotate(${p[3]}deg)">${p[0]}</div><div class="pin" style="left:50%;top:6px"></div></div>`).join('');
+const PL = [['Instagram', 70, 190, -6, 'var(--paper)', 'var(--ink)'], ['YouTube', 650, 160, 5, 'var(--yel)', 'var(--ink)'], ['LinkedIn', 50, 600, -4, 'var(--lil)', 'var(--ink)'],
+  ['Facebook', 715, 560, 6, 'var(--paper)', 'var(--ink)'], ['X', 120, 960, -8, 'var(--pur)', 'var(--paper)'], ['Snapchat', 715, 980, 5, 'var(--yel)', 'var(--ink)'], ['Pinterest', 470, 1110, -3, 'var(--lil)', 'var(--ink)']];
+$('#plats').innerHTML = PL.map((p, i) => `<div class="p sh" id="pl${i}" style="left:${p[1]}px;top:${p[2]}px"><div class="strip plat" style="position:relative;background:${p[4]};color:${p[5]};transform:rotate(${p[3]}deg);font-size:54px">${p[0]}</div><div class="pin" style="left:50%;top:6px"></div></div>`).join('');
+const FEED = ['face_smile', 'bulb', 'face_laugh', 'ball', 'hob', 'bauble', 'face_empathy', 'diya'];
+$('#feedg').innerHTML = FEED.map((f, i) => `<div class="ft" id="ft${i}" style="height:84px;background:#e2ddd1 url(assets/${f}.webp) center/cover"></div>`).join('');
+$('#p2str').innerHTML = PL.map((_, i) => `<path id="ps${i}" pathLength="1" style="stroke-width:5;stroke:#222024"/>`).join('');
 
 /* ---- P3 teaser cards ---- */
 $('#p3cards').innerHTML = ['01', '02', '03'].map((n, i) => `<div class="p sh" id="cd${i}" style="left:${70 + i * 330}px;top:1600px"><div class="card" style="position:relative;transform:rotate(${[-6, 3, -2][i]}deg);${i === 0 ? '' : ''}">${n}</div></div>`).join('');
@@ -171,6 +193,30 @@ CAPS.forEach((c, i) => {
   });
 });
 
+/* ---------- camera modes: full screen / picture-in-picture circle / taped photo ----------
+   Circle centre in video space (540,860) = his face; in PiP it lands at screen (200,1330), r = 467*.3 = 140. */
+const CS = {
+  face:  { cam: { scale: 1,   x: 0,    y: 0,   rotation: 0,    backgroundColor: 'rgba(243,240,232,0)', boxShadow: '0px 0px 0px 0px rgba(34,32,36,0)' }, r: 1200, ring: 0 },
+  pip:   { cam: { scale: .3,  x: -340, y: 400, rotation: 0,    backgroundColor: 'rgba(243,240,232,0)', boxShadow: '0px 0px 0px 0px rgba(34,32,36,0)' }, r: 467,  ring: 1 },
+  photo: { cam: { scale: .56, x: 0,    y: 290, rotation: -2.5, backgroundColor: 'rgba(243,240,232,1)', boxShadow: '14px 22px 0px 0px rgba(34,32,36,.25)' }, r: 1200, ring: 0 },
+  gone:  { cam: { scale: 0,   x: -340, y: 400, rotation: 0,    backgroundColor: 'rgba(243,240,232,0)', boxShadow: '0px 0px 0px 0px rgba(34,32,36,0)' }, r: 467,  ring: 0 },
+};
+tl.set('#camclip', { clipPath: 'circle(1200px at 540px 860px)' }, 0);
+tl.set('#cam', CS.face.cam, 0);
+let prevMode = 'face';
+const camTo = (mode, t, d = .62) => {
+  const m = CS[mode], from = prevMode; prevMode = mode;
+  if (from === 'pip') tl.to('#ring', { opacity: 0, scale: 1.25, duration: .16, ease: 'power2.in' }, t);
+  if (mode === 'gone') { tl.to('#ring', { opacity: 0, scale: 0, duration: .4, ease: 'back.in(2)' }, t); tl.to('#cam', { scale: 0, duration: .4, ease: 'back.in(2)' }, t); return; }
+  tl.to('#cam', { ...m.cam, duration: d, ease: E }, t);
+  tl.to('#camclip', { clipPath: `circle(${m.r}px at 540px 860px)`, duration: d, ease: E }, t);
+  if (m.ring) tl.fromTo('#ring', { opacity: 0, scale: 1.35 }, { opacity: 1, scale: 1, duration: .3, ease: 'back.out(2)', immediateRender: false }, t + d - .2);
+};
+// gentle bob while in PiP so the circle feels alive
+const MODES = [[3.78, 'pip'], [7.82, 'face'], [10.4, 'photo'], [13.0, 'pip'], [31.4, 'face'], [33.5, 'pip'], [38.3, 'face'], [42.2, 'pip'],
+  [54.1, 'face'], [57.55, 'pip'], [73.8, 'face'], [76.25, 'pip'], [81.95, 'face'], [84.3, 'gone']];
+MODES.forEach(([t, m]) => camTo(m, t));
+
 /* P1: credentials */
 pop('#p1id', .08, { r: 0, y: -60, d: .5 });
 outUp('#p1id', 1.7, .3);
@@ -179,26 +225,34 @@ const odo = { v: 0 }, fmt = v => Math.round(v).toLocaleString('en-US');
 tl.to(odo, { v: 1000, duration: .45, ease: 'power2.out', onUpdate: () => { $('#odoN').textContent = fmt(odo.v); } }, 1.92);
 tl.to(odo, { v: 1500, duration: .7, ease: 'power2.inOut', onUpdate: () => { $('#odoN').textContent = fmt(odo.v); } }, 2.6);
 tl.fromTo('#p1bar', { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: .3, ease: 'back.out(2)' }, 3.2);
-scribble('#p1yrs', 3.3, .4); draw('#p1arr', 3.6, .3);
-outUp(['#p1odo', '#p1bar', '#p1yrs', '#p1arr'], 4.3, .35);
+scribble('#p1yrs', 2.7, .4); draw('#p1arr', 3.0, .3);
+outUp(['#p1odo', '#p1bar', '#p1yrs', '#p1arr'], 3.78, .3);
 
 /* P2: every platform */
-PL.forEach((p, i) => pop(`#pl${i}`, 4.6 + i * .2, { r: 0, y: i < 5 ? -80 : 80, s: .6, d: .45, e: 'back.out(2.4)' }));
-tl.to('#plats', { scale: 1.04, duration: 3, ease: 'none', transformOrigin: '540px 900px' }, 4.6);
-tl.to(PL.map((_, i) => `#pl${i}`), { y: i => i < 5 ? -900 : 900, rotation: i => (i % 2 ? 20 : -20), duration: .4, ease: 'power3.in', stagger: .025 }, 7.72);
+push('#p2bg', 3.4, 5.2, 1.0, 1.07);
+tl.fromTo('#p2c', { scale: 0 }, { scale: 1, duration: .7, ease: 'back.out(1.4)' }, 3.75);
+tl.fromTo('#p2phone', { y: 1100, rotation: 8 }, { y: 0, rotation: 0, duration: .8, ease: 'expo.out' }, 3.85);
+PL.forEach((p, i) => { pop(`#pl${i}`, 4.62 + i * .21, { r: 0, y: -70, s: .6, d: .42, e: 'back.out(2.4)' }); draw(`#ps${i}`, 4.75 + i * .21, .35); });
+scribble('#p2all', 6.9, .55);
+tl.fromTo('.ft', { opacity: 0, scale: .6 }, { opacity: 1, scale: 1, duration: .25, stagger: .12, ease: 'back.out(2)' }, 4.5);
+tl.to('#feedg', { y: -150, duration: 3.2, ease: 'power1.inOut' }, 5.6);
+tl.to(['#p2phone', '#p2c'], { scale: 1.05, duration: 3.4, ease: 'none' }, 4.7);
 
 /* P3: the camera shrinks into a taped photo; headline builds as it's said */
 push('#bg', 10.45, 3.0, 1.0, 1.04);
-tl.to('#cam', { scale: .56, y: 290, rotation: -2.5, duration: .6, ease: E }, 10.45);
 tl.to('#camin', { scale: 1.0, duration: .6, ease: E }, 10.45);
-tl.fromTo('#cam', { boxShadow: '0 0 0 rgba(0,0,0,0)' }, { boxShadow: '14px 22px 0 rgba(34,32,36,.25)', duration: .4 }, 10.7);
 tl.fromTo(['#p3t1', '#p3t2'], { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: .2, stagger: .08 }, 11.0);
 tl.fromTo('#p3l1', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: .45 }, 10.95);
 tl.fromTo('#p3l2', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: .45 }, 11.75);
 hl('#p3hl', 12.0, .4);
 tl.fromTo('#p3l3', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: .45 }, 12.4);
 [0, 1, 2].forEach(i => pop(`#cd${i}`, 12.75 + i * .12, { r: 0, y: 260, d: .5 }));
-tl.to('#cam', { scale: .58, duration: 2.2, ease: 'none' }, 11.05);
+tl.to('#cam', { scale: .58, duration: 1.9, ease: 'none' }, 11.05);
+
+const layoutInk = () => {
+  PL.forEach((p, i) => { const el = $(`#pl${i}`), x = el.offsetLeft + el.offsetWidth / 2, y = el.offsetTop + 6; P(`#ps${i}`, curve(x, y, 540, 760, (i % 2 ? -60 : 60), false)); });
+};
+layoutInk(); if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutInk);
 
 window.__timelines = window.__timelines || {};
 window.__timelines['main'] = tl;
