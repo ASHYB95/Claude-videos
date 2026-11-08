@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>The Only Content That Works</title>
+<script src="vendor/gsap.min.js"></script>
+<script src="data.js"></script>
+<style>
+@font-face{font-family:Play;font-weight:900;src:url(fonts/playfair-display-latin-900-normal.woff2);font-display:block}
+@font-face{font-family:Play;font-weight:900;font-style:italic;src:url(fonts/playfair-display-latin-900-italic.woff2);font-display:block}
+@font-face{font-family:Mont;font-weight:900;src:url(fonts/montserrat-latin-900-normal.woff2);font-display:block}
+@font-face{font-family:Mont;font-weight:800;src:url(fonts/montserrat-latin-800-normal.woff2);font-display:block}
+@font-face{font-family:Mont;font-weight:700;src:url(fonts/montserrat-latin-700-normal.woff2);font-display:block}
+@font-face{font-family:Mark;src:url(fonts/permanent-marker-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:Hand;font-weight:700;src:url(fonts/caveat-latin-700-normal.woff2);font-display:block}
+@font-face{font-family:Type;font-weight:400;src:url(fonts/courier-prime-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:Type;font-weight:700;src:url(fonts/courier-prime-latin-700-normal.woff2);font-display:block}
+/* Purple Seed palette (purpleseed.in): purple #6c2ea4, warm grey #e7e3d7, yellow #fec42d, navy #093a53 */
+:root{--ink:#222024;--paper:#f3f0e8;--grey:#e7e3d7;--pur:#6c2ea4;--yel:#fec42d;--lil:#cdb7e6;--navy:#093a53}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--grey)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--grey);color:var(--ink)}
+.clip{position:absolute;inset:0;overflow:hidden}
+.bgp{position:absolute;left:-60px;top:-60px;width:1200px;height:2040px;background:url(assets/paper.jpg) center/cover}
+.p{position:absolute;display:block}
+.serif{font-family:Play;font-weight:900;letter-spacing:-.02em;line-height:.98}
+.ital{font-family:Play;font-style:italic;font-weight:900}
+.bar{display:inline-block;background:var(--pur);color:var(--paper);font:900 54px/1 Mont;letter-spacing:.03em;text-transform:uppercase;padding:16px 24px 14px}
+.mark{font-family:Mark;color:var(--ink);line-height:1}
+.type{font-family:Type;font-weight:700;color:var(--ink)}
+.strip{position:absolute;background:var(--paper);padding:18px 30px;color:var(--ink)}
+.note{position:absolute;background:var(--paper);padding:26px 32px 22px;font:700 46px/1.08 Hand;color:var(--ink)}
+.sh{filter:drop-shadow(5px 9px 0 rgba(34,32,36,.22))}
+.tape{position:absolute;width:150px;height:46px;background:rgba(205,183,230,.7);mix-blend-mode:multiply}
+.pin{position:absolute;width:28px;height:28px;margin:-14px 0 0 -14px;border-radius:50%;background:var(--pur);box-shadow:2px 3px 0 rgba(34,32,36,.35),inset -4px -4px 0 rgba(0,0,0,.2)}
+svg.ink{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;pointer-events:none}
+svg.ink path{fill:none;stroke:var(--ink);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.hlw{background-image:linear-gradient(var(--yel),var(--yel));background-repeat:no-repeat;background-position:0 90%;background-size:0% 46%;padding:0 .06em}
+#grain{position:absolute;inset:-200px;background:url(assets/grain.png);opacity:.08;mix-blend-mode:multiply;pointer-events:none}
+#tear{position:absolute;left:-40px;top:0;width:1160px;height:2700px;background:var(--pur);transform:translateY(2000px)}
+#tear .ed{position:absolute;left:0;right:0;height:60px;background:var(--pur)}
+/* camera: the talking head. #cam is 22px larger than the frame on every side, so its paper
+   border + torn edge sit off-screen at full size and show when it shrinks into a "photo". */
+#cam{position:absolute;left:-22px;top:-22px;width:1124px;height:1964px;background:var(--paper);transform-origin:50% 50%}
+#camclip{position:absolute;left:22px;top:22px;width:1080px;height:1920px;overflow:hidden;background:#000}
+#camin{position:absolute;inset:0;transform-origin:50% 42%}
+#av{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
+/* captions */
+#caps{position:absolute;left:0;right:0;top:0;height:1920px}
+.cap{position:absolute;left:50%;top:1590px;white-space:nowrap;opacity:0}
+.cap .in{display:inline-block;background:var(--paper);padding:18px 30px 16px;font:800 60px/1.05 Mont;letter-spacing:-.01em;color:var(--ink)}
+.cap .w{display:inline-block;padding:0 .1em;border-radius:3px}
+/* plate 1/2 */
+.odo{font:700 150px/1 Type;letter-spacing:-.04em}
+.plat{font:800 46px/1 Mont;letter-spacing:-.01em;padding:18px 28px 16px}
+/* frame mode cards */
+.card{position:absolute;width:250px;height:190px;background:var(--paper);display:flex;align-items:center;justify-content:center;font:700 92px/1 Type}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="86.7" data-width="1080" data-height="1920" data-fps="30" data-motion-blur="on" data-motion-blur-shutter="160">
+
+<!-- paper ground (seen when the camera shrinks into a photo) -->
+<div id="paperL" class="clip" data-layout-allow-overflow data-start="0" data-duration="86.7" data-track-index="0"><div class="bgp" id="bg"></div></div>
+
+<!-- the talking head (A-roll, tightened in scripts/cut.py) -->
+<div id="camL" class="clip" data-layout-allow-overflow data-start="0" data-duration="86.7" data-track-index="1">
+  <div id="cam"><div id="camclip" data-layout-allow-overflow><div id="camin">
+    <video id="av" class="clip" src="work/aroll.mp4" data-start="0" data-duration="84.5" muted playsinline></video>
+  </div></div></div>
+</div>
+
+<!-- ============ P1: credentials (0 – 3.9) ============ -->
+<div id="p1" class="clip" data-start="0" data-duration="4.8" data-track-index="2">
+  <div class="p sh" id="p1id" style="left:60px;top:150px"><div class="strip type" id="p1idin" style="position:relative;font-size:46px;padding:20px 32px;transform:rotate(-3deg)">Founder, Purple Seed</div><div class="tape" style="left:-30px;top:-16px;transform:rotate(-28deg)"></div></div>
+  <div class="p sh" id="p1odo" style="left:70px;top:120px"><div class="strip" style="position:relative;padding:22px 40px 14px;border:7px solid var(--ink);transform:rotate(-3deg)"><span class="odo" id="odoN">0</span></div></div>
+  <div class="p" id="p1bar" style="left:120px;top:322px;transform:rotate(-3deg)"><span class="bar" style="font-size:58px">brands</span></div>
+  <div class="p mark" id="p1yrs" style="left:600px;top:150px;font-size:76px;transform:rotate(-7deg)">in 9 years!</div>
+  <svg class="ink" viewBox="0 0 1080 1920"><path id="p1arr" pathLength="1"/></svg>
+</div>
+
+<!-- ============ P2: every platform (3.8 – 8.1) ============ -->
+<div id="p2" class="clip" data-start="3.8" data-duration="4.4" data-track-index="3"><div id="plats"></div></div>
+
+<!-- ============ P3: "the only content that works" — camera becomes a photo (10.45 – 13.4) ============ -->
+<div id="p3" class="clip" data-start="10.45" data-duration="2.95" data-track-index="4">
+  <div class="p serif" id="p3t" style="left:62px;top:130px;font-size:128px">
+    <div id="p3l1">The only content</div>
+    <div id="p3l2">that <span class="ital"><span class="hlw" id="p3hl">works</span></span></div>
+    <div id="p3l3" style="font-size:104px">on social media.</div>
+  </div>
+  <div id="p3cards"></div>
+  <div class="tape" id="p3t1" style="left:170px;top:700px;transform:rotate(-34deg)"></div>
+  <div class="tape" id="p3t2" style="left:770px;top:700px;transform:rotate(30deg)"></div>
+</div>
+
+<!-- captions -->
+<div id="capL" class="clip" data-start="0" data-duration="86.7" data-track-index="10"><div id="caps"></div></div>
+
+<div id="tearL" class="clip" data-layout-allow-overflow data-start="0" data-duration="86.7" data-track-index="11"><div id="tear"><div class="ed" id="edT" style="top:-58px"></div><div class="ed" id="edB" style="bottom:-58px"></div></div></div>
+<div id="grainL" class="clip" data-start="0" data-duration="86.7" data-track-index="12"><div id="grain"></div></div>
+
+<audio id="vo" src="work/voice.wav" data-start="0" data-duration="84.5" data-track-index="20"></audio>
+</div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+let seed = 9; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const R = (a, b) => a + (b - a) * rnd();
+const END = 86.7;
+
+/* ---- torn paper edges (percentage-based, deterministic) ---- */
+function torn(el, amp = 10, n = 34) {
+  const pts = [], j = a => R(0, a).toFixed(1);
+  for (let i = 0; i <= n; i++) pts.push(`${(i / n * 100).toFixed(2)}% ${j(amp)}px`);
+  for (let i = 0; i <= 12; i++) pts.push(`calc(100% - ${j(amp * .6)}px) ${(i / 12 * 100).toFixed(2)}%`);
+  for (let i = n; i >= 0; i--) pts.push(`${(i / n * 100).toFixed(2)}% calc(100% - ${j(amp)}px)`);
+  for (let i = 12; i >= 0; i--) pts.push(`${j(amp * .6)}px ${(i / 12 * 100).toFixed(2)}%`);
+  el.style.clipPath = `polygon(${pts.join(',')})`;
+}
+function edge(el, top) { const pts = []; for (let x = 0; x <= 1160; x += 26) pts.push(`${x}px ${top ? 60 - R(0, 48) : R(0, 48)}px`); el.style.clipPath = top ? `polygon(0 60px,${pts.join(',')},1160px 60px)` : `polygon(0 0,${pts.join(',')},1160px 0)`; }
+edge($('#edT'), true); edge($('#edB'), false);
+
+/* ---- ink helpers ---- */
+const curve = (x1, y1, x2, y2, bend = 120, head = true) => { const mx = (x1 + x2) / 2 + bend, my = (y1 + y2) / 2 - bend * .5; let d = `M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}`; if (head) { const a = Math.atan2(y2 - my, x2 - mx), L = 40; d += ` M${x2 - L * Math.cos(a - .45)} ${y2 - L * Math.sin(a - .45)} L${x2} ${y2} L${x2 - L * Math.cos(a + .45)} ${y2 - L * Math.sin(a + .45)}`; } return d; };
+const P = (id, d) => $(id).setAttribute('d', d);
+P('#p1arr', curve(640, 260, 545, 300, 50));
+
+/* ---- P2 platform strips (names only, no logos) ---- */
+const PL = [['Instagram', 60, 140, -6, 'var(--paper)', 'var(--ink)'], ['YouTube', 600, 110, 5, 'var(--yel)', 'var(--ink)'], ['LinkedIn', 290, 290, -2, 'var(--lil)', 'var(--ink)'],
+  ['Facebook', 690, 300, 7, 'var(--paper)', 'var(--ink)'], ['X', 40, 520, -9, 'var(--pur)', 'var(--paper)'], ['Snapchat', 740, 1400, 6, 'var(--yel)', 'var(--ink)'], ['Pinterest', 40, 1380, -5, 'var(--lil)', 'var(--ink)']];
+$('#plats').innerHTML = PL.map((p, i) => `<div class="p sh" id="pl${i}" style="left:${p[1]}px;top:${p[2]}px"><div class="strip plat" style="position:relative;background:${p[4]};color:${p[5]};transform:rotate(${p[3]}deg)">${p[0]}</div><div class="pin" style="left:50%;top:6px"></div></div>`).join('');
+
+/* ---- P3 teaser cards ---- */
+$('#p3cards').innerHTML = ['01', '02', '03'].map((n, i) => `<div class="p sh" id="cd${i}" style="left:${70 + i * 330}px;top:1600px"><div class="card" style="position:relative;transform:rotate(${[-6, 3, -2][i]}deg);${i === 0 ? '' : ''}">${n}</div></div>`).join('');
+
+/* ---- captions ---- */
+// hidden while a plate already spells out the line
+const CAP_HIDE = [[10.5, 13.25]];
+const hidden = t => CAP_HIDE.some(([a, b]) => t >= a && t < b);
+$('#caps').innerHTML = CAPS.map((c, i) => `<div class="cap sh" id="c${i}"><div class="in">${c.w.map((w, k) => `<span class="w" id="c${i}w${k}">${w[0]}</span>`).join(' ')}</div></div>`).join('');
+
+/* ---------- timeline ---------- */
+const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
+const E = 'expo.inOut';
+const pop = (sel, t, o = {}) => tl.fromTo(sel, { opacity: 0, y: o.y ?? 90, scale: o.s ?? .82, rotation: (o.r ?? 0) - 8 }, { opacity: 1, y: 0, scale: 1, rotation: o.r ?? 0, duration: o.d ?? .6, ease: o.e ?? 'back.out(1.6)' }, t);
+const slam = (sel, t, r = 0) => tl.fromTo(sel, { opacity: 0, scale: 1.9, rotation: r - 10 }, { opacity: 1, scale: 1, rotation: r, duration: .22, ease: 'power4.in' }, t);
+const draw = (sel, t, d = .5) => tl.fromTo(sel, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: d, ease: 'power2.inOut' }, t);
+const hl = (sel, t, d = .45) => tl.fromTo(sel, { backgroundSize: '0% 46%' }, { backgroundSize: '100% 46%', duration: d, ease: 'power2.inOut' }, t);
+const scribble = (sel, t, d = .5) => tl.fromTo(sel, { opacity: 0, clipPath: 'inset(0 100% 0 0)' }, { opacity: 1, clipPath: 'inset(0 0% 0 0)', duration: d, ease: 'power1.inOut' }, t);
+const push = (sel, t, d, s0 = 1, s1 = 1.07) => tl.fromTo(sel, { scale: s0 }, { scale: s1, duration: d, ease: 'none' }, t);
+const outUp = (sel, t, d = .35) => tl.to(sel, { y: -700, rotation: '+=12', opacity: 0, duration: d, ease: 'power3.in', stagger: .03 }, t);
+const tearAt = (T, col = '#6c2ea4') => { tl.set('#tear, #edT, #edB', { backgroundColor: col }, T - .4); tl.fromTo('#tear', { y: 2000 }, { y: -2760, duration: .8, ease: 'power2.inOut', immediateRender: false }, T - .4); };
+$$('.note, .strip, .card, .cap .in').forEach(n => torn(n, 8));
+
+tl.to('#grain', { x: 180, y: 140, duration: END, ease: `steps(${Math.round(END * 12)})` }, 0);
+
+/* camera: punch-in on every jump cut (alternating 1.0 / 1.12) so cuts read as edits, not glitches */
+CUTS.forEach((t, k) => tl.set('#camin', { scale: k % 2 ? 1.12 : 1.0 }, t));
+
+/* captions */
+CAPS.forEach((c, i) => {
+  if (hidden(c.t0)) return;
+  const r = i % 2 ? 1.6 : -1.8;
+  tl.fromTo(`#c${i}`, { opacity: 0, xPercent: -50, scale: .78, rotation: r - 4 }, { opacity: 1, xPercent: -50, scale: 1, rotation: r, duration: .16, ease: 'back.out(2.2)' }, c.t0);
+  tl.set(`#c${i}`, { opacity: 0 }, Math.min(c.t1, ...CAP_HIDE.map(h => h[0]).filter(h => h > c.t0)));
+  c.w.forEach((w, k) => {
+    tl.set(`#c${i}w${k}`, { backgroundColor: '#6c2ea4', color: '#f3f0e8' }, Math.max(c.t0, w[1] - .02));
+    if (k < c.w.length - 1) tl.set(`#c${i}w${k}`, { backgroundColor: 'rgba(0,0,0,0)', color: '#222024' }, c.w[k + 1][1] - .02);
+  });
+});
+
+/* P1: credentials */
+pop('#p1id', .08, { r: 0, y: -60, d: .5 });
+outUp('#p1id', 1.7, .3);
+slam('#p1odo', 1.86, 0);
+const odo = { v: 0 }, fmt = v => Math.round(v).toLocaleString('en-US');
+tl.to(odo, { v: 1000, duration: .45, ease: 'power2.out', onUpdate: () => { $('#odoN').textContent = fmt(odo.v); } }, 1.92);
+tl.to(odo, { v: 1500, duration: .7, ease: 'power2.inOut', onUpdate: () => { $('#odoN').textContent = fmt(odo.v); } }, 2.6);
+tl.fromTo('#p1bar', { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: .3, ease: 'back.out(2)' }, 3.2);
+scribble('#p1yrs', 3.3, .4); draw('#p1arr', 3.6, .3);
+outUp(['#p1odo', '#p1bar', '#p1yrs', '#p1arr'], 4.3, .35);
+
+/* P2: every platform */
+PL.forEach((p, i) => pop(`#pl${i}`, 4.6 + i * .2, { r: 0, y: i < 5 ? -80 : 80, s: .6, d: .45, e: 'back.out(2.4)' }));
+tl.to('#plats', { scale: 1.04, duration: 3, ease: 'none', transformOrigin: '540px 900px' }, 4.6);
+tl.to(PL.map((_, i) => `#pl${i}`), { y: i => i < 5 ? -900 : 900, rotation: i => (i % 2 ? 20 : -20), duration: .4, ease: 'power3.in', stagger: .025 }, 7.72);
+
+/* P3: the camera shrinks into a taped photo; headline builds as it's said */
+push('#bg', 10.45, 3.0, 1.0, 1.04);
+tl.to('#cam', { scale: .56, y: 290, rotation: -2.5, duration: .6, ease: E }, 10.45);
+tl.to('#camin', { scale: 1.0, duration: .6, ease: E }, 10.45);
+tl.fromTo('#cam', { boxShadow: '0 0 0 rgba(0,0,0,0)' }, { boxShadow: '14px 22px 0 rgba(34,32,36,.25)', duration: .4 }, 10.7);
+tl.fromTo(['#p3t1', '#p3t2'], { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: .2, stagger: .08 }, 11.0);
+tl.fromTo('#p3l1', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: .45 }, 10.95);
+tl.fromTo('#p3l2', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: .45 }, 11.75);
+hl('#p3hl', 12.0, .4);
+tl.fromTo('#p3l3', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: .45 }, 12.4);
+[0, 1, 2].forEach(i => pop(`#cd${i}`, 12.75 + i * .12, { r: 0, y: 260, d: .5 }));
+tl.to('#cam', { scale: .58, duration: 2.2, ease: 'none' }, 11.05);
+
+window.__timelines = window.__timelines || {};
+window.__timelines['main'] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
