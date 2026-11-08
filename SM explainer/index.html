@@ -275,7 +275,7 @@ i.ln{display:block;height:13px;background:#bdb6a8}
 <div id="tearL" class="clip" data-layout-allow-overflow data-start="0" data-duration="86.7" data-track-index="9"><div id="tear"><div class="ed" id="edT" style="top:-58px"></div><div class="ed" id="edB" style="bottom:-58px"></div></div></div>
 
 <!-- the talking head (A-roll, tightened in scripts/cut.py) -->
-<div id="camL" class="clip" data-layout-allow-overflow data-start="0" data-duration="86.7" data-track-index="1">
+<div id="camL" data-layout-allow-overflow style="position:absolute;inset:0;overflow:hidden">
   <div id="cam"><div id="camclip" data-layout-allow-overflow><div id="camin">
     <video id="av" class="clip" src="work/aroll_hold.mp4" data-start="0" data-duration="86.7" muted playsinline></video>
   </div></div></div>
@@ -340,7 +340,7 @@ i.ln{display:block;height:13px;background:#bdb6a8}
 
 <div id="grainL" class="clip" data-start="0" data-duration="86.7" data-track-index="12"><div id="grain"></div></div>
 
-<audio id="vo" src="work/voice.wav" data-start="0" data-duration="84.5" data-track-index="20"></audio>
+<audio id="mix" src="audio/mix.wav" data-start="0" data-duration="86.7" data-track-index="20"></audio>
 </div>
 
 <script>

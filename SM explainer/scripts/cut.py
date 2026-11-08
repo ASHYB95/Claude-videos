@@ -82,4 +82,13 @@ subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', raw, '-af',
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', os.path.join(W, 'v.txt'),
                 '-i', os.path.join(ROOT, 'work', 'voice.wav'), '-map', '0:v', '-map', '1:a', '-c:v', 'copy',
                 '-c:a', 'aac', '-b:a', '256k', '-movflags', '+faststart', os.path.join(ROOT, 'work', 'aroll.mp4')], check=True)
-print('wrote work/aroll.mp4, work/voice.wav')
+# the composition uses this one: last frame held 2.3 s (the PiP shrinks away over the end card),
+# keyframe every second so HyperFrames seeks fast
+subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', os.path.join(ROOT, 'work', 'aroll.mp4'),
+                '-vf', 'tpad=stop_mode=clone:stop_duration=2.3', '-c:v', 'libx264', '-preset', 'medium', '-crf', '17',
+                '-g', '30', '-keyint_min', '30', '-pix_fmt', 'yuv420p', '-c:a', 'copy', '-movflags', '+faststart',
+                os.path.join(ROOT, 'work', 'aroll_hold.mp4')], check=True)
+# keep only what the render needs inside the project (HyperFrames copies the whole folder into its render plan)
+import shutil
+shutil.rmtree(W, ignore_errors=True); os.remove(os.path.join(ROOT, 'work', 'aroll.mp4'))
+print('wrote work/aroll_hold.mp4, work/voice.wav')
