@@ -1,0 +1,9 @@
+The Prince Who Walked Away — how Siddhartha became the Buddha (story-led collage, ~65 s, 9:16)
+
+Story: the traditional account of Siddhartha Gautama's life. Channa's and Siddhartha's lines are paraphrased from it, not exact quotes.
+Art: stills generated with Higgsfield (Nano Banana Pro), backgrounds removed with Higgsfield; duotone applied in art/duotone.py.
+Narration: ElevenLabs voice "George"; Channa: ElevenLabs "Bill"; Siddhartha: ElevenLabs "Eric" (eleven_multilingual_v2).
+Sound effects: ElevenLabs Sound Effects (audio/sfx.py), incl. the paper set from thirty-one-years.
+Music: original piano, strings and tanpura-like drone, synthesised in audio/score.py (no samples).
+Fonts (SIL OFL 1.1 / Apache 2.0): Playfair Display, Figtree, Permanent Marker, Caveat, Courier Prime.
+Animation: GSAP 3.15; built and rendered with HyperFrames 0.9.20 (motion blur on).
