@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>The Prince Who Walked Away</title>
+<script src="vendor/gsap.min.js"></script>
+<style>
+@font-face{font-family:Play;font-weight:900;src:url(fonts/playfair-display-latin-900-normal.woff2);font-display:block}
+@font-face{font-family:Play;font-weight:900;font-style:italic;src:url(fonts/playfair-display-latin-900-italic.woff2);font-display:block}
+@font-face{font-family:Play;font-weight:800;font-style:italic;src:url(fonts/playfair-display-latin-800-italic.woff2);font-display:block}
+@font-face{font-family:Fig;font-weight:900;src:url(fonts/figtree-latin-900-normal.woff2);font-display:block}
+@font-face{font-family:Fig;font-weight:800;src:url(fonts/figtree-latin-800-normal.woff2);font-display:block}
+@font-face{font-family:Mark;src:url(fonts/permanent-marker-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:Hand;font-weight:700;src:url(fonts/caveat-latin-700-normal.woff2);font-display:block}
+@font-face{font-family:Type;font-weight:700;src:url(fonts/courier-prime-latin-700-normal.woff2);font-display:block}
+:root{--ink:#2f2f32;--paper:#fffcf8;--yel:#f9b910;--pink:#f0abd1;--mint:#bcefe1;--lilac:#cfb0f0;--orange:#fc9e59;--sky:#a3def5}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--paper)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--paper);color:var(--ink)}
+.clip{position:absolute;inset:0;overflow:hidden}
+.bgn{position:absolute;left:-60px;top:-60px;width:1200px;height:2040px;background:url(assets/newsbg.jpg) center/cover}
+.p{position:absolute;display:block}
+.cut{position:absolute;filter:drop-shadow(6px 10px 0 rgba(47,47,50,.18))}
+.circ{position:absolute;border-radius:50%}
+.serif{font-family:Play;font-weight:900;letter-spacing:-.02em;line-height:.95}
+.ital{font-family:Play;font-style:italic;font-weight:900}
+.bar{display:inline-block;background:var(--yel);font:900 54px/1 Fig;letter-spacing:.02em;text-transform:uppercase;padding:14px 22px 12px}
+.mark{font-family:Mark;color:var(--ink);line-height:1}
+.type{font-family:Type;font-weight:700;color:var(--ink)}
+.strip{position:absolute;background:var(--paper);padding:18px 30px;box-shadow:4px 8px 0 rgba(47,47,50,.15)}
+.stamp{position:absolute;font-family:Type;font-weight:700;color:var(--ink);background:var(--paper);border:6px solid var(--ink);padding:8px 24px;letter-spacing:.04em;box-shadow:4px 8px 0 rgba(47,47,50,.15)}
+.note{position:absolute;background:var(--paper);padding:30px 34px 26px;box-shadow:5px 10px 0 rgba(47,47,50,.16);font:700 46px/1.08 Hand;color:var(--ink)}
+.tape{position:absolute;width:150px;height:46px;background:rgba(252,158,89,.55);mix-blend-mode:multiply}
+.pin{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--yel);box-shadow:2px 3px 0 rgba(47,47,50,.35),inset -4px -4px 0 rgba(47,47,50,.18)}
+.grid{position:absolute;background-color:var(--paper);background-image:linear-gradient(rgba(47,47,50,.12) 2px,transparent 2px),linear-gradient(90deg,rgba(47,47,50,.12) 2px,transparent 2px);background-size:60px 60px}
+.night{position:absolute;inset:0;background:var(--ink)}
+.night .bgn{opacity:.13;mix-blend-mode:screen}
+svg.ink{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:visible;pointer-events:none}
+svg.ink path{fill:none;stroke:var(--ink);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+svg.ink.y path{stroke:var(--yel)}
+.hlw{background-image:linear-gradient(var(--yel),var(--yel));background-repeat:no-repeat;background-position:0 88%;background-size:0% 42%;padding:0 .08em}
+#grain{position:absolute;inset:-200px;background:url(assets/grain.png);opacity:.09;mix-blend-mode:multiply;pointer-events:none}
+#tear{position:absolute;left:-40px;top:0;width:1160px;height:2700px;background:var(--paper);transform:translateY(2000px)}
+#tear .ed{position:absolute;left:0;right:0;height:60px;background:var(--paper)}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="64.6" data-width="1080" data-height="1920" data-motion-blur="on" data-motion-blur-shutter="160">
+
+<!-- ============ S1: This is Siddhartha (0–5.4) ============ -->
+<div id="s1" class="clip" data-start="0" data-duration="7.2" data-track-index="1">
+  <div class="bgn" id="s1bg"></div>
+  <div class="p" id="s1him" style="left:330px;top:330px;width:700px;transform:rotate(5deg)"><img class="cut" src="assets/himalaya.png" style="position:relative;width:700px" alt=""><div class="tape" style="left:470px;top:-16px;transform:rotate(-4deg)"></div></div>
+  <div class="circ" id="s1c" style="left:140px;top:600px;width:800px;height:800px;background:var(--yel)"></div>
+  <img class="cut" id="s1m" src="assets/prince.png" style="left:180px;top:620px;width:720px" alt="">
+  <div class="p serif" id="s1t" style="left:56px;top:150px;font-size:158px">Siddhartha<span style="color:var(--yel)">.</span></div>
+  <div class="stamp" id="s1yr" style="left:60px;top:1470px;font-size:62px;transform:rotate(-4deg)">2,500 YEARS AGO</div>
+  <div class="p mark" id="s1pr" style="left:770px;top:560px;font-size:70px;transform:rotate(-7deg)">a prince!</div>
+  <div class="p" id="s1lab" style="left:0;right:0;top:1700px;text-align:center"><span class="bar" style="font-size:46px">Born in the Himalayan foothills</span></div>
+  <svg class="ink" viewBox="0 0 1080 1920"><path id="s1arr" pathLength="1"/></svg>
+</div>
+
+<!-- ============ S2: the father, the palace (5.4–12.4) ============ -->
+<div id="s2" class="clip" data-start="7.2" data-duration="5.7" data-track-index="2">
+  <div class="bgn" id="s2bg"></div>
+  <img class="cut" id="s2king" src="assets/king.png" style="left:50px;top:250px;width:420px;transform:rotate(-4deg)" alt="">
+  <div class="p mark" id="s2dad" style="left:110px;top:150px;font-size:66px;transform:rotate(-5deg)">his father</div>
+  <img class="cut" id="s2pr" src="assets/prince.png" style="left:640px;top:330px;width:330px;transform:rotate(4deg)" alt="">
+  <div class="p mark" id="s2fk" style="left:600px;top:790px;font-size:56px;transform:rotate(-4deg)">the next king</div>
+  <img class="cut" id="s2pal" src="assets/palace.png" style="left:90px;top:960px;width:900px;transform:rotate(-1.5deg)" alt="">
+  <div class="note" id="s2note" style="left:230px;top:1710px;width:620px;font-size:66px;background:var(--pink);transform:rotate(-3deg);text-align:center">no sad things allowed</div>
+  <div class="pin" id="s2pin" style="left:540px;top:1720px"></div>
+  <svg class="ink" viewBox="0 0 1080 1920"><path id="s2crown" pathLength="1"/><path id="s2loop" pathLength="1"/><path id="s2arr" pathLength="1"/></svg>
+</div>
+
+<!-- ============ S3: the three sights (12.4–18.4) ============ -->
+<div id="s3" class="clip" data-start="12.9" data-duration="6.5" data-track-index="3">
+  <div class="bgn" id="s3bg"></div>
+  <div class="p serif" id="s3t" style="left:60px;top:150px;font-size:150px">At 29,</div>
+  <div class="p" id="s3sub" style="left:64px;top:330px"><span class="ital" style="font-size:76px"><span class="hlw" id="s3hl">he stepped outside.</span></span></div>
+  <img class="cut" id="s3old" src="assets/oldman.png" style="left:60px;top:540px;width:300px;transform:rotate(-3deg)" alt="">
+  <img class="cut" id="s3sick" src="assets/sick.png" style="left:430px;top:590px;width:590px;transform:rotate(4deg)" alt="">
+  <img class="cut" id="s3fun" src="assets/funeral.png" style="left:350px;top:1070px;width:690px;transform:rotate(-3deg)" alt="">
+  <div class="stamp" id="s3s1" style="left:70px;top:1230px;font-size:76px;transform:rotate(-6deg)">OLD</div>
+  <div class="stamp" id="s3s2" style="left:620px;top:990px;font-size:76px;transform:rotate(5deg)">SICK</div>
+  <div class="stamp" id="s3s3" style="left:540px;top:1640px;font-size:76px;transform:rotate(-4deg)">DEAD</div>
+</div>
+
+<!-- ============ S4: Channa (18.4–21.6) ============ -->
+<div id="s4" class="clip" data-start="19.4" data-duration="3.6" data-track-index="4">
+  <div class="grid" id="s4g" style="left:0;top:0;width:1080px;height:1920px"></div>
+  <div class="circ" id="s4c" style="left:300px;top:800px;width:760px;height:760px;background:var(--pink)"></div>
+  <img class="cut" id="s4ch" src="assets/channa.png" style="left:330px;top:720px;width:720px" alt="">
+  <div class="note" id="s4q" style="left:60px;top:190px;width:960px;font-size:88px;padding:46px 54px;transform:rotate(-2deg)">“This happens to everyone, my prince. <span class="hlw" id="s4hl">Even you.</span>”<div class="type" style="font-size:34px;margin-top:22px">— Channa, his charioteer</div></div>
+</div>
+
+<!-- ============ S5: that night (21.6–29.6) ============ -->
+<div id="s5" class="clip" data-start="23" data-duration="7.4" data-track-index="5">
+  <div class="night"><div class="bgn" id="s5bg"></div></div>
+  <div class="p serif" id="s5t" style="left:60px;top:150px;font-size:140px;color:var(--paper)">That night,</div>
+  <div class="p ital" id="s5sub" style="left:64px;top:310px;font-size:84px;color:var(--yel)">he left it all.</div>
+  <div class="p" id="s5horse" style="left:390px;top:470px;width:640px;transform:rotate(3deg)"><img class="cut" src="assets/horse.png" style="position:relative;width:640px" alt=""></div>
+  <div class="p" id="s5wife" style="left:40px;top:1040px;width:640px;transform:rotate(-3deg)"><img class="cut" src="assets/wife.png" style="position:relative;width:640px" alt=""><div class="tape" style="left:250px;top:-18px;transform:rotate(3deg)"></div></div>
+  <div class="p mark" id="s5fam" style="left:705px;top:1110px;font-size:54px;color:var(--yel);transform:rotate(-6deg)">his wife +<br>newborn son</div>
+  <div class="note" id="s5q" style="left:70px;top:1620px;width:940px;font-size:64px;transform:rotate(-2deg);text-align:center">Why do we suffer?<br>And how do we stop it?</div>
+  <svg class="ink y" viewBox="0 0 1080 1920"><path id="s5arr" pathLength="1"/></svg>
+</div>
+
+<!-- ============ S6: six years (29.6–35.6) ============ -->
+<div id="s6" class="clip" data-start="30.4" data-duration="5.8" data-track-index="6">
+  <div class="bgn" id="s6bg"></div>
+  <div class="p serif" id="s6t" style="left:60px;top:150px;font-size:150px">Six years.</div>
+  <div class="p ital" id="s6sub" style="left:64px;top:330px;font-size:72px">Barely eating.</div>
+  <div class="circ" id="s6c" style="left:190px;top:660px;width:700px;height:700px;background:var(--mint)"></div>
+  <img class="cut" id="s6a" src="assets/ascetic.png" style="left:190px;top:600px;width:700px" alt="">
+  <div class="stamp" id="s6died" style="left:150px;top:1580px;font-size:96px;transform:rotate(-5deg)">IT NEARLY KILLED HIM</div>
+  <svg class="ink" viewBox="0 0 1080 1920"><path id="t1" pathLength="1"/><path id="t2" pathLength="1"/><path id="t3" pathLength="1"/><path id="t4" pathLength="1"/><path id="t5" pathLength="1"/><path id="t6" pathLength="1"/></svg>
+</div>
+
+<!-- ============ S7: Sujata, the middle (35.6–43.0) ============ -->
+<div id="s7" class="clip" data-start="36.2" data-duration="8.3" data-track-index="7">
+  <div class="grid" id="s7g" style="left:0;top:0;width:1080px;height:1920px"></div>
+  <div class="circ" id="s7c" style="left:470px;top:290px;width:580px;height:580px;background:var(--pink)"></div>
+  <img class="cut" id="s7s" src="assets/sujata.png" style="left:490px;top:230px;width:540px" alt="">
+  <div class="p serif" id="s7t" style="left:60px;top:200px;font-size:140px">Sujata</div>
+  <div class="p ital" id="s7sub" style="left:64px;top:370px;font-size:60px">a village woman</div>
+  <div class="p mark" id="s7rice" style="left:70px;top:700px;font-size:66px;transform:rotate(-6deg)">rice + milk</div>
+  <img class="cut" id="s7pal" src="assets/palace.png" style="left:50px;top:1180px;width:400px;transform:rotate(-3deg)" alt="">
+  <div class="p" id="s7lux" style="left:90px;top:1480px"><span class="bar" style="font-size:46px;background:var(--lilac)">Luxury</span></div>
+  <img class="cut" id="s7asc" src="assets/ascetic.png" style="left:700px;top:1120px;width:300px;transform:rotate(4deg)" alt="">
+  <div class="p" id="s7stv" style="left:700px;top:1530px"><span class="bar" style="font-size:46px;background:var(--mint)">Starving</span></div>
+  <div class="note" id="s7mid" style="left:290px;top:1650px;width:500px;font-size:62px;background:var(--yel);transform:rotate(-2deg);text-align:center">the middle way</div>
+  <svg class="ink" viewBox="0 0 1080 1920"><path id="s7arr" pathLength="1"/><path id="x1" pathLength="1"/><path id="x2" pathLength="1"/><path id="x3" pathLength="1"/><path id="x4" pathLength="1"/><path id="m1" pathLength="1"/><path id="m2" pathLength="1"/></svg>
+</div>
+
+<!-- ============ S8: the tree (43.0–47.6) ============ -->
+<div id="s8" class="clip" data-start="44.5" data-duration="3.9" data-track-index="8">
+  <div class="bgn" id="s8bg"></div>
+  <div class="circ" id="s8c" style="left:90px;top:520px;width:900px;height:900px;background:var(--yel)"></div>
+  <img class="cut" id="s8tree" src="assets/tree.png" style="left:220px;top:380px;width:640px;transform:rotate(-1deg)" alt="">
+  <img class="cut" id="s8m" src="assets/meditate.png" style="left:405px;top:1000px;width:270px" alt="">
+  <div class="p serif" id="s8t" style="left:0;right:0;top:140px;text-align:center;font-size:130px">Under a tree.</div>
+  <div class="p" id="s8lab" style="left:0;right:0;top:1500px;text-align:center"><span class="bar" style="font-size:52px">Bodh Gaya</span></div>
+  <div class="p mark" id="s8pr" style="left:250px;top:1640px;font-size:76px;transform:rotate(-4deg)">and a promise…</div>
+</div>
+
+<!-- ============ S9: the vow (47.6–50.8) ============ -->
+<div id="s9" class="clip" data-start="48.4" data-duration="2.8" data-track-index="9">
+  <div class="grid" id="s9g" style="left:0;top:0;width:1080px;height:1920px"></div>
+  <div class="circ" id="s9c" style="left:160px;top:940px;width:760px;height:760px;background:var(--lilac)"></div>
+  <img class="cut" id="s9f" src="assets/face.png" style="left:220px;top:900px;width:640px" alt="">
+  <div class="note" id="s9q" style="left:60px;top:200px;width:960px;font-size:96px;padding:46px 54px;transform:rotate(1.5deg)">“I will not get up <span class="hlw" id="s9hl">until I understand.</span>”<div class="type" style="font-size:34px;margin-top:22px">— Siddhartha</div></div>
+</div>
+
+<!-- ============ S10: by sunrise (50.8–57.4) ============ -->
+<div id="s10" class="clip" data-start="51.2" data-duration="7.4" data-track-index="10">
+  <div class="bgn" id="s10bg"></div>
+  <div class="circ" id="s10c" style="left:40px;top:560px;width:1000px;height:1000px;background:var(--yel)"></div>
+  <img class="cut" id="s10m" src="assets/meditate.png" style="left:240px;top:640px;width:600px" alt="">
+  <div class="p serif" id="s10t" style="left:60px;top:140px;font-size:130px">By sunrise,</div>
+  <div class="p ital" id="s10sub" style="left:64px;top:290px;font-size:90px">he understood.</div>
+  <div class="note" id="s10a" style="left:40px;top:1400px;width:700px;font-size:64px;background:var(--pink);transform:rotate(-3deg)">always wanting more → <span class="hlw" id="s10h1">suffering</span></div>
+  <div class="note" id="s10b" style="left:340px;top:1600px;width:700px;font-size:64px;background:var(--mint);transform:rotate(2deg)">let go → <span class="hlw" id="s10h2">suffering ends</span></div>
+</div>
+
+<!-- ============ S11: the Buddha (57.4–62.5) ============ -->
+<div id="s11" class="clip" data-start="58.6" data-duration="6" data-track-index="11">
+  <div class="bgn" id="s11bg"></div>
+  <div class="circ" id="s11c" style="left:150px;top:720px;width:780px;height:780px;background:var(--mint)"></div>
+  <img class="cut" id="s11b" src="assets/buddha.png" style="left:170px;top:660px;width:740px" alt="">
+  <div class="p serif" id="s11t" style="left:0;right:0;top:150px;text-align:center;font-size:150px">The Buddha<span style="color:var(--yel)">.</span></div>
+  <div class="p" id="s11sub" style="left:0;right:0;top:340px;text-align:center"><span class="ital" style="font-size:84px"><span class="hlw" id="s11hl">the one who woke up</span></span></div>
+  <div class="p type" id="s11foot" style="left:0;right:0;top:1660px;text-align:center;font-size:38px">Siddhartha Gautama · Bodh Gaya, India</div>
+</div>
+
+<div id="tearL" class="clip" data-start="0" data-duration="64.6" data-track-index="12"><div id="tear"><div class="ed" id="edT" style="top:-58px"></div><div class="ed" id="edB" style="bottom:-58px"></div></div></div>
+<div id="grainL" class="clip" data-start="0" data-duration="64.6" data-track-index="13"><div id="grain"></div></div>
+
+<audio id="mix" src="audio/mix.wav" data-start="0" data-duration="64.6" data-track-index="20"></audio>
+
+</div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+let seed = 29; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const R = (a, b) => a + (b - a) * rnd();
+
+/* ---- torn paper edges (deterministic, percentage-based) ---- */
+function torn(el, amp = 10, n = 34) {
+  const pts = [], j = a => R(0, a).toFixed(1);
+  for (let i = 0; i <= n; i++) pts.push(`${(i / n * 100).toFixed(2)}% ${j(amp)}px`);
+  for (let i = 0; i <= 12; i++) pts.push(`calc(100% - ${j(amp * .6)}px) ${(i / 12 * 100).toFixed(2)}%`);
+  for (let i = n; i >= 0; i--) pts.push(`${(i / n * 100).toFixed(2)}% calc(100% - ${j(amp)}px)`);
+  for (let i = 12; i >= 0; i--) pts.push(`${j(amp * .6)}px ${(i / 12 * 100).toFixed(2)}%`);
+  el.style.clipPath = `polygon(${pts.join(',')})`;
+}
+function edge(el, top) { const pts = []; for (let x = 0; x <= 1160; x += 26) pts.push(`${x}px ${top ? 60 - R(0, 48) : R(0, 48)}px`); el.style.clipPath = top ? `polygon(0 60px,${pts.join(',')},1160px 60px)` : `polygon(0 0,${pts.join(',')},1160px 0)`; }
+edge($('#edT'), true); edge($('#edB'), false);
+
+/* ---- hand-drawn ink paths ---- */
+const loop = (cx, cy, rx, ry, turns = 1.15) => { let d = ''; const n = Math.round(90 * turns), p1 = R(0, 6), p2 = R(0, 6); for (let i = 0; i <= n; i++) { const a = -1.9 + i / 90 * Math.PI * 2, r = 1 + .05 * Math.sin(a * 2 + p1) + .03 * Math.sin(a * 3 + p2) + i / n * .06; d += `${i ? 'L' : 'M'}${(cx + Math.cos(a) * rx * r).toFixed(1)} ${(cy + Math.sin(a) * ry * r).toFixed(1)}`; } return d; };
+const curve = (x1, y1, x2, y2, bend = 120, head = true) => { const mx = (x1 + x2) / 2 + bend, my = (y1 + y2) / 2 - bend * .5; let d = `M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}`; if (head) { const a = Math.atan2(y2 - my, x2 - mx), L = 46; d += ` M${x2 - L * Math.cos(a - .45)} ${y2 - L * Math.sin(a - .45)} L${x2} ${y2} L${x2 - L * Math.cos(a + .45)} ${y2 - L * Math.sin(a + .45)}`; } return d; };
+const P = (id, d) => $(id).setAttribute('d', d);
+P('#s1arr', curve(860, 660, 760, 860, 70));
+P('#s2crown', 'M712 330 L722 250 L762 296 L805 228 L848 296 L888 250 L898 330 Z');
+P('#s2loop', loop(540, 1280, 530, 385, 1.12));
+P('#s2arr', curve(260, 230, 230, 320, -60));
+// six tally marks: five, then a sixth after the gate
+[[720, 340, 712, 470], [770, 336, 764, 474], [820, 340, 814, 470], [870, 338, 864, 472], [690, 450, 900, 350], [960, 340, 954, 472]].forEach((c, i) => P(`#t${i + 1}`, `M${c[0]} ${c[1]} L${c[2]} ${c[3]}`));
+P('#s7arr', curve(330, 820, 640, 900, -60));
+P('#x1', 'M70 1200 L440 1450'); P('#x2', 'M440 1200 L70 1450');
+P('#x3', 'M705 1150 L1000 1500'); P('#x4', 'M1000 1150 L705 1500');
+P('#m1', curve(300, 1560, 400, 1660, -30)); P('#m2', curve(800, 1610, 700, 1670, 30));
+P('#s5arr', curve(790, 1250, 640, 1310, -50));
+
+/* ---------- timeline ---------- */
+const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
+const pop = (sel, t, o = {}) => tl.fromTo(sel, { opacity: 0, y: o.y ?? 90, scale: o.s ?? .82, rotation: (o.r ?? 0) - 8 }, { opacity: 1, y: 0, scale: 1, rotation: o.r ?? 0, duration: o.d ?? .7, ease: o.e ?? 'back.out(1.6)' }, t);
+const slideIn = (sel, t, from = 'left', o = {}) => tl.fromTo(sel, { x: from === 'left' ? -1200 : from === 'right' ? 1200 : 0, y: from === 'up' ? -1400 : from === 'down' ? 1400 : 0, rotation: (o.r ?? 0) + (from === 'left' ? -14 : 14) }, { x: 0, y: 0, rotation: o.r ?? 0, duration: o.d ?? .75, ease: 'expo.out' }, t);
+const draw = (sel, t, d = .5) => tl.fromTo(sel, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: d, ease: 'power2.inOut' }, t);
+const hl = (sel, t, d = .45) => tl.fromTo(sel, { backgroundSize: '0% 42%' }, { backgroundSize: '100% 42%', duration: d, ease: 'power2.inOut' }, t);
+const scribble = (sel, t) => tl.fromTo(sel, { opacity: 0, clipPath: 'inset(0 100% 0 0)' }, { opacity: 1, clipPath: 'inset(0 0% 0 0)', duration: .5, ease: 'power1.inOut' }, t);
+const push = (sel, t, d, s0 = 1, s1 = 1.07) => tl.fromTo(sel, { scale: s0 }, { scale: s1, duration: d, ease: 'none' }, t);
+const stamp = (sel, t, r) => tl.fromTo(sel, { opacity: 0, scale: 1.8, rotation: r - 10 }, { opacity: 1, scale: 1, rotation: r, duration: .25, ease: 'power4.in' }, t);
+const fadeUp = (sel, t, d = .55) => tl.fromTo(sel, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: d }, t);
+const circ = (sel, t) => tl.fromTo(sel, { scale: 0 }, { scale: 1, duration: .8, ease: 'back.out(1.4)' }, t);
+const tearAt = (T, color) => {
+  if (color) tl.set('#tear, #edT, #edB', { backgroundColor: color }, T - .7);
+  tl.fromTo('#tear', { y: 2000 }, { y: -2760, duration: .8, ease: 'power2.inOut', immediateRender: false }, T - .4);
+  if (color) tl.set('#tear, #edT, #edB', { backgroundColor: '#fffcf8' }, T + .5);
+};
+tl.to('#grain', { x: 180, y: 140, duration: 64.6, ease: 'steps(775)' }, 0);
+$$('.note, .strip, .stamp').forEach(n => torn(n, 9));
+
+/* S1: This is Siddhartha  (v1 @0.6) */
+push('#s1bg', 0, 7.2, 1.0, 1.08);
+circ('#s1c', .3);
+pop('#s1m', .5, { y: 300, s: .9, d: .9 });
+tl.fromTo('#s1m', { scale: 1 }, { scale: 1.05, duration: 5.8, ease: 'none', immediateRender: false }, 1.4);
+tl.fromTo('#s1t', { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: .7 }, .95);
+stamp('#s1yr', 2.3, -4);
+scribble('#s1pr', 4.3); draw('#s1arr', 4.45, .45);
+slideIn('#s1him', 4.9, 'right', { r: 5 });
+fadeUp('#s1lab', 5.0, .45);
+tearAt(7.2);
+
+/* S2: father + palace  (v2 @7.45) */
+push('#s2bg', 7.2, 5.7, 1.0, 1.07);
+slideIn('#s2king', 7.3, 'left', { r: -4 });
+scribble('#s2dad', 7.7); draw('#s2arr', 7.85, .4);
+pop('#s2pr', 8.3, { r: 4 });
+draw('#s2crown', 8.7, .55); scribble('#s2fk', 8.9);
+tl.fromTo('#s2pal', { y: 1100, rotation: 6 }, { y: 0, rotation: -1.5, duration: .8, ease: 'expo.out' }, 9.8);
+draw('#s2loop', 10.4, .9);
+pop('#s2note', 11.2, { r: -3, y: 60 }); tl.fromTo('#s2pin', { scale: 0 }, { scale: 1, duration: .3, ease: 'back.out(3)' }, 11.6);
+tearAt(12.9);
+
+/* S3: the three sights  (v3 @13.1) */
+push('#s3bg', 12.9, 6.5, 1.0, 1.07);
+tl.fromTo('#s3t', { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: .6 }, 13.0);
+fadeUp('#s3sub', 14.0, .5); hl('#s3hl', 14.5, .5);
+pop('#s3old', 16.0, { r: -3 }); stamp('#s3s1', 16.3, -6);
+pop('#s3sick', 16.9, { r: 4 }); stamp('#s3s2', 17.2, 5);
+pop('#s3fun', 17.8, { r: -3 }); stamp('#s3s3', 18.15, -4);
+tearAt(19.4);
+
+/* S4: Channa  (q1 @19.6) */
+push('#s4g', 19.4, 3.6, 1.0, 1.04);
+circ('#s4c', 19.5);
+slideIn('#s4ch', 19.55, 'right');
+pop('#s4q', 19.6, { r: -2, y: 60 });
+hl('#s4hl', 21.65, .5);
+tearAt(23.0, '#2f2f32');
+
+/* S5: that night  (v4 @23.25) */
+push('#s5bg', 23.0, 7.4, 1.0, 1.08);
+tl.fromTo('#s5t', { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: .6 }, 23.15);
+fadeUp('#s5sub', 24.1, .5);
+slideIn('#s5horse', 24.3, 'right', { r: 3, d: .9 });
+tl.to('#s5horse', { x: -70, duration: 5, ease: 'none' }, 25.2);
+slideIn('#s5wife', 25.6, 'left', { r: -3 });
+scribble('#s5fam', 26.2); draw('#s5arr', 26.35, .45);
+pop('#s5q', 27.6, { r: -2, y: 60 });
+tearAt(30.4);
+
+/* S6: six years  (v5 @30.6) */
+push('#s6bg', 30.4, 5.8, 1.0, 1.06);
+tl.fromTo('#s6t', { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: .6 }, 30.55);
+circ('#s6c', 30.6);
+tl.fromTo('#s6a', { y: 900 }, { y: 0, duration: .8, ease: 'expo.out' }, 30.7);
+tl.fromTo('#s6a', { scale: 1 }, { scale: 1.06, duration: 4.7, ease: 'none', immediateRender: false }, 31.5);
+fadeUp('#s6sub', 31.4, .5);
+[1, 2, 3, 4, 5, 6].forEach((k, i) => draw(`#t${k}`, 31.9 + i * .2, .16));
+stamp('#s6died', 34.1, -5);
+tearAt(36.2);
+
+/* S7: Sujata, the middle way  (v6 @36.4) */
+push('#s7g', 36.2, 8.3, 1.0, 1.04);
+circ('#s7c', 36.3);
+slideIn('#s7s', 36.35, 'right');
+tl.fromTo('#s7t', { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: .6 }, 36.9);
+fadeUp('#s7sub', 37.4, .5);
+scribble('#s7rice', 38.5); draw('#s7arr', 38.65, .45);
+pop('#s7pal', 39.6, { r: -3 }); fadeUp('#s7lux', 39.8, .4);
+pop('#s7asc', 39.85, { r: 4 }); fadeUp('#s7stv', 40.05, .4);
+draw('#x1', 40.4, .2); draw('#x2', 40.55, .2);
+draw('#x3', 41.35, .2); draw('#x4', 41.5, .2);
+draw('#m1', 42.3, .3); draw('#m2', 42.4, .3);
+pop('#s7mid', 42.45, { r: -2, y: 40, d: .5 });
+tearAt(44.5);
+
+/* S8: the tree  (v7 @44.7) */
+push('#s8bg', 44.5, 3.9, 1.0, 1.06);
+tl.fromTo('#s8c', { y: 400, scale: .6 }, { y: 0, scale: 1, duration: 1.2, ease: 'power2.out' }, 44.6);
+tl.fromTo('#s8tree', { y: 1300 }, { y: 0, duration: .8, ease: 'expo.out' }, 44.65);
+fadeUp('#s8t', 44.8, .55);
+pop('#s8m', 45.2, { y: 120 });
+fadeUp('#s8lab', 46.0, .45);
+scribble('#s8pr', 46.75);
+tearAt(48.4);
+
+/* S9: the vow  (q2 @48.6) */
+push('#s9g', 48.4, 2.8, 1.0, 1.04);
+circ('#s9c', 48.5);
+tl.fromTo('#s9f', { y: 900 }, { y: 0, duration: .8, ease: 'expo.out' }, 48.55);
+tl.fromTo('#s9f', { scale: 1 }, { scale: 1.06, duration: 1.9, ease: 'none', immediateRender: false }, 49.3);
+pop('#s9q', 48.6, { r: 1.5, y: 60 });
+hl('#s9hl', 49.35, .55);
+tearAt(51.2, '#f9b910');
+
+/* S10: by sunrise  (v8 @51.45) */
+push('#s10bg', 51.2, 7.4, 1.0, 1.06);
+tl.fromTo('#s10c', { y: 700 }, { y: 0, duration: 2.6, ease: 'power2.out' }, 51.3);
+pop('#s10m', 51.4, { y: 200, s: .9, d: .9 });
+tl.fromTo('#s10t', { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: .6 }, 51.5);
+fadeUp('#s10sub', 52.3, .55);
+pop('#s10a', 53.4, { r: -3, y: 60 }); hl('#s10h1', 55.0, .45);
+pop('#s10b', 55.6, { r: 2, y: 60 }); hl('#s10h2', 56.8, .5);
+tearAt(58.6);
+
+/* S11: the Buddha  (v9 @58.85) */
+push('#s11bg', 58.6, 6.0, 1.0, 1.05);
+circ('#s11c', 58.7);
+tl.fromTo('#s11b', { y: 900 }, { y: 0, duration: .9, ease: 'expo.out' }, 58.8);
+tl.fromTo('#s11b', { scale: 1 }, { scale: 1.05, duration: 4.9, ease: 'none', immediateRender: false }, 59.7);
+tl.fromTo('#s11t', { opacity: 0, y: -50 }, { opacity: 1, y: 0, duration: .6, ease: 'back.out(1.6)' }, 60.5);
+fadeUp('#s11sub', 61.2, .55); hl('#s11hl', 61.5, .6);
+fadeUp('#s11foot', 62.0, .5);
+
+window.__timelines = window.__timelines || {};
+window.__timelines['main'] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
