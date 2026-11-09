@@ -9,5 +9,6 @@ const [mark, tab, white] = await Promise.all(['img/logomark.png', 'img/logo_tab.
 setLogo(mark, { tab, white });
 const film = await import('./film.js');
 window.DUR = film.DUR;
+window.EV = [...film.EV, ...Object.entries(film.VO).map(([id, t]) => ({ t, type: 'vo', id })), ...film.CUES.map(c => ({ t: c.t0, type: 'sub', t1: c.t1, text: c.text }))];
 window.render = async t => { g.setTransform(1, 0, 0, 1, 0, 0); film.renderFilm(g, t); };
 window.READY = true;

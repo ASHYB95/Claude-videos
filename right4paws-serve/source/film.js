@@ -10,23 +10,42 @@ import { drawPack, drawBowl, flakeStream, drawScale, drawDial, drawJug, drawFork
 export const W = 1080, H = 1920, BEAT = 0.5;
 export const SECTIONS = [
   { k: 'hook', t0: 0, t1: 4 }, { k: 'title', t0: 4, t1: 8 }, { k: 's1', t0: 8, t1: 16 }, { k: 's2', t0: 16, t1: 22 },
-  { k: 's3', t0: 22, t1: 30 }, { k: 'quiet', t0: 30, t1: 32 }, { k: 'pay', t0: 32, t1: 34 }, { k: 'tip', t0: 34, t1: 36 }, { k: 'end', t0: 36, t1: 42 },
+  { k: 's3', t0: 22, t1: 32 }, { k: 'quiet', t0: 32, t1: 34 }, { k: 'pay', t0: 34, t1: 36 }, { k: 'tip', t0: 36, t1: 40 }, { k: 'end', t0: 40, t1: 46 },
 ];
-export const DUR = 42;
+export const DUR = 46;
+// narration: line id → start (s); captions hold ≥ max(1.8 s, speech + 0.6 s) where the next line allows
+export const VO = { v1: 0.3, v2: 1.5, v3: 4.4, v4: 8.3, v5: 12.05, v6: 16.4, v7: 18.4, v8: 22.3, v9: 24.6, v10: 26.5, v11: 30.0, v12: 34.6, v13: 40.6 };
 export const CUES = [
-  { t0: 0.4, t1: 1.9, text: 'This is Mango.' },
-  { t0: 2.0, t1: 3.9, text: 'And this… is dinner.' },
-  { t0: 4.4, t1: 7.6, text: 'Here’s how to serve it, in three easy steps.' },
-  { t0: 8.4, t1: 11.2, text: 'Step one. Weigh your dog.' },
-  { t0: 11.6, t1: 15.6, text: 'Thirty kilos? Around 350 grams a day.' },
-  { t0: 16.4, t1: 18.4, text: 'Step two. Measure it out.' },
-  { t0: 18.6, t1: 21.6, text: 'One cup holds about 100 grams.' },
-  { t0: 22.4, t1: 24.4, text: 'Step three. Serve it your way.' },
-  { t0: 24.6, t1: 26.2, text: 'Dry, straight from the pack.' },
-  { t0: 26.4, t1: 28.4, text: 'Sprinkle on warm water, for extra flavour and aroma.' },
-  { t0: 28.6, t1: 29.9, text: 'Or mash it.' },
-  { t0: 33.0, t1: 36.6, text: 'Pro tip: it’s more nutrient-dense than kibble, so you’ll feed less.' },
-  { t0: 37.0, t1: 40.0, text: 'Right4Paws Ultimate Diet. Raw, made right.' },
+  { t0: 0.3, t1: 3.5, text: 'This is Mango. And this… is dinner.' },
+  { t0: 4.4, t1: 7.9, text: 'Here’s how to serve it, in three easy steps.' },
+  { t0: 8.3, t1: 10.8, text: 'Step one. Weigh your dog.' },
+  { t0: 12.05, t1: 16.3, text: 'Thirty kilos? Around 350 grams a day.' },
+  { t0: 16.4, t1: 18.35, text: 'Step two. Measure it out.' },
+  { t0: 18.4, t1: 21.1, text: 'One cup holds about 100 grams.' },
+  { t0: 22.3, t1: 24.5, text: 'Step three. Serve it your way.' },
+  { t0: 24.6, t1: 26.45, text: 'Dry, straight from the pack.' },
+  { t0: 26.5, t1: 29.95, text: 'Sprinkle on warm water, for extra flavour and aroma.' },
+  { t0: 30.0, t1: 31.9, text: 'Or mash it.' },
+  { t0: 34.6, t1: 39.95, text: 'Pro tip: it’s more nutrient-dense than kibble, so you’ll feed less.' },
+  { t0: 40.6, t1: 45.2, text: 'Right4Paws Ultimate Diet. Raw, made right.' },
+];
+// sound events (the mixer reads these through events.json): every visible action has its sound
+export const EV = [
+  { t: 0.0, type: 'room' }, { t: 0.78, type: 'jingle' }, { t: 1.0, type: 'clang' }, { t: 1.22, type: 'clink', g: 0.4 },
+  { t: 2.2, type: 'fall' }, { t: 2.5, type: 'thump' },
+  { t: 4.0, type: 'swish' }, { t: 4.3, type: 'pen', d: 0.6 }, { t: 4.6, type: 'pop' }, { t: 5.0, type: 'pop' }, { t: 5.0, type: 'thump', g: 0.4 },
+  { t: 6.0, type: 'stamp' }, { t: 6.5, type: 'stamp' }, { t: 7.0, type: 'stamp' }, { t: 7.5, type: 'iris' },
+  { t: 8.05, type: 'swish', g: 0.5 }, { t: 9.5, type: 'creak' }, { t: 9.75, type: 'boing' }, { t: 10.0, type: 'land' }, { t: 10.0, type: 'spring' },
+  { t: 10.4, type: 'pop', g: 0.6 }, { t: 10.0, type: 'wobble', d: 1.5 }, { t: 11.5, type: 'silence', d: 0.5 }, { t: 12.0, type: 'ding' }, { t: 14.0, type: 'pop' },
+  { t: 16.0, type: 'swish' }, { t: 16.4, type: 'whoosh' }, { t: 17.0, type: 'scoop' }, { t: 17.5, type: 'rustle' }, { t: 18.1, type: 'tap' },
+  { t: 18.9, type: 'whoosh', g: 0.4 }, { t: 19.05, type: 'flick' }, { t: 19.15, type: 'patter' }, { t: 19.5, type: 'pop' }, { t: 20.0, type: 'pop' },
+  { t: 22.0, type: 'swish' }, { t: 22.35, type: 'swish', g: 0.4 }, { t: 22.6, type: 'swish', g: 0.4 }, { t: 22.85, type: 'swish', g: 0.4 },
+  { t: 24.3, type: 'pour', d: 1.4 }, { t: 24.5, type: 'sparkle' }, { t: 26.5, type: 'sprinkle', d: 1.3 }, { t: 26.5, type: 'sparkle' }, { t: 27.2, type: 'hiss', d: 2.0 },
+  { t: 30.0, type: 'sparkle' }, { t: 30.0, type: 'mash' }, { t: 30.5, type: 'mash' }, { t: 31.0, type: 'mash' }, { t: 31.5, type: 'mash' },
+  { t: 32.0, type: 'silence', d: 1.6 }, { t: 33.6, type: 'clank' },
+  { t: 34.0, type: 'whoosh' }, { t: 34.25, type: 'munch', d: 1.7 }, { t: 34.4, type: 'pop', g: 0.5 }, { t: 35.2, type: 'pop', g: 0.5 }, { t: 34.3, type: 'thumps', d: 1.6 },
+  { t: 36.0, type: 'swish' }, { t: 36.25, type: 'pen', d: 0.45 }, { t: 36.3, type: 'pop' }, { t: 37.2, type: 'slide', d: 0.5 }, { t: 38.6, type: 'pop' },
+  { t: 40.0, type: 'swish' }, { t: 40.3, type: 'swing' }, { t: 40.8, type: 'pop' }, { t: 41.0, type: 'thump', g: 0.5 }, { t: 41.6, type: 'pop' }, { t: 43.4, type: 'tink' },
 ];
 
 const pop = (t, t0, d = 0.28) => back(seg(t, t0, t0 + d), 1.9);
@@ -104,9 +123,9 @@ function sceneHook(ctx, t) {
   halftone(ctx, 1010, 260, 40, 430, C.greyD, 0.5);
   checker(ctx, 1290, W, H + 200);
   [[150, 420, 24], [420, 300, 16], [880, 760, 20]].forEach(([x, y, r], i) => sparkle(ctx, x, y, r, { fill: C.red, rot: i * 0.4, alpha: 0.85 }));
-  const hold = u < 0.5, landed = u >= 2.0;
-  const mo = { s: HK.ms, dir: -1, head: hold ? 0.22 : lerp(0.22, 0, ss(seg(u, 0.5, 0.8))), mouth: hold ? 'open' : 'grin',
-    tail: Math.sin(twos(t) * (landed ? 15 : 8)) * 0.14, ear: landed ? 1 : 0, look: u > 1.75 ? [8, -6] : [0, 0], blink: blinkAt(t, 2.9, 1.0), brow: landed ? 0.6 : 0 };
+  const hold = u < 0.75, landed = u >= 2.5;
+  const mo = { s: HK.ms, dir: -1, head: hold ? 0.22 : lerp(0.22, 0, ss(seg(u, 0.75, 1.05))), mouth: hold ? 'open' : 'grin',
+    tail: Math.sin(twos(t) * (landed ? 15 : 8)) * 0.14, ear: landed ? 1 : 0, look: u > 2.25 ? [8, -6] : [0, 0], blink: blinkAt(t, 2.9, 1.0), brow: landed ? 0.6 : 0 };
   drawMango(ctx, HK.mx, HK.my, mo);
   // the bowl: in his mouth, dropped at 0.5, lands at 0.75 (clang), little bounce
   const rx = 118, restRim = HK.FY - 92, restX = 250;
@@ -115,16 +134,16 @@ function sceneHook(ctx, t) {
     ctx.save(); ctx.translate(m[0], m[1]); ctx.rotate(0.42); drawBowl(ctx, -rx * 0.92, 18, { rx, seed: 640 }); ctx.restore();
   } else {
     const m = mangoHeadPt(HK.mx, HK.my, { ...mo, head: 0.22 }, [150, -384]);
-    const k = ss(seg(u, 0.5, 0.75)), b = u > 0.75 ? Math.sin(seg(u, 0.75, 1.0) * Math.PI) * 22 : 0;
+    const k = ss(seg(u, 0.75, 1.0)), b = u > 1.0 ? Math.sin(seg(u, 1.0, 1.25) * Math.PI) * 22 : 0;
     const x = lerp(m[0] - rx * 0.92 * Math.cos(0.42), restX, k), y = lerp(m[1] + 40, restRim, k * k) - b;
     ctx.save(); ctx.translate(x, y); ctx.rotate(lerp(0.42, 0, k)); drawBowl(ctx, 0, 0, { rx, seed: 640 }); ctx.restore();
-    impact(ctx, restX, restRim + 80, seg(u, 0.75, 1.05));
+    impact(ctx, restX, restRim + 80, seg(u, 1.0, 1.3));
   }
   // the pack falls 1.7–2.0 and lands on the beat (thump), squash + dust
-  if (u >= 1.7) {
-    const pk = Math.pow(seg(u, 1.7, 2.0), 2), sq = landed ? Math.sin(seg(u, 2.0, 2.25) * Math.PI) * 0.08 : 0;
+  if (u >= 2.2) {
+    const pk = Math.pow(seg(u, 2.2, 2.5), 2), sq = landed ? Math.sin(seg(u, 2.5, 2.75) * Math.PI) * 0.08 : 0;
     ctx.save(); ctx.translate(845, lerp(-120, HK.FY + 10, pk)); ctx.scale(1 + sq, 1 - sq); drawPack(ctx, 0, 0, { s: 0.95 }); ctx.restore();
-    dust(ctx, 845, HK.FY + 10, seg(u, 2.0, 2.4));
+    dust(ctx, 845, HK.FY + 10, seg(u, 2.5, 2.9));
   }
   ctx.restore();
 }
@@ -168,18 +187,18 @@ function sceneWeigh(ctx, t) {
   drawClock(ctx, 820, 470, 62, t);
   [[180, 420, 22], [660, 330, 16], [950, 760, 20]].forEach(([x, y, r], i) => sparkle(ctx, x, y, r, { fill: C.red, rot: i * 0.4, alpha: 0.85 }));
   // the needle: swings on landing (10.0), creeps in the silence, settles on 30 at 13.0 (ding)
-  const kg = u < 2 ? 0 : u < 3.8 ? 30 + Math.sin((u - 2) * 9) * 16 * (1 - seg(u, 2, 3.8)) - 3 * seg(u, 2, 3.8) : u < 5 ? lerp(27, 30, ss(seg(u, 3.8, 5))) : 30;
+  const kg = u < 2 ? 0 : u < 3.5 ? 30 + Math.sin((u - 2) * 9) * 16 * (1 - seg(u, 2, 3.5)) - 3 * seg(u, 2, 3.5) : u < 4 ? lerp(27, 30, ss(seg(u, 3.5, 4))) : 30;
   const sc = drawScale(ctx, 110, 1250, { w: 450, kg });
   // Mango: sits right, hops at 9.75–10.0 onto the scale, turns mid-air
   let mx = 840, my = 1370, dir = -1, sq = 0;
   if (u >= 1.5 && u < 1.75) sq = ss(seg(u, 1.5, 1.75));
   if (u >= 1.75 && u < 2.0) { const k = seg(u, 1.75, 2.0); mx = lerp(840, 335, k); my = lerp(1370, 1232, k) - Math.sin(k * Math.PI) * 200; dir = k < 0.5 ? -1 : 1; sq = -0.4; }
   if (u >= 2.0) { mx = 335; my = 1232; dir = 1; sq = Math.max(0, 1 - seg(u, 2.0, 2.25) * 1) * (u < 2.25 ? 1 : 0); }
-  drawMango(ctx, mx, my, { s: 1.06, dir, squash: sq, tail: Math.sin(twos(t) * (u > 5 ? 14 : 8)) * 0.12, mouth: u > 5 ? 'grin' : 'smile', ear: u > 5 ? 1 : 0,
-    brow: u > 3.8 && u < 5 ? -0.4 : 0.2, look: u > 2.4 && u < 5 ? [4, 6] : [0, 0], blink: blinkAt(t, 3.1) });
+  drawMango(ctx, mx, my, { s: 1.06, dir, squash: sq, tail: Math.sin(twos(t) * (u > 4 ? 14 : 8)) * 0.12, mouth: u > 4 ? 'grin' : 'smile', ear: u > 4 ? 1 : 0,
+    brow: u > 3.5 && u < 4 ? -0.4 : 0.2, look: u > 2.4 && u < 4 ? [4, 6] : [0, 0], blink: blinkAt(t, 3.1) });
   callout(ctx, t, 10.4, 800, 1030, 165, g => drawDial(g, kg, 132), C.redT, [sc.dial[0] + 60, sc.dial[1] - 10]);
-  if (u >= 5 && u < 5.5) star(ctx, 800, 900, 40 + seg(u, 5, 5.5) * 30, { n: 8, inner: 0.35, fill: C.red, alpha: 1 - seg(u, 5, 5.5), off: [0, 0] });
-  tag(ctx, t, 13.0, '30 kg dog ≈ 350 g a day', 1040, 1350, { align: 'right', px: 36 });
+  if (u >= 4 && u < 4.5) star(ctx, 800, 900, 40 + seg(u, 4, 4.5) * 30, { n: 8, inner: 0.35, fill: C.red, alpha: 1 - seg(u, 4, 4.5), off: [0, 0] });
+  tag(ctx, t, 14.0, '30 kg dog ≈ 350 g a day', 1040, 1350, { align: 'right', px: 36 });
   stepHeader(ctx, t, 8, 1, 'Weigh your dog');
 }
 
@@ -215,21 +234,21 @@ function sceneMeasure(ctx, t) {
     for (let i = 0; i < 7; i++) { const f = seg(u, 3.05, 3.6); if (f <= 0 || f >= 1) continue; const x = mx + 80 + f * (120 + R() * 140), y = my - 220 - Math.sin(f * Math.PI) * (60 + R() * 60) + f * f * 160;
       shape(ctx, [[x - 9, y], [x, y - 5], [x + 10, y + 1], [x + 1, y + 6]], { fill: C.flakeL, line: 1.6, seed: 870 + i, grain: 0 }); }
   }
-  callout(ctx, t, 19.3, 290, 600, 170, g => {
+  callout(ctx, t, 19.5, 290, 600, 170, g => {
     shape(g, rrect(-92, -128, 184, 150, 12), { fill: C.red, line: 4, seed: 880, grain: 0.2 });
     text(g, '250', 0, -48, { font: '72px Slab', fill: C.card, align: 'center' });
     text(g, 'ml', 0, 4, { font: '700 34px Jost', fill: C.card, align: 'center' });
     text(g, '≈ 100 g', 0, 108, { font: '62px Slab', fill: C.ink, plate: C.card, off: [4, 4], align: 'center' });
   }, C.redT, [mx - 30, my - 110]);
-  tag(ctx, t, 19.6, '1 cup (250 ml) ≈ 100 g of flakes', 540, 1380, { align: 'center', px: 36 });
+  tag(ctx, t, 20.0, '1 cup (250 ml) ≈ 100 g of flakes', 540, 1380, { align: 'center', px: 36 });
   stepHeader(ctx, t, 16, 2, 'Measure it out');
 }
 
 // ---------------------------------------------------------------- 22–30 STEP 3: serve it your way (split frame)
 const BANDS = [
-  { y: 340, col: C.paper, label: 'DRY', sub: 'straight from the pack', food: 'dry', on: 24.6 },
+  { y: 340, col: C.paper, label: 'DRY', sub: 'straight from the pack', food: 'dry', on: 24.5 },
   { y: 720, col: C.redT, label: 'SOFT', sub: 'sprinkle warm water', food: 'soft', on: 26.4 },
-  { y: 1100, col: C.grey, label: 'MASHED', sub: 'mash it with a fork', food: 'mash', on: 28.6 },
+  { y: 1100, col: C.grey, label: 'MASHED', sub: 'mash it with a fork', food: 'mash', on: 30.0 },
 ];
 function sceneServe(ctx, t) {
   bg(ctx, C.red);
@@ -281,19 +300,19 @@ function sceneServe(ctx, t) {
 const QM = { x: 300, y: 1420, s: 1.3 };
 function bowlSpot() { const p = mangoHeadPt(QM.x, QM.y, { s: QM.s, dir: 1, eat: 1 }, [196, -410]); return { cx: p[0] + 70, rimY: p[1] + 30 }; }
 function sceneQuiet(ctx, t) {
-  const u = t - 30, B = bowlSpot();
+  const u = t - 32, B = bowlSpot();
   bg(ctx, C.paper);
   halftone(ctx, 980, 420, 30, 400, C.greyD, 0.5);
   checker(ctx, 1240, W, H);
   // Mango: dead still, eyes on the bowl (on twos)
-  const by = u < 1.6 ? lerp(620, B.rimY, ss(seg(twos(t), 30.0, 31.6))) : B.rimY;
+  const by = u < 1.6 ? lerp(620, B.rimY, ss(seg(twos(t), 32.0, 33.6))) : B.rimY;
   drawMango(ctx, QM.x, QM.y, { s: QM.s, dir: 1, ear: 1, look: [6, lerp(-6, 6, seg(by, 620, B.rimY))], mouth: 'smile', brow: 0.4 });
   drawBowl(ctx, B.cx, by, { rx: 150, food: 'mash', fill: 1, seed: 720 });
   if (u < 1.9) { const k = seg(u, 1.6, 1.9); arm(ctx, [[W + 80, by - 520 - k * 300], [B.cx + 250, by - 170 - k * 260], [B.cx + 162, by - 6 - k * 200]], 'grip', { k: 1.8, side: -1, seed: 890, handA: Math.PI - 0.35 }); }
   impact(ctx, B.cx, B.rimY + 110, seg(u, 1.6, 1.95));
 }
 function scenePay(ctx, t) {
-  const u = t - 32, B = bowlSpot(), z = lerp(1, 1.04, ss(u / 2));
+  const u = t - 34, B = bowlSpot(), z = lerp(1, 1.04, ss(u / 2));
   ctx.save(); ctx.translate(540, 1250); ctx.scale(z, z); ctx.translate(-540, -1250);
   bg(ctx, C.paper);
   halftone(ctx, 980, 420, 30, 400, C.greyD, 0.5);
@@ -302,7 +321,7 @@ function scenePay(ctx, t) {
   drawMango(ctx, QM.x, QM.y, { s: QM.s, dir: 1, eat, ear: 1, tail: Math.sin(twos(t) * 16) * 0.2, blink: 1, mouth: 'smile' });
   drawBowl(ctx, B.cx, B.rimY, { rx: 150, food: 'mash', fill: lerp(1, 0.2, seg(u, 0.3, 1.9)), seed: 720 });
   [[0.4, 860, 820], [1.2, 260, 760]].forEach(([at, x, y], i) => {
-    const k = pop(t, 32 + at, 0.2); if (k <= 0 || u > at + 0.7) return;
+    const k = pop(t, 34 + at, 0.2); if (k <= 0 || u > at + 0.7) return;
     ctx.save(); ctx.translate(x, y); ctx.scale(k, k); ctx.rotate(i ? -0.12 : 0.1);
     star(ctx, 0, 0, 130, { n: 14, inner: 0.7, fill: C.card, line: 4 });
     text(ctx, 'CRUNCH!', 0, 16, { font: '48px Slab', fill: C.red, plate: C.ink, off: [3, 3], align: 'center' });
@@ -315,11 +334,11 @@ function scenePay(ctx, t) {
 function sceneTip(ctx, t) {
   bg(ctx, C.red);
   halftone(ctx, 540, 960, 200, 900, C.card, 0.08);
-  const kw = ss(seg(t, 34.25, 34.7));
+  const kw = ss(seg(t, 36.25, 36.7));
   ctx.save(); ctx.beginPath(); ctx.rect(0, 280, 330 + 440 * kw, 160); ctx.clip();
   text(ctx, 'Pro tip', 540, 400, { font: '700 104px Oleo', fill: C.card, plate: C.redD, off: [5, 5], align: 'center' });
   ctx.restore();
-  const k = pop(t, 34.3, 0.32); if (k <= 0) return;
+  const k = pop(t, 36.3, 0.32); if (k <= 0) return;
   ctx.save(); ctx.translate(540, 900); ctx.scale(k, k); ctx.translate(-540, -900);
   shape(ctx, rrect(70, 470, 940, 860, 34), { fill: C.card, line: 4.5, seed: 960, grain: 0.15 });
   text(ctx, 'Feed less', 540, 600, { font: '76px Slab', fill: C.ink, plate: C.redT, off: [5, 5], align: 'center' });
@@ -328,9 +347,9 @@ function sceneTip(ctx, t) {
   drawBowl(ctx, 780, 1010, { rx: 150, food: 'dry', fill: 0.75, seed: 975 });
   text(ctx, 'KIBBLE', 300, 1180, { font: '600 28px Jost', fill: C.ink, align: 'center', track: 4 });
   text(ctx, 'RIGHT4PAWS', 780, 1180, { font: '600 28px Jost', fill: C.red, align: 'center', track: 4 });
-  arrow(ctx, [380, 860], [700, 900], { u: ss(seg(t, 34.6, 35.0)), bend: -0.35, fill: C.red, w: 6, head: 32, bob: (t * 2) % 1 });
+  arrow(ctx, [380, 860], [700, 900], { u: ss(seg(t, 37.2, 37.7)), bend: -0.35, fill: C.red, w: 6, head: 32, bob: (t * 2) % 1 });
   ctx.restore();
-  const kp = pop(t, 34.9);
+  const kp = pop(t, 38.6);
   if (kp > 0) { ctx.save(); ctx.translate(540, 1255); ctx.scale(kp, kp);
     shape(ctx, rrect(-250, -46, 500, 92, 46), { fill: C.red, line: 4, seed: 980, grain: 0.15 });
     text(ctx, '25–30% less per bowl', 0, 14, { font: '600 40px Jost', fill: C.card, align: 'center' }); ctx.restore(); }
@@ -338,21 +357,21 @@ function sceneTip(ctx, t) {
 
 // ---------------------------------------------------------------- 36–42 END CARD: the brand's own cover (logo tab, checker floor)
 function sceneEnd(ctx, t) {
-  const tt = Math.min(t, 39);
+  const tt = Math.min(t, 44);
   bg(ctx, C.card);
   halftone(ctx, 540, 1080, 120, 700, C.greyD, 0.45);
   checker(ctx, 1180, W, H, { vpY: 300 });
-  const kd = back(seg(t, 36.3, 36.75), 1.6);
+  const kd = back(seg(t, 40.3, 40.75), 1.6);
   drawLogoTab(ctx, 540, -560 * (1 - kd), 470);
-  const kt = pop(t, 36.8);
+  const kt = pop(t, 40.8);
   if (kt > 0) { ctx.save(); ctx.translate(540, 640); ctx.scale(kt, kt);
     text(ctx, 'ULTIMATE DIET', 0, 0, { font: '84px Slab', fill: C.red, plate: C.ink, off: [5, 5], align: 'center', maxW: 960 });
     text(ctx, 'MEDIUM & MAXI · ADULT', 0, 56, { font: '600 28px Jost', fill: C.ink, align: 'center', track: 5 });
     ctx.restore(); }
-  const kp = back(seg(t, 37.0, 37.35), 2.0);
+  const kp = back(seg(t, 41.0, 41.35), 2.0);
   if (kp > 0) drawPack(ctx, 430, 1330, { s: 1.22 * kp });
-  drawMango(ctx, 830, 1390, { s: 0.78, dir: -1, mouth: 'grin', ear: 1, tail: tt < 39 ? Math.sin(twos(t) * 10) * 0.12 : 0, blink: t > 39.4 && t < 39.8 ? 1 : 0, brow: 0.5 });
-  const ku = pop(t, 37.6);
+  drawMango(ctx, 830, 1390, { s: 0.78, dir: -1, mouth: 'grin', ear: 1, tail: t < 44 ? Math.sin(twos(t) * 10) * 0.12 : 0, blink: t > 43.4 && t < 43.8 ? 1 : 0, brow: 0.5 });
+  const ku = pop(t, 41.6);
   if (ku > 0) { ctx.save(); ctx.translate(540, 1470); ctx.scale(ku, ku);
     shape(ctx, rrect(-230, -40, 460, 80, 40), { fill: C.red, line: 4, seed: 990, grain: 0.15 });
     text(ctx, 'right4paws.com', 0, 13, { font: '600 40px Jost', fill: C.card, align: 'center' }); ctx.restore(); }
@@ -384,12 +403,12 @@ export function renderFilm(ctx, t) {
   else if (t < 16.35) wipeSide(ctx, t, 16.0, 0.35, sceneWeigh, sceneMeasure, C.red);
   else if (t < 22.0) sceneMeasure(ctx, t);
   else if (t < 22.35) wipeSide(ctx, t, 22.0, 0.35, sceneMeasure, sceneServe, C.card);
-  else if (t < 30.0) sceneServe(ctx, t);
-  else if (t < 32.0) sceneQuiet(ctx, t);
-  else if (t < 34.0) scenePay(ctx, t);
-  else if (t < 34.35) wipeSide(ctx, t, 34.0, 0.35, scenePay, sceneTip, C.card);
-  else if (t < 36.0) sceneTip(ctx, t);
-  else if (t < 36.4) wipeUp(ctx, t, 36.0, 0.4, sceneTip, sceneEnd, C.red);
+  else if (t < 32.0) sceneServe(ctx, t);
+  else if (t < 34.0) sceneQuiet(ctx, t);
+  else if (t < 36.0) scenePay(ctx, t);
+  else if (t < 36.35) wipeSide(ctx, t, 36.0, 0.35, scenePay, sceneTip, C.card);
+  else if (t < 40.0) sceneTip(ctx, t);
+  else if (t < 40.4) wipeUp(ctx, t, 40.0, 0.4, sceneTip, sceneEnd, C.red);
   else sceneEnd(ctx, t);
   caption(ctx, t);
   paperFinish(ctx, W, H, 0.85);

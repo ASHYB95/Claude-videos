@@ -1,0 +1,17 @@
+How to Serve Ultimate Diet — Right4Paws (Mid-century Cartoon film, brand colours)
+
+Brand: the Right4Paws name, logo, "Raw Made Right", the Ultimate Diet pack design and the product claims belong to Right4Paws;
+  used at the client's request. Logo tab rendered from the Right4Paws Feeding Guide PDF; paw logomark from right4paws.com.
+  The pack, bowl, scale and characters are drawn in code, not copied from artwork files. Facts and their sources: FACTS.md.
+
+Voice: ElevenLabs text-to-speech (elevenlabs.io), premade voice "Bill", model eleven_multilingual_v2.
+  Note: commercial use of ElevenLabs output needs a paid ElevenLabs plan (this was generated on the free plan).
+
+Music: original score (cool-jazz combo), written and rendered for this film.
+Drums: "MuldjordKit" by Lars Muldjord (drumgizmo.org), FreePats version, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+Samples (CC0): Karoryfer Samples / sfzinstruments (jazz double bass), VS Chamber Orchestra: Community Edition (Versilian Studios) (flute),
+  Versilian Community Sample Library (Versilian Studios) (vibraphone, glockenspiel, hi-hat).
+Foley and room tone: synthesised procedurally (Lemo-Opuscar sfx.py, MIT) in source/mix.py.
+
+Fonts (SIL Open Font License 1.1): Oleo Script, Alfa Slab One, Jost (google/fonts) — licences in source/fonts/.
+Drawing engine: Lemo-Opuscar Mid-century Cartoon toolkit (toon.js, glove hands; MIT).
