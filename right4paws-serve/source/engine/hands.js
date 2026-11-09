@@ -28,9 +28,9 @@ export function drawHand(ctx, x, y, a, kind = 'open', side = 1, k = 1, skin = C.
   ctx.restore();
 }
 
-// a sleeve (thick ink ribbon + turquoise ribbon on top) from off-frame to the wrist, then the hand
+// a sleeve (thick ink ribbon + brand-red ribbon on top, cream cuff) from off-frame to the wrist, then the hand
 export function arm(ctx, pts, kind, o = {}) {
-  const { k = 2, side = 1, seed = 60, col = C.teal, colD = C.tealD, w = 22 * k } = o;
+  const { k = 2, side = 1, seed = 60, col = C.red, colD = C.card, w = 22 * k } = o;
   const P = spline(pts, false, 8);
   ink(ctx, P, w + 10, { seed, taper: false, wob: 0.06 });
   const off = reg(seed, 1);
@@ -38,7 +38,7 @@ export function arm(ctx, pts, kind, o = {}) {
   const n = P.length, e = P[n - 1], d = P[Math.max(0, n - 4)], a = Math.atan2(e[1] - d[1], e[0] - d[0]);
   // cuff stripe
   const cx = e[0] - Math.cos(a) * 10 * k, cy = e[1] - Math.sin(a) * 10 * k, r = (w + 10) / 2;
-  ink(ctx, [[cx + Math.cos(a + 1.57) * r, cy + Math.sin(a + 1.57) * r], [cx - Math.cos(a + 1.57) * r, cy - Math.sin(a + 1.57) * r]], 3.4, { seed: seed + 2, taper: false, color: colD });
+  ink(ctx, [[cx + Math.cos(a + 1.57) * r, cy + Math.sin(a + 1.57) * r], [cx - Math.cos(a + 1.57) * r, cy - Math.sin(a + 1.57) * r]], 9, { seed: seed + 2, taper: false, color: colD });
   drawHand(ctx, e[0], e[1], o.handA ?? a, kind, side, k);
   return { x: e[0], y: e[1], a };
 }
