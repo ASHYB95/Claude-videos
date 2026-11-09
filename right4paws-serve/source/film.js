@@ -42,8 +42,8 @@ export const EV = [
   { t: 22.0, type: 'swish' }, { t: 22.35, type: 'swish', g: 0.4 }, { t: 22.6, type: 'swish', g: 0.4 }, { t: 22.85, type: 'swish', g: 0.4 },
   { t: 24.3, type: 'pour', d: 1.4 }, { t: 24.5, type: 'sparkle' }, { t: 26.5, type: 'sprinkle', d: 1.3 }, { t: 26.5, type: 'sparkle' }, { t: 27.2, type: 'hiss', d: 2.0 },
   { t: 30.0, type: 'sparkle' }, { t: 30.0, type: 'mash' }, { t: 30.5, type: 'mash' }, { t: 31.0, type: 'mash' }, { t: 31.5, type: 'mash' },
-  { t: 32.0, type: 'silence', d: 1.6 }, { t: 33.6, type: 'clank' },
-  { t: 34.0, type: 'whoosh' }, { t: 34.25, type: 'munch', d: 1.7 }, { t: 34.4, type: 'pop', g: 0.5 }, { t: 35.2, type: 'pop', g: 0.5 }, { t: 34.3, type: 'thumps', d: 1.6 },
+  { t: 33.6, type: 'clank' },
+  { t: 34.0, type: 'whoosh' }, { t: 34.25, type: 'munch', d: 1.75 }, { t: 34.3, type: 'thumps', d: 1.6 },
   { t: 36.0, type: 'swish' }, { t: 36.25, type: 'pen', d: 0.45 }, { t: 36.3, type: 'pop' }, { t: 37.2, type: 'slide', d: 0.5 }, { t: 38.6, type: 'pop' },
   { t: 40.0, type: 'swish' }, { t: 40.3, type: 'swing' }, { t: 40.8, type: 'pop' }, { t: 41.0, type: 'thump', g: 0.5 }, { t: 41.6, type: 'pop' }, { t: 43.4, type: 'tink' },
 ];
@@ -236,10 +236,10 @@ function sceneMeasure(ctx, t) {
   }
   callout(ctx, t, 19.5, 290, 600, 170, g => {
     shape(g, rrect(-92, -128, 184, 150, 12), { fill: C.red, line: 4, seed: 880, grain: 0.2 });
-    text(g, '250', 0, -48, { font: '72px Slab', fill: C.card, align: 'center' });
-    text(g, 'ml', 0, 4, { font: '700 34px Jost', fill: C.card, align: 'center' });
-    text(g, '≈ 100 g', 0, 108, { font: '62px Slab', fill: C.ink, plate: C.card, off: [4, 4], align: 'center' });
-  }, C.redT, [mx - 30, my - 110]);
+    text(g, '100', 0, -48, { font: '72px Slab', fill: C.card, align: 'center' });
+    text(g, 'grams', 0, 4, { font: '700 34px Jost', fill: C.card, align: 'center' });
+    text(g, '1 cup · 250 ml', 0, 96, { font: '600 34px Jost', fill: C.ink, align: 'center' });
+  }, C.redT, [mx - 74, my - 150]);
   tag(ctx, t, 20.0, '1 cup (250 ml) ≈ 100 g of flakes', 540, 1380, { align: 'center', px: 36 });
   stepHeader(ctx, t, 16, 2, 'Measure it out');
 }

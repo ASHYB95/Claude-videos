@@ -1,6 +1,6 @@
 """Right4Paws · How to Serve — original score: a West-Coast cool-jazz combo.
 vibraphone (chords, step chords, glissandi) / flute (theme) / jazz double bass (walking) / brushes + ride / celesta / finger snaps.
-♩ = 120, 4/4 (bar = 2 s), 46 s = 23 bars. F major; total silence 32.0–33.6; back up a whole step (G major) from 34.0.
+♩ = 120, 4/4 (bar = 2 s), 46 s = 23 bars. F major; back up a whole step (G major) from 34.0.
 Run from the library root: .venv/bin/python <project>/music/score.py
 """
 import sys, os, json
@@ -119,7 +119,7 @@ ROOT = {'Fmaj7': 'F2', 'F69': 'F2', 'D7': 'D2', 'Gm7': 'G2', 'C7': 'C2', 'Bbmaj7
 QUAL = lambda c: 3 if ('m' in c and 'maj' not in c) else 4
 # bar → chords (one per bar, or two per bar on beats 0 and 2)
 PROG = {1: ['Fmaj7', 'D7'], 2: ['Gm7', 'C7'], 3: ['Fmaj7', 'D7'], 4: ['Gm7', 'C7'], 5: ['F69'], 6: ['Bbmaj7'], 7: ['Am7', 'D7'], 8: ['Gm7', 'C7'],
-        9: ['Bbmaj7'], 10: ['Eb9'], 11: ['Am7', 'D7'], 12: ['Gm9'], 13: ['C13'], 14: ['Fmaj7', 'D7b9'], 15: ['Gm9', 'C13'], 16: ['Gm7', 'C7sus'],
+        9: ['Bbmaj7'], 10: ['Eb9'], 11: ['Am7', 'D7'], 12: ['Gm9'], 13: ['C13'], 14: ['Fmaj7', 'D7b9'], 15: ['Gm9', 'C13'], 16: ['Gm7', 'C7'], 17: ['D7g'],
         18: ['Gmaj7', 'E7'], 19: ['Am7g', 'D7g'], 20: ['Bm7', 'E7'], 21: ['Am7g', 'D7g'], 22: ['G69'], 23: ['G69']}
 
 
@@ -194,8 +194,11 @@ for bar in (12, 13, 14, 15, 16): walk(bar, .6)
 comp(13, .26); comp(14, .26); comp(15, .26)
 for t, p in [(24.5, 'D6'), (26.5, 'F6'), (30.0, 'A6')]:
     celesta(t, p, .6); vib_run(t, [M(p) - 12 - 7, M(p) - 12 - 3, M(p) - 12], .06, .3, .45, ring=.8); hit(t, 'band on')
-vib(T(16, 0), V['Gm7'], 1.2 * B, .3); vib(T(16, 2), V['C7sus'], 2.2 * B, .42, trem=.35)   # hangs, then cut at 32.0
-flute(T(16, 2), 'G5', 2.0, .4)
+comp(16, .26); flute(T(16, 2), 'G5', 1.0, .38)
+# bar 17 (32–34): the bowl comes down — the band keeps going on D7 and walks up into G
+brushes(17, 18, .3); walk(17, .6); vib(32.0, V['D7g'], 2.6 * B, .36, trem=.3); vib(T(17, 2), V['D7g'], 1.4 * B, .3)
+for bt, p in [(2.0, 'D5'), (2.5, 'E5'), (3.0, 'F#5'), (3.5, 'A5')]: flute(T(17, bt), p, .5, .38)
+celesta(33.6, 'D7', .35)
 # ================================================================ 32.0–33.6 total silence (enforced below); 33.6 clink is foley
 # ================================================================ 34–40 up a whole step (G): sticks + theme, then the tip
 hit(34.0, 'BACK UP A STEP: G'); vib(34.0, V['G69'], 2 * B, .6, hard=True, trem=.3); dk(34.0, 'crash_right', .5, dur=2.4, pan=.35, gain=.55)
@@ -222,12 +225,11 @@ def gate(x, t0, t1, fade=.025):
     if b < len(x): x[b:b + f] *= np.linspace(0, 1, min(f, len(x) - b))[:, None]
 for k in stems:
     gate(stems[k], 11.5, 12.0)                # needle creep: music out for half a bar
-    gate(stems[k], 32.0, 33.98)               # total silence before the clink; band back on 34.0
 fade = np.ones(N, np.float32); fs = int(44.6 * SR); fade[fs:] = np.linspace(1, 0, N - fs) ** 1.5
 gains = dict(drums=.8, bass=1.0, vib=.85, lead=.9)
 mix = sum(stems[k] * gains[k] for k in stems) * fade[:, None]
 mix = S.room(mix, size=.35, mix=.14)
-gate(mix, 11.5, 12.0); gate(mix, 32.0, 33.98)
+gate(mix, 11.5, 12.0)
 peak = np.max(np.abs(mix)) or 1
 mix = (mix / peak * .89).astype(np.float32)
 for k in stems: sf.write(os.path.join(OUT, f'stem_{k}.wav'), (stems[k] * gains[k] * fade[:, None] / peak * .89).astype(np.float32), SR)

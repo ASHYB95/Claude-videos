@@ -207,8 +207,8 @@ export function drawMug(ctx, x, y, o = {}) {
   ctx.restore();
   ink(ctx, ellipse(0, -192, 76, 16, 30, 0, Math.PI), 3.6, { seed: seed + 3 });
   shape(ctx, rrect(-48, -160, 96, 108, 8), { fill: C.red, line: 0, seed: seed + 4, grain: 0.2 });
-  text(ctx, '250', 0, -112, { font: '34px Slab', fill: C.card, align: 'center' });
-  text(ctx, 'ml', 0, -76, { font: '700 24px Jost', fill: C.card, align: 'center' });
+  text(ctx, '100', 0, -112, { font: '34px Slab', fill: C.card, align: 'center' });
+  text(ctx, 'g', 0, -76, { font: '700 26px Jost', fill: C.card, align: 'center' });
   ctx.restore();
 }
 // ---------- brand ornaments: the feeding guide's red/white checker floor and halftone dot rings ----------

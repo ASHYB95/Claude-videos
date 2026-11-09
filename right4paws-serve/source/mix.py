@@ -2,7 +2,7 @@
 Run from the library root: .venv/bin/python <project>/mix.py
 Three layers: ambience (warm room tone + a very quiet mantel clock on the beat grid), foley by material (steel bowl, cardboard pack,
 dry flakes, water, paper wipes, rubber stamps), music ducking ~8 dB under the voice.
-Silences: 11.5–12.0 music out (room tone stays); 32.0–33.6 total silence: the first sound after it is the bowl on the floor."""
+Silence: 11.5–12.0 music out while the needle settles (room tone stays)."""
 import sys, os, json, numpy as np, soundfile as sf
 sys.path.insert(0, '.')
 from core.audio.sfx import SR, t_, env_exp, bp, lp, hp, noise, norm, brown, click, clack, whoosh, creak, thump, ding, pop, add, compress, limit
@@ -77,11 +77,23 @@ def mash():                                      # a fork pressing wet food
     return norm(bp(nz(d), 180, 900) * env_ad(d, .02, .08) + sine(220 * (1 - .4 * tt / d), d) * env_exp(d, .05) * .3)
 def clank():                                     # THE bowl on the floor after the silence
     return norm(M(steel(610, 1.8, 1, .5), thump(.8, 90)[:int(.3 * SR)] * .5))
-def munch(d=1.7):                                # happy crunching, ~6 bites a second
+def bite(v=1.0, d=.2):                           # one crunchy bite: a sharp fracture, then the flakes crumbling, plus the jaw
+    n = int(d * SR); x = np.zeros(n)
+    ts = np.sort(rng.exponential(.035, int(rng.integers(55, 90)))); ts = ts[ts < d - .01]
+    for t0 in ts:                                # micro-fractures, densest at the start
+        i = int(t0 * SR); L = int(rng.integers(8, 40))
+        c = rng.standard_normal(L) * np.exp(-np.arange(L) / rng.uniform(3, 12)) * rng.uniform(.2, 1) * np.exp(-t0 / .06)
+        x[i:i + L] += c[:n - i]
+    L = int(.006 * SR); x[:L] += rng.standard_normal(L) * np.exp(-np.arange(L) / (.0015 * SR)) * 2.2   # the first crack
+    crisp = hp(x, 1800) * .9 + bp(x, 500, 1800) * .7
+    jaw = sine(150 * (1 - .3 * t_(d) / d), d) * env_exp(d, .025) * .35
+    return norm(crisp + jaw) * v
+def munch(d=1.75, bites=(0.0, .15, .42, .66, .95, 1.2, 1.46)):   # chomping; the loud bites land on the CRUNCH! bursts (34.4, 35.2)
     x = np.zeros(int(d * SR))
-    for k in range(int(d * 6)):
-        o = int((k / 6 + rng.uniform(-.02, .02)) * SR); c = bp(nz(.09), 900, 5000) * env_ad(.09, .002, .025)
-        if o + len(c) < len(x): x[o:o + len(c)] += c * rng.uniform(.6, 1)
+    for k, b0 in enumerate(bites):
+        s = bite(1.0 if k in (1, 4) else rng.uniform(.45, .75)); i = int(b0 * SR); x[i:i + len(s)] += s[:len(x) - i]
+        sm = lp(nz(.05), 900) * env_exp(.05, .012) * .12; j = int((b0 + .11) * SR)   # a soft lip smack between bites
+        if j + len(sm) < len(x): x[j:j + len(sm)] += sm
     return norm(x)
 def thumps(d=1.6):                               # tail thumping the floor
     x = np.zeros(int(d * SR))
@@ -125,7 +137,7 @@ for e in EV:
     elif ty == 'hiss': add(fx, hiss(e.get('d', 2.0)), t, .06 * g, .2)
     elif ty == 'mash': add(fx, mash(), t, .55 * g, .2)
     elif ty == 'clank': add(fx, clank(), t, .95 * g, .25)
-    elif ty == 'munch': add(fx, munch(e.get('d', 1.7)), t, .4 * g, .15)
+    elif ty == 'munch': add(fx, munch(e.get('d', 1.75)), t, .6 * g, .15)
     elif ty == 'thumps': add(fx, thumps(e.get('d', 1.6)), t, .3 * g, -.4)
     elif ty == 'slide': add(fx, slide(e.get('d', .5)), t, .18 * g, .1)
     elif ty == 'swing': add(fx, paper_swish(.4), t, .25 * g, 0)
@@ -159,7 +171,6 @@ def gate(buf, a, b, keep=0.0, fade=.03):
     m = np.ones(N); m[s:e] = keep
     m[max(0, s - f):s] = np.linspace(1, keep, min(f, s)); m[e:e + f] = np.linspace(keep, 1, len(m[e:e + f]))
     buf *= m[:, None]
-gate(amb, 32.0, 33.58); gate(fx, 32.0, 33.58)      # total silence; the clank at 33.6 is the first sound after it
 
 mix = mus * .55 + fx * .9 + vo + amb
 mix = limit(mix, .95)
