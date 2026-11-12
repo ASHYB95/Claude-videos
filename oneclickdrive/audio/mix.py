@@ -26,7 +26,9 @@ mus = load(f'{here}/music.wav')[:N]; mus = np.pad(mus, ((0, N - len(mus)), (0, 0
 act = np.abs(vo).max(1) > 0.01
 w = int(0.25 * SR); act = np.convolve(act.astype(float), np.ones(w) / w, 'same') > 0.02
 duck = np.where(act, db(-8), 1.0); k = int(0.12 * SR); duck = np.convolve(duck, np.ones(k) / k, 'same')
-out += mus * duck[:, None] * db(-15)
+MUSIC = -7; SFX = -10   # global trims (dB): music up, SFX well down
+tt = np.arange(N) / SR; hook = np.where(tt < 4.9, db(4), np.where(tt > 27.8, db(3), 1.0))   # lift the quieter intro groove and the end-card ring-out
+out += mus * (duck * hook)[:, None] * db(MUSIC)
 
 # SFX: each normalised so its loudest 120 ms sits at -14 dBFS RMS, then cue gains are relative to that
 names = ['tap', 'whoosh', 'pop', 'swipe', 'impact', 'shimmer', 'notif', 'send', 'riser', 'spin', 'strike', 'pindrop', 'rev', 'tick', 'stamp']
@@ -52,7 +54,9 @@ cues = [
     ('pop', 26.65, -8), ('shimmer', 26.7, -15), ('rev', 27.3, -13),
     ('whoosh', 27.72, -9), ('pop', 28.0, -10), ('pop', 29.65, -9), ('tap', 30.25, -5), ('shimmer', 30.7, -13),
 ]
-for n, t, g in cues: place(out, S[n], t, db(g))
+sfx = np.zeros((N, 2))
+for n, t, g in cues: place(sfx, S[n], t, db(g + SFX))
+musbus = out.copy(); out += sfx
 out += vo
 fo = int(0.5 * SR); out[-fo:] *= np.linspace(1, 0, fo)[:, None] ** 2
 tmp = f'{here}/_pre.f32'; out.astype(np.float32).tofile(tmp)
@@ -62,6 +66,7 @@ os.remove(tmp)
 # report: VO vs bed level per VO line (you can't listen — check the numbers)
 bed = out - vo
 for a, b in [(0.25, 5.0), (5.3, 9.0), (9.3, 16.9), (17.4, 20.2), (20.6, 24.1), (24.5, 27.6), (28.0, 31.4)]:
-    i, j = int(a * SR), int(b * SR); r = lambda x: 20 * np.log10(np.sqrt((x[i:j] ** 2).mean()) + 1e-9)
-    print(f'{a:5.1f}-{b:5.1f}  VO {r(vo):6.1f} dB   bed {r(bed):6.1f} dB   gap {r(vo) - r(bed):5.1f}')
+    i, j = int(a * SR), int(b * SR); m = act[i:j]   # measure only while the voice is speaking
+    r = lambda x: 20 * np.log10(np.sqrt((x[i:j][m] ** 2).mean()) + 1e-9)
+    print(f'{a:5.1f}-{b:5.1f}  VO {r(vo):6.1f}   music {r(musbus):6.1f}   sfx {r(sfx):6.1f}   VO-bed gap {r(vo) - r(bed):5.1f}')
 print('mix.wav')
