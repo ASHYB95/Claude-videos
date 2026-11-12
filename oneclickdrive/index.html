@@ -359,6 +359,8 @@ svg.i{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-l
     <div class="fn" style="top:1842px">*Rates, deposits &amp; delivery are set by each supplier.</div>
   </div>
 
+  <audio id="mix" src="audio/mix.wav" data-start="0" data-duration="32.6" data-track-index="8"></audio>
+
   <!-- wipes -->
   <div id="wipes" class="clip" data-start="0" data-duration="32.6" data-track-index="7" style="pointer-events:none">
     <div class="wipe" id="wO" style="background:#ed8413"></div>
@@ -509,7 +511,7 @@ tl.fromTo('#chatB', { opacity: 0, scale: 0.4, z: 0, x: -60, y: 80 }, { opacity: 
 /* --- S6 no fees (17.1–20.4) --- VO v4 @17.4 */
 tl.set(['#bg', '#stage', '#steps'], { visibility: 'hidden' }, 17.55);
 tl.set(['#chatA', '#chatB', '#waChip'], { opacity: 0 }, 17.6);
-tl.fromTo('#s6', { clipPath: 'circle(0px at 540px 1250px)' }, { clipPath: 'circle(1500px at 540px 1250px)', duration: 0.45, ease: 'expo.in' }, 17.05);
+tl.fromTo('#s6', { clipPath: 'circle(0px at 540px 1250px)' }, { clipPath: 'circle(1500px at 540px 1250px)', duration: 0.42, ease: 'power2.in' }, 17.0);
 [17.38, 18.25, 19.2].forEach((t, i) => {
   tl.fromTo('#no' + i, { opacity: 0, scale: 1.8, rotation: i % 2 ? 4 : -4 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.32, ease: 'expo.out' }, t);
   tl.fromTo('#s6', { x: 0 }, { x: i % 2 ? 10 : -10, duration: 0.05, yoyo: true, repeat: 3, ease: 'none', immediateRender: false }, t + 0.1);
@@ -554,7 +556,7 @@ tl.set('#ccRing', { x: 330, y: -1010, z: 259, scale: 1.22, rotation: 4 }, 26.6);
 tl.to('#rig', { y: 500, rotationX: 18, duration: 3.4, ease: 'sine.inOut' }, 24.3);
 
 /* --- S9 end card (27.8–32.6) --- VO v7 @28.0 */
-tl.fromTo('#end', { clipPath: 'circle(0px at 540px 960px)' }, { clipPath: 'circle(1200px at 540px 960px)', duration: 0.5, ease: 'expo.in' }, 27.75);
+tl.fromTo('#end', { clipPath: 'circle(0px at 540px 960px)' }, { clipPath: 'circle(1200px at 540px 960px)', duration: 0.45, ease: 'power2.inOut' }, 27.75);
 tl.fromTo('#endLogo', { opacity: 0, scale: 0.7, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(2)' }, 28.0);
 tl.fromTo('#endTabs span', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.08 }, 28.3);
 tl.fromTo('#endTabs .on i', { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: 'expo.out' }, 28.55);
