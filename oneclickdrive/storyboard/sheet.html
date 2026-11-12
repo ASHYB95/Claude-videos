@@ -1,0 +1,39 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Mulish;font-weight:400;src:url(../fonts/mulish-latin-400-normal.woff2)}
+@font-face{font-family:Mulish;font-weight:600;src:url(../fonts/mulish-latin-600-normal.woff2)}
+@font-face{font-family:Mulish;font-weight:800;src:url(../fonts/mulish-latin-800-normal.woff2)}
+@font-face{font-family:Mulish;font-weight:900;src:url(../fonts/mulish-latin-900-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1240px;background:#f6f1eb;font-family:Mulish;color:#373737;padding:44px 40px 50px}
+header{display:flex;align-items:center;gap:22px;margin-bottom:30px}
+header img{height:34px}
+header h1{font:900 30px Mulish;letter-spacing:-.5px}
+header p{margin-left:auto;font:600 15px Mulish;color:#7b7b7b;text-align:right;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.p{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.p img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover}
+.c{padding:16px 18px 18px}
+.h{display:flex;align-items:center;gap:10px;font:800 15px Mulish}
+.h .n{width:30px;height:30px;border-radius:50%;background:#cc4700;color:#fff;display:flex;align-items:center;justify-content:center;font:900 15px Mulish}
+.h .t{margin-left:auto;font:600 13px Mulish;color:#7b7b7b}
+.v{margin-top:10px;font:400 13.5px/1.45 Mulish}
+.vo{margin-top:10px;padding:9px 12px;border-radius:12px;background:#fff4ea;font:600 13.5px/1.4 Mulish;color:#373737}
+.vo b{color:#cc4700;font-weight:800;margin-right:4px}
+.m{margin-top:9px;font:400 12.5px/1.45 Mulish;color:#7b7b7b}
+</style></head><body>
+<header><img src="../brand/main-logo-mob.svg"><h1>"One Click Away" · Storyboard</h1><p>9:16 · 1080×1920 · 32.6 s · screens only<br>VO: Sarah (ElevenLabs) · real oneclickdrive.com flow, AED</p></header>
+<div class="grid" id="g"></div>
+<script>
+const P=[
+['Hook','0:00–0:05','White stage. Big type "Renting a car in Dubai?" — three pain pills pop in and get struck through in orange.','Renting a car in Dubai? Skip the counter queues, deposits and agent markups.','Pills pop on each word · strike SFX · orange wipe up'],
+['Brand + phone','0:05–0:09','Phone spins in (3D) on the brand stage showing the rebuilt homepage. Logo lockup, then "Dubai\'s largest car selection".','OneClickDrive puts Dubai\'s largest car selection in your pocket.','Whoosh on spin-in · phone squares up on "pocket"'],
+['Step 1 · Pick a car type','0:09–0:11','Progress bar ①. Screen scrolls to the real category grid; camera pushes in; tap RENT SPORTS → slides to the listing.','Pick a car type…','Tap + ring · page slide'],
+['Step 2 · Compare prices','0:11–0:14','Listing scrolls to the Porsche 718 Boxster. AED 649/day price card and badges fly out in 3D: Zero deposit · Insurance included · 1-day minimum · 100+ verified suppliers.','…compare real prices from verified suppliers…','Camera tilts for depth · pop SFX per badge'],
+['Step 3 · Message direct','0:14–0:17','Push-in, tap WhatsApp. The site\'s pre-filled message flies out as a chat bubble → read ticks → supplier replies "Available!".','…and message the supplier direct on WhatsApp.','Send swoosh · notification ping'],
+['No fees','0:17–0:20','Orange circle reveal. Three lines slam in on the beat: NO COMMISSION. NO BOOKING FEES. NO MARK-UPS.','No commission. No booking fees. No mark-ups.','Impact hit per line + small shake · whip pan out'],
+['Delivered to you','0:20–0:24','Stylised Dubai map. Car hub pulses; orange routes draw to pins — airport, hotel, home — with toasts that tick.','Get it delivered to the airport, your hotel, or your door.','Pin drops + ticks · double wipe (orange + charcoal)'],
+['From AED 30/day','0:24–0:28','"From AED 30/day*" counter rolls up. Category cards fan out of the phone; Supercar pops forward on "supercars".','From thirty dirhams a day, all the way to supercars.','Counter tick · card whooshes · footnote for the asterisk'],
+['End card','0:28–0:33','Mirrors the homepage hero: logo, Rent/Buy/Sell, RENT A CAR DUBAI, "Book Direct." underlined, hero banner, Get the app button, oneclickdrive.com.','OneClickDrive. Book direct. Download the app today.','Button press + ring + shine · music resolves']];
+document.getElementById('g').innerHTML=P.map((p,i)=>`<div class="p"><img src="f${i+1}.jpg"><div class="c"><div class="h"><span class="n">${i+1}</span>${p[0]}<span class="t">${p[1]}</span></div><div class="v">${p[2]}</div><div class="vo"><b>VO</b>${p[3]}</div><div class="m">${p[4]}</div></div></div>`).join('');
+</script></body></html>
