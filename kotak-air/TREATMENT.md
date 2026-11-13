@@ -6,7 +6,7 @@ Internal refresher for the Kotak credit card sales team: features and USPs in 39
 ## Look
 - Light studio sweep (white → #e4eaf2) with a faint warm red glow behind the card; colour Kotak logo top-centre.
 - Two-tone headlines: red eyebrow ("01 · EARN ON TRAVEL"), red key number, navy supporting line. Roboto 900/700.
-- Real Kotak Air card (brand/kotak-air-card.png — cut from the site hero, name removed, 2× upscaled), floating in 3D with a floor shadow; poses per beat.
+- Kotak Air card (brand/kotak-air-card.png, 1712×1080): the client-supplied mockup (source/kotak-air-card-mockup.png) perspective-corrected to a flat front view, floating in 3D with a floor shadow; poses per beat.
 - White rounded panels with red icons on soft-red circles; scalloped white stickers (NO CAP, 4 lounges, 1% fuel, ₹0 joining fee).
 - Conditions as grey footnotes (28 px) — reference text the team can pause on.
 
