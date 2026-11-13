@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>Kotak Air Credit Card — Key Features</title>
+<script src="vendor/gsap.min.js"></script>
+<style>
+@font-face{font-family:Roboto;font-weight:400;src:url(fonts/roboto-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:Roboto;font-weight:500;src:url(fonts/roboto-latin-500-normal.woff2);font-display:block}
+@font-face{font-family:Roboto;font-weight:700;src:url(fonts/roboto-latin-700-normal.woff2);font-display:block}
+@font-face{font-family:Roboto;font-weight:900;src:url(fonts/roboto-latin-900-normal.woff2);font-display:block}
+@font-face{font-family:Roboto;font-weight:400;src:url(fonts/roboto-latin-ext-400-normal.woff2);unicode-range:U+0100-02BA,U+20A0-20C0;font-display:block}
+@font-face{font-family:Roboto;font-weight:500;src:url(fonts/roboto-latin-ext-500-normal.woff2);unicode-range:U+0100-02BA,U+20A0-20C0;font-display:block}
+@font-face{font-family:Roboto;font-weight:700;src:url(fonts/roboto-latin-ext-700-normal.woff2);unicode-range:U+0100-02BA,U+20A0-20C0;font-display:block}
+@font-face{font-family:Roboto;font-weight:900;src:url(fonts/roboto-latin-ext-900-normal.woff2);unicode-range:U+0100-02BA,U+20A0-20C0;font-display:block}
+:root{--red:#ed1c24;--redl:#ff6b70;--navy:#003974;--deep:#021c3d;--ink:#ffffff;--soft:#c9d7ea;--line:rgba(255,255,255,.16)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--deep)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Roboto,sans-serif;color:var(--ink)}
+.clip{position:absolute;inset:0}
+svg.ic{fill:currentColor;display:block}
+
+/* background */
+#bg{position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 22%,#0d4f96 0%,#003974 38%,#021c3d 100%)}
+#glow{position:absolute;left:90px;top:80px;width:900px;height:640px;border-radius:50%;background:radial-gradient(closest-side,rgba(237,28,36,.42),rgba(237,28,36,0));filter:blur(10px)}
+#rings{position:absolute;left:-260px;top:1180px;width:1600px;height:1600px;border-radius:50%;border:2px solid rgba(255,255,255,.05)}
+#rings2{position:absolute;left:-60px;top:1380px;width:1200px;height:1200px;border-radius:50%;border:2px solid rgba(255,255,255,.05)}
+
+/* card */
+#stage{position:absolute;inset:0;perspective:2400px;perspective-origin:50% 35%}
+#rig{position:absolute;left:540px;top:820px;width:0;height:0;transform-style:preserve-3d}
+#card{position:absolute;left:-430px;top:-270px;width:860px;height:540px;border-radius:33px;overflow:hidden;background:url(brand/kotak-air-card.png) center/100% 100% no-repeat;box-shadow:0 40px 90px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.12) inset}
+#shine{position:absolute;top:-40%;left:0;width:260px;height:180%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.38),rgba(255,255,255,0))}
+#cshadow{position:absolute;left:-380px;top:300px;width:760px;height:90px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.45),rgba(0,0,0,0))}
+
+/* top bar */
+#top{position:absolute;left:0;top:0;width:1080px;height:230px}
+#logo{position:absolute;left:84px;top:84px;width:233px;height:58px}
+#tag{position:absolute;right:84px;top:99px;font:700 28px Roboto;letter-spacing:5px;color:var(--soft)}
+#prog{position:absolute;left:84px;right:84px;top:178px;height:8px;display:flex;gap:14px}
+#prog i{flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,.16);overflow:hidden;position:relative}
+#prog i b{position:absolute;inset:0;background:var(--red);transform-origin:0 50%}
+
+/* type */
+.blk{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center}
+.big{font:900 400px/.8 Roboto;letter-spacing:-12px}
+.stk{margin-left:34px;display:flex;flex-direction:column;gap:14px}
+.u1{font:900 104px/1 Roboto;letter-spacing:-1px}
+.u2{font:500 78px/1 Roboto;color:var(--redl)}
+.pill{display:flex;align-items:center;gap:20px;padding:20px 44px 20px 34px;border-radius:70px;background:var(--red);font:700 58px/1 Roboto;box-shadow:0 14px 34px rgba(237,28,36,.35)}
+.pill svg{width:60px;height:60px}
+.sub{font:400 52px/1.2 Roboto;color:var(--soft)}
+.sub b{font-weight:700;color:#fff}
+.chip{display:flex;align-items:center;gap:16px;padding:18px 34px 18px 26px;border-radius:60px;border:3px solid rgba(255,255,255,.55);font:700 48px/1 Roboto}
+.chip svg{width:52px;height:52px;color:var(--redl)}
+.stamp{position:absolute;padding:12px 30px;border:6px solid var(--redl);border-radius:16px;color:var(--redl);font:900 70px/1 Roboto;letter-spacing:3px}
+.fine{position:absolute;left:84px;right:84px;padding:28px 34px;border-radius:26px;background:rgba(2,20,46,.55);border:2px solid var(--line);color:var(--soft);font:400 33px/1.42 Roboto;display:flex;gap:22px;align-items:flex-start}
+.fine svg{flex:none;width:42px;height:42px;margin-top:2px;color:var(--soft)}
+.fine b{color:#fff;font-weight:700}
+
+/* s1 / s8 */
+.ttl{font:900 112px/1 Roboto;letter-spacing:-2px;text-align:center}
+.kf{display:inline-flex;padding:16px 40px;border-radius:60px;background:var(--red);font:700 40px/1 Roboto;letter-spacing:6px}
+.tagl{font:500 56px/1.25 Roboto;color:var(--soft);text-align:center}
+
+/* s5 grid */
+.grid{position:absolute;left:84px;right:84px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid div{padding:15px 0;border-radius:18px;background:rgba(255,255,255,.09);border:2px solid var(--line);text-align:center;font:700 38px/1 Roboto}
+
+/* s6 tiles */
+.tile{position:absolute;left:84px;right:84px;height:300px;border-radius:34px;background:rgba(255,255,255,.08);border:2px solid var(--line);display:flex;align-items:center;padding:0 50px;gap:40px}
+.tile .tic{flex:none;width:150px;height:150px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center}
+.tile .tic svg{width:84px;height:84px}
+.tile .tn{font:900 190px/.85 Roboto;letter-spacing:-6px;flex:none}
+.tile .tt{font:700 50px/1.12 Roboto}
+
+/* s7 */
+.lab{font:700 44px/1 Roboto;letter-spacing:7px;color:var(--soft)}
+.fee{font:900 330px/.85 Roboto;letter-spacing:-10px}
+.fee2{font:900 150px/1 Roboto;letter-spacing:-3px}
+.fee2 small{font:700 70px Roboto;color:var(--soft);letter-spacing:0}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="39" data-width="1080" data-height="1920" data-motion-blur="on" data-motion-blur-shutter="180">
+
+  <div id="bgL" class="clip" data-start="0" data-duration="39" data-track-index="0">
+    <div id="bg"></div><div id="rings"></div><div id="rings2"></div><div id="glow"></div>
+  </div>
+
+  <div id="cardL" class="clip" data-start="0" data-duration="39" data-track-index="1">
+    <div id="stage"><div id="rig"><div id="cshadow"></div><div id="card"><div id="shine"></div></div></div></div>
+  </div>
+
+  <!-- S1 intro (0–2.55) VO v1 @0.35 -->
+  <div id="s1" class="clip" data-start="0" data-duration="2.55" data-track-index="2">
+    <div class="blk" style="top:1160px"><div class="ttl" id="s1t">Kotak Air<br>Credit Card</div></div>
+    <div class="blk" style="top:1460px"><div class="kf" id="s1k">KEY FEATURES</div></div>
+  </div>
+
+  <!-- S2 3x (2.55–7.85) VO v2 @2.72 -->
+  <div id="s2" class="clip" data-start="2.55" data-duration="5.3" data-track-index="3">
+    <div class="blk" style="top:640px" id="s2n"><div class="big">3</div><div class="stk"><div class="u1">Air Miles</div><div class="u2">per ₹100</div></div></div>
+    <div class="blk" style="top:1040px"><div class="pill" id="s2p">
+      <svg class="ic" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5C13 2.67 12.33 2 11.5 2S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+      <svg class="ic" viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+      Flights &amp; hotels</div></div>
+    <div class="blk" style="top:1185px"><div class="sub" id="s2s">booked via <b>Kotak Unbox</b></div></div>
+    <div class="fine" id="s2f" style="top:1450px"><svg class="ic" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+      <span>Accelerated Air Miles are capped at <b>5,000 per statement cycle</b> (≈ ₹2.5 lakh of spends). After that, 1 Air Mile per ₹100.</span></div>
+  </div>
+
+  <!-- S3 1x (7.85–11.9) VO v3 @8.00 -->
+  <div id="s3" class="clip" data-start="7.85" data-duration="4.05" data-track-index="4">
+    <div class="blk" style="top:640px" id="s3n"><div class="big">1</div><div class="stk"><div class="u1">Air Mile</div><div class="u2">per ₹100</div></div></div>
+    <div class="blk" style="top:1040px"><div class="pill" id="s3p">
+      <svg class="ic" viewBox="0 0 24 24"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/></svg>
+      Everything else</div></div>
+    <div class="stamp" id="s3st" style="left:370px;top:1190px">NO CAP</div>
+    <div class="fine" id="s3f" style="top:1450px"><svg class="ic" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+      <span><b>No Air Miles on</b> fuel, rent, utilities &amp; telecom, insurance, education, government, wallet loading, gaming, EMI &amp; cash advance.</span></div>
+  </div>
+
+  <!-- S4 bonus (11.9–16.35) VO v4 @12.04 -->
+  <div id="s4" class="clip" data-start="11.9" data-duration="4.45" data-track-index="5">
+    <div class="blk" style="top:650px"><div class="big" id="s4n" style="font-size:270px;letter-spacing:-8px">+<span id="s4c">0</span></div></div>
+    <div class="blk" style="top:910px"><div class="u1" id="s4u">Bonus Air Miles</div></div>
+    <div class="blk" style="top:1080px;gap:26px">
+      <div class="chip" id="s4a"><svg class="ic" viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg>On joining</div>
+      <div class="chip" id="s4b"><svg class="ic" viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>Every renewal</div>
+    </div>
+    <div class="fine" id="s4f" style="top:1450px"><svg class="ic" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+      <span>Welcome Air Miles are credited <b>within 120 days</b> of card issuance. Renewal Air Miles within 30 days of annual fee payment.</span></div>
+  </div>
+
+  <!-- S5 redeem (16.35–22.4) VO v5 @16.49 -->
+  <div id="s5" class="clip" data-start="16.35" data-duration="6.05" data-track-index="6">
+    <div class="blk" style="top:600px" id="s5n"><div class="big" style="font-size:330px">1</div><div class="stk"><div class="u1">Air Mile</div><div class="u2" style="color:#fff;font-weight:900;font-size:96px">= ₹1</div></div></div>
+    <div class="blk" style="top:900px"><div class="sub" id="s5s">on flights &amp; hotels via <b>Kotak Unbox</b></div></div>
+    <div class="blk" style="top:985px"><div class="pill" id="s5p" style="font-size:46px;padding:16px 36px 16px 28px">
+      <svg class="ic" viewBox="0 0 24 24" style="width:50px;height:50px"><path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/></svg>
+      or transfer to 8 partners</div></div>
+    <div class="grid" id="s5g" style="top:1098px">
+      <div>Air India</div><div>British Airways</div><div>Cathay Pacific</div><div>Air France</div>
+      <div>United Airlines</div><div>Qatar Airways</div><div>Accor</div><div>Marriott Bonvoy</div>
+    </div>
+    <div class="fine" id="s5f" style="top:1478px"><svg class="ic" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+      <span>Min. <b>500</b> Air Miles; up to <b>80%</b> of booking value. Vouchers: 1 Air Mile = ₹0.50. Transfers from 1,000 Air Miles (Air India &amp; Marriott 3:1, others 2:1). <b>Valid 3 years.</b></span></div>
+  </div>
+
+  <!-- S6 lounge + fuel (22.4–28.5) VO v6 @22.52 -->
+  <div id="s6" class="clip" data-start="22.4" data-duration="6.1" data-track-index="7">
+    <div class="tile" id="s6a" style="top:600px">
+      <div class="tic"><svg class="ic" viewBox="0 0 24 24"><path d="M21 10c-1.1 0-2 .9-2 2v3H5v-3c0-1.1-.9-2-2-2s-2 .9-2 2v5c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-5c0-1.1-.9-2-2-2zm-3-5H6c-1.1 0-2 .9-2 2v2.15c1.16.41 2 1.51 2 2.82V14h12v-2.03c0-1.3.84-2.4 2-2.82V7c0-1.1-.9-2-2-2z"/></svg></div>
+      <div class="tn">4</div><div class="tt">complimentary<br>domestic lounge<br>visits a year</div>
+    </div>
+    <div class="tile" id="s6b" style="top:940px">
+      <div class="tic"><svg class="ic" viewBox="0 0 24 24"><path d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33 0 1.38 1.12 2.5 2.5 2.5.36 0 .69-.08 1-.21v7.21c0 .55-.45 1-1 1s-1-.45-1-1V14c0-1.1-.9-2-2-2h-1V5c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v16h10v-7.5h1.5v5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V9c0-.69-.28-1.32-.73-1.77zM12 10H6V5h6v5zm6 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg></div>
+      <div class="tn">1%</div><div class="tt">fuel surcharge<br>waiver</div>
+    </div>
+    <div class="fine" id="s6f" style="top:1290px"><svg class="ic" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+      <span><b>Lounge:</b> primary cardholder, max 2 per quarter, on spends of <b>₹60,000+ in the previous calendar quarter</b>; ₹2 validation charge.<br><b>Fuel:</b> on ₹500–₹5,000 transactions, max ₹3,500 a year.</span></div>
+  </div>
+
+  <!-- S7 fees (28.5–34.3) VO v7 @28.66 -->
+  <div id="s7" class="clip" data-start="28.5" data-duration="5.8" data-track-index="8">
+    <div class="blk" style="top:620px"><div class="lab" id="s7l1">JOINING FEE</div></div>
+    <div class="blk" style="top:700px"><div class="fee" id="s7a">₹0</div></div>
+    <div class="blk" style="top:990px"><div class="pill" id="s7p" style="font-size:50px">No joining fee</div></div>
+    <div class="blk" style="top:1150px"><div class="lab" id="s7l2">ANNUAL FEE</div></div>
+    <div class="blk" style="top:1215px"><div class="fee2" id="s7b">₹999 <small>+ GST</small></div></div>
+    <div class="fine" id="s7f" style="top:1450px"><svg class="ic" viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+      <span>Joining fee waived under the current offer (standard joining fee ₹999 + GST).</span></div>
+  </div>
+
+  <!-- S8 end (34.3–39) VO v8 @34.45 -->
+  <div id="s8" class="clip" data-start="34.3" data-duration="4.7" data-track-index="9">
+    <div class="blk" style="top:1160px"><div class="ttl" id="s8t">Kotak Air<br>Credit Card</div></div>
+    <div class="blk" style="top:1440px"><div class="tagl" id="s8g">Turn everyday spends into travel.</div></div>
+  </div>
+
+  <div id="topL" class="clip" data-start="0" data-duration="39" data-track-index="10">
+    <div id="top">
+      <img id="logo" src="brand/kotak-logo-white.svg" alt="Kotak Mahindra Bank">
+      <div id="tag">AIR CREDIT CARD</div>
+      <div id="prog"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+    </div>
+  </div>
+
+  <audio id="mix" src="audio/mix.wav" data-start="0" data-duration="39" data-track-index="11"></audio>
+</div>
+
+<script>
+const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+const IN = (sel, t, from, d) => tl.fromTo(sel, Object.assign({ opacity: 0, y: 70 }, from || {}), { opacity: 1, y: 0, x: 0, scale: 1, rotation: 0, duration: d || 0.6, ease: 'expo.out', immediateRender: false }, t);
+const OUT = (sel, t) => tl.to(sel, { opacity: 0, y: -40, duration: 0.22, ease: 'power2.in' }, t);
+
+/* initial states */
+gsap.set('#prog b', { scaleX: 0 });
+gsap.set(['#s2n', '#s2p', '#s2s', '#s2f', '#s3n', '#s3p', '#s3st', '#s3f', '#s4n', '#s4u', '#s4a', '#s4b', '#s4f',
+  '#s5n', '#s5s', '#s5p', '#s5g div', '#s5f', '#s6a', '#s6b', '#s6f', '#s7l1', '#s7a', '#s7p', '#s7l2', '#s7b', '#s7f', '#s8t', '#s8g'], { opacity: 0 });
+gsap.set('#rig', { y: -40, rotationX: 16, rotationY: -26, scale: 0.92 });
+gsap.set('#shine', { x: -400 });
+gsap.set('#glow', { y: 420, opacity: 0.9 });
+
+/* ---- card choreography ---- */
+tl.to('#rig', { y: -60, rotationX: 8, rotationY: -10, scale: 1, duration: 1.2, ease: 'power3.out' }, 0);
+tl.to('#rig', { rotationY: 8, duration: 1.2, ease: 'sine.inOut' }, 1.25);
+tl.to('#shine', { x: 1100, duration: 0.9, ease: 'power2.inOut' }, 0.6);
+// shrink to the header slot for the features
+tl.to('#rig', { y: -440, scale: 0.55, rotationX: 6, rotationY: -12, duration: 0.6, ease: 'power3.inOut' }, 2.45);
+tl.to('#glow', { y: 40, scale: 0.7, opacity: 0.7, duration: 0.6, ease: 'power3.inOut' }, 2.45);
+// a gentle tilt on each feature change
+[[7.75, 12], [11.8, -12], [16.25, 12], [22.3, -12], [28.4, 12]].forEach(([t, r]) =>
+  tl.to('#rig', { rotationY: r, rotationX: 4, duration: 0.7, ease: 'power3.inOut' }, t));
+[3.2, 8.5, 12.6, 17.1, 23.1, 29.1].forEach((t, i) => tl.to('#rig', { rotationX: i % 2 ? 9 : 3, duration: 3, ease: 'sine.inOut' }, t));
+// back to hero for the end card, with a spin
+tl.to('#rig', { y: -60, scale: 1, rotationY: 360, rotationX: 6, duration: 1.0, ease: 'power3.inOut' }, 34.2);
+tl.to('#glow', { y: 420, scale: 1, opacity: 0.9, duration: 1.0, ease: 'power3.inOut' }, 34.2);
+tl.fromTo('#shine', { x: -400 }, { x: 1100, duration: 0.9, ease: 'power2.inOut', immediateRender: false }, 35.4);
+tl.to('#rig', { rotationY: 372, duration: 3.4, ease: 'sine.inOut' }, 35.2);
+
+/* ---- top bar + progress ---- */
+const SEG = [[2.55, 7.85], [7.85, 11.9], [11.9, 16.35], [16.35, 22.4], [22.4, 28.5], [28.5, 34.3]];
+SEG.forEach(([a, b], i) => tl.to(`#prog i:nth-child(${i + 1}) b`, { scaleX: 1, duration: b - a, ease: 'none' }, a));
+
+/* ---- S1 ---- */
+tl.fromTo('#s1t', { y: 24 }, { y: 0, duration: 1.2, ease: 'power3.out' }, 0);
+tl.fromTo('#s1k', { scale: 0.94 }, { scale: 1, duration: 0.8, ease: 'back.out(2)' }, 0.3);
+OUT(['#s1t', '#s1k'], 2.3);
+
+/* ---- S2 3x ---- */
+IN('#s2n', 2.85, { y: 90, scale: 0.85 });
+IN('#s2p', 4.85, { y: 50, scale: 0.85 });
+IN('#s2s', 6.45);
+IN('#s2f', 3.4, { y: 30 });
+OUT(['#s2n', '#s2p', '#s2s', '#s2f'], 7.6);
+
+/* ---- S3 1x ---- */
+IN('#s3n', 8.2, { y: 90, scale: 0.85 });
+IN('#s3p', 9.85, { y: 50, scale: 0.85 });
+tl.fromTo('#s3st', { opacity: 0, scale: 2.2, rotation: -14 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.35, ease: 'power4.in', immediateRender: false }, 10.95);
+IN('#s3f', 8.6, { y: 30 });
+OUT(['#s3n', '#s3p', '#s3st', '#s3f'], 11.65);
+
+/* ---- S4 bonus ---- */
+IN('#s4n', 12.2, { y: 90, scale: 0.85 });
+const cnt = { v: 0 };
+tl.to(cnt, { v: 1000, duration: 0.8, ease: 'power3.out', onUpdate: () => { document.getElementById('s4c').textContent = Math.round(cnt.v).toLocaleString('en-IN'); } }, 12.3);
+IN('#s4u', 12.9);
+IN('#s4a', 13.85, { y: 40, scale: 0.85 });
+IN('#s4b', 15.5, { y: 40, scale: 0.85 });
+IN('#s4f', 12.7, { y: 30 });
+OUT(['#s4n', '#s4u', '#s4a', '#s4b', '#s4f'], 16.1);
+
+/* ---- S5 redeem ---- */
+IN('#s5n', 16.8, { y: 90, scale: 0.85 });
+IN('#s5s', 18.45);
+IN('#s5p', 19.85, { y: 40, scale: 0.85 });
+tl.fromTo('#s5g div', { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, stagger: 0.08, ease: 'back.out(2)', immediateRender: false }, 20.4);
+IN('#s5f', 17.3, { y: 30 });
+OUT(['#s5n', '#s5s', '#s5p', '#s5g div', '#s5f'], 22.15);
+
+/* ---- S6 lounge + fuel ---- */
+IN('#s6a', 22.85, { x: -160, y: 0 });
+IN('#s6b', 26.2, { x: 160, y: 0 });
+IN('#s6f', 23.4, { y: 30 });
+OUT(['#s6a', '#s6b', '#s6f'], 28.25);
+
+/* ---- S7 fees ---- */
+IN('#s7l1', 28.9, { y: 30 });
+IN('#s7a', 29.0, { y: 90, scale: 0.8 });
+IN('#s7p', 29.5, { y: 40, scale: 0.85 });
+IN('#s7l2', 30.35, { y: 30 });
+IN('#s7b', 30.5, { y: 70 });
+IN('#s7f', 29.6, { y: 30 });
+OUT(['#s7l1', '#s7a', '#s7p', '#s7l2', '#s7b', '#s7f'], 34.05);
+
+/* ---- S8 end ---- */
+IN('#s8t', 34.9);
+IN('#s8g', 36.0);
+tl.to({}, { duration: 0.01 }, 38.99);
+
+window.__timelines = window.__timelines || {};
+window.__timelines['main'] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Roboto;font-weight:400;src:url(../fonts/roboto-latin-400-normal.woff2)}
+@font-face{font-family:Roboto;font-weight:700;src:url(../fonts/roboto-latin-700-normal.woff2)}
+@font-face{font-family:Roboto;font-weight:900;src:url(../fonts/roboto-latin-900-normal.woff2)}
+@font-face{font-family:Roboto;font-weight:400;src:url(../fonts/roboto-latin-ext-400-normal.woff2);unicode-range:U+20A0-20C0}
+@font-face{font-family:Roboto;font-weight:700;src:url(../fonts/roboto-latin-ext-700-normal.woff2);unicode-range:U+20A0-20C0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1720px;background:#eef2f7;font-family:Roboto;color:#0f2340;padding:44px 40px 50px}
+header{display:flex;align-items:center;gap:26px;margin-bottom:30px}
+header img{height:44px}
+header h1{font:900 32px Roboto}
+header p{margin-left:auto;font:400 16px/1.5 Roboto;color:#5b6b82;text-align:right}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.p{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 6px 20px rgba(0,30,70,.08)}
+.p img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover}
+.c{padding:16px 18px 18px}
+.h{display:flex;align-items:center;gap:10px;font:700 16px Roboto}
+.h .n{width:30px;height:30px;border-radius:50%;background:#ed1c24;color:#fff;display:flex;align-items:center;justify-content:center;font:900 15px Roboto}
+.h .t{margin-left:auto;font:400 13px Roboto;color:#5b6b82}
+.vo{margin-top:10px;padding:10px 12px;border-radius:12px;background:#eaf0f8;font:400 14px/1.42 Roboto}
+.vo b{color:#003974;font-weight:900;margin-right:4px}
+.m{margin-top:9px;font:400 13px/1.45 Roboto;color:#5b6b82}
+</style></head><body>
+<header><img src="../brand/kotak-logo.svg"><h1>Kotak Air Credit Card · Key Features · Storyboard</h1><p>Sales-team refresher · 9:16 · 1080×1920 · 39 s<br>VO: Alice (ElevenLabs, English, female) · facts from kotak.bank.in + T&amp;C PDF</p></header>
+<div class="grid" id="g"></div>
+<script>
+const P=[
+['Intro','0:00–0:02.5','Introducing the Kotak Air Credit Card.','Card already on screen at frame 1 (WhatsApp thumbnail), rotates into place; light sweep across it.'],
+['3 Air Miles / ₹100','0:02.5–0:08','Earn three Air Miles per hundred rupees on flights and hotels booked via Kotak Unbox.','Card shrinks to the header slot; progress bar starts. Small print: 3X cap of 5,000 per statement cycle.'],
+['1 Air Mile / ₹100','0:08–0:12','And one Air Mile per hundred rupees on everything else, with no cap.','"NO CAP" stamp slams in on "no cap". Small print: categories that earn no Air Miles.'],
+['+1,000 bonus Air Miles','0:12–0:16','Get one thousand bonus Air Miles on joining, and again every year on renewal.','Counter rolls 0 → 1,000; chips pop on "joining" and "renewal". Small print: credit timelines.'],
+['Redeem: 1 Air Mile = ₹1','0:16–0:22','Redeem one Air Mile for one rupee on flights and hotels, or transfer to eight airline and hotel partners.','Partner names cascade in. Small print: min 500, up to 80% of booking, voucher value, transfer ratios, 3-year validity.'],
+['Lounge + fuel','0:22–0:28','Enjoy four complimentary domestic lounge visits a year, plus a one percent fuel surcharge waiver.','Tiles slide in from the left and right on each benefit. Small print: ₹60,000 quarterly spend to unlock lounges, ₹2 charge, fuel limits.'],
+['Fees','0:28–0:34','There\'s no joining fee, and the annual fee is just nine hundred ninety-nine rupees plus GST.','₹0 lands on "no joining fee", then ₹999 + GST. Small print: waiver is the current offer.'],
+['End card','0:34–0:39','Kotak Air Credit Card. Turn everyday spends into travel.','Card spins back to hero size; light sweep; title + tagline. Music resolves.']];
+document.getElementById('g').innerHTML=P.map((p,i)=>`<div class="p"><img src="f${i+1}.jpg"><div class="c"><div class="h"><span class="n">${i+1}</span>${p[0]}<span class="t">${p[1]}</span></div><div class="vo"><b>VO</b>${p[2]}</div><div class="m">${p[3]}</div></div></div>`).join('');
+</script></body></html>
