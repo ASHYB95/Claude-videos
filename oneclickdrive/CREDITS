@@ -1,0 +1,10 @@
+OneClickDrive — "One Click Away" (9:16, 32.6 s)
+
+Screens: rebuilt in HTML from the live oneclickdrive.com mobile site (home, Sports Cars listing, AED),
+  captured 12 Nov 2026. Car photos, category images, hero banner and logo are OneClickDrive's own site assets.
+  Car-brand and supplier logos removed; supplier reply in the chat is fictional.
+Voiceover: ElevenLabs, voice "Sarah", eleven_multilingual_v2, speed 1.08.
+Music: original synthesis (audio/score.py), 126.3 BPM, D major.
+SFX: ElevenLabs sound generation (audio/sfx.py; generic UI sounds reused from collection-pot).
+Fonts: Mulish (SIL OFL), Noto Color Emoji (SIL OFL).
+Animation: HyperFrames + GSAP.

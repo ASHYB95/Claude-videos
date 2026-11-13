@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>OneClickDrive — One Click Away</title>
+<script src="vendor/gsap.min.js"></script>
+<style>
+@font-face{font-family:Mulish;font-weight:400;src:url(fonts/mulish-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:Mulish;font-weight:500;src:url(fonts/mulish-latin-500-normal.woff2);font-display:block}
+@font-face{font-family:Mulish;font-weight:600;src:url(fonts/mulish-latin-600-normal.woff2);font-display:block}
+@font-face{font-family:Mulish;font-weight:700;src:url(fonts/mulish-latin-700-normal.woff2);font-display:block}
+@font-face{font-family:Mulish;font-weight:800;src:url(fonts/mulish-latin-800-normal.woff2);font-display:block}
+@font-face{font-family:Mulish;font-weight:900;src:url(fonts/mulish-latin-900-normal.woff2);font-display:block}
+@font-face{font-family:Emo;src:url(fonts/NotoColorEmoji.ttf);font-display:block}
+:root{--o:#ed8413;--o2:#f58220;--od:#cc4700;--k:#373737;--k2:#4d4d4d;--g:#595959;--g2:#7b7b7b;--line:#eaeaea;--tint:#fff4ea;--peach:#fde3c8;--green:#2e9e4f;--wa:#1a8a43}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#fff}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#fff;font-family:Mulish,sans-serif;color:var(--k)}
+.clip{position:absolute;inset:0}
+.emo{font-family:Emo,sans-serif;font-weight:400}
+.ln{display:block;overflow:hidden;padding:.02em .1em .1em}
+.li{display:inline-block}
+svg.i{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- stage ---------- */
+#bg{position:absolute;inset:0;background:var(--tint)}
+.shape{position:absolute}
+#stage{position:absolute;inset:0;perspective:2600px;perspective-origin:50% 50%}
+.p3{position:absolute;transform-style:preserve-3d}
+#rig{left:540px;top:1000px;width:0;height:0}
+#phone{left:-300px;top:-620px;width:600px;height:1240px}
+.slab{position:absolute;inset:0;border-radius:88px}
+#pface{position:absolute;inset:0;border-radius:88px;background:linear-gradient(150deg,#4a4a4f,#2b2b2e 45%,#1f1f22);box-shadow:0 0 0 2px rgba(255,255,255,.10) inset}
+#pback{position:absolute;inset:0;border-radius:88px;transform:translateZ(-40px) rotateY(180deg);background:#2a2a2d}
+#shadow{position:absolute;left:-330px;top:560px;width:660px;height:200px;border-radius:50%;background:radial-gradient(closest-side,rgba(55,55,55,.32),rgba(55,55,55,0));transform:rotateX(90deg) translateZ(-40px)}
+#scr{position:absolute;left:22px;top:22px;width:556px;height:1196px;border-radius:66px;overflow:hidden;background:#fff;transform:translateZ(1px)}
+#island{position:absolute;left:208px;top:20px;width:140px;height:40px;border-radius:20px;background:#000;z-index:50}
+#glare{position:absolute;inset:0;border-radius:66px;pointer-events:none;z-index:49;background:linear-gradient(115deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,0) 30%)}
+.page{position:absolute;inset:0;overflow:hidden;background:#fff}
+.lg{position:absolute;left:0;top:0;width:430px;height:925px;transform:scale(1.293);transform-origin:0 0;overflow:hidden}
+.sc{position:absolute;left:0;top:0;width:430px}
+/* site chrome */
+.sb{height:46px}
+.tb{height:32px;background:#f3f3f3;display:flex;align-items:center;padding:0 12px;font:500 12px Mulish;gap:7px;color:var(--k)}
+.tb i{width:1px;height:14px;background:#ccc}
+.tb .lgn{margin-left:auto;display:flex;align-items:center;gap:5px}
+.tb svg{width:14px;height:14px}
+.hd{height:58px;display:flex;align-items:center;padding:0 14px;gap:14px;border-bottom:2px solid #eee;background:#fff}
+.burger{width:22px;height:16px;display:flex;flex-direction:column;justify-content:space-between}.burger i{height:2.6px;background:var(--o);border-radius:2px}
+.hd img{width:180px}
+.hd .app{margin-left:auto;height:32px;padding:0 14px;border-radius:16px;background:#141414;color:#fff;font:700 12.5px Mulish;display:flex;align-items:center}
+/* home */
+.tabs{display:flex;justify-content:center;gap:50px;margin-top:20px;font:600 18px Mulish;color:var(--g2)}
+.tabs .on{color:var(--od);border-bottom:3px solid var(--od);padding-bottom:3px}
+.hr{margin:16px 15px 0;border-top:1px solid #eee}
+.h1h{margin-top:26px;text-align:center;font:800 17.5px Mulish;letter-spacing:.4px}
+.subh{margin-top:12px;text-align:center;font:400 12.8px Mulish}
+.banner{position:relative;margin:22px 15px 0;height:190px;border-radius:12px 12px 0 0;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.banner .bt{position:absolute;left:16px;top:14px;color:#fff;font:800 17px/1.2 Mulish;text-shadow:0 1px 8px rgba(0,0,0,.45)}
+.banner .bt span{display:block;font:600 12px Mulish;margin-top:8px}
+.dots{position:absolute;left:0;right:0;bottom:9px;display:flex;justify-content:center;gap:5px}
+.dots i{width:7px;height:7px;border-radius:50%;border:1.3px solid #fff}.dots i.on{background:#fff}
+.brands{margin:0 15px;padding:10px 12px;background:#fff;border-radius:0 0 12px 12px;box-shadow:0 3px 10px rgba(0,0,0,.07);display:flex;gap:8px;overflow:hidden}
+.brands div{height:32px;padding:0 14px;border:1px solid #ddd;border-radius:16px;font:500 13px Mulish;display:flex;align-items:center;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);row-gap:16px;margin:28px 10px 0}
+.cat{text-align:center;position:relative}
+.cat img{width:118px;height:67px;object-fit:contain}
+.cat .cl{font:600 10.5px Mulish;margin-top:4px}
+.cat .cc{font:400 11px Mulish;color:var(--g);margin-top:2px}
+/* listing */
+.srch{margin:12px 12px 0;height:48px;border:1px solid #ccc;border-radius:24px;display:flex;align-items:center;font:500 13.5px Mulish}
+.srch b{font-weight:500;padding:0 14px 0 18px;border-right:1px solid #ddd;display:flex;align-items:center;gap:8px;height:26px}
+.srch span{padding-left:14px;color:var(--g)}
+.flt{display:flex;gap:8px;margin:12px 12px 0;white-space:nowrap}
+.flt div{height:34px;padding:0 12px;border:1px solid #ccc;border-radius:17px;font:500 12.5px Mulish;display:flex;align-items:center;gap:6px}
+.flt svg{width:13px;height:13px}
+.bc{margin-top:12px;background:#f7f7f7;height:38px;padding:0 16px;font:500 12px Mulish;color:var(--g);display:flex;align-items:center;gap:9px}
+.lh1{margin:20px 18px 0;font:800 18px Mulish}
+.cnt{margin:14px 18px 0;font:400 12.5px Mulish}
+.chp{margin:12px 18px 0;display:flex;gap:14px;align-items:center;font:500 12.5px Mulish}
+.chp u{text-decoration:underline}
+.chp div{height:28px;padding:0 12px;border:1px solid #ddd;border-radius:14px;background:#f3f3f3;display:flex;align-items:center;gap:8px}
+.lbg{margin-top:16px;padding:12px 0 200px;background:linear-gradient(180deg,#f2edfb,#fdf2ea 60%,#f6f0fb)}
+.card{position:relative;margin:0 12px 16px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.cimg{position:relative;height:228px;overflow:hidden}
+.cimg img{width:100%;height:100%;object-fit:cover}
+.prem{position:absolute;left:12px;top:12px;height:26px;padding:0 11px;border-radius:13px;background:rgba(28,28,28,.82);color:#fff;font:600 11.5px Mulish;display:flex;align-items:center;gap:5px}
+.heart{position:absolute;right:12px;top:12px;width:30px;height:30px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+.heart svg{width:16px;height:16px}
+.cb{padding:14px 16px 16px}
+.zd{display:flex;align-items:center;gap:6px;font:500 12.5px Mulish;margin-bottom:8px}
+.zd svg{width:15px;height:15px;color:var(--green)}
+.ct{font:700 17.5px Mulish}
+.ft{display:grid;grid-template-columns:1fr 1fr;gap:9px 10px;margin-top:12px;font:500 12px Mulish}
+.ft div{display:flex;align-items:center;gap:7px}
+.ck{width:16px;height:16px;border-radius:50%;background:#e4f5e8;color:var(--green);display:flex;align-items:center;justify-content:center;flex:none}
+.ck svg{width:10px;height:10px;stroke-width:3}
+.ck.cr{background:#f7931a;color:#fff;font:800 9px Mulish}
+.dv{border-top:1px solid #eee;margin:14px 0 12px}
+.pr{display:grid;grid-template-columns:1fr 1fr}
+.old{font:400 11.5px Mulish;color:var(--g2);display:flex;align-items:center;gap:8px}
+.old s{text-decoration:line-through}
+.old b{background:#e3f5e8;color:#1e7e34;font:700 11px Mulish;padding:2px 6px;border-radius:4px}
+.now{margin-top:6px;font:500 12px Mulish}.now b{font:700 22px Mulish;color:var(--od)}
+.km{margin-top:4px;font:400 11.5px Mulish;color:var(--g)}
+.bts{display:flex;gap:10px;margin-top:16px}
+.bts .b{position:relative;flex:1;height:42px;border-radius:21px;display:flex;align-items:center;justify-content:center;gap:6px;font:600 14px Mulish}
+.bts svg{width:17px;height:17px}
+.call{border:1.5px solid #c3b2f3;color:#7b3fe4}
+.wa{border:1.5px solid #86d39b;color:var(--wa)}
+.sup{width:56px;height:42px;border:1px solid #eee;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;color:#bbb}
+.sup svg{width:22px;height:22px}
+#tap{position:absolute;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(55,55,55,.22);border:3px solid rgba(255,255,255,.9);opacity:0;z-index:60}
+#ring{position:absolute;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;border:4px solid var(--o);opacity:0;z-index:59}
+
+/* 3D pop-outs */
+.pop{position:absolute;background:#fff;border-radius:34px;box-shadow:0 30px 70px rgba(55,55,55,.22),0 0 0 1px rgba(55,55,55,.05)}
+.bdg{height:110px;padding:0 36px 0 22px;border-radius:55px;display:flex;align-items:center;gap:18px;font:800 38px Mulish;white-space:nowrap}
+.bdg i{width:66px;height:66px;border-radius:50%;background:#e4f5e8;color:var(--green);display:flex;align-items:center;justify-content:center;flex:none}
+.bdg i svg{width:36px;height:36px;stroke-width:2.6}
+#price3{width:400px;padding:30px 34px 28px}
+#price3 .k{font:700 22px Mulish;letter-spacing:3px;color:var(--g2)}
+#price3 .v{margin-top:6px;font:900 58px/1 Mulish;color:var(--k)}#price3 .v b{font-size:110px;color:var(--od);letter-spacing:-3px}
+#price3 .v span{font-size:36px;font-weight:700;color:var(--g2)}
+#price3 .o{margin-top:12px;display:flex;align-items:center;gap:14px;font:600 26px Mulish;color:var(--g2)}
+#price3 .o s{text-decoration:line-through}#price3 .o em{font-style:normal;background:#e3f5e8;color:#1e7e34;font-weight:800;padding:4px 12px;border-radius:10px}
+#ver3{height:120px;padding:0 38px 0 24px;border-radius:60px;display:flex;align-items:center;gap:18px;font:800 36px/1.1 Mulish;white-space:nowrap;background:var(--k);color:#fff}
+#ver3 i{width:72px;height:72px;border-radius:50%;background:var(--o);display:flex;align-items:center;justify-content:center;flex:none}
+#ver3 i svg{width:40px;height:40px;stroke-width:3;color:#fff}
+#ver3 small{display:block;font:600 24px Mulish;opacity:.75}
+.bub{width:600px;padding:26px 30px 18px;border-radius:34px;font:500 31px/1.38 Mulish;color:#1d1d1d}
+#chatA{background:#dcf7c5;border-bottom-right-radius:8px}
+#chatB{background:#fff;border-bottom-left-radius:8px;width:520px}
+.bub .meta{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:8px;font:500 21px Mulish;color:#4f5f4f}
+.bub .tk{position:relative;width:38px;height:22px}
+.bub .tk svg{position:absolute;left:0;top:0;width:38px;height:22px;stroke-width:2.6}
+.bub .tk .t2{color:#34b7f1;opacity:0}
+.bub .who{font:800 24px Mulish;color:var(--od);margin-bottom:6px}
+.chip3{position:absolute;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(37,179,90,.4)}
+.chip3 svg{width:42px;height:42px;color:#fff;stroke-width:2.4}
+.cc3{width:330px;height:300px;padding:22px 22px 20px;text-align:center}
+.cc3 img{width:286px;height:162px;object-fit:contain}
+.cc3 b{display:block;font:900 38px Mulish;margin-top:6px}
+.cc3 span{font:600 24px Mulish;color:var(--g2)}
+#ccRing{position:absolute;border-radius:40px;border:8px solid var(--o)}
+
+/* 2D overlays */
+.hl{position:absolute;left:0;right:0;text-align:center}
+.big{font:900 112px/1.02 Mulish;letter-spacing:-3px}
+.or{color:var(--od)}
+#logoTop{position:absolute;left:210px;top:190px;width:660px}
+#hl2{top:150px}
+#steps{position:absolute;left:80px;right:80px;top:120px}
+#bar{display:flex;gap:16px}
+#bar div{position:relative;flex:1;height:12px;border-radius:6px;background:#ead9c7;overflow:hidden}
+#bar div i{position:absolute;inset:0;background:var(--o);border-radius:6px}
+.stl{position:absolute;left:0;right:0;top:44px;display:flex;align-items:center;justify-content:center;gap:22px;font:900 76px/1.05 Mulish;letter-spacing:-2px;white-space:nowrap}
+.stl .n{width:86px;height:86px;border-radius:50%;background:var(--od);color:#fff;font:900 50px Mulish;display:flex;align-items:center;justify-content:center;letter-spacing:0;flex:none}
+#hl8{top:120px}
+#hl8 .f{font:800 64px Mulish;letter-spacing:-1px}
+#hl8 .p{display:flex;justify-content:center;align-items:baseline;gap:18px;margin-top:-10px}
+#hl8 .p .a{font:900 92px Mulish;letter-spacing:-2px}
+#hl8 .p .n{font:900 250px/1 Mulish;letter-spacing:-8px;color:var(--od)}
+#hl8 .p .d{font:800 80px Mulish;letter-spacing:-2px}
+.odo{display:inline-flex;overflow:hidden;height:1em;line-height:1em}
+.odo .col{display:inline-block;overflow:hidden;height:1em}
+.odo .strip{display:flex;flex-direction:column}
+.odo .strip span{height:1em;display:block;text-align:center}
+.fn{position:absolute;left:0;right:0;text-align:center;font:500 25px Mulish;color:var(--g2)}
+
+/* hook */
+#hook{background:#fff}
+#hkT{top:330px}
+#hkT .big{font-size:132px}
+#skip{position:absolute;left:0;right:0;top:760px;text-align:center;font:900 44px Mulish;letter-spacing:12px;color:var(--od)}
+.pain{position:absolute;left:50%;height:150px;padding:0 54px 0 34px;border-radius:75px;border:6px solid var(--k);background:#fff;display:flex;align-items:center;gap:22px;font:900 68px Mulish;letter-spacing:-1.5px;white-space:nowrap}
+.pain .emo{font-size:66px}
+.pain .st{position:absolute;left:24px;right:24px;top:50%;height:16px;margin-top:-8px;border-radius:8px;background:var(--o)}
+
+/* S6 */
+#s6{background:var(--o);overflow:hidden}
+.no{position:absolute;left:0;right:0;text-align:center;font:900 92px/1 Mulish;letter-spacing:-2px;color:#fff;white-space:nowrap}
+.no b{display:inline-block;background:var(--k);color:#fff;padding:8px 24px 14px;border-radius:24px;margin-right:20px}
+#s6ring{position:absolute;left:740px;top:-260px;width:700px;height:700px;border-radius:50%;border:70px solid rgba(255,255,255,.16)}
+#s6ring2{position:absolute;left:-380px;top:1400px;width:760px;height:760px;border-radius:50%;background:rgba(0,0,0,.07)}
+
+/* map */
+#map{background:#f3ece2;overflow:hidden}
+#map svg.m{position:absolute;left:0;top:0;width:1080px;height:1920px}
+#mapHl{position:absolute;left:0;right:0;top:120px;text-align:center}
+#mapHl div{display:inline-block;background:#fff;border-radius:40px;padding:22px 52px 30px;box-shadow:0 20px 50px rgba(55,55,55,.14);font:900 96px/1 Mulish;letter-spacing:-3px}
+.pin{position:absolute;width:120px;height:150px;margin:-150px 0 0 -60px}
+.pin svg{width:120px;height:150px}
+.pin .emo{position:absolute;left:0;right:0;top:22px;text-align:center;font-size:50px}
+#hub{position:absolute;left:470px;top:1030px;width:140px;height:140px;margin:-70px 0 0 -70px;border-radius:50%;background:var(--k);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 40px rgba(0,0,0,.25)}
+#hub img{width:104px}
+#hubP{position:absolute;left:470px;top:1030px;width:140px;height:140px;margin:-70px 0 0 -70px;border-radius:50%;border:6px solid var(--o);opacity:0}
+.toast{position:absolute;left:80px;width:920px;height:128px;border-radius:40px;background:#fff;box-shadow:0 20px 50px rgba(0,0,0,.16);display:flex;align-items:center;gap:26px;padding:0 34px 0 22px;opacity:0}
+.toast .ic{width:88px;height:88px;border-radius:50%;background:var(--tint);display:flex;align-items:center;justify-content:center;font-size:46px}
+.toast b{display:block;font:800 40px Mulish;letter-spacing:-.5px}
+.toast span{font:500 26px Mulish;color:var(--g2)}
+.toast .okk{margin-left:auto;width:62px;height:62px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center}
+.toast .okk svg{width:34px;height:34px;stroke-width:3.2}
+
+/* end */
+#end{background:#fff}
+#endLogo{position:absolute;left:150px;top:200px;width:780px}
+#endTabs{position:absolute;left:0;right:0;top:350px;display:flex;justify-content:center;gap:110px;font:600 50px Mulish;color:var(--g2)}
+#endTabs .on{color:var(--od);position:relative}
+#endTabs .on i{position:absolute;left:0;right:0;bottom:-12px;height:8px;border-radius:4px;background:var(--od)}
+#endH{top:500px;font:800 80px Mulish;letter-spacing:1px}
+#endS{top:625px;font:500 40px/1.4 Mulish;color:var(--k)}
+#endS .bd{position:relative;display:inline-block;font-weight:800}
+#endS .bd i{position:absolute;left:0;right:0;bottom:-2px;height:8px;border-radius:4px;background:var(--o)}
+#endCard{position:absolute;left:70px;top:790px;width:940px;height:530px;border-radius:40px;overflow:hidden;box-shadow:0 30px 70px rgba(55,55,55,.18)}
+#endCard img{width:100%;height:100%;object-fit:cover}
+#endCard .t{position:absolute;left:44px;top:40px;color:#fff;font:900 64px/1.08 Mulish;letter-spacing:-1.5px;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+#endCard .t span{display:block;font:700 34px Mulish;letter-spacing:0;margin-top:18px}
+#cta{position:absolute;left:190px;right:190px;top:1400px;height:150px;border-radius:75px;background:#141414;color:#fff;display:flex;align-items:center;justify-content:center;gap:22px;font:800 56px Mulish;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+#cta svg{width:52px;height:52px;stroke-width:2.6;color:var(--o)}
+#cta i{position:absolute;top:-30%;left:0;width:160px;height:160%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent)}
+#ctaRing{position:absolute;left:540px;top:1475px;width:140px;height:140px;margin:-70px 0 0 -70px;border-radius:50%;border:6px solid var(--o);opacity:0}
+#endUrl{top:1610px;font:800 46px Mulish;color:var(--k)}
+#endUrl span{color:var(--od)}
+.wipe{position:absolute;left:-200px;top:0;width:1480px;height:2300px;border-radius:300px}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="32.6" data-width="1080" data-height="1920" data-motion-blur="on" data-motion-blur-shutter="180">
+
+  <!-- ===== Stage with the 3D phone (S2–S5, S8) ===== -->
+  <div id="stageWrap" class="clip" data-start="4.9" data-duration="23.2" data-track-index="1">
+    <div id="bg"></div>
+    <div id="stage">
+      <div id="rig" class="p3">
+        <div id="shadow"></div>
+        <div id="phone" class="p3">
+          <div id="slabs"></div>
+          <div id="pback"></div>
+          <div id="pface"></div>
+          <div id="scr" data-layout-ignore>
+            <!-- HOME -->
+            <div class="page" id="home"><div class="lg"><div class="sc" id="homeSc">
+              <div class="sb"></div>
+              <div class="tb"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Dubai<i></i>AED<i></i>العربية<div class="lgn"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.5 18.5c1.5-2 3.4-3 5.5-3s4 1 5.5 3"/></svg>Login</div></div>
+              <div class="hd"><div class="burger"><i></i><i></i><i></i></div><img src="brand/main-logo-mob.svg" alt=""><div class="app">Get the app</div></div>
+              <div class="tabs"><span class="on">Rent</span><span>Buy</span><span>Sell</span></div>
+              <div class="hr"></div>
+              <div class="h1h">RENT A CAR DUBAI</div>
+              <div class="subh">Car Rental in Dubai. Book Direct. No Commission Fees.</div>
+              <div class="banner"><img src="assets/cars/banner_rental.webp" alt=""><div class="bt">Dubai's Largest<br>Car Selection<span>Browse Rentals →</span></div><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div>
+              <div class="brands"><div>Porsche</div><div>Ferrari</div><div>Lamborghini</div><div>BMW</div><div>Audi</div></div>
+              <div class="grid" id="grid"></div>
+            </div></div></div>
+            <!-- LISTING -->
+            <div class="page" id="list"><div class="lg"><div class="sc" id="listSc">
+              <div class="sb"></div>
+              <div class="tb"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Dubai<i></i>AED<i></i>العربية<div class="lgn"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.5 18.5c1.5-2 3.4-3 5.5-3s4 1 5.5 3"/></svg>Login</div></div>
+              <div class="hd"><div class="burger"><i></i><i></i><i></i></div><img src="brand/main-logo-mob.svg" alt=""><div class="app">Get the app</div></div>
+              <div class="srch"><b>Rent <svg class="i" viewBox="0 0 24 24" style="width:12px;height:12px"><path d="M6 9l6 6 6-6"/></svg></b><span>Search by car brand, model or keyword</span></div>
+              <div class="flt"><div><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filters</div><div><svg class="i" viewBox="0 0 24 24"><path d="M8 4v16M4 8l4-4 4 4M16 20V4M12 16l4 4 4-4"/></svg>Sort</div><div>Car Type</div><div>Brand &amp; Model</div></div>
+              <div class="bc">Home <span>›</span> Dubai <span>›</span> Car Brands <span>›</span> Sports Cars</div>
+              <div class="lh1">Rent Sports Car Dubai</div>
+              <div class="cnt">1 - 20 of <b>192</b> cars</div>
+              <div class="chp"><u>Clear all</u><div>Sports Car ×</div></div>
+              <div class="lbg" id="cards"></div>
+            </div></div></div>
+            <div id="tap"></div><div id="ring"></div>
+            <div id="island"></div>
+            <div id="glare"></div>
+          </div>
+        </div>
+        <!-- 3D pop-outs (rig space: phone spans x ±300, y ±620) -->
+        <div id="price3" class="pop p3" data-layout-allow-overlap style="left:110px;top:-360px"><div class="k">FROM THE SUPPLIER</div><div class="v">AED <b>649</b><span>/day</span></div><div class="o"><s>AED 2000</s><em>-68%</em></div></div>
+        <div id="bdg0" class="pop bdg p3" data-layout-allow-overlap style="left:-560px;top:-120px"><i><svg class="i" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></i>Zero deposit</div>
+        <div id="bdg1" class="pop bdg p3" data-layout-allow-overlap style="left:-600px;top:30px"><i><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>Insurance included</div>
+        <div id="bdg2" class="pop bdg p3" data-layout-allow-overlap style="left:-520px;top:180px"><i><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>1-day minimum</div>
+        <div id="ver3" class="pop p3" data-layout-allow-overlap style="left:-40px;top:380px"><i><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i><div>100+ verified<small>rental suppliers</small></div></div>
+        <div id="chatA" class="pop bub p3" data-layout-allow-overlap style="left:-260px;top:-470px"><div class="who">To: the supplier</div>Hi, I would like to rent this car listed on OneClickDrive:<br><b>Porsche 718 Boxster 2024</b><br>AED 649/day<div class="meta">now<span class="tk"><svg class="i t1" viewBox="0 0 38 22"><path d="M2 12l6 6L20 4M16 15l3 3L32 4"/></svg><svg class="i t2" viewBox="0 0 38 22"><path d="M2 12l6 6L20 4M16 15l3 3L32 4"/></svg></span></div></div>
+        <div id="chatB" class="pop bub p3" data-layout-allow-overlap style="left:-360px;top:-90px">Available! <span class="emo">👍</span> Shall we deliver it to your hotel?<div class="meta">now</div></div>
+        <div id="waChip" class="chip3 p3" data-layout-allow-overlap style="left:-300px;top:-520px"><svg class="i" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.6-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
+        <div id="fan"></div>
+        <div id="ccRing" class="p3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 2D overlays over the stage ===== -->
+  <div id="ovl" class="clip" data-start="4.9" data-duration="23.2" data-track-index="2">
+    <img id="logoTop" src="brand/main-logo-mob.svg" alt="">
+    <div id="hl2" class="hl big"><span class="ln"><span class="li">Dubai's <span class="or">largest</span></span></span><span class="ln"><span class="li">car selection</span></span></div>
+    <div id="steps">
+      <div id="bar"><div><i id="b1"></i></div><div><i id="b2"></i></div><div><i id="b3"></i></div></div>
+      <div class="stl" id="st1"><span class="n">1</span>Pick a car type</div>
+      <div class="stl" id="st2"><span class="n">2</span>Compare prices</div>
+      <div class="stl" id="st3"><span class="n">3</span>Message direct</div>
+    </div>
+    <div id="hl8" class="hl"><div class="f">From</div><div class="p"><span class="a">AED</span><span class="n"><span id="o30"></span></span><span class="d">/day*</span></div></div>
+    <div id="fn8" class="fn" style="top:1830px"><span style="background:#fff;padding:8px 22px;border-radius:20px">*Starting price. Rates, deposits &amp; delivery are set by each supplier.</span></div>
+  </div>
+
+  <!-- ===== S1 hook ===== -->
+  <div id="hook" class="clip" data-start="0" data-duration="5.35" data-track-index="3">
+    <div id="hkT" class="hl"><span class="ln big"><span class="li">Renting a car</span></span><span class="ln big"><span class="li">in <span class="or">Dubai?</span></span></span></div>
+    <div id="skip">SKIP THE</div>
+    <div class="pain" id="pn0" style="top:880px"><span class="emo">⏳</span>Counter queues<i class="st"></i></div>
+    <div class="pain" id="pn1" style="top:1080px"><span class="emo">💳</span>Deposits<i class="st"></i></div>
+    <div class="pain" id="pn2" style="top:1280px"><span class="emo">🧾</span>Agent markups<i class="st"></i></div>
+  </div>
+
+  <!-- ===== S6 no fees ===== -->
+  <div id="s6" class="clip" data-start="17.05" data-duration="3.6" data-track-index="4">
+    <div id="s6ring"></div><div id="s6ring2"></div>
+    <div class="no" id="no0" style="top:620px"><b>NO</b>COMMISSION.</div>
+    <div class="no" id="no1" style="top:860px"><b>NO</b>BOOKING FEES.</div>
+    <div class="no" id="no2" style="top:1100px"><b>NO</b>MARK-UPS.</div>
+  </div>
+
+  <!-- ===== S7 delivery map ===== -->
+  <div id="map" class="clip" data-start="20.3" data-duration="4.25" data-track-index="5">
+    <svg class="m" viewBox="0 0 1080 1920">
+      <path d="M0 0H1080V300C900 420 760 520 620 640C470 770 330 880 170 980C100 1025 40 1060 0 1080Z" fill="#cfe5f0"/>
+      
+      <g fill="none" stroke="#fff" stroke-linecap="round">
+        <path d="M-40 1330C300 1150 640 930 1120 650" stroke-width="44"/>
+        <path d="M-40 1630C320 1440 700 1220 1120 980" stroke-width="34"/>
+        <path d="M300 1960C380 1500 520 1100 760 520" stroke-width="30"/>
+        <path d="M720 1960C700 1600 760 1250 1120 1120" stroke-width="26"/>
+        <path d="M60 1960C140 1700 160 1500 120 1180" stroke-width="22"/>
+      </g>
+      <g fill="none" stroke="#e7ddcf" stroke-width="12" stroke-linecap="round"><path d="M450 1960L560 1480"/><path d="M880 1960L960 1450"/><path d="M180 1760L620 1700"/><path d="M640 1500L1080 1420"/><path d="M380 1000L700 1300"/></g>
+      <path id="rt0" d="M470 1030C600 960 700 880 800 760" fill="none" stroke="#ed8413" stroke-width="12" stroke-linecap="round" stroke-dasharray="1 0"/>
+      <path id="rt1" d="M470 1030C430 990 380 940 330 880" fill="none" stroke="#ed8413" stroke-width="12" stroke-linecap="round"/>
+      <path id="rt2" d="M470 1030C560 1100 620 1180 660 1300" fill="none" stroke="#ed8413" stroke-width="12" stroke-linecap="round"/>
+    </svg>
+    <div id="hubP"></div>
+    <div id="hub"><img src="assets/cars/cat_sports-type-m1.webp" alt=""></div>
+    <div class="pin" id="pin0" style="left:800px;top:760px"><svg viewBox="0 0 120 150"><path d="M60 146C60 146 8 92 8 56a52 52 0 0 1 104 0c0 36-52 90-52 90z" fill="#ed8413"/><circle cx="60" cy="56" r="38" fill="#fff"/></svg><span class="emo">✈️</span></div>
+    <div class="pin" id="pin1" style="left:330px;top:880px"><svg viewBox="0 0 120 150"><path d="M60 146C60 146 8 92 8 56a52 52 0 0 1 104 0c0 36-52 90-52 90z" fill="#ed8413"/><circle cx="60" cy="56" r="38" fill="#fff"/></svg><span class="emo">🏨</span></div>
+    <div class="pin" id="pin2" style="left:660px;top:1300px"><svg viewBox="0 0 120 150"><path d="M60 146C60 146 8 92 8 56a52 52 0 0 1 104 0c0 36-52 90-52 90z" fill="#ed8413"/><circle cx="60" cy="56" r="38" fill="#fff"/></svg><span class="emo">🏠</span></div>
+    <div id="mapHl"><div>Delivered to you</div></div>
+    <div class="toast" id="to0" style="top:1400px"><div class="ic emo">✈️</div><div><b>The airport</b><span>Meet your car on arrival</span></div><div class="okk"><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div></div>
+    <div class="toast" id="to1" style="top:1548px"><div class="ic emo">🏨</div><div><b>Your hotel</b><span>Dropped at the lobby</span></div><div class="okk"><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div></div>
+    <div class="toast" id="to2" style="top:1696px"><div class="ic emo">🏠</div><div><b>Your door</b><span>Wherever you're staying</span></div><div class="okk"><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div></div>
+  </div>
+
+  <!-- ===== S9 end card (mirrors the homepage hero) ===== -->
+  <div id="end" class="clip" data-start="27.75" data-duration="4.85" data-track-index="6">
+    <img id="endLogo" src="brand/main-logo-mob.svg" alt="">
+    <div id="endTabs"><span class="on">Rent<i></i></span><span>Buy</span><span>Sell</span></div>
+    <div id="endH" class="hl"><span class="ln"><span class="li">RENT A CAR DUBAI</span></span></div>
+    <div id="endS" class="hl">Car Rental in Dubai. <span class="bd">Book Direct.<i></i></span><br>No Commission Fees.</div>
+    <div id="endCard"><img src="assets/cars/banner_rental.webp" alt=""><div class="t">Dubai's Largest<br>Car Selection<span>Browse Rentals →</span></div></div>
+    <div id="cta"><svg class="i" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7M9 11l3 3 3-3M10 18h4"/></svg>Get the app<i></i></div>
+    <div id="ctaRing"></div>
+    <div id="endUrl" class="hl">oneclick<span>drive</span>.com</div>
+    <div class="fn" style="top:1842px">*Rates, deposits &amp; delivery are set by each supplier.</div>
+  </div>
+
+  <audio id="mix" src="audio/mix.wav" data-start="0" data-duration="32.6" data-track-index="8"></audio>
+
+  <!-- wipes -->
+  <div id="wipes" class="clip" data-start="0" data-duration="32.6" data-track-index="7" style="pointer-events:none">
+    <div class="wipe" id="wO" style="background:#ed8413"></div>
+    <div class="wipe" id="wK" style="background:#373737"></div>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const CHK = '<svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>';
+
+/* ---------- build ---------- */
+let sl = ''; for (let i = 1; i <= 13; i++) sl += '<div class="slab" style="transform:translateZ(' + (-i * 3) + 'px);background:hsl(240,3%,' + (22 - i * 0.8) + '%)"></div>';
+$('#slabs').innerHTML = sl; $('#slabs').style.cssText = 'position:absolute;inset:0';
+
+// stage shapes: flat brand shapes echoing the logo's rounded pill
+const SH = [['#ed8413', 760, 1480, 560, 560, '50%'], ['#fde3c8', 640, -130, 760, 280, '140px'], ['#373737', 960, 760, 120, 120, '50%'], ['#fde3c8', -190, 620, 380, 380, '50%'], ['#ed8413', 110, 1240, 80, 80, '50%']];
+$('#bg').innerHTML = SH.map((s, i) => '<div class="shape" id="sh' + i + '" style="background:' + s[0] + ';left:' + s[1] + 'px;top:' + s[2] + 'px;width:' + s[3] + 'px;height:' + s[4] + 'px;border-radius:' + s[5] + '"></div>').join('') +
+  '<div class="shape" id="shR" style="left:-150px;top:1560px;width:360px;height:360px;border-radius:50%;border:40px solid #ed8413"></div>';
+
+// home category grid (real categories, images and counts from the site)
+const CATS = [['luxury-type', 'RENT LUXURY', '720 Cars'], ['sports-type-m1', 'RENT SPORTS', '193 Cars'], ['suv-type', 'RENT SUV', '629 Cars'], ['monthy-type-new', 'RENT MONTHLY', '1234 Cars'], ['economy-type-new', 'CHEAP RENT A CAR', '243 Cars'], ['supercar-type-v2', 'RENT SUPERCARS', '99 Cars'], ['convertible-type', 'RENT CONVERTIBLE', '165 Cars'], ['electric-type', 'RENT ELECTRIC', '12 Cars'], ['car-with-driver-new', 'CAR WITH DRIVER', '60 Cars']];
+$('#grid').innerHTML = CATS.map((c, i) => '<div class="cat" id="cat' + i + '"><img src="assets/cars/cat_' + c[0] + '.webp" alt=""><div class="cl">' + c[1] + '</div><div class="cc">' + c[2] + '</div></div>').join('');
+
+// listing cards (copy from the live Sports Cars page, AED)
+const CARDS = [
+  { img: 'wm_Lamborghini-Huracan-Evo-Spyder-2022_41241_40805673949-10.jpg', zd: false, t: 'Lamborghini Huracan Evo Spyder 2022', f: [['ck', 'Free Delivery'], ['ck', '1-day minimum'], ['cr', 'Pay by Crypto'], ['ck', 'Insurance included']], p: [['AED 3000', '-27%', '2199', 'day', '250 km']] },
+  { img: 'porsche718_wm.jpg', zd: true, t: 'Porsche 718 Boxster 2024', f: [['ck', '1-day minimum'], ['cr', 'Pay by Crypto'], ['ck', 'Tabby / Tamara'], ['ck', 'Insurance included']], p: [['AED 2000', '-68%', '649', 'day', '300 km'], ['AED 35,000', '-53%', '16,499', 'month', '4500 km']] },
+  { img: 'wm_Porsche-Cayenne-GTS-2023_14951_41597998740-6.jpg', zd: true, t: 'Porsche Cayenne GTS 2023', f: [['ck', 'Free Delivery 7d+'], ['ck', '1-day minimum'], ['cr', 'Pay by Crypto'], ['ck', 'Insurance included']], p: [['AED 1550', '-23%', '1200', 'day', '200 km']] }];
+const SHIELD = '<svg class="i" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>';
+$('#cards').innerHTML = CARDS.map((c, i) => '<div class="card" id="card' + i + '"><div class="cimg"><img src="assets/cars/' + c.img + '" alt=""><div class="prem">◆ Premium</div><div class="heart"><svg class="i" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div><div class="dots"><i class="on"></i><i></i><i></i><i></i></div></div>' +
+  '<div class="cb">' + (c.zd ? '<div class="zd">' + SHIELD + 'Zero deposit</div>' : '') + '<div class="ct">' + c.t + '</div>' +
+  '<div class="ft">' + c.f.map(f => '<div>' + (f[0] === 'cr' ? '<span class="ck cr">¤</span>' : '<span class="ck">' + CHK + '</span>') + f[1] + '</div>').join('') + '</div><div class="dv"></div>' +
+  '<div class="pr">' + c.p.map(p => '<div><div class="old"><s>' + p[0] + '</s><b>' + p[1] + '</b></div><div class="now">AED <b>' + p[2] + '</b> / ' + p[3] + '</div><div class="km">' + p[4] + '</div></div>').join('') + '</div>' +
+  '<div class="bts"><div class="b call" id="call' + i + '"><svg class="i" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call</div><div class="b wa" id="wa' + i + '"><svg class="i" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.6-5.2A8.5 8.5 0 1 1 21 11.5z"/></svg>WhatsApp</div><div class="sup"><svg class="i" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></div></div></div></div>').join('');
+
+// fan of category cards (S8)
+const FAN = [['economy-type-new', 'Economy', '243 cars'], ['suv-type', 'SUV', '629 cars'], ['luxury-type', 'Luxury', '720 cars'], ['supercar-type-v2', 'Supercar', '99 cars']];
+$('#fan').innerHTML = FAN.map((f, i) => '<div class="pop cc3 p3" data-layout-allow-overlap id="fc' + i + '" style="left:-165px;top:-150px"><img src="assets/cars/cat_' + f[0] + '.webp" alt=""><b>' + f[1] + '</b><span>' + f[2] + '</span></div>').join('');
+$('#fan').style.cssText = 'position:absolute;left:0;top:0;transform-style:preserve-3d';
+
+// odometer (seek-safe)
+function odo(el, maxV, blankLead) {
+  const cols = String(maxV).length; let h = '';
+  for (let c = 0; c < cols; c++) {
+    const p = cols - 1 - c, L = Math.floor(maxV / 10 ** p) + 1;
+    let s = ''; for (let k = 0; k < L; k++) s += '<span>' + ((blankLead && p > 0 && k === 0) ? '&nbsp;' : k % 10) + '</span>';
+    h += '<span class="col"><span class="strip" data-p="' + p + '" data-l="' + L + '">' + s + '</span></span>';
+  }
+  el.innerHTML = h; el.classList.add('odo');
+}
+odo($('#o30'), 30, false);
+
+/* ---------- timeline ---------- */
+const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
+const E = 'expo.inOut';
+const runOdo = (sel, from, to, t, d, ease = 'power2.out') => $$(sel + ' .strip').forEach(s => {
+  const p = +s.dataset.p, L = +s.dataset.l, i0 = Math.floor(from / 10 ** p), i1 = Math.floor(to / 10 ** p);
+  tl.fromTo(s, { yPercent: -i0 / L * 100 }, { yPercent: -i1 / L * 100, duration: d, ease, immediateRender: true }, t);
+});
+const lines = (sel, t, st = 0.08) => tl.fromTo(sel + ' .li', { yPercent: 118 }, { yPercent: 0, duration: 0.7, ease: 'expo.out', stagger: st }, t);
+const out = (sel, t) => tl.to(sel, { opacity: 0, y: -40, filter: 'blur(10px)', duration: 0.28, ease: 'power2.in' }, t);
+const S = 1.293; // logical → screen px
+const SX = -278, SY = -598; // screen origin in rig space
+// centre of an on-screen element in logical px (measured lazily, after fonts load); scroll = current translate of its scroller
+const ctr = (sel, scroll = 0) => { const el = $(sel); if (typeof scroll === 'function') scroll = scroll(); let x = 0, y = 0, e = el; while (e && !e.classList.contains('sc')) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; } return [x + el.offsetWidth / 2, y + el.offsetHeight / 2 + scroll]; };
+const rigPt = (sel, scroll) => { const c = ctr(sel, scroll); return [SX + c[0] * S, SY + c[1] * S]; };
+const tap = (sel, scroll, t) => {
+  const X = () => ctr(sel, scroll)[0] * S, Y = () => ctr(sel, scroll)[1] * S;
+  tl.set('#tap', { x: X, y: Y }, t - 0.2).set('#ring', { x: X, y: Y }, t - 0.2);
+  tl.fromTo('#tap', { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.16, ease: 'power2.out', immediateRender: false }, t - 0.2)
+    .to('#tap', { scale: 0.78, duration: 0.08, ease: 'power2.in' }, t - 0.04)
+    .to('#tap', { scale: 1, opacity: 0, duration: 0.22, ease: 'power2.out' }, t + 0.06)
+    .fromTo('#ring', { opacity: 0.9, scale: 0.6 }, { opacity: 0, scale: 2.3, duration: 0.45, ease: 'expo.out', immediateRender: false }, t);
+};
+const press = (sel, t) => tl.to(sel, { scale: 0.93, duration: 0.07, ease: 'power2.in' }, t - 0.03).to(sel, { scale: 1, duration: 0.3, ease: 'back.out(3)' }, t + 0.05);
+// camera: put rig point of `sel` at stage (tx,ty) with scale s
+const focus = (sel, scroll, s, tx, ty) => ({ x: () => tx - 540 - s * rigPt(sel, scroll)[0], y: () => ty - 1000 - s * rigPt(sel, scroll)[1], scale: s });
+
+gsap.set('#list', { xPercent: 100, visibility: 'hidden' });
+gsap.set(['#price3', '.bdg', '#ver3', '#chatA', '#chatB', '#waChip', '.cc3', '#ccRing'], { opacity: 0 });
+gsap.set(['#st1', '#st2', '#st3', '#hl8', '#fn8', '#logoTop', '#steps', '#bar', '#skip'], { opacity: 0 });
+gsap.set(['#b1', '#b2', '#b3'], { scaleX: 0, transformOrigin: '0% 50%' });
+gsap.set('.pain', { xPercent: -50, opacity: 0 });
+gsap.set('.pain .st', { scaleX: 0, transformOrigin: '0% 50%' });
+gsap.set(['#wO', '#wK'], { y: 2300 });
+gsap.set('#rig', { x: 0, y: 900, rotationY: -70, rotationX: 24, scale: 0.7 });
+
+/* --- S1 hook (0–5.2) --- VO v1 @0.25 */
+lines('#hkT', 0.2, 0.32);
+tl.fromTo('#hkT .or', { color: '#373737' }, { color: '#cc4700', duration: 0.25 }, 1.05);
+tl.fromTo('#skip', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 }, 1.85);
+[[2.25, 2.72], [3.0, 3.42], [3.8, 4.42]].forEach(([a, b], i) => {
+  tl.fromTo('#pn' + i, { opacity: 0, scale: 0.5, rotation: -6 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: 'back.out(2.2)' }, a);
+  tl.to('#pn' + i + ' .st', { scaleX: 1, duration: 0.26, ease: 'power3.inOut' }, b);
+  tl.to('#pn' + i, { opacity: 0.45, rotation: i % 2 ? 2.5 : -2.5, borderColor: '#bbbbbb', color: '#9a9a9a', duration: 0.25 }, b + 0.12);
+});
+// orange wipe up → stage
+tl.to('#wO', { y: -2400, duration: 0.75, ease: 'power3.inOut' }, 4.75);
+
+/* --- S2 brand + phone (5.2–9.2) --- VO v2 @5.3 */
+tl.to('#rig', { x: 0, y: 140, rotationY: -16, rotationX: 8, scale: 0.86, duration: 1.15, ease: 'expo.out' }, 5.05);
+tl.fromTo('.shape', { scale: 0.5 }, { scale: 1, duration: 1.2, ease: 'expo.out', stagger: 0.04 }, 5.0);
+tl.fromTo('#logoTop', { opacity: 0, y: -30, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: 'back.out(2)' }, 5.25);
+out('#logoTop', 6.6);
+lines('#hl2', 6.8, 0.14);
+tl.to('#rig', { rotationY: 0, rotationX: 4, scale: 0.9, y: 170, duration: 1.0, ease: E }, 8.2);
+out('#hl2', 9.05);
+
+/* --- S3 step 1: pick a car type (9.2–10.9) --- VO v3a @9.3 */
+tl.set(['#steps', '#bar'], { opacity: 1 }, 9.15);
+tl.fromTo('#bar', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4 }, 9.15);
+tl.to('#b1', { scaleX: 1, duration: 0.5, ease: 'power2.out' }, 9.25);
+tl.fromTo('#st1', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: 'expo.out' }, 9.2);
+tl.to('#homeSc', { y: -260, duration: 0.7, ease: 'power3.inOut' }, 9.2);
+tl.to('#rig', Object.assign(focus('#cat1', -260, 1.25, 540, 1160), { rotationY: 0, rotationX: 0, duration: 0.8, ease: E }), 9.25);
+tl.fromTo('.cat', { y: 14, opacity: 0.4 }, { y: 0, opacity: 1, duration: 0.4, stagger: 0.03, immediateRender: false }, 9.3);
+tap('#cat1', -260, 10.05); press('#cat1', 10.05);
+tl.set('#list', { visibility: 'visible' }, 10.2).set('#home', { visibility: 'hidden' }, 10.7);
+tl.to('#home', { xPercent: -30, duration: 0.42, ease: E }, 10.25).to('#list', { xPercent: 0, duration: 0.42, ease: E }, 10.25);
+tl.to('#rig', { x: 0, y: 170, scale: 0.9, rotationY: 0, rotationX: 4, duration: 0.6, ease: E }, 10.25);
+
+/* --- S4 step 2: compare prices (10.9–14.1) --- VO v3b @10.9 */
+out('#st1', 10.7);
+tl.to('#b2', { scaleX: 1, duration: 0.5, ease: 'power2.out' }, 10.85);
+tl.fromTo('#st2', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: 'expo.out', immediateRender: false }, 10.85);
+const LS = () => -$('#card1').offsetTop + 64; // scroll so the Porsche card sits at the top
+tl.to('#listSc', { y: LS, duration: 0.9, ease: 'power3.inOut' }, 10.6);
+tl.to('#rig', { x: 70, y: 210, scale: 0.84, rotationY: -20, rotationX: 6, duration: 0.9, ease: E }, 11.3);
+tl.fromTo('#price3', { opacity: 0, z: 0, scale: 0.4, x: -120, y: 120 }, { opacity: 1, z: 170, scale: 1, x: 0, y: 0, duration: 0.6, ease: 'back.out(1.6)' }, 11.65);
+['#bdg0', '#bdg1', '#bdg2'].forEach((b, i) => tl.fromTo(b, { opacity: 0, z: 0, scale: 0.4, x: 200 }, { opacity: 1, z: 150 + i * 30, scale: 1, x: 0, duration: 0.55, ease: 'back.out(1.8)' }, 12.0 + i * 0.2));
+tl.fromTo('#ver3', { opacity: 0, z: 0, scale: 0.4, y: -100 }, { opacity: 1, z: 200, scale: 1, y: 0, duration: 0.55, ease: 'back.out(1.8)' }, 12.95);
+tl.to(['#price3', '#bdg0', '#bdg1', '#bdg2', '#ver3'], { opacity: 0, z: 0, scale: 0.5, duration: 0.35, ease: 'power2.in', stagger: 0.03 }, 13.75);
+
+/* --- S5 step 3: message direct (14.1–17.1) --- VO v3c @14.2 */
+out('#st2', 13.9);
+tl.to('#b3', { scaleX: 1, duration: 0.5, ease: 'power2.out' }, 14.1);
+tl.fromTo('#st3', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: 'expo.out', immediateRender: false }, 14.1);
+tl.to('#rig', Object.assign(focus('#wa1', LS, 1.22, 540, 1270), { rotationY: 0, rotationX: 0, duration: 0.75, ease: E }), 14.0);
+tap('#wa1', LS, 14.95); press('#wa1', 14.95);
+tl.to('#rig', { x: -40, y: 300, scale: 0.8, rotationY: 16, rotationX: 6, duration: 0.8, ease: E }, 15.1);
+tl.fromTo('#waChip', { opacity: 0, scale: 0.3, z: 0 }, { opacity: 1, scale: 1, z: 240, duration: 0.5, ease: 'back.out(2)' }, 15.15);
+tl.fromTo('#chatA', { opacity: 0, scale: 0.3, z: 0, x: 120, y: 260 }, { opacity: 1, scale: 1.28, z: 220, x: 0, y: 0, duration: 0.6, ease: 'back.out(1.5)' }, 15.25);
+tl.to('#chatA .t2', { opacity: 1, duration: 0.2 }, 15.95);
+tl.fromTo('#chatB', { opacity: 0, scale: 0.4, z: 0, x: -60, y: 80 }, { opacity: 1, scale: 1.28, z: 260, x: 0, y: 0, duration: 0.55, ease: 'back.out(1.8)' }, 16.25);
+
+/* --- S6 no fees (17.1–20.4) --- VO v4 @17.4 */
+tl.set(['#bg', '#stage', '#steps'], { visibility: 'hidden' }, 17.55);
+tl.set(['#chatA', '#chatB', '#waChip'], { opacity: 0 }, 17.6);
+tl.fromTo('#s6', { clipPath: 'circle(0px at 540px 1250px)' }, { clipPath: 'circle(1500px at 540px 1250px)', duration: 0.42, ease: 'power2.in' }, 17.0);
+[17.38, 18.25, 19.2].forEach((t, i) => {
+  tl.fromTo('#no' + i, { opacity: 0, scale: 1.8, rotation: i % 2 ? 4 : -4 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.32, ease: 'expo.out' }, t);
+  tl.fromTo('#s6', { x: 0 }, { x: i % 2 ? 10 : -10, duration: 0.05, yoyo: true, repeat: 3, ease: 'none', immediateRender: false }, t + 0.1);
+});
+tl.fromTo('#s6ring', { rotation: 0, scale: 0.8 }, { rotation: 60, scale: 1.1, duration: 3.4, ease: 'none' }, 17.1);
+// whip pan → map
+tl.to('#s6', { x: -1080, duration: 0.24, ease: 'power3.in' }, 20.3);
+tl.fromTo('#map', { x: 1080 }, { x: 0, duration: 0.28, ease: 'power3.out' }, 20.32);
+
+/* --- S7 delivery map (20.4–24.3) --- VO v5 @20.6 */
+tl.fromTo('#mapHl div', { opacity: 0, y: -40, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'back.out(2)' }, 20.6);
+tl.fromTo('#hub', { scale: 0 }, { scale: 1, duration: 0.45, ease: 'back.out(2.5)' }, 20.75);
+tl.fromTo('#hubP', { opacity: 0.9, scale: 1 }, { opacity: 0, scale: 2.6, duration: 0.9, ease: 'expo.out', repeat: 2, repeatDelay: 0.25 }, 21.0);
+const RL = [260, 200, 300];
+['#rt0', '#rt1', '#rt2'].forEach((r, i) => gsap.set(r, { attr: { 'stroke-dasharray': RL[i] + ' ' + RL[i], 'stroke-dashoffset': RL[i] } }));
+gsap.set(['.pin', '.toast'], { opacity: 0 });
+[[21.3, 21.6], [22.2, 22.5], [23.1, 23.4]].forEach(([a, b], i) => {
+  tl.to('#rt' + i, { attr: { 'stroke-dashoffset': 0 }, duration: 0.35, ease: 'power2.inOut' }, a);
+  tl.fromTo('#pin' + i, { opacity: 0, y: -90, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: 'bounce.out' }, a + 0.1);
+  tl.fromTo('#to' + i, { opacity: 0, x: 140 }, { opacity: 1, x: 0, duration: 0.45, ease: 'expo.out' }, b);
+  tl.fromTo('#to' + i + ' .okk', { scale: 0 }, { scale: 1, duration: 0.35, ease: 'back.out(3)' }, b + 0.2);
+});
+// double wipe → S8
+tl.to('#wO', { y: 2300, duration: 0.01 }, 24.0);
+tl.fromTo('#wO', { y: 2300 }, { y: -2400, duration: 0.7, ease: 'power3.inOut', immediateRender: false }, 24.05);
+tl.fromTo('#wK', { y: 2300 }, { y: -2400, duration: 0.7, ease: 'power3.inOut', immediateRender: false }, 24.13);
+
+/* --- S8 price + categories (24.3–27.8) --- VO v6 @24.5 */
+tl.set(['#bg', '#stage'], { visibility: 'visible' }, 24.2);
+tl.set('#home', { xPercent: 0, visibility: 'visible' }, 24.2).set('#list', { xPercent: 100, visibility: 'hidden' }, 24.2);
+tl.set('#rig', { x: 0, y: 470, scale: 0.78, rotationY: 0, rotationX: 14 }, 24.3);
+tl.fromTo('#hl8', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out', immediateRender: false }, 24.45);
+runOdo('#o30', 0, 30, 24.6, 0.9, 'power3.out');
+tl.fromTo('#fn8', { opacity: 0 }, { opacity: 1, duration: 0.4, immediateRender: false }, 25.0);
+const FP = [[-480, -880, -9], [-160, -950, -3], [160, -950, 3], [480, -880, 9]];
+FAN.forEach((f, i) => tl.fromTo('#fc' + i, { opacity: 0, x: 0, y: 0, z: 0, scale: 0.3, rotation: 0 }, { opacity: 1, x: FP[i][0], y: FP[i][1], z: 120, scale: 0.93, rotation: FP[i][2], duration: 0.7, ease: 'back.out(1.4)' }, 25.45 + i * 0.12));
+tl.to(['#fc0', '#fc1', '#fc2'], { opacity: 0.55, duration: 0.3 }, 26.65);
+tl.to('#fc3', { x: 330, y: -1010, z: 260, scale: 1.22, rotation: 4, duration: 0.5, ease: 'back.out(2)' }, 26.65);
+tl.fromTo('#ccRing', { opacity: 0 }, { opacity: 1, duration: 0.3, immediateRender: false }, 26.75);
+gsap.set('#ccRing', { left: -183, top: -168, width: 366, height: 336 });
+tl.set('#ccRing', { x: 330, y: -1010, z: 259, scale: 1.22, rotation: 4 }, 26.6);
+tl.to('#rig', { y: 500, rotationX: 18, duration: 3.4, ease: 'sine.inOut' }, 24.3);
+
+/* --- S9 end card (27.8–32.6) --- VO v7 @28.0 */
+tl.fromTo('#end', { clipPath: 'circle(0px at 540px 960px)' }, { clipPath: 'circle(1200px at 540px 960px)', duration: 0.45, ease: 'power2.inOut' }, 27.75);
+tl.fromTo('#endLogo', { opacity: 0, scale: 0.7, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(2)' }, 28.0);
+tl.fromTo('#endTabs span', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.08 }, 28.3);
+tl.fromTo('#endTabs .on i', { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: 'expo.out' }, 28.55);
+lines('#endH', 28.5);
+tl.fromTo('#endS', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45 }, 28.75);
+tl.fromTo('#endS .bd i', { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 0.4, ease: 'expo.out' }, 29.1);
+tl.fromTo('#endCard', { opacity: 0, scale: 0.86, y: 80 }, { opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'expo.out' }, 28.9);
+tl.fromTo('#cta', { opacity: 0, scale: 0.6, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.55, ease: 'back.out(2)' }, 29.65);
+tl.fromTo('#endUrl', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, 29.95);
+tl.to('#cta', { scale: 0.95, duration: 0.07, ease: 'power2.in' }, 30.25).to('#cta', { scale: 1, duration: 0.35, ease: 'back.out(3)' }, 30.33);
+tl.fromTo('#ctaRing', { opacity: 0.9, scale: 0.4 }, { opacity: 0, scale: 3.2, duration: 0.8, ease: 'expo.out', immediateRender: false }, 30.3);
+tl.fromTo('#cta i', { x: -300 }, { x: 1000, duration: 0.8, ease: 'power2.inOut', immediateRender: false }, 30.7);
+tl.fromTo('#endCard', { scale: 1 }, { scale: 1.02, duration: 1.8, ease: 'sine.inOut', immediateRender: false }, 30.6);
+tl.to({}, { duration: 0.01 }, 32.59);
+
+window.__timelines = window.__timelines || {};
+window.__timelines['main'] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>
