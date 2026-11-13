@@ -1,0 +1,11 @@
+node_modules/
+renders/
+.hyperframes/
+audio/_pre.f32
+art/raw/
+art/raw2/
+art/np/
+art/cut2/
+art/old/
+art/cut/
+art/_t.png
