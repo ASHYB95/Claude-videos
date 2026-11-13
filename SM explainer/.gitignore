@@ -1,0 +1,9 @@
+.hyperframes/
+art/raw/
+art/rb/
+footage/*.mov
+footage/*.mp4
+node_modules/
+previews/
+renders/
+work/
