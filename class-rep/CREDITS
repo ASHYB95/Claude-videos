@@ -1,0 +1,11 @@
+Class Rep — Collection Pot (story-led, ~39 s, 9:16)
+
+Brand: Collection Pot™ name, logo, Pot device and Chip mascot belong to Collection Pot Limited; logo, Pot shape and Chip taken as vectors
+from the Collection Pot Brand Guidelines (Nov 2026). Story, characters (Jo, Miss Clarke, Dave, Priya, Sam) and messages are fictional.
+WhatsApp is mentioned in the voiceover only; the on-screen chat is a generic, brand-coloured messaging screen.
+Art: stills generated with Higgsfield (Nano Banana Pro), backgrounds removed with Higgsfield; brand duotone applied in art/duotone.py.
+Voices: ElevenLabs (eleven_v3) — Jo: "Lily"; Dave: "George"; Priya: "Alice"; Sam: "Jessica"; tagline (eleven_multilingual_v2): "Daniel".
+Sound effects: ElevenLabs Sound Effects (this project and earlier Collection Pot films).
+Music: original pizzicato / celesta / sleigh-bell score, synthesised in audio/score_playful.py (no samples).
+Fonts (SIL OFL 1.1): Figtree (stand-in for Faro Display Lucky), Inter, Permanent Marker, Caveat, Courier Prime.
+Animation: GSAP 3.15; built and rendered with HyperFrames 0.9.20 (motion blur on).

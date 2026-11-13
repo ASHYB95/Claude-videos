@@ -1,47 +1,62 @@
-# Mix: narration (George) + colleague voices + score + paper foley → mix.wav at -14 LUFS.
-import numpy as np, subprocess, os
-SR = 44100; DUR = 61.5; N = int(SR * DUR)
+# Mix: voices (vo.wav) + playful score + paper/phone foley -> mix.wav at -14 LUFS.
+# SFX are loudness-matched first, then placed well under the voice (user note: keep SFX quiet).
+import numpy as np, subprocess, os, re, json
 here = os.path.dirname(os.path.abspath(__file__)); root = os.path.dirname(here)
-def load(p):
-    raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', p, '-f', 'f32le', '-ac', '2', '-ar', str(SR), '-'], capture_output=True, check=True).stdout
-    return np.frombuffer(raw, np.float32).reshape(-1, 2).astype(np.float64)
+SR = 44100
+html = open(os.path.join(root, 'index.html')).read()
+def obj(name):
+    body = re.search(rf'const {name} = \{{(.*?)\}};', html, re.S).group(1)
+    return {k: float(v) for k, v in re.findall(r'(\w+):\s*([\d.]+)', body)}
+T, C = obj('T'), obj('C'); DUR = T['end']; N = int(SR * DUR)
+def load(p, ch=2):
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', p, '-f', 'f32le', '-ac', str(ch), '-ar', str(SR), '-'], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.float32).reshape(-1, ch).astype(np.float64)
 def db(x): return 10 ** (x / 20)
-out = np.zeros((N, 2)); vo = np.zeros((N, 2))
-def place(buf, x, t, g=1.0, maxlen=None):
-    if maxlen: x = x[:int(maxlen * SR)].copy(); f = int(0.04 * SR); x[-f:] *= np.linspace(1, 0, f)[:, None]
+def rms(x): return np.sqrt(np.mean(x ** 2) + 1e-12)
+def place(buf, x, t, g=1.0):
     i = int(t * SR); j = min(N, i + len(x))
-    if j > i: buf[i:j] += x[:j - i] * g
-VO = {'v1': 0.6, 'v2': 6.8, 'v3': 13.5, 'v4': 23.9, 'v5': 33.5, 'q1': 41.4, 'q2': 43.8, 'q3': 46.0, 'v6': 48.7, 'v7': 55.6}
-for k, t in VO.items(): place(vo, load(f'{root}/voices/{k}.mp3'), t, db(-1.5) if k.startswith('q') else 1.0)
+    if j > i and i >= 0: buf[i:j] += x[:j - i] * g
+
+vo = np.zeros((N, 2)); place(vo, load(f'{root}/voices/vo.wav'), 0)
+speech = vo[np.abs(vo[:, 0]) > 0.02]; SPEECH = rms(speech)          # reference speech level
 
 mus = load(f'{here}/music.wav')[:N]; mus = np.pad(mus, ((0, N - len(mus)), (0, 0)))
-act = np.abs(vo).max(1) > 0.01
-w = int(0.3 * SR); act = np.convolve(act.astype(float), np.ones(w) / w, 'same') > 0.02
-duck = np.where(act, db(-6), 1.0); k = int(0.25 * SR); duck = np.convolve(duck, np.ones(k) / k, 'same')
-out += mus * duck[:, None] * db(-13)
+act = (np.abs(vo).max(1) > 0.015).astype(float)
+w = int(0.25 * SR); act = np.convolve(act, np.ones(w) / w, 'same') > 0.03
+duck = np.where(act, db(-7), 1.0); k = int(0.2 * SR); duck = np.convolve(duck, np.ones(k) / k, 'same')
+mus *= SPEECH / rms(mus[mus[:, 0] != 0]) * db(-11)                    # music ~11 dB under speech, ~18 dB when she talks
+out = mus * duck[:, None]
 
-names = ['tear', 'tape', 'marker', 'stamp', 'typer', 'pencil', 'slide', 'flutter', 'pin', 'whoosh', 'pop']
-S = {n: load(f'{here}/sfx_{n}.mp3') for n in names}
-TRIM = {'tear': -12, 'tape': -1, 'marker': -4, 'stamp': 0, 'typer': 3, 'pencil': -6, 'slide': 16, 'flutter': 18, 'pin': 17, 'whoosh': -12, 'pop': 6}
-cues = [('slide', 0.6, -10), ('slide', 2.4, -10), ('stamp', 2.55, -6), ('typer', 2.8, -14, 1.0), ('marker', 3.35, -10), ('slide', 5.1, -12)]
-cues += [('tear', T - 0.35, -8) for T in (6.6, 13.3, 20.0, 23.7, 33.3, 41.2, 48.4, 55.3)]
-cues += [('slide', 6.6, -12), ('slide', 7.75, -10), ('marker', 8.1, -10), ('slide', 9.65, -10), ('marker', 9.95, -10), ('slide', 10.5, -9), ('marker', 11.1, -8), ('marker', 11.95, -10),
-         ('slide', 13.4, -9), ('marker', 14.75, -14), ('marker', 15.0, -10), ('whoosh', 15.8, -12),
-         ('slide', 16.1, -9), ('pin', 16.9, -8), ('pin', 17.12, -8), ('pin', 18.0, -8), ('pin', 18.25, -8), ('marker', 18.3, -10),
-         ('slide', 20.05, -10), ('slide', 20.35, -10), ('slide', 21.2, -12), ('marker', 22.3, -8), ('marker', 22.45, -8), ('stamp', 22.5, -8),
-         ('slide', 24.3, -8), ('stamp', 24.65, -8), ('slide', 26.25, -10), ('slide', 27.0, -10), ('marker', 27.05, -11), ('slide', 28.5, -10), ('marker', 28.55, -11),
-         ('slide', 30.1, -9), ('tape', 30.55, -8), ('tape', 30.65, -10), ('marker', 30.6, -12), ('slide', 31.7, -10),
-         ('stamp', 33.5, -7), ('typer', 33.7, -14, 3.0), ('flutter', 33.85, -8), ('flutter', 34.9, -9), ('pencil', 34.4, -28), ('pencil', 36.2, -30),
-         ('slide', 35.8, -10), ('slide', 37.2, -10), ('slide', 38.55, -10), ('stamp', 39.4, -8),
-         ('slide', 41.3, -13), ('marker', 42.4, -16), ('slide', 43.7, -13), ('marker', 44.6, -16), ('slide', 45.9, -13), ('marker', 46.45, -16),
-         ('slide', 48.6, -10), ('slide', 51.3, -12), ('slide', 52.3, -12), ('flutter', 52.85, -9), ('marker', 53.55, -10), ('marker', 53.8, -12),
-         ('stamp', 55.5, -8), ('slide', 55.7, -10), ('marker', 58.1, -14), ('pop', 58.5, -12), ('pop', 58.64, -13), ('pop', 58.78, -14), ('stamp', 59.2, -7)]
-for c in cues:
-    n, t, g = c[:3]; ml = c[3] if len(c) > 3 else None
-    place(out, S[n], t, db(g + TRIM[n]), ml)
+names = ['tear', 'slide', 'stamp', 'marker', 'pop', 'whoosh', 'coins', 'tap', 'send', 'kettle', 'notes']
+S = {}
+for n in names:   # loudness-match every effect to the speech level (by its loudest 60 ms), so cue gains read as "dB under the voice"
+    x = load(f'{here}/sfx_{n}.mp3'); win = int(.06 * SR)
+    peak = max(rms(x[i:i + win]) for i in range(0, max(1, len(x) - win), win // 2)); S[n] = x * (SPEECH / peak)
+cues = [  # (sfx, time, dB under the voice)
+    ('slide', .15, -16), ('pop', .25, -18), ('slide', .4, -16), ('stamp', 1.0, -16), ('marker', 1.9, -26), ('pop', C['s1gift'], -15),
+    ('pop', T['s2'] + .05, -19), ('slide', T['s2'] + .1, -15),
+    *[('tap', C['s2msg'] - .2 + i * .2, -24) for i in range(6)], ('send', C['s2msg'] + 1.05, -17), ('slide', C['s2five'], -18), ('stamp', C['s2seen'] + .2, -13),
+    ('whoosh', T['s3'] - .28, -15), *[x for q in ('q1', 'q2', 'q3') for x in (('slide', C[q] - .15, -19), ('pop', C[q], -15))],
+    ('pop', C['thumbs'], -16), *[('pop', C['thumbs'] + .1 + i * .24, -21) for i in range(4)], ('stamp', C['zero'] + .16, -10),
+    ('marker', C['zero'] + .3, -24), ('marker', C['zero'] + .5, -26),
+    ('slide', T['s5a'] + .05, -17), ('slide', C['w1'], -14), ('slide', C['w2'], -14), ('slide', C['w3'], -14),
+    ('marker', C['w2'] - .15, -24), ('marker', C['w3'] - .15, -24), ('whoosh', T['s5b'] - .3, -17),
+    ('slide', T['s5b'] + .05, -16), ('coins', C['coins'], -12), ('coins', C['coins'] + .65, -19), ('slide', C['coins'] + .3, -19), ('marker', C['coins'] + .8, -26),
+    ('slide', T['s5c'] + .05, -14), ('marker', C['short'] + .3, -26), ('slide', C['short'] + .6, -16),
+    ('slide', C['who'], -15), ('notes', C['who'] + .15, -15), ('marker', C['who'] - .1, -26),
+    ('tear', T['s6'] - .35, -11), ('pop', T['s6'] + .1, -17), ('slide', T['s6'] + .25, -16), ('slide', C['link'], -15),
+    ('kettle', C['kettle'] - .25, -13), ('marker', C['kettle'], -26),
+    ('tear', T['s7'] - .35, -12), ('pop', C['logo'], -13), ('whoosh', C['logo'] + .7, -22), ('slide', C['sort'] + .3, -18), ('pop', C['sort'] + .55, -16),
+]
+cues += [('tear', T[s] - .35, -12) for s in ('s2', 's4', 's5c')]
+for n, t, g in cues: place(out, S[n], t, db(g))
 out += vo
-fo = int(0.8 * SR); out[-fo:] *= np.linspace(1, 0, fo)[:, None] ** 2
+fo = int(0.5 * SR); out[-fo:] *= np.linspace(1, 0, fo)[:, None] ** 2
 tmp = f'{here}/_pre.f32'; out.astype(np.float32).tofile(tmp)
-subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'f32le', '-ac', '2', '-ar', str(SR), '-i', tmp,
-                '-af', 'loudnorm=I=-14:TP=-1.0:LRA=10', '-ar', str(SR), f'{here}/mix.wav'], check=True)
-os.remove(tmp); print('mix.wav')
+inp = ['-f', 'f32le', '-ac', '2', '-ar', str(SR), '-i', tmp]
+meas = subprocess.run(['ffmpeg', '-hide_banner', '-y', *inp, '-af', 'loudnorm=I=-14:TP=-1.0:LRA=11:print_format=json', '-f', 'null', '-'], capture_output=True, text=True).stderr
+j = json.loads(meas[meas.rindex('{'):meas.rindex('}') + 1])
+ln = (f"loudnorm=I=-14:TP=-1.0:LRA=11:measured_I={j['input_i']}:measured_TP={j['input_tp']}:measured_LRA={j['input_lra']}"
+      f":measured_thresh={j['input_thresh']}:offset={j['target_offset']}:linear=true")
+subprocess.run(['ffmpeg', '-v', 'error', '-y', *inp, '-af', ln, '-ar', str(SR), f'{here}/mix.wav'], check=True)
+os.remove(tmp); print('mix.wav', DUR, len(cues), 'sfx cues')
