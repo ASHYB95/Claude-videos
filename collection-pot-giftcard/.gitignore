@@ -1,3 +1,7 @@
 node_modules/
 storyboard/sheet.png
 renders/
+.hyperframes/
+audio/_pre.f32
+# Licensed font (Faro Display Lucky) — supplied by the client, not for a public repo. Drop the file here to render.
+fonts/Faro-DisplayLucky.woff2
