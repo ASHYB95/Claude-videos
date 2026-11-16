@@ -29,20 +29,21 @@ cues = [
     ('tissue', 0.0, -13, 1.4),
     ('whoosh', 3.12, -9), ('pop', 3.62, -13), ('pop', 4.0, -16), ('pop', 4.12, -17),
     ('whoosh', 6.7, -15),
-    ('pop', 7.86, -14),
+    ('pop', 7.31, -14),
     ('tap', 9.0, -9), ('swipe', 9.18, -13),
     ('pop', 9.96, -12), ('shimmer', 10.0, -18),
     ('tap', 10.62, -9), ('tap', 11.3, -9), ('swipe', 11.45, -13),
     ('tap', 12.85, -9), ('pop', 12.93, -14), ('tap', 13.48, -9), ('swipe', 13.62, -13),
-    ('pop', 14.02, -15), ('typing', 14.05, -14, 0.95),
+    ('pop', 14.15, -15), ('typing', 14.05, -14, 0.95),
     ('tap', 15.4, -8), ('send', 15.48, -11), ('popper', 15.62, -15), ('pop', 15.8, -12),
     ('pop', 16.08, -13), ('pop', 16.32, -14), ('pop', 16.5, -15), ('notif', 16.1, -17),
     ('whoosh', 18.72, -11),
-    ('pop', 19.16, -11), ('pop', 19.73, -12), ('swipe', 19.96, -14),
+    ('swipe', 19.2, -13),
     ('pop', 22.02, -12), ('shimmer', 22.05, -17),
 ]
+SFX_GAIN = -6   # all SFX at half amplitude (client note, v2)
 for c in cues:
-    n, t, g = c[:3]; place(out, S[n], t, db(g + TRIM[n]), c[3] if len(c) > 3 else None)
+    n, t, g = c[:3]; place(out, S[n], t, db(g + TRIM[n] + SFX_GAIN), c[3] if len(c) > 3 else None)
 out += vo
 fo = int(0.5 * SR); out[-fo:] *= np.linspace(1, 0, fo)[:, None] ** 2
 tmp = f'{here}/_pre.f32'; out.astype(np.float32).tofile(tmp)

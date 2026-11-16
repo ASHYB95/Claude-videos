@@ -21,10 +21,9 @@ video.clip{width:1080px;height:1920px;object-fit:cover}
 /* ---------- B-roll overlay ---------- */
 #scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 58%,rgba(20,14,8,.55) 100%)}
 .xp{position:absolute;left:0;right:0;text-align:center;white-space:nowrap}
-#xpSmall{top:1555px;font:400 58px/1 Faro;letter-spacing:-.01em;color:var(--white);text-shadow:0 4px 26px rgba(0,0,0,.35)}
-#xpBig{top:1640px;font-size:0}
-#xpBig span{display:inline-block;font:400 168px/1 Faro;color:var(--white);text-shadow:0 8px 40px rgba(0,0,0,.3)}
-#xpBig .sp{width:46px}
+#xpL1{top:1500px;font:400 80px/1 Faro;letter-spacing:-.01em;color:var(--white);text-shadow:0 4px 26px rgba(0,0,0,.35)}
+#xpL2{top:1608px;font:400 100px/1 Faro;letter-spacing:-.01em;color:var(--white);text-shadow:0 6px 34px rgba(0,0,0,.35)}
+#xpL2 em{font-style:normal;color:var(--gold)}
 
 /* ---------- stage ---------- */
 #stage{position:absolute;inset:0;perspective:2600px;perspective-origin:50% 45%}
@@ -136,7 +135,7 @@ h1.t{font:400 30px/1.02 Faro;letter-spacing:-.01em}
 
     <!-- end card -->
     <div class="hl" id="h7" style="top:190px;font-size:132px;line-height:.98"><span class="ln"><span class="li">Easy to sort.</span></span><span class="ln"><span class="li">Impossible</span></span><span class="ln"><span class="li">to forget.</span></span></div>
-    <svg id="endLogo" viewBox="0 0 466 40">LOGOGROUPS</svg>
+    <svg id="endLogo" viewBox="0 0 466 40">LOGOFLAT</svg>
     <div id="cta">CREATE A POT</div>
     <div id="url">collectionpot.com</div>
   </div>
@@ -145,8 +144,8 @@ h1.t{font:400 30px/1.02 Faro;letter-spacing:-.01em}
   <video id="vA" class="clip" src="broll/b1.mp4" muted data-start="0" data-duration="3.8" data-media-start="0" data-track-index="2"></video>
   <div id="ovA" class="clip" data-start="0" data-duration="3.8" data-track-index="3">
     <div id="scrim"></div>
-    <div class="xp" id="xpSmall">World’s best boss…</div>
-    <div class="xp" id="xpBig"></div>
+    <div class="xp" id="xpL1"><span class="ln"><span class="li">World’s best boss…</span></span></div>
+    <div class="xp" id="xpL2"><span class="ln"><span class="li">World’s <em>worst</em> gift.</span></span></div>
   </div>
 
   <!-- 3 · Pot wipe (B-roll → stage) -->
@@ -183,8 +182,6 @@ document.querySelectorAll('.lg').forEach(e=>gsap.set(e,{scale:1.293}));
 document.getElementById('gift3').innerHTML='<img src="brand/ms-logo.png" style="position:absolute;left:44px;top:46px;width:250px" alt="M&amp;S"><div style="position:absolute;left:46px;bottom:52px;font:600 22px Inter;letter-spacing:.08em;color:#6E6E73">E-GIFT CARD</div><div class="faro" style="position:absolute;right:40px;bottom:44px;font-size:84px">£185</div><div class="strip"></div>';
 document.getElementById('m3a').innerHTML=document.getElementById('m3a').innerHTML.replace('HEART',HEART);
 // expressive type (p.50 / p.54 "max relaxing"): 1–2 words, letters lean on a relaxed baseline
-const XP='Worst gift.';const ROT=[-8,4,-3,6,-5,0,7,-6,3,-4,5];const DY=[0,-14,6,-8,10,0,-10,8,-6,4,-12];
-document.getElementById('xpBig').innerHTML=[...XP].map(c=>c===' '?'<span class="sp"></span>':'<span class="xl">'+c+'</span>').join('');
 // pot confetti (calm burst of Pot shapes, p.43)
 const CF=[[-330,-420,70,'#2F2F32',-20],[300,-470,54,'#FFFCF8',18],[-420,-60,48,'none',-30],[400,-120,80,'#FFFCF8',24],[-250,260,58,'#FFFCF8',12],[360,250,46,'#2F2F32',-14],[-80,-560,40,'none',30],[150,420,52,'none',-22]];
 document.getElementById('cfs').innerHTML=CF.map((c,i)=>potSvg(c[3],'left:0;top:0;width:'+c[2]+'px',c[3]==='none'?'stroke="#2F2F32" stroke-width="5"':'').replace('class="pot"','class="pot cf" id="cf'+i+'"')).join('');
@@ -231,8 +228,7 @@ gsap.set(['#gift3','#m3a','#m3b'],{opacity:0,scale:.25,z:0});
 gsap.set('.cf',{x:540,y:1150,scale:0});
 gsap.set(['#cta','#url'],{opacity:0});
 gsap.set('#cta',{scale:.8});
-gsap.set('#xpSmall',{opacity:0,y:30});
-gsap.set('#xpBig .xl',{x:420,opacity:0});
+gsap.set('.xp .li',{yPercent:115});
 gsap.set('#wipePot',{scale:.02,rotation:24,transformOrigin:'50% 50%',y:470});
 gsap.set(['#oGiftSel','#tMSSel'],{opacity:0});
 gsap.set('#tMSTick',{scale:0,transformOrigin:'90% 20%'});
@@ -240,13 +236,8 @@ gsap.set('#sentPot',{scale:0});gsap.set('#sentTick',{drawSVG:0});
 gsap.set(['#oGift','#oMoney','#oMsgs'],{y:30,opacity:0});
 
 // ---------- 1 · B-roll opener (0 – 3.5) ----------
-tl.to('#xpSmall',{opacity:1,y:0,duration:.5,ease:'power3.out'},.35);
-// "max relaxing": letters slide in fast from the right, bunch up, then relax into their lean
-const xl=gsap.utils.toArray('#xpBig .xl');
-xl.forEach((e,i)=>{
-  tl.to(e,{x:-(i*12),scaleX:.84,opacity:1,duration:.34,ease:'expo.out'},1.4+i*.04);
-  tl.to(e,{x:0,scaleX:1,rotation:ROT[i],y:DY[i],duration:.55,ease:'sine.inOut'},1.86+i*.025);
-});
+lines('#xpL1',.3);          // "World's best boss…"
+lines('#xpL2',1.6);         // "world's worst gift."
 // ---------- Pot wipe ----------
 tl.to('#wipePot',{scale:1,rotation:-8,y:0,duration:.68,ease:'power2.in'},3.14);
 
@@ -263,48 +254,48 @@ linesOut('#h1',6.55);
 // ---------- 3 · push in → SEND THE POT (6.8 – 9.2) ----------
 cam(6.7,1.5,{el:'bSend',ty:1560,s:1.5,ry:-3,rx:2});
 tl.to('#lgPot .body',{y:-40,duration:1.6,ease:'power2.inOut'},6.8);
-tl.to('#h2 .c',{opacity:1,scale:1,rotation:-3,duration:.45,ease:'back.out(1.5)'},7.85);
-lines('#h2',7.9);
+tl.to('#h2 .c',{opacity:1,scale:1,rotation:-3,duration:.45,ease:'back.out(1.5)'},7.3);
+lines('#h2',7.35);
 tap(9.0,'lgPot','bSend');
-tl.to('#h2 .c',{opacity:0,scale:.92,duration:.3,ease:'power2.in'},9.75);
+tl.to('#h2 .c',{opacity:0,scale:.92,duration:.3,ease:'power2.in'},9.12);
 
 // ---------- 4 · Send options · Gift Card on Send (9.2 – 11.9) ----------
 page(9.18,'pgPot','pgSend');
 cam(9.1,.75,{x:560,y:1210,s:1.04,ry:8,rx:3});
 tl.to(['#oGift','#oMoney','#oMsgs'],{y:0,opacity:1,duration:.45,ease:'power3.out',stagger:.08},9.42);
-lines('#h3',9.35,.15);
+lines('#h3',9.5,.15);
 tl.to('#sticker',{opacity:1,scale:1,rotation:-4,duration:.5,ease:'back.out(1.7)'},9.95);
 tl.fromTo('#newBadge',{scale:1},{scale:1.25,duration:.18,yoyo:true,repeat:3,ease:'sine.inOut',immediateRender:false},10.0);
 cam(10.1,.8,{el:'oGift',ty:1080,s:1.22,ry:5,rx:2});
 tap(10.62,'lgSend','oGift');
 tl.to('#oGiftSel',{opacity:1,duration:.2},10.66);
 tap(11.3,'lgSend','bNext1');
-linesOut('#h3',11.75);
-tl.to('#sticker',{opacity:0,scale:.8,duration:.3,ease:'power2.in'},11.72);
+linesOut('#h3',11.38);
+tl.to('#sticker',{opacity:0,scale:.8,duration:.3,ease:'power2.in'},11.38);
 
 // ---------- 5 · Pick a gift card (11.9 – 13.9) ----------
 page(11.45,'pgSend','pgPick');
 cam(11.4,.75,{x:540,y:1200,s:1.0,ry:-8,rx:3});
-lines('#h4',12.05,.15);
+lines('#h4',11.9,.15);
 cam(12.3,.7,{el:'tMS',ty:1040,s:1.18,ry:-5,rx:2});
 tap(12.85,'lgPick','tMS');
 tl.to('#tMSSel',{opacity:1,duration:.2},12.9);
 tl.to('#tMSTick',{scale:1,duration:.4,ease:'back.out(2)'},12.92);
 tap(13.48,'lgPick','bNext2');
-linesOut('#h4',14.0);
+linesOut('#h4',13.68);
 
 // ---------- 6 · Message + send (13.9 – 15.6) ----------
 page(13.62,'pgPick','pgMsg');
 cam(13.6,.65,{el:'field',ty:1080,s:1.32,ry:5,rx:2});
-tl.to('#h5 .c',{opacity:1,scale:1,rotation:-3,duration:.45,ease:'back.out(1.5)'},14.02);
-lines('#h5',14.07);
+tl.to('#h5 .c',{opacity:1,scale:1,rotation:-3,duration:.45,ease:'back.out(1.5)'},14.15);
+lines('#h5',14.2);
 const TYPED='Thank you for leading with so much support!';const ty={n:0};
 tl.to(ty,{n:TYPED.length,duration:.9,ease:'none',onUpdate:()=>{$('typed').textContent=TYPED.slice(0,Math.round(ty.n))}},14.05);
 tl.to('#heartT',{opacity:1,duration:.05},14.98);
 cam(15.0,.38,{el:'bSendF',ty:1500,s:1.62,ry:-2,rx:2,ease:'power2.inOut'});
 tl.to('#h5b',{opacity:1,duration:.25},15.2);
 tap(15.4,'lgMsg','bSendF');
-tl.to('#h5 .c',{opacity:0,scale:.92,duration:.3,ease:'power2.in'},16.15);
+tl.to('#h5 .c',{opacity:0,scale:.92,duration:.3,ease:'power2.in'},16.1);
 
 // ---------- 7 · Sent · 3D payoff (15.6 – 18.9) ----------
 tl.set('#pgSent',{xPercent:0},15.6);
@@ -319,20 +310,14 @@ tl.to('#m3a',{opacity:1,scale:1,rotation:6,z:230,duration:.7,ease:'back.out(1.3)
 tl.to('#m3b',{opacity:1,scale:1,rotation:-5,z:130,duration:.7,ease:'back.out(1.3)'},16.48);
 tl.to('#gift3',{y:-18,duration:2.2,ease:'sine.inOut'},16.8);
 tl.to('#m3a',{y:16,duration:2.2,ease:'sine.inOut'},16.9);
-lines('#h6',16.42,1.06);
+lines('#h6',16.5,1.0);
 linesOut('#h6',18.72);
 
 // ---------- 8 · End card (18.9 – 23.8) ----------
 tl.to('#rig',{y:3000,rotationX:20,duration:.6,ease:'power3.in'},18.75);
 tl.to(['#dotPot','#ringPot','.cf'],{scale:0,duration:.35,ease:'power2.in'},18.75);
 tl.to('#bigPot',{x:-80,y:80,scale:1.111,duration:.8,ease:'power3.inOut'},18.85);
-// logo: the Pot pops into the 'O', then the letters reveal from behind it (p.24)
-tl.fromTo('#lgPotSolid',{scale:0},{scale:2.6,duration:.36,ease:'back.out(1.6)',immediateRender:false},19.15);
-tl.to('#lgPotSolid',{scale:.7,duration:.28,ease:'power3.in'},19.52);
-tl.fromTo('#lgO',{scale:.4,opacity:0},{scale:1,opacity:1,duration:.3,ease:'back.out(2)',immediateRender:false},19.72);
-tl.to('#lgPotSolid',{opacity:0,duration:.12},19.78);
-tl.to('#lgLeft',{x:0,duration:.75,ease:'power3.out'},19.95);
-tl.to('#lgRight',{x:0,duration:.55,ease:'power3.out'},19.98);
+tl.fromTo('#endLogo',{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:'power3.out',immediateRender:false},19.2);
 lines('#h7 .ln:nth-child(1)',20.15);
 lines('#h7 .ln:nth-child(2)',21.08);
 lines('#h7 .ln:nth-child(3)',21.6);

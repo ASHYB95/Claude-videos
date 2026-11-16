@@ -21,10 +21,9 @@ video.clip{width:1080px;height:1920px;object-fit:cover}
 /* ---------- B-roll overlay ---------- */
 #scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 58%,rgba(20,14,8,.55) 100%)}
 .xp{position:absolute;left:0;right:0;text-align:center;white-space:nowrap}
-#xpSmall{top:1555px;font:400 58px/1 Faro;letter-spacing:-.01em;color:var(--white);text-shadow:0 4px 26px rgba(0,0,0,.35)}
-#xpBig{top:1640px;font-size:0}
-#xpBig span{display:inline-block;font:400 168px/1 Faro;color:var(--white);text-shadow:0 8px 40px rgba(0,0,0,.3)}
-#xpBig .sp{width:46px}
+#xpL1{top:1500px;font:400 80px/1 Faro;letter-spacing:-.01em;color:var(--white);text-shadow:0 4px 26px rgba(0,0,0,.35)}
+#xpL2{top:1608px;font:400 100px/1 Faro;letter-spacing:-.01em;color:var(--white);text-shadow:0 6px 34px rgba(0,0,0,.35)}
+#xpL2 em{font-style:normal;color:var(--gold)}
 
 /* ---------- stage ---------- */
 #stage{position:absolute;inset:0;perspective:2600px;perspective-origin:50% 45%}
@@ -136,7 +135,7 @@ h1.t{font:400 30px/1.02 Faro;letter-spacing:-.01em}
 
     <!-- end card -->
     <div class="hl" id="h7" style="top:190px;font-size:132px;line-height:.98"><span class="ln"><span class="li">Easy to sort.</span></span><span class="ln"><span class="li">Impossible</span></span><span class="ln"><span class="li">to forget.</span></span></div>
-    <svg id="endLogo" viewBox="0 0 466 40"><defs><clipPath id="clL"><rect x="-10" y="-10" width="394" height="60"/></clipPath><clipPath id="clR"><rect x="419" y="-10" width="60" height="60"/></clipPath></defs><g clip-path="url(#clL)"><g id="lgLeft"><path d="M276.642 10.9568C281.401 10.9568 285.253 14.833 285.253 19.6209C285.253 24.4089 281.394 28.285 276.642 28.285C271.888 28.285 268.03 24.4028 268.03 19.6209C268.03 14.839 271.888 10.9568 276.642 10.9568ZM276.642 38.3257C286.903 38.3257 295.232 29.9515 295.232 19.6209C295.232 9.29035 286.91 0.916008 276.642 0.916008C266.375 0.916008 258.051 9.29035 258.051 19.6209C258.051 29.9515 266.375 38.3257 276.642 38.3257Z" fill="#2F2F32"/><path d="M57.2295 10.9568C61.9883 10.9568 65.8408 14.833 65.8408 19.6209C65.8408 24.4089 61.9822 28.285 57.2295 28.285C52.4768 28.285 48.6181 24.4028 48.6181 19.6209C48.6181 14.839 52.4708 10.9568 57.2295 10.9568ZM57.2295 38.3257C67.4911 38.3257 75.8205 29.9515 75.8205 19.6209C75.8205 9.29035 67.4972 0.916008 57.2295 0.916008C46.9619 0.916008 38.6385 9.29035 38.6385 19.6209C38.6385 29.9515 46.9619 38.3257 57.2295 38.3257Z" fill="#2F2F32"/><path d="M217.899 10.0028L207.007 8.75903L208.033 -0.370033L239.988 3.2828L238.962 12.4119L228.01 11.156L224.8 39.6299L214.682 38.4708L217.899 10.0028Z" fill="#2F2F32"/><path d="M118.379 1.41713L119.735 30.1024L135.296 29.3598L135.71 38.205L110.29 39.4186L108.52 1.8941L118.379 1.41713Z" fill="#2F2F32"/><path d="M91.4409 1.13337L89.6645 29.7944L105.213 30.7727L104.661 39.6118L79.2649 38.0118L81.5874 0.517525L91.4409 1.13337Z" fill="#2F2F32"/><path d="M253.487 0.674973L243.675 0.985239L244.847 38.5336L254.66 38.2233L253.487 0.674973Z" fill="#2F2F32"/><path d="M141.357 0.553749L168.925 1.76734L168.541 10.5824L151.036 9.81564L150.874 13.6134L162.666 14.1266L162.312 22.3499L150.514 21.8308L150.172 29.7643L167.941 30.5431L167.557 39.4186L139.724 38.193L141.357 0.553749Z" fill="#2F2F32"/><path d="M1.74483 20.255V20.1522C1.5408 9.53789 9.56405 1.06092 20.6777 0.84356C28.1789 0.698654 33.0697 3.72356 36.4063 8.0828L28.863 14.1085C26.7147 11.6028 24.2724 9.93035 20.7558 10.0028C15.619 10.1054 12.0784 14.5432 12.1805 19.8504V19.953C12.2885 25.4111 15.9911 29.6073 21.1279 29.5047C24.9564 29.4263 27.1769 27.6209 29.3311 24.9221L37.0964 30.1809C33.7238 34.9809 29.121 38.5553 21.0439 38.7183C10.5482 38.9235 1.94886 31.1228 1.73883 20.2489" fill="#2F2F32"/><path d="M171.643 24.119L171.619 24.0224C169.201 13.6919 175.273 3.70544 186.099 1.1394C193.402 -0.587392 198.815 1.33864 202.986 4.89487L196.871 12.3817C194.249 10.3832 191.507 9.27223 188.087 10.0813C183.081 11.2647 180.549 16.3545 181.761 21.5228L181.785 21.6254C183.027 26.9386 187.522 30.2595 192.526 29.076C196.254 28.1885 198.048 25.9544 199.591 22.8631L208.279 26.359C205.986 31.7689 202.235 36.2367 194.369 38.0963C184.155 40.5176 174.115 34.7153 171.643 24.1311" fill="#2F2F32"/><path d="M329.81 39.159L320.173 38.5734L308.748 18.027L307.553 37.8005L297.704 37.1908L299.974 -0.309662L309.612 0.275999L320.964 21.9454L322.23 1.05487L332.084 1.65864L329.81 39.159Z" fill="#2F2F32"/><path d="M360.27 19.2224L366.758 18.7092C368.349 18.5824 369.585 18.0631 370.472 17.1515C371.355 16.2398 371.739 14.9839 371.612 13.3839C371.505 11.959 370.946 10.8602 369.95 10.1054C368.949 9.34469 367.639 9.02469 366.013 9.15148L359.533 9.66469L360.277 19.2163L360.27 19.2224ZM374.163 1.92431C376.365 2.92657 378.046 4.35148 379.216 6.19903C380.386 8.05262 381.07 10.1719 381.256 12.5749C381.581 16.6805 380.585 20.0195 378.279 22.5795C375.975 25.1395 372.417 26.6127 367.61 26.993L360.919 27.5183L361.729 37.9031L352.134 38.664L349.283 2.13563L366.14 0.807333C369.284 0.559785 371.96 0.934126 374.163 1.93035" fill="#2F2F32"/></g></g><g clip-path="url(#clR)"><g id="lgRight"><path d="M430.829 10.1537L420.209 9.50165L420.755 0.595993L451.91 2.52807L451.365 11.4277L440.69 10.7635L438.991 38.525L429.132 37.9092L430.829 10.1537Z" fill="#2F2F32"/><path d="M452.509 32.6162V31.9367H457.252V32.6162H455.263V38.2609H454.498V32.6162H452.509ZM458.433 31.9367H459.347L461.497 37.1863H461.57L463.719 31.9367H464.633V38.2609H463.917V33.456H463.854L461.879 38.2609H461.187L459.212 33.456H459.149V38.2609H458.433V31.9367Z" fill="#2F2F32"/></g></g><g id="lgO"><path d="M402.794 29.4564H402.782C398.197 29.9515 393.269 27.325 392.461 20.907C392.407 20.5024 392.382 20.0857 392.537 19.6995C392.777 19.0412 395.455 12.2851 395.599 11.8443C395.893 11.0896 396.013 10.6247 397.375 10.4798L404.06 9.75525C405.422 9.60432 405.637 10.039 406.082 10.7092C406.315 11.1077 410.36 17.1394 410.732 17.7311C410.972 18.0753 411.033 18.4857 411.069 18.8964C411.633 25.3386 407.378 28.9612 402.794 29.4624M401.755 0.946205C391.416 0.946205 383.026 9.38696 383.026 19.7899C383.026 30.193 391.416 38.6337 401.755 38.6337C412.095 38.6337 420.485 30.199 420.485 19.7899C420.485 9.38092 412.101 0.946205 401.755 0.946205Z" fill="#2F2F32"/></g><g id="lgPotSolid"><path d="M31 0H69Q74 0 76.5 4.5L98 44Q100 48 100 54A50 50 0 0 1 0 54Q0 48 2 44L23.5 4.5Q26 0 31 0Z" fill="#2F2F32" transform="translate(386.75 4.15) scale(.3)"/></g></svg>
+    <svg id="endLogo" viewBox="0 0 466 40"><path d="M276.642 10.9568C281.401 10.9568 285.253 14.833 285.253 19.6209C285.253 24.4089 281.394 28.285 276.642 28.285C271.888 28.285 268.03 24.4028 268.03 19.6209C268.03 14.839 271.888 10.9568 276.642 10.9568ZM276.642 38.3257C286.903 38.3257 295.232 29.9515 295.232 19.6209C295.232 9.29035 286.91 0.916008 276.642 0.916008C266.375 0.916008 258.051 9.29035 258.051 19.6209C258.051 29.9515 266.375 38.3257 276.642 38.3257Z" fill="#2F2F32"/><path d="M57.2295 10.9568C61.9883 10.9568 65.8408 14.833 65.8408 19.6209C65.8408 24.4089 61.9822 28.285 57.2295 28.285C52.4768 28.285 48.6181 24.4028 48.6181 19.6209C48.6181 14.839 52.4708 10.9568 57.2295 10.9568ZM57.2295 38.3257C67.4911 38.3257 75.8205 29.9515 75.8205 19.6209C75.8205 9.29035 67.4972 0.916008 57.2295 0.916008C46.9619 0.916008 38.6385 9.29035 38.6385 19.6209C38.6385 29.9515 46.9619 38.3257 57.2295 38.3257Z" fill="#2F2F32"/><path d="M217.899 10.0028L207.007 8.75903L208.033 -0.370033L239.988 3.2828L238.962 12.4119L228.01 11.156L224.8 39.6299L214.682 38.4708L217.899 10.0028Z" fill="#2F2F32"/><path d="M118.379 1.41713L119.735 30.1024L135.296 29.3598L135.71 38.205L110.29 39.4186L108.52 1.8941L118.379 1.41713Z" fill="#2F2F32"/><path d="M91.4409 1.13337L89.6645 29.7944L105.213 30.7727L104.661 39.6118L79.2649 38.0118L81.5874 0.517525L91.4409 1.13337Z" fill="#2F2F32"/><path d="M253.487 0.674973L243.675 0.985239L244.847 38.5336L254.66 38.2233L253.487 0.674973Z" fill="#2F2F32"/><path d="M141.357 0.553749L168.925 1.76734L168.541 10.5824L151.036 9.81564L150.874 13.6134L162.666 14.1266L162.312 22.3499L150.514 21.8308L150.172 29.7643L167.941 30.5431L167.557 39.4186L139.724 38.193L141.357 0.553749Z" fill="#2F2F32"/><path d="M1.74483 20.255V20.1522C1.5408 9.53789 9.56405 1.06092 20.6777 0.84356C28.1789 0.698654 33.0697 3.72356 36.4063 8.0828L28.863 14.1085C26.7147 11.6028 24.2724 9.93035 20.7558 10.0028C15.619 10.1054 12.0784 14.5432 12.1805 19.8504V19.953C12.2885 25.4111 15.9911 29.6073 21.1279 29.5047C24.9564 29.4263 27.1769 27.6209 29.3311 24.9221L37.0964 30.1809C33.7238 34.9809 29.121 38.5553 21.0439 38.7183C10.5482 38.9235 1.94886 31.1228 1.73883 20.2489" fill="#2F2F32"/><path d="M171.643 24.119L171.619 24.0224C169.201 13.6919 175.273 3.70544 186.099 1.1394C193.402 -0.587392 198.815 1.33864 202.986 4.89487L196.871 12.3817C194.249 10.3832 191.507 9.27223 188.087 10.0813C183.081 11.2647 180.549 16.3545 181.761 21.5228L181.785 21.6254C183.027 26.9386 187.522 30.2595 192.526 29.076C196.254 28.1885 198.048 25.9544 199.591 22.8631L208.279 26.359C205.986 31.7689 202.235 36.2367 194.369 38.0963C184.155 40.5176 174.115 34.7153 171.643 24.1311" fill="#2F2F32"/><path d="M329.81 39.159L320.173 38.5734L308.748 18.027L307.553 37.8005L297.704 37.1908L299.974 -0.309662L309.612 0.275999L320.964 21.9454L322.23 1.05487L332.084 1.65864L329.81 39.159Z" fill="#2F2F32"/><path d="M402.794 29.4564H402.782C398.197 29.9515 393.269 27.325 392.461 20.907C392.407 20.5024 392.382 20.0857 392.537 19.6995C392.777 19.0412 395.455 12.2851 395.599 11.8443C395.893 11.0896 396.013 10.6247 397.375 10.4798L404.06 9.75525C405.422 9.60432 405.637 10.039 406.082 10.7092C406.315 11.1077 410.36 17.1394 410.732 17.7311C410.972 18.0753 411.033 18.4857 411.069 18.8964C411.633 25.3386 407.378 28.9612 402.794 29.4624M401.755 0.946205C391.416 0.946205 383.026 9.38696 383.026 19.7899C383.026 30.193 391.416 38.6337 401.755 38.6337C412.095 38.6337 420.485 30.199 420.485 19.7899C420.485 9.38092 412.101 0.946205 401.755 0.946205Z" fill="#2F2F32"/><path d="M360.27 19.2224L366.758 18.7092C368.349 18.5824 369.585 18.0631 370.472 17.1515C371.355 16.2398 371.739 14.9839 371.612 13.3839C371.505 11.959 370.946 10.8602 369.95 10.1054C368.949 9.34469 367.639 9.02469 366.013 9.15148L359.533 9.66469L360.277 19.2163L360.27 19.2224ZM374.163 1.92431C376.365 2.92657 378.046 4.35148 379.216 6.19903C380.386 8.05262 381.07 10.1719 381.256 12.5749C381.581 16.6805 380.585 20.0195 378.279 22.5795C375.975 25.1395 372.417 26.6127 367.61 26.993L360.919 27.5183L361.729 37.9031L352.134 38.664L349.283 2.13563L366.14 0.807333C369.284 0.559785 371.96 0.934126 374.163 1.93035" fill="#2F2F32"/><path d="M430.829 10.1537L420.209 9.50165L420.755 0.595993L451.91 2.52807L451.365 11.4277L440.69 10.7635L438.991 38.525L429.132 37.9092L430.829 10.1537Z" fill="#2F2F32"/><path d="M452.509 32.6162V31.9367H457.252V32.6162H455.263V38.2609H454.498V32.6162H452.509ZM458.433 31.9367H459.347L461.497 37.1863H461.57L463.719 31.9367H464.633V38.2609H463.917V33.456H463.854L461.879 38.2609H461.187L459.212 33.456H459.149V38.2609H458.433V31.9367Z" fill="#2F2F32"/></svg>
     <div id="cta">CREATE A POT</div>
     <div id="url">collectionpot.com</div>
   </div>
@@ -145,8 +144,8 @@ h1.t{font:400 30px/1.02 Faro;letter-spacing:-.01em}
   <video id="vA" class="clip" src="broll/b1.mp4" muted data-start="0" data-duration="3.8" data-media-start="0" data-track-index="2"></video>
   <div id="ovA" class="clip" data-start="0" data-duration="3.8" data-track-index="3">
     <div id="scrim"></div>
-    <div class="xp" id="xpSmall">World’s best boss…</div>
-    <div class="xp" id="xpBig"></div>
+    <div class="xp" id="xpL1"><span class="ln"><span class="li">World’s best boss…</span></span></div>
+    <div class="xp" id="xpL2"><span class="ln"><span class="li">World’s <em>worst</em> gift.</span></span></div>
   </div>
 
   <!-- 3 · Pot wipe (B-roll → stage) -->
@@ -183,8 +182,6 @@ document.querySelectorAll('.lg').forEach(e=>gsap.set(e,{scale:1.293}));
 document.getElementById('gift3').innerHTML='<img src="brand/ms-logo.png" style="position:absolute;left:44px;top:46px;width:250px" alt="M&amp;S"><div style="position:absolute;left:46px;bottom:52px;font:600 22px Inter;letter-spacing:.08em;color:#6E6E73">E-GIFT CARD</div><div class="faro" style="position:absolute;right:40px;bottom:44px;font-size:84px">£185</div><div class="strip"></div>';
 document.getElementById('m3a').innerHTML=document.getElementById('m3a').innerHTML.replace('HEART',HEART);
 // expressive type (p.50 / p.54 "max relaxing"): 1–2 words, letters lean on a relaxed baseline
-const XP='Worst gift.';const ROT=[-8,4,-3,6,-5,0,7,-6,3,-4,5];const DY=[0,-14,6,-8,10,0,-10,8,-6,4,-12];
-document.getElementById('xpBig').innerHTML=[...XP].map(c=>c===' '?'<span class="sp"></span>':'<span class="xl">'+c+'</span>').join('');
 // pot confetti (calm burst of Pot shapes, p.43)
 const CF=[[-330,-420,70,'#2F2F32',-20],[300,-470,54,'#FFFCF8',18],[-420,-60,48,'none',-30],[400,-120,80,'#FFFCF8',24],[-250,260,58,'#FFFCF8',12],[360,250,46,'#2F2F32',-14],[-80,-560,40,'none',30],[150,420,52,'none',-22]];
 document.getElementById('cfs').innerHTML=CF.map((c,i)=>potSvg(c[3],'left:0;top:0;width:'+c[2]+'px',c[3]==='none'?'stroke="#2F2F32" stroke-width="5"':'').replace('class="pot"','class="pot cf" id="cf'+i+'"')).join('');
@@ -231,24 +228,16 @@ gsap.set(['#gift3','#m3a','#m3b'],{opacity:0,scale:.25,z:0});
 gsap.set('.cf',{x:540,y:1150,scale:0});
 gsap.set(['#cta','#url'],{opacity:0});
 gsap.set('#cta',{scale:.8});
-gsap.set('#xpSmall',{opacity:0,y:30});
-gsap.set('#xpBig .xl',{x:420,opacity:0});
+gsap.set('.xp .li',{yPercent:115});
 gsap.set('#wipePot',{scale:.02,rotation:24,transformOrigin:'50% 50%',y:470});
 gsap.set(['#oGiftSel','#tMSSel'],{opacity:0});
 gsap.set('#tMSTick',{scale:0,transformOrigin:'90% 20%'});
-gsap.set('#sentPot',{scale:0});
-gsap.set('#lgLeft',{x:392});gsap.set('#lgRight',{x:-52});
-gsap.set('#lgO',{opacity:0,svgOrigin:'401.75 19.75'});gsap.set('#lgPotSolid',{scale:0,svgOrigin:'401.75 19.75'});
+gsap.set('#sentPot',{scale:0});gsap.set('#endLogo',{opacity:0});
 gsap.set(['#oGift','#oMoney','#oMsgs'],{y:30,opacity:0});
 
 // ---------- 1 · B-roll opener (0 – 3.5) ----------
-tl.to('#xpSmall',{opacity:1,y:0,duration:.5,ease:'power3.out'},.35);
-// "max relaxing": letters slide in fast from the right, bunch up, then relax into their lean
-const xl=gsap.utils.toArray('#xpBig .xl');
-xl.forEach((e,i)=>{
-  tl.to(e,{x:-(i*12),scaleX:.84,opacity:1,duration:.34,ease:'expo.out'},1.4+i*.04);
-  tl.to(e,{x:0,scaleX:1,rotation:ROT[i],y:DY[i],duration:.55,ease:'sine.inOut'},1.86+i*.025);
-});
+lines('#xpL1',.3);          // "World's best boss…"
+lines('#xpL2',1.6);         // "world's worst gift."
 // ---------- Pot wipe ----------
 tl.to('#wipePot',{scale:1,rotation:-8,y:0,duration:.68,ease:'power2.in'},3.14);
 
@@ -265,48 +254,48 @@ linesOut('#h1',6.55);
 // ---------- 3 · push in → SEND THE POT (6.8 – 9.2) ----------
 cam(6.7,1.5,{el:'bSend',ty:1560,s:1.5,ry:-3,rx:2});
 tl.to('#lgPot .body',{y:-40,duration:1.6,ease:'power2.inOut'},6.8);
-tl.to('#h2 .c',{opacity:1,scale:1,rotation:-3,duration:.45,ease:'back.out(1.5)'},7.85);
-lines('#h2',7.9);
+tl.to('#h2 .c',{opacity:1,scale:1,rotation:-3,duration:.45,ease:'back.out(1.5)'},7.3);
+lines('#h2',7.35);
 tap(9.0,'lgPot','bSend');
-tl.to('#h2 .c',{opacity:0,scale:.92,duration:.3,ease:'power2.in'},9.75);
+tl.to('#h2 .c',{opacity:0,scale:.92,duration:.3,ease:'power2.in'},9.12);
 
 // ---------- 4 · Send options · Gift Card on Send (9.2 – 11.9) ----------
 page(9.18,'pgPot','pgSend');
 cam(9.1,.75,{x:560,y:1210,s:1.04,ry:8,rx:3});
 tl.to(['#oGift','#oMoney','#oMsgs'],{y:0,opacity:1,duration:.45,ease:'power3.out',stagger:.08},9.42);
-lines('#h3',9.35,.15);
+lines('#h3',9.5,.15);
 tl.to('#sticker',{opacity:1,scale:1,rotation:-4,duration:.5,ease:'back.out(1.7)'},9.95);
 tl.fromTo('#newBadge',{scale:1},{scale:1.25,duration:.18,yoyo:true,repeat:3,ease:'sine.inOut',immediateRender:false},10.0);
 cam(10.1,.8,{el:'oGift',ty:1080,s:1.22,ry:5,rx:2});
 tap(10.62,'lgSend','oGift');
 tl.to('#oGiftSel',{opacity:1,duration:.2},10.66);
 tap(11.3,'lgSend','bNext1');
-linesOut('#h3',11.75);
-tl.to('#sticker',{opacity:0,scale:.8,duration:.3,ease:'power2.in'},11.72);
+linesOut('#h3',11.38);
+tl.to('#sticker',{opacity:0,scale:.8,duration:.3,ease:'power2.in'},11.38);
 
 // ---------- 5 · Pick a gift card (11.9 – 13.9) ----------
 page(11.45,'pgSend','pgPick');
 cam(11.4,.75,{x:540,y:1200,s:1.0,ry:-8,rx:3});
-lines('#h4',12.05,.15);
+lines('#h4',11.9,.15);
 cam(12.3,.7,{el:'tMS',ty:1040,s:1.18,ry:-5,rx:2});
 tap(12.85,'lgPick','tMS');
 tl.to('#tMSSel',{opacity:1,duration:.2},12.9);
 tl.to('#tMSTick',{scale:1,duration:.4,ease:'back.out(2)'},12.92);
 tap(13.48,'lgPick','bNext2');
-linesOut('#h4',14.0);
+linesOut('#h4',13.68);
 
 // ---------- 6 · Message + send (13.9 – 15.6) ----------
 page(13.62,'pgPick','pgMsg');
 cam(13.6,.65,{el:'field',ty:1080,s:1.32,ry:5,rx:2});
-tl.to('#h5 .c',{opacity:1,scale:1,rotation:-3,duration:.45,ease:'back.out(1.5)'},14.02);
-lines('#h5',14.07);
+tl.to('#h5 .c',{opacity:1,scale:1,rotation:-3,duration:.45,ease:'back.out(1.5)'},14.15);
+lines('#h5',14.2);
 const TYPED='Thank you for leading with so much support!';const ty={n:0};
 tl.to(ty,{n:TYPED.length,duration:.9,ease:'none',onUpdate:()=>{$('typed').textContent=TYPED.slice(0,Math.round(ty.n))}},14.05);
 tl.to('#heartT',{opacity:1,duration:.05},14.98);
 cam(15.0,.38,{el:'bSendF',ty:1500,s:1.62,ry:-2,rx:2,ease:'power2.inOut'});
 tl.to('#h5b',{opacity:1,duration:.25},15.2);
 tap(15.4,'lgMsg','bSendF');
-tl.to('#h5 .c',{opacity:0,scale:.92,duration:.3,ease:'power2.in'},16.15);
+tl.to('#h5 .c',{opacity:0,scale:.92,duration:.3,ease:'power2.in'},16.1);
 
 // ---------- 7 · Sent · 3D payoff (15.6 – 18.9) ----------
 tl.set('#pgSent',{xPercent:0},15.6);
@@ -321,20 +310,14 @@ tl.to('#m3a',{opacity:1,scale:1,rotation:6,z:230,duration:.7,ease:'back.out(1.3)
 tl.to('#m3b',{opacity:1,scale:1,rotation:-5,z:130,duration:.7,ease:'back.out(1.3)'},16.48);
 tl.to('#gift3',{y:-18,duration:2.2,ease:'sine.inOut'},16.8);
 tl.to('#m3a',{y:16,duration:2.2,ease:'sine.inOut'},16.9);
-lines('#h6',16.42,1.06);
+lines('#h6',16.5,1.0);
 linesOut('#h6',18.72);
 
 // ---------- 8 · End card (18.9 – 23.8) ----------
 tl.to('#rig',{y:3000,rotationX:20,duration:.6,ease:'power3.in'},18.75);
 tl.to(['#dotPot','#ringPot','.cf'],{scale:0,duration:.35,ease:'power2.in'},18.75);
 tl.to('#bigPot',{x:-80,y:80,scale:1.111,duration:.8,ease:'power3.inOut'},18.85);
-// logo: the Pot pops into the 'O', then the letters reveal from behind it (p.24)
-tl.fromTo('#lgPotSolid',{scale:0},{scale:2.6,duration:.36,ease:'back.out(1.6)',immediateRender:false},19.15);
-tl.to('#lgPotSolid',{scale:.7,duration:.28,ease:'power3.in'},19.52);
-tl.fromTo('#lgO',{scale:.4,opacity:0},{scale:1,opacity:1,duration:.3,ease:'back.out(2)',immediateRender:false},19.72);
-tl.to('#lgPotSolid',{opacity:0,duration:.12},19.78);
-tl.to('#lgLeft',{x:0,duration:.75,ease:'power3.out'},19.95);
-tl.to('#lgRight',{x:0,duration:.55,ease:'power3.out'},19.98);
+tl.fromTo('#endLogo',{opacity:0,y:30},{opacity:1,y:0,duration:.6,ease:'power3.out',immediateRender:false},19.2);
 lines('#h7 .ln:nth-child(1)',20.15);
 lines('#h7 .ln:nth-child(2)',21.08);
 lines('#h7 .ln:nth-child(3)',21.6);

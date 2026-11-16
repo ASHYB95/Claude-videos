@@ -13,6 +13,5 @@ groups=('<defs><clipPath id="clL"><rect x="-10" y="-10" width="394" height="60"/
         '<g id="lgO">'+pp(10)+'</g>'
         f'<g id="lgPotSolid"><path d="{POT}" fill="#2F2F32" transform="translate(386.75 4.15) scale(.3)"/></g>')
 s=open(os.path.join(R,'src/index.src.html')).read().replace('LOGOGROUPS',groups).replace('LOGOFLAT',flat).replace('POTPATH',POT)
-s=s.replace("gsap.set('#sentPot',{scale:0});gsap.set('#sentTick',{drawSVG:0});",
- "gsap.set('#sentPot',{scale:0});\ngsap.set('#lgLeft',{x:392});gsap.set('#lgRight',{x:-52});\ngsap.set('#lgO',{opacity:0,svgOrigin:'401.75 19.75'});gsap.set('#lgPotSolid',{scale:0,svgOrigin:'401.75 19.75'});")
+s=s.replace("gsap.set('#sentPot',{scale:0});gsap.set('#sentTick',{drawSVG:0});","gsap.set('#sentPot',{scale:0});gsap.set('#endLogo',{opacity:0});")
 open(os.path.join(R,'index.html'),'w').write(s); print('ok', len(s))
