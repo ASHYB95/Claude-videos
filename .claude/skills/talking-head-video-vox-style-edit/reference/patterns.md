@@ -1,4 +1,4 @@
-# Patterns (lifted from `SM explainer/index.html` — copy that file as the starting template)
+# Patterns (lifted from `ps-marketing/sm-explainer/index.html` — copy that file as the starting template)
 
 ## Layer order (DOM order = paint order)
 ```

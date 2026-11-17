@@ -1,11 +1,11 @@
 ---
 name: talking-head-video-vox-style-edit
-description: Edit a person's own talking-head footage (founder / expert to camera) into a vertical 9:16 Instagram Reel in Vox-style newspaper collage — tightened jump-cut A-roll, the speaker as a picture-in-picture circle that morphs to full screen and back, full-screen collage scenes and infographics for most lines (face on screen only 20–40 %), torn-paper word-by-word captions, brand colours only, lo-fi music and sparse SFX, rendered with HyperFrames. Use when the user uploads talking-head/selfie footage and wants it "edited for Reels", "Vox style", "with motion plates / motion graphics", "explainer", "B-roll/infographics over me", or "less of my face" (reference: SM explainer/).
+description: Edit a person's own talking-head footage (founder / expert to camera) into a vertical 9:16 Instagram Reel in Vox-style newspaper collage — tightened jump-cut A-roll, the speaker as a picture-in-picture circle that morphs to full screen and back, full-screen collage scenes and infographics for most lines (face on screen only 20–40 %), torn-paper word-by-word captions, brand colours only, lo-fi music and sparse SFX, rendered with HyperFrames. Use when the user uploads talking-head/selfie footage and wants it "edited for Reels", "Vox style", "with motion plates / motion graphics", "explainer", "B-roll/infographics over me", or "less of my face" (reference: ps-marketing/sm-explainer/).
 ---
 
 # Talking-head video → Vox-style Reel edit
 
-Reference build: `SM explainer/` (87 s, Purple Seed founder, "the only content that works on social media").
+Reference build: `ps-marketing/sm-explainer/` (87 s, Purple Seed founder, "the only content that works on social media").
 Read its `TREATMENT.md`, `index.html` and `audio/mix.py` before starting — copy patterns, don't reinvent.
 Visual language comes from `collection-pot/thirty-one-years/` (see the `collage-story-video` skill for the collage look).
 

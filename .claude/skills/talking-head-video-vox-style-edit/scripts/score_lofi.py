@@ -6,7 +6,7 @@
 #   DROPS      one-beat drum drop before each section card (e.g. 01 / 02 / 03)
 #   END        last chord rings under the end card, crackle tail to DUR
 # Usage: python3 score_lofi.py --dur 86.7 --open 3.8 --drops 13.0,31.4,52.2 --end 84.3 --out audio/music.wav
-# (reference values are SM explainer's). Can't listen? check it with ffmpeg showwavespic: no silent holes per bar.
+# (reference values are ps-marketing/sm-explainer's). Can't listen? check it with ffmpeg showwavespic: no silent holes per bar.
 import numpy as np, os
 from scipy.signal import butter, sosfilt
 import scipy.io.wavfile as wf
