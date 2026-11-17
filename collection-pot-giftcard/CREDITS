@@ -1,0 +1,14 @@
+Collection Pot — "Gift Card on Send" (≈24s vertical ad)
+
+Brand: Collection Pot™ name, logo and UI belong to Collection Pot Limited. Built to the Collection Pot Brand Guidelines (Nov 2026):
+Pot of Gold / Work Bash Black / Wedding White palette, Pot shape as background device, Faro Display Lucky headlines in sentence case,
+Inter for UI, uppercase Inter SemiBold buttons, logo motion per p.24. No Chip in this piece (by request).
+App screens are rebuilt in HTML/CSS; the Gift Card on Send flow is designed from the client brief. Pot content (Jo, Alex, Priya,
+Tom, Sam, Rachel, amounts, messages) is fictional.
+M&S logo supplied by the client for use as a Gift Card on Send retailer.
+B-roll: generated with Higgsfield (GPT Image 2.6 start/end keyframes → Seedance 2.5, 1080p). No people or faces are shown.
+Voice: ElevenLabs, voice "Alice" (eleven_multilingual_v2).
+Sound effects: ElevenLabs Sound Effects (audio/sfx.py and ../collection-pot/audio).
+Music: original score, synthesised in audio/score.py (no samples).
+Fonts: Faro Display Lucky (client-supplied, licensed to Collection Pot), Inter (SIL Open Font License 1.1).
+Animation: GSAP 3.15; built and rendered with HyperFrames 0.9.20 (motion blur on, 180° shutter).

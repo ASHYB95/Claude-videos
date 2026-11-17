@@ -1,0 +1,211 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Head;font-weight:900;src:url(../fonts/figtree-latin-900-normal.woff2);font-display:block}
+@font-face{font-family:Head;font-weight:800;src:url(../fonts/figtree-latin-800-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:400;src:url(../fonts/inter-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:500;src:url(../fonts/inter-latin-500-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:600;src:url(../fonts/inter-latin-600-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:700;src:url(../fonts/inter-latin-700-normal.woff2);font-display:block}
+/* Brand palette (guidelines p.46-47) */
+:root{--gold:#F9B910;--black:#2F2F32;--white:#FFFCF8;--gold-d:#EA9C00;--gold-l:#FFCC75;--pink:#F0ABD1;--purple:#CFB0F0;--blue:#A3DEF5;--turq:#78DEC2;--green:#B5FA80;--orange:#FC9E59;--line:#E9E4DB;--grey:#6E6E73}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--gold)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--gold);font-family:Inter,sans-serif;color:var(--black)}
+.head{font-family:Head;font-weight:900;letter-spacing:-.01em;line-height:1}
+.cta{font:600 20px Inter;letter-spacing:.025em;text-transform:uppercase}
+svg.pot{position:absolute;overflow:visible}
+/* stage */
+#stage{position:absolute;inset:0;perspective:2600px}
+#rig{position:absolute;left:540px;top:1080px;width:0;height:0;transform-style:preserve-3d}
+#phone{position:absolute;left:-300px;top:-620px;width:600px;height:1240px;transform-style:preserve-3d}
+#pface{position:absolute;inset:0;border-radius:88px;background:linear-gradient(150deg,#4a4a50,#2a2a2d 45%,#1f1f22);box-shadow:0 0 0 2px rgba(255,255,255,.10) inset,0 50px 90px rgba(47,47,50,.35)}
+#scr{position:absolute;left:22px;top:22px;width:556px;height:1196px;border-radius:66px;overflow:hidden;background:var(--white)}
+#island{position:absolute;left:208px;top:20px;width:140px;height:40px;border-radius:20px;background:#000;z-index:50}
+#glare{position:absolute;inset:0;border-radius:66px;pointer-events:none;z-index:49;background:linear-gradient(115deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 32%)}
+.lg{position:absolute;left:0;top:0;width:430px;height:925px;transform:scale(1.293);transform-origin:0 0;background:var(--white)}
+/* app chrome */
+.sb{position:absolute;left:0;right:0;top:0;height:44px;display:flex;justify-content:space-between;align-items:center;padding:6px 28px 0 34px;font:600 14px Inter}
+.sb i{display:inline-block;width:16px;height:9px;border-radius:2px;background:var(--black);margin-left:4px}
+.bar{position:absolute;left:0;right:0;top:0;height:92px;background:var(--gold);z-index:5}
+.bar .row{position:absolute;left:0;right:0;top:46px;height:40px;display:flex;align-items:center;justify-content:center}
+.bar .row img{width:178px}
+.burger{position:absolute;left:18px;top:12px;width:22px;height:16px;display:flex;flex-direction:column;justify-content:space-between}.burger b{height:2.5px;background:var(--black);border-radius:2px}
+.back{position:absolute;left:16px;top:8px;width:26px;height:26px}
+.body{position:absolute;left:0;right:0;top:92px;bottom:0;padding:16px 16px 0}
+h1.t{font:900 30px/1.02 Head;letter-spacing:-.01em}
+.sub{font:400 13.5px/1.45 Inter;color:var(--grey);margin-top:6px}
+.card{background:#fff;border-radius:18px;box-shadow:0 2px 12px rgba(47,47,50,.07);padding:16px}
+.btn{position:absolute;left:16px;right:16px;bottom:24px;height:54px;border-radius:27px;background:var(--gold);display:flex;align-items:center;justify-content:center;font:600 16px Inter;letter-spacing:.025em}
+.btn.k{background:var(--black);color:var(--white)}
+.av{width:34px;height:34px;border-radius:50%;border:2.5px solid #fff;margin-left:-9px;display:flex;align-items:center;justify-content:center;font:700 12px Inter}
+.avs{display:flex;padding-left:9px;align-items:center}
+.msg{background:#fff;border-radius:16px;box-shadow:0 2px 10px rgba(47,47,50,.06);padding:13px 14px;font:400 13.5px/1.45 Inter;margin-top:10px}
+.msg b{display:block;font:600 12px Inter;margin-top:6px;color:var(--grey)}
+.opt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);background:#fff;border-radius:16px;padding:14px;margin-top:10px}
+.opt .ic{width:44px;height:44px;border-radius:12px;background:#F6F1E8;display:flex;align-items:center;justify-content:center;flex:none}
+.opt .tx b{display:flex;align-items:center;gap:8px;font:600 15.5px Inter}.opt .tx span{display:block;font:400 12.5px/1.35 Inter;color:var(--grey);margin-top:2px}
+.opt.on{border:2.5px solid var(--black);background:#FFF6DC}
+.new{font:700 10.5px Inter;letter-spacing:.06em;background:var(--gold);padding:3px 8px;border-radius:9px}
+.ms{display:flex;align-items:center;justify-content:center;border:2px dashed #9a9aa0;border-radius:10px;font:700 12px Inter;color:#7a7a80;text-align:center;line-height:1.2}
+.tile{position:relative;background:#fff;border-radius:18px;border:1.5px solid var(--line);padding:12px}
+.tile.on{border:2.5px solid var(--black)}
+.cats{display:flex;gap:10px;margin-top:10px}
+.cats div{flex:1;height:92px;border-radius:16px;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;font:600 12.5px Inter}
+.gcard{position:relative;border-radius:16px;background:linear-gradient(135deg,#2F2F32,#47474d);color:var(--white);overflow:hidden}
+.field{background:#fff;border-radius:16px;border:1.5px solid var(--line);padding:14px;font:400 16px/1.45 Inter;min-height:150px}
+.caret{display:inline-block;width:2px;height:19px;background:var(--black);vertical-align:-3px;margin-left:1px}
+#tap{position:absolute;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(47,47,50,.22);border:3px solid rgba(255,255,255,.95);z-index:60;display:none}
+#ring{position:absolute;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;border:4px solid var(--black);z-index:59;display:none}
+/* overlays */
+.hl{position:absolute;left:0;right:0;text-align:center;font:900 104px/1 Head;letter-spacing:-.01em;color:var(--black)}
+.sticker{position:absolute;left:50%;transform:translateX(-50%) rotate(-4deg);background:var(--black);color:var(--white);border-radius:40px;padding:20px 34px;font:600 34px Inter;letter-spacing:.025em;white-space:nowrap;display:flex;align-items:center;gap:16px}
+.sticker em{font-style:normal;background:var(--gold);color:var(--black);border-radius:24px;padding:6px 16px;font-size:28px}
+.pop{position:absolute;background:#fff;border-radius:30px;box-shadow:0 30px 70px rgba(47,47,50,.25)}
+/* b-roll placeholder */
+#broll{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 35%,#cdbfae,#8d7f70 60%,#5d5348);display:none}
+#broll .ph{position:absolute;left:90px;right:90px;top:520px;border:4px dashed rgba(255,252,248,.75);border-radius:40px;padding:50px;color:var(--white);font:500 40px/1.35 Inter;text-align:center}
+#broll .ph b{display:block;font:700 30px Inter;letter-spacing:.1em;margin-bottom:22px;opacity:.85}
+.xp{position:absolute;left:0;right:0;text-align:center;white-space:nowrap}
+.xp span{display:inline-block;font:900 196px/1 Head;color:var(--white);text-shadow:0 8px 40px rgba(0,0,0,.25)}
+/* end card */
+#end{position:absolute;inset:0;background:var(--gold);display:none}
+#ov{position:absolute;inset:0;z-index:20}#wipe{position:absolute;inset:0;z-index:15}
+.hl .c{display:inline-block;background:var(--black);color:var(--white);border-radius:44px;padding:26px 48px 34px;transform:rotate(-3deg)}
+</style></head>
+<body><div id="root">
+  <!-- stage background: Pot shapes (cropping/background device, p.42-44) -->
+  <svg class="pot" id="bigPot" viewBox="0 0 100 104" style="left:-180px;top:820px;width:1440px;transform:rotate(-8deg)"><path fill="#FFFCF8" d="M31 0H69Q74 0 76.5 4.5L98 44Q100 48 100 54A50 50 0 0 1 0 54Q0 48 2 44L23.5 4.5Q26 0 31 0Z"/></svg>
+  <svg class="pot" id="dotPot" viewBox="0 0 100 104" style="left:900px;top:520px;width:110px;transform:rotate(14deg)"><path fill="#2F2F32" d="M31 0H69Q74 0 76.5 4.5L98 44Q100 48 100 54A50 50 0 0 1 0 54Q0 48 2 44L23.5 4.5Q26 0 31 0Z"/></svg>
+  <svg class="pot" id="ringPot" viewBox="0 0 100 104" style="left:70px;top:610px;width:120px;transform:rotate(-16deg)"><path fill="none" stroke="#2F2F32" stroke-width="4" d="M31 0H69Q74 0 76.5 4.5L98 44Q100 48 100 54A50 50 0 0 1 0 54Q0 48 2 44L23.5 4.5Q26 0 31 0Z"/></svg>
+  <div id="stage"><div id="rig">
+    <div id="phone"><div id="pface"></div>
+      <div id="scr"><div class="lg" id="screen"></div><div id="island"></div><div id="glare"></div></div>
+    </div>
+    <div id="pops"></div>
+  </div></div>
+  <div id="ov"></div>
+  <div id="broll"><div class="ph"><b>B-ROLL · HIGGSFIELD</b>Office desk. She lifts a white mug printed “World’s Best Boss” out of a gift box. Polite smile… then a grimace.</div></div>
+  <div id="wipe"></div>
+  <div id="end"></div>
+</div>
+<script>
+const POT='M31 0H69Q74 0 76.5 4.5L98 44Q100 48 100 54A50 50 0 0 1 0 54Q0 48 2 44L23.5 4.5Q26 0 31 0Z';
+const potSvg=(fill,style,stroke)=>`<svg class="pot" viewBox="0 0 100 104" style="${style}"><path d="${POT}" fill="${fill}" ${stroke||''}/></svg>`;
+const SB=`<div class="sb"><span>9:41</span><span><i></i><i style="width:22px"></i></span></div>`;
+const BAR=(back)=>`<div class="bar">${SB}<div class="row">${back?`<svg class="back" viewBox="0 0 24 24" fill="none" stroke="#2F2F32" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>`:`<div class="burger"><b></b><b></b><b></b></div>`}<img src="../brand/LogoCharcoal.svg" alt=""></div></div>`;
+const AV=[['PK','--pink'],['TM','--blue'],['SA','--turq'],['RL','--purple'],['DN','--orange'],['EW','--green']];
+const avs=()=>`<div class="avs">${AV.map(([t,c])=>`<div class="av" style="background:var(${c})">${t}</div>`).join('')}<div class="av" style="background:#F1ECE3">+8</div></div>`;
+const MS=(w,h,fs)=>`<div class="ms" style="width:${w}px;height:${h}px;font-size:${fs||12}px">M&amp;S<br>LOGO</div>`;
+const giftIc=`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2F2F32" stroke-width="1.8" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="13" rx="2.5"/><path d="M2.5 10.5h19"/><path d="M15.2 13.2h3.6l.6 1.2v1.4a2.2 2.2 0 0 1-4.4 0v-1.4z" fill="#F9B910"/></svg>`;
+const SCREENS={
+ pot:()=>`${BAR()}<div class="body">
+   <div class="card" style="text-align:center">
+     <h1 class="t">Jo’s leaving Pot</h1>
+     <div class="sub" style="margin-top:4px">Organised by Alex · 2 days left</div>
+     <div class="head" style="font-size:50px;margin-top:12px">£185.00</div>
+     <div style="font:500 13px Inter;color:var(--grey);margin:4px 0 10px">raised so far · 14 chipped in</div>
+     <div style="display:flex;justify-content:center">${avs()}</div>
+   </div>
+   <div style="font:600 15px Inter;margin:18px 2px 0">14 messages</div>
+   <div class="msg">Best boss I’ve ever had. Thank you for everything! 💛<b>Priya</b></div>
+   <div class="msg">Monday stand-ups won’t be the same without you ☕<b>Tom</b></div>
+   <div class="msg">Thanks for always having our backs, Jo.<b>Sam</b></div>
+ </div><div class="btn" id="b-send">SEND THE POT</div>`,
+ send:()=>`${BAR(1)}<div class="body">
+   <h1 class="t">Send Jo’s Pot</h1>
+   <div class="card" style="display:flex;align-items:center;gap:12px;margin-top:14px;padding:14px">
+     ${potSvg('#F9B910','position:relative;width:38px')}
+     <div><div class="head" style="font-size:24px">£185.00</div><div class="sub" style="margin:0">14 messages · from everyone</div></div>
+   </div>
+   <div style="font:600 15px Inter;margin:20px 2px 2px">How should Jo get it?</div>
+   <div class="opt on" id="o-gift"><div class="ic" style="background:var(--gold)">${giftIc}</div><div class="tx"><b>Gift Card on Send <span class="new">NEW</span></b><span>Attach a gift card they’ll actually want</span></div></div>
+   <div class="opt"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2F2F32" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.6"/></svg></div><div class="tx"><b>Send as money</b><span>Jo cashes out to their bank</span></div></div>
+   <div class="opt"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2F2F32" stroke-width="1.8" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.2-4.6A8 8 0 1 1 21 12z"/></svg></div><div class="tx"><b>Just the messages</b><span>A card from everyone</span></div></div>
+ </div><div class="btn" id="b-next1">NEXT</div>`,
+ pick:()=>`${BAR(1)}<div class="body">
+   <h1 class="t">Pick a gift card</h1>
+   <div style="margin-top:12px;height:44px;border-radius:22px;border:1.5px solid var(--line);background:#fff;display:flex;align-items:center;gap:8px;padding:0 14px;font:400 14px Inter;color:var(--grey)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6E6E73" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>Search gift cards</div>
+   <div style="font:600 13px Inter;letter-spacing:.06em;color:var(--grey);margin:16px 2px 8px">POPULAR</div>
+   <div class="tile on" id="t-ms" style="display:flex;align-items:center;gap:14px">
+     ${MS(110,70)}
+     <div><div style="font:600 16px Inter">M&amp;S Gift Card</div><div class="sub" style="margin-top:2px">Food, fashion &amp; home</div></div>
+     <img src="../brand/potYellowTick.svg" style="position:absolute;right:12px;top:12px;width:28px" alt="">
+   </div>
+   <div class="cats"><div style="background:#E0F4FC">Dining</div><div style="background:#E6DAF7">Days out</div><div style="background:#D9F5EC">Home</div></div>
+   <div class="card" style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;padding:14px 16px"><span style="font:500 14px Inter">Gift card value</span><span class="head" style="font-size:22px">£185.00</span></div>
+ </div><div class="btn" id="b-next2">NEXT</div>`,
+ msg:(typed)=>`${BAR(1)}<div class="body">
+   <h1 class="t">Add a message</h1>
+   <div class="gcard" style="margin-top:14px;height:130px;padding:14px 16px">
+     <div style="background:#fff;border-radius:10px;width:96px;height:58px;display:flex;align-items:center;justify-content:center">${MS(84,48,10)}</div>
+     <div style="position:absolute;left:16px;bottom:12px;font:600 11px Inter;letter-spacing:.08em;opacity:.8">E-GIFT CARD</div>
+     <div class="head" style="position:absolute;right:16px;bottom:10px;font-size:30px;color:var(--gold)">£185.00</div>
+   </div>
+   <div style="font:600 13px Inter;letter-spacing:.06em;color:var(--grey);margin:18px 2px 8px">YOUR MESSAGE TO JO</div>
+   <div class="field">${typed}<span class="caret"></span></div>
+   <div class="sub" style="margin:8px 2px">Signed: <b style="color:var(--black)">From all 14 of us</b></div>
+ </div><div class="btn" id="b-sendf">SEND</div>`,
+ sent:()=>`${BAR()}<div class="body" style="text-align:center">
+   <div style="position:relative;width:150px;height:156px;margin:40px auto 0">${potSvg('#F9B910','left:0;top:0;width:150px')}<svg viewBox="0 0 24 24" style="position:absolute;left:43px;top:50px;width:64px" fill="none" stroke="#2F2F32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></div>
+   <h1 class="t" style="font-size:36px;margin-top:18px">Pot sent to Jo</h1>
+   <div class="sub" style="font-size:15px">A card and gift in one, from everyone.</div>
+   <div class="card" style="margin-top:22px;display:flex;align-items:center;gap:12px;text-align:left">${MS(70,44,9)}<div><div style="font:600 15px Inter">M&amp;S e-gift card · £185.00</div><div class="sub" style="margin:0">+ 14 messages</div></div></div>
+ </div>`
+};
+const TYPED='Thank you for leading with so much support! ♡';
+// Frame specs. phone: x,y = rig centre, s = scale, ry/rx = tilt. tap = [logicalX, logicalY]
+const F=[
+ {t:'0.0s',broll:1,xp:'Worst gift.'},
+ {t:'2.9s',broll:1,wipe:.55},
+ {t:'4.2s',scr:'pot',x:540,y:1180,s:.98,ry:-10,rx:4,hl:['The panic-buy','era is over.'],hlTop:150},
+ {t:'6.4s',scr:'pot',x:540,y:300,s:1.75,ry:-4,rx:2,tap:[215,876],hl:['Everyone chips in…'],hlTop:130,hlSize:92,card:1},
+ {t:'8.4s',scr:'send',x:560,y:1200,s:1.05,ry:8,rx:3,tap:[215,245],sticker:['GIFT CARD ON SEND','NEW'],stTop:300,hl:['…then add a','gift card on send.'],hlTop:110,hlSize:84},
+ {t:'10.6s',scr:'pick',x:540,y:1200,s:1.0,ry:-8,rx:3,tap:[215,262],hl:['Pick one they’ll','actually want.'],hlTop:150},
+ {t:'12.6s',scr:'msg',typed:'Thank you for leading with so much supp',x:540,y:1000,s:1.3,ry:6,rx:2,hl:['Add a heartfelt','message.'],hlTop:120,hlSize:88,card:1},
+ {t:'13.7s',scr:'msg',typed:TYPED,x:540,y:330,s:1.7,ry:-3,rx:2,tap:[215,876],hl:['Add a heartfelt','message… and send.'],hlTop:120,hlSize:80,card:1},
+ {t:'15.4s',scr:'sent',x:610,y:1340,s:.82,ry:-14,rx:6,pops:1,hl:['They pick the gift.','You all get the credit.'],hlTop:130,hlSize:80},
+ {t:'18.0s',end:1,stage:1},
+ {t:'20.0s',end:1,stage:2},
+];
+const f=F[(+location.hash.slice(1)||1)-1];
+const $=s=>document.querySelector(s);
+if(f.scr){
+  $('#screen').innerHTML=SCREENS[f.scr](f.typed||'');
+  $('#rig').style.left=f.x+'px';$('#rig').style.top=f.y+'px';
+  $('#rig').style.transform=`scale(${f.s}) rotateY(${f.ry}deg) rotateX(${f.rx}deg)`;
+  if(f.tap){$('#screen').insertAdjacentHTML('beforeend',`<div id="ring" style="display:block;left:${f.tap[0]}px;top:${f.tap[1]}px"></div><div id="tap" style="display:block;left:${f.tap[0]}px;top:${f.tap[1]}px"></div>`)}
+  if(f.pops){$('#pops').innerHTML=`
+   <div class="pop" style="left:-610px;top:-760px;width:520px;height:330px;border-radius:34px;background:linear-gradient(135deg,#2F2F32,#47474d);transform:rotate(-9deg) translateZ(160px);color:#FFFCF8;padding:30px">
+     <div style="background:#fff;border-radius:18px;width:190px;height:116px;display:flex;align-items:center;justify-content:center">${MS(166,96,22)}</div>
+     <div style="position:absolute;left:32px;bottom:30px;font:600 22px Inter;letter-spacing:.08em;opacity:.85">E-GIFT CARD</div>
+     <div class="head" style="position:absolute;right:32px;bottom:22px;font-size:74px;color:#F9B910">£185</div></div>
+   <div class="pop" style="left:120px;top:-330px;width:440px;padding:26px 28px;transform:rotate(6deg) translateZ(220px);font:400 27px/1.4 Inter">Thank you for leading with so much support! ♡<b style="display:block;font:600 22px Inter;color:#6E6E73;margin-top:10px">From all 14 of us</b></div>
+   <div class="pop" style="left:-560px;top:120px;width:380px;padding:22px 26px;transform:rotate(-5deg) translateZ(120px);font:400 25px/1.4 Inter">Best boss I’ve ever had 💛<b style="display:block;font:600 21px Inter;color:#6E6E73;margin-top:8px">Priya</b></div>`}
+} else { $('#stage').style.display='none'; }
+const ov=$('#ov');
+if(f.hl){ov.innerHTML=`<div class="hl" style="top:${f.hlTop}px;font-size:${f.hlSize||104}px">${f.card?`<span class=c>${f.hl.join('<br>')}</span>`:f.hl.join('<br>')}</div>`}
+if(f.sticker){ov.insertAdjacentHTML('beforeend',`<div class="sticker" style="top:${f.stTop}px"><em>${f.sticker[1]}</em>${f.sticker[0]}</div>`)}
+if(f.broll){$('#broll').style.display='block';['#bigPot','#dotPot','#ringPot'].forEach(s=>$(s).style.display='none')}
+if(f.xp){ // expressive type (p.50): 1-2 words, letters lean and sit on a relaxed baseline
+  const rot=[-8,4,-3,6,-5,0,7,-6,3,-4,5];const dy=[0,-14,6,-8,10,0,-10,8,-6,4,-12];
+  const l=[...f.xp].map((c,i)=>c===' '?'<span style="width:60px"></span>':`<span style="transform:translateY(${dy[i]}px) rotate(${rot[i]}deg)">${c}</span>`).join('');
+  ov.innerHTML=`<div class="xp" style="top:1380px;font-size:0">${l}</div><div class="xp" style="top:1310px;font:800 54px Head;color:#FFFCF8;text-shadow:0 4px 24px rgba(0,0,0,.3)">World’s best boss…</div>`}
+if(f.wipe){$('#wipe').innerHTML=potSvg('#F9B910',`left:${540-900*f.wipe}px;top:${960-930*f.wipe}px;width:${1800*f.wipe}px;transform:rotate(-8deg)`)}
+if(f.end){
+  const e=$('#end');e.style.display='block';
+  e.innerHTML=`${potSvg('#FFFCF8','left:-260px;top:900px;width:1600px;transform:rotate(-8deg)')}
+   <div class="hl" style="top:200px;font-size:128px;line-height:.98">Easy to sort.<br>Impossible<br>to forget.</div>
+   ${f.stage===1?`
+     <div style="position:absolute;left:0;right:0;top:1180px;height:90px">
+       <img src="../brand/LogoCharcoal.svg" style="position:absolute;left:150px;top:0;width:780px;clip-path:inset(0 0 0 71%)" alt="">
+       ${potSvg('#2F2F32','left:612px;top:-34px;width:116px;transform:rotate(-10deg)')}
+     </div>
+     <div style="position:absolute;left:0;right:0;top:1330px;text-align:center;font:600 30px Inter;color:#6E6E73">Logo builds: the Pot pops into the ‘O’, letters reveal from the centre</div>`
+   :`<img src="../brand/LogoCharcoal.svg" style="position:absolute;left:150px;top:1180px;width:780px" alt="">
+     <div style="position:absolute;left:250px;width:580px;top:1380px;height:130px;border-radius:65px;background:#2F2F32;color:#FFFCF8;display:flex;align-items:center;justify-content:center;font:600 46px Inter;letter-spacing:.025em">CREATE A POT</div>
+     <div style="position:absolute;left:0;right:0;top:1580px;text-align:center;font:500 38px Inter">collectionpot.com</div>`}`;
+  ['#bigPot','#dotPot','#ringPot'].forEach(s=>$(s).style.display='none');
+}
+</script>
+</body></html>
