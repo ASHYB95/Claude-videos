@@ -6,7 +6,7 @@ Inter for UI, uppercase Inter SemiBold buttons, logo motion per p.24. No Chip in
 App screens are rebuilt in HTML/CSS; the Gift Card on Send flow is designed from the client brief. Pot content (Jo, Alex, Priya,
 Tom, Sam, Rachel, amounts, messages) is fictional.
 M&S logo supplied by the client for use as a Gift Card on Send retailer.
-B-roll: generated with Higgsfield (GPT Image 2.6 keyframe → Seedance 2.5 image-to-video, 1080p).
+B-roll: generated with Higgsfield (GPT Image 2.6 start/end keyframes → Seedance 2.5, 1080p). No people or faces are shown.
 Voice: ElevenLabs, voice "Alice" (eleven_multilingual_v2).
 Sound effects: ElevenLabs Sound Effects (audio/sfx.py and ../collection-pot/audio).
 Music: original score, synthesised in audio/score.py (no samples).

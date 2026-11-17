@@ -3,6 +3,8 @@ import json, urllib.request, os
 here = os.path.dirname(os.path.abspath(__file__))
 SFX = {
  "tissue": ("loud crinkling tissue paper being pulled out of a gift box, crisp paper rustle, close microphone", 1.5),
+ "door": ("kitchen wall cupboard door opening, soft wooden swing and a light hinge click, close, clean, short", 1.0),
+ "clink": ("a few ceramic mugs clinking gently together on a shelf, soft, short", 0.8),
  "typing": ("soft quick tapping on a smartphone touchscreen keyboard, gentle key clicks, close, clean", 1.2),
 }
 for k, (t, d) in SFX.items():

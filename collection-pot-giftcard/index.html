@@ -141,7 +141,7 @@ h1.t{font:400 30px/1.02 Faro;letter-spacing:-.01em}
   </div>
 
   <!-- 2 · B-roll opener -->
-  <video id="vA" class="clip" src="broll/b1.mp4" muted data-start="0" data-duration="3.8" data-media-start="0" data-track-index="2"></video>
+  <video id="vA" class="clip" src="broll/b2_fast.mp4" muted data-start="0" data-duration="3.8" data-media-start="0" data-track-index="2"></video>
   <div id="ovA" class="clip" data-start="0" data-duration="3.8" data-track-index="3">
     <div id="scrim"></div>
     <div class="xp" id="xpL1"><span class="ln"><span class="li">World’s best boss…</span></span></div>
@@ -229,7 +229,7 @@ gsap.set('.cf',{x:540,y:1150,scale:0});
 gsap.set(['#cta','#url'],{opacity:0});
 gsap.set('#cta',{scale:.8});
 gsap.set('.xp .li',{yPercent:115});
-gsap.set('#wipePot',{scale:.02,rotation:24,transformOrigin:'50% 50%',y:470});
+gsap.set('#wipePot',{scale:.02,rotation:24,transformOrigin:'50% 50%',x:-15,y:-260});   // grows out of the mug
 gsap.set(['#oGiftSel','#tMSSel'],{opacity:0});
 gsap.set('#tMSTick',{scale:0,transformOrigin:'90% 20%'});
 gsap.set('#sentPot',{scale:0});gsap.set('#endLogo',{opacity:0});
@@ -239,7 +239,7 @@ gsap.set(['#oGift','#oMoney','#oMsgs'],{y:30,opacity:0});
 lines('#xpL1',.3);          // "World's best boss…"
 lines('#xpL2',1.6);         // "world's worst gift."
 // ---------- Pot wipe ----------
-tl.to('#wipePot',{scale:1,rotation:-8,y:0,duration:.68,ease:'power2.in'},3.14);
+tl.to('#wipePot',{scale:1,rotation:-8,x:0,y:0,duration:.68,ease:'power2.in'},3.14);
 
 // ---------- 2 · stage: Jo's leaving Pot (3.5 – 6.8) ----------
 tl.to('#bigPot',{y:0,duration:.9,ease:'power3.out'},3.55);

@@ -21,12 +21,12 @@ w = int(0.25 * SR); act = np.convolve(act.astype(float), np.ones(w) / w, 'same')
 duck = np.where(act, db(-8), 1.0); k = int(0.12 * SR); duck = np.convolve(duck, np.ones(k) / k, 'same')
 out += mus * duck[:, None] * db(-15)
 
-names = ['tap', 'whoosh', 'pop', 'swipe', 'shimmer', 'notif', 'popper', 'send', 'tissue', 'typing']
+names = ['tap', 'whoosh', 'pop', 'swipe', 'shimmer', 'notif', 'popper', 'send', 'tissue', 'typing', 'door', 'clink']
 S = {n: load(f'{here}/sfx_{n}.mp3') for n in names}
 # per-sfx trim to a common loudness (from measured mean levels)
-TRIM = {'tap': 4, 'whoosh': -6, 'pop': 10, 'swipe': 8, 'shimmer': 2, 'notif': -6, 'popper': -6, 'send': -7, 'tissue': 6, 'typing': 2}
+TRIM = {'tap': 4, 'whoosh': -6, 'pop': 10, 'swipe': 8, 'shimmer': 2, 'notif': -6, 'popper': -6, 'send': -7, 'tissue': 6, 'typing': 2, 'door': -4, 'clink': 10}
 cues = [
-    ('tissue', 0.0, -13, 1.4),
+    ('door', 1.72, -12), ('clink', 2.25, -12),
     ('whoosh', 3.12, -9), ('pop', 3.62, -13), ('pop', 4.0, -16), ('pop', 4.12, -17),
     ('whoosh', 6.7, -15),
     ('pop', 7.31, -14),
