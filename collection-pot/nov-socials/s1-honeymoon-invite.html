@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><title>Collection Pot · 21 Nov · Faux pas static</title>
+<style>
+/* Headline: Figtree Black stands in for Faro Display Lucky (licensed font not supplied). */
+@font-face{font-family:Head;font-weight:900;src:url(fonts/figtree-latin-900-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Script;src:url(fonts/great-vibes-latin-400-normal.woff2)}
+@font-face{font-family:Serif;font-weight:400;src:url(fonts/cormorant-garamond-latin-400-normal.woff2)}
+@font-face{font-family:Serif;font-weight:500;src:url(fonts/cormorant-garamond-latin-500-normal.woff2)}
+@font-face{font-family:Serif;font-weight:600;src:url(fonts/cormorant-garamond-latin-600-normal.woff2)}
+@font-face{font-family:Serif;font-weight:400;font-style:italic;src:url(fonts/cormorant-garamond-latin-400-italic.woff2)}
+@font-face{font-family:Ugly;src:url(fonts/archivo-black-latin-400-normal.woff2)}
+:root{--gold:#F9B910;--black:#2F2F32;--white:#FFFCF8;--foil:#A9843A;--ink:#5b5246}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#d9d9d9;padding:40px}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--gold)}
+.abs{position:absolute}
+.logo{position:absolute;left:64px;top:64px;width:300px;z-index:5}
+.card{position:absolute;left:130px;top:150px;width:820px;height:1025px;transform:rotate(-2deg);background:url(assets/invite-bg-a.png) center/cover;box-shadow:0 30px 70px rgba(47,47,50,.28),0 4px 10px rgba(47,47,50,.12)}
+.card .c{position:absolute;left:0;right:0;text-align:center;color:var(--ink)}
+.caps{font:500 23px/1.75 Serif;letter-spacing:.34em;text-transform:uppercase}
+.names{font:400 116px/1 Script;color:var(--foil)}
+.date{font:600 27px Serif;letter-spacing:.28em;text-transform:uppercase}
+.venue{font:italic 400 31px Serif}
+.rule{display:flex;align-items:center;justify-content:center;gap:16px}
+.rule i{display:block;width:120px;height:1.5px;background:var(--foil)}
+.rule b{display:block;width:12px;height:12px;border:1.5px solid var(--foil);transform:rotate(45deg)}
+/* the faux pas */
+.bank{position:absolute;left:20px;right:20px;top:562px;transform:rotate(-3deg);text-align:center}
+.bank .hl{display:inline-block;background:var(--gold);padding:14px 28px 18px;border-radius:14px 38px 18px 30px / 30px 16px 36px 14px;font:400 45px/1.14 Ugly;white-space:nowrap;color:var(--black);letter-spacing:-.01em;text-transform:uppercase}
+.burst{position:absolute}
+.burst i{position:absolute;left:0;top:0;width:7px;border-radius:4px;background:var(--black);transform-origin:50% 100%}
+.line{position:absolute;left:64px;top:1214px;font:900 74px/1 Head;letter-spacing:-.02em;color:var(--black)}
+</style></head><body>
+
+<section class="slide" id="s1">
+  <img class="logo" src="assets/LogoCharcoal.svg" alt="Collection Pot">
+  <div class="card">
+    <div class="c caps" style="top:172px;font-size:21px;letter-spacing:.3em">You are invited to<br>the wedding of</div>
+    <div class="c names" style="top:254px;font-size:108px">Emily &amp; James</div>
+    <div class="c rule" style="top:392px"><i></i><b></b><i></i></div>
+    <div class="c date" style="top:430px">Saturday, 14th June</div>
+    <div class="c venue" style="top:476px">St Mary’s Church, London</div>
+    <div class="bank"><span class="hl">Sort code: 12-34-56.<br>Account: 12345678.</span></div>
+    <div class="burst" style="left:40px;top:548px;transform:rotate(-70deg)">
+      <i style="height:38px;transform:rotate(-30deg)"></i><i style="height:42px;transform:translate(22px,-6px)"></i><i style="height:38px;transform:translate(44px,0) rotate(30deg)"></i>
+    </div>
+    <div class="burst" style="left:716px;top:536px;transform:rotate(50deg)">
+      <i style="height:38px;transform:rotate(-30deg)"></i><i style="height:42px;transform:translate(22px,-6px)"></i><i style="height:38px;transform:translate(44px,0) rotate(30deg)"></i>
+    </div>
+    <div class="c rule" style="top:748px"><i></i><b></b><i></i></div>
+    <div class="c caps" style="top:770px;font-size:19px;letter-spacing:.3em">We can’t wait to<br>celebrate with you!</div>
+  </div>
+  <div class="line">There’s a Pot for that.</div>
+</section>
+
+</body></html>

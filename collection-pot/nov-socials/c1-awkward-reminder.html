@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><title>Collection Pot · 19 Nov · Awkward carousel</title>
+<style>
+/* Headline: Figtree Black stands in for Faro Display Lucky (licensed font not supplied). Body: Inter. */
+@font-face{font-family:Head;font-weight:900;src:url(fonts/figtree-latin-900-normal.woff2)}
+@font-face{font-family:Head;font-weight:800;src:url(fonts/figtree-latin-800-normal.woff2)}
+@font-face{font-family:Inter;font-weight:400;src:url(fonts/inter-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:500;src:url(fonts/inter-latin-500-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(fonts/inter-latin-600-normal.woff2)}
+@font-face{font-family:Inter;font-weight:700;src:url(fonts/inter-latin-700-normal.woff2)}
+@font-face{font-family:Emoji;src:url(fonts/NotoColorEmoji.ttf)}
+:root{
+  --gold:#F9B910;      /* Pot of Gold */
+  --black:#2F2F32;     /* Work Bash Black */
+  --white:#FFFCF8;     /* Wedding White */
+  --gold-lt:#FFCC75;   /* Pot of Gold light tint */
+  --gold-dk:#EA9C00;   /* Pot of Gold dark tint */
+  --grey:#7a7a80;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#d9d9d9;font-family:Inter,Emoji;color:var(--black);display:flex;flex-direction:column;gap:40px;padding:40px}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--gold)}
+.abs{position:absolute}
+.logo{position:absolute;left:64px;top:64px;width:300px;z-index:5}
+.h{font-family:Head,Emoji;font-weight:900;letter-spacing:-.02em;line-height:1}
+.mark{position:relative;white-space:nowrap}
+.mark::before{content:'';position:absolute;left:-.12em;right:-.12em;top:.18em;bottom:.0em;background:var(--white);border-radius:.14em;z-index:-1}
+.h.hl{z-index:1}
+.pot{position:absolute;overflow:visible}
+.burst{position:absolute}
+.burst i{position:absolute;left:0;top:0;width:8px;border-radius:4px;background:var(--black);transform-origin:50% 100%}
+
+/* slide 1 · draft message */
+.draft{position:absolute;left:96px;top:930px;width:860px;transform:rotate(-2.5deg)}
+.draft .to{font:500 28px Inter;color:var(--grey);margin:0 0 16px 8px}
+.draft .to b{font-weight:700;color:var(--black)}
+.field{position:relative;background:#fff;border:5px solid var(--black);border-radius:46px;padding:26px 124px 28px 38px;font:400 35px/1.36 Inter,Emoji;color:var(--black)}
+.caret{display:inline-block;width:4px;height:40px;background:var(--gold-dk);vertical-align:-7px;margin-left:3px;border-radius:2px}
+.send{position:absolute;right:20px;bottom:18px;width:80px;height:80px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center}
+.send svg{width:38px;height:38px;stroke:var(--white);stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.tag{position:absolute;right:30px;top:-6px;transform:rotate(5deg);background:var(--black);color:var(--white);font:600 22px Inter;letter-spacing:.12em;text-transform:uppercase;padding:12px 22px;border-radius:30px}
+.swipe{position:absolute;right:56px;bottom:56px;width:84px;height:84px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center}
+.swipe svg{width:38px;height:38px;stroke:var(--white);stroke-width:3.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* slides 2–3 · list items */
+.badge{position:absolute;left:445px;top:196px;width:190px;height:190px;z-index:3}
+.badge span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-top:22px;font:900 118px Head;color:var(--white)}
+.item{position:absolute;left:150px;width:780px;text-align:center;font-size:82px}
+.icon{position:absolute;left:465px;width:150px;height:150px}
+
+/* slide 4 · phone */
+.phone{position:absolute;left:250px;top:492px;width:580px;height:1100px;border-radius:84px;background:var(--black);padding:16px;box-shadow:0 40px 90px rgba(47,47,50,.30)}
+.screen{position:relative;width:100%;height:100%;border-radius:68px;overflow:hidden;background:#F6F1E8}
+.isl{position:absolute;left:50%;top:14px;width:130px;height:36px;margin-left:-65px;border-radius:18px;background:#000;z-index:3}
+.status{height:62px;display:flex;align-items:center;justify-content:space-between;padding:6px 44px 0 52px;font:600 22px Inter}
+.status .ic{display:flex;gap:8px;align-items:center}
+.chathd{display:flex;align-items:center;gap:16px;padding:10px 24px 18px;background:var(--white);border-bottom:1px solid #e9e2d6}
+.chathd .back{width:22px;height:22px;border-left:4px solid var(--black);border-bottom:4px solid var(--black);transform:rotate(45deg);margin:0 4px 0 10px}
+.chathd .av{width:58px;height:58px;border-radius:50%;background:#A3DEF5;display:flex;align-items:center;justify-content:center;font:900 24px Head}
+.chathd b{display:block;font:700 25px Inter}
+.chathd span{font:400 18px Inter;color:var(--grey)}
+.msgs{padding:18px 18px;display:flex;flex-direction:column;gap:12px}
+.b{max-width:82%;border-radius:22px;padding:12px 18px 10px;font:400 22px/1.36 Inter,Emoji;background:var(--white);box-shadow:0 1px 2px rgba(47,47,50,.08)}
+.b .n{display:block;font:700 18px Inter;margin-bottom:2px}
+.b .t{display:block;text-align:right;font:400 15px Inter;color:var(--grey);margin-top:2px}
+.b.me{align-self:flex-end;background:var(--gold-lt)}
+.lk{background:#fff;border-radius:16px;overflow:hidden;margin:2px -8px 10px}
+.lk .top{height:96px;background:var(--gold);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.lk .top img{width:230px;position:relative;z-index:2}
+.lk .meta{padding:12px 16px 14px}
+.lk .meta b{display:block;font:700 21px Inter}
+.lk .meta span{display:block;font:400 18px/1.3 Inter;color:var(--grey)}
+.lk .meta em{display:block;font:500 16px Inter;color:var(--grey);font-style:normal;margin-top:4px}
+</style></head><body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <!-- The Pot (brand graphic device), traced from the collectionpot.com pot icon -->
+  <symbol id="pot" viewBox="0 0 24 24"><path d="M23.6248 10.6696C23.2442 9.89992 19.0663 2.05032 18.7858 1.45093C18.7836 1.44871 18.7836 1.44429 18.7792 1.43987C18.314 0.557368 18.1025 0 16.3908 0H7.995C6.2811 0 6.07188 0.557368 5.60668 1.43987C5.60445 1.4465 5.60445 1.44871 5.6 1.45093C5.32177 2.05032 1.14388 9.89992 0.763262 10.6696C0.509517 11.1186 0.496162 11.6362 0.500613 12.1404C0.538452 14.0006 0.879005 15.6373 1.45327 17.055C3.34523 21.7197 7.77019 24.0022 12.1929 24C12.696 24 13.1968 23.9712 13.6954 23.9115H13.6976C17.5883 23.4537 21.2543 21.191 22.9303 17.055C23.5068 15.6373 23.8474 13.9983 23.883 12.1404C23.8919 11.6362 23.8741 11.1208 23.6248 10.6696Z"/></symbol>
+</defs></svg>
+
+<!-- 1 · cover -->
+<section class="slide" id="s1">
+  <svg class="pot" viewBox="0 0 24 24" style="left:-170px;top:790px;width:1420px;height:1420px;transform:rotate(-7deg)"><use href="#pot" fill="var(--white)"/></svg>
+  <img class="logo" src="assets/LogoCharcoal.svg" alt="Collection Pot">
+  <div class="abs h hl" style="left:64px;top:176px;width:960px;font-size:98px">Things more awkward than sending Ally’s mum a <span class="mark">‘gentle reminder’</span> for her £5&nbsp;share:</div>
+  <div class="draft">
+    <div class="to">To: <b>Ally’s Mum</b></div>
+    <div class="field">Hiya! So sorry to bother you, just a gentle reminder about the £5 for Mr Davies’ gift… no rush! x<span class="caret"></span>
+      <div class="send"><svg viewBox="0 0 24 24"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg></div>
+    </div>
+    <div class="tag" style="top:-14px">Draft · not sent</div>
+  </div>
+  <div class="swipe"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+</section>
+
+<!-- 2 · item 1 -->
+<section class="slide" id="s2">
+  <svg class="pot" viewBox="0 0 24 24" style="left:80px;top:290px;width:920px;height:920px;transform:rotate(-3deg)"><use href="#pot" fill="var(--white)"/></svg>
+  <img class="logo" src="assets/LogoCharcoal.svg" alt="Collection Pot">
+  <div class="badge"><svg class="pot" viewBox="0 0 24 24" style="inset:0;width:100%;height:100%;transform:rotate(6deg)"><use href="#pot" fill="var(--black)"/></svg><span>1</span></div>
+  <div class="burst" style="left:672px;top:250px">
+    <i style="height:44px;transform:rotate(30deg)"></i><i style="height:44px;transform:translate(26px,26px) rotate(62deg)"></i><i style="height:40px;transform:translate(34px,64px) rotate(96deg)"></i>
+  </div>
+  <div class="abs h item" style="top:560px">Waving at someone who was actually waving at the person behind&nbsp;you.</div>
+  <img class="icon" src="assets/hand-wave.svg" alt="" style="top:1012px;width:130px;height:130px;left:475px">
+</section>
+
+<!-- 3 · item 2 -->
+<section class="slide" id="s3">
+  <svg class="pot" viewBox="0 0 24 24" style="left:80px;top:290px;width:920px;height:920px;transform:rotate(3deg)"><use href="#pot" fill="var(--white)"/></svg>
+  <img class="logo" src="assets/LogoCharcoal.svg" alt="Collection Pot">
+  <div class="badge"><svg class="pot" viewBox="0 0 24 24" style="inset:0;width:100%;height:100%;transform:rotate(-6deg)"><use href="#pot" fill="var(--black)"/></svg><span>2</span></div>
+  <div class="burst" style="left:672px;top:250px">
+    <i style="height:44px;transform:rotate(30deg)"></i><i style="height:44px;transform:translate(26px,26px) rotate(62deg)"></i><i style="height:40px;transform:translate(34px,64px) rotate(96deg)"></i>
+  </div>
+  <div class="abs h item" style="top:580px">Saying ‘you too!’ when the waiter tells you to enjoy your&nbsp;meal.</div>
+  <!-- plate, knife and fork: line icon to match the hand -->
+  <svg class="icon" viewBox="0 0 24 24" style="top:1010px;width:170px;height:170px;left:455px" fill="none" stroke="var(--black)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="6.6" fill="var(--white)"/><circle cx="12" cy="12" r="4.2" fill="var(--gold)"/>
+    <path d="M2.6 5.2v4.1c0 .9.7 1.6 1.6 1.6s1.6-.7 1.6-1.6V5.2M4.2 5.2v13.6"/>
+    <path d="M21.2 18.8V5.4c-1.6.6-2.5 2.4-2.5 4.6v2.6c0 .6.4 1 1 1h1.5"/>
+  </svg>
+</section>
+
+<!-- 4 · solution -->
+<section class="slide" id="s4">
+  <svg class="pot" viewBox="0 0 24 24" style="left:80px;top:640px;width:1180px;height:1180px;transform:rotate(9deg)"><use href="#pot" fill="var(--white)"/></svg>
+  <img class="logo" src="assets/LogoCharcoal.svg" alt="Collection Pot">
+  <div class="abs h" style="left:64px;top:150px;font-size:118px">Skip the<br>awkwardness.</div>
+  <div class="abs" style="left:66px;top:404px;font:600 40px/1.2 Inter;letter-spacing:-.01em">One link. No bank details. No chasing.</div>
+  <div class="phone"><div class="screen">
+    <div class="isl"></div>
+    <div class="status"><span>19:06</span><span class="ic">
+      <svg width="30" height="20" viewBox="0 0 30 20"><rect x="0" y="12" width="5" height="8" rx="1.5" fill="#2F2F32"/><rect x="8" y="8" width="5" height="12" rx="1.5" fill="#2F2F32"/><rect x="16" y="4" width="5" height="16" rx="1.5" fill="#2F2F32"/><rect x="24" y="0" width="5" height="20" rx="1.5" fill="#2F2F32"/></svg>
+      <svg width="40" height="20" viewBox="0 0 40 20"><rect x="1" y="1" width="34" height="18" rx="5" fill="none" stroke="#2F2F32" stroke-width="2"/><rect x="4" y="4" width="25" height="12" rx="3" fill="#2F2F32"/><rect x="37" y="7" width="2.5" height="6" rx="1" fill="#2F2F32"/></svg>
+    </span></div>
+    <div class="chathd"><i class="back"></i><div class="av">Y4</div><div><b>Year 4 Parents</b><span>Priya, Jo, Sam, You +24</span></div></div>
+    <div class="msgs">
+      <div class="b"><span class="n" style="color:#8069B0">Priya</span>Are we doing something for Mr Davies before the end of term? 🎄<span class="t">19:02</span></div>
+      <div class="b"><span class="n" style="color:#21BF8F">Jo</span>Yes! But who’s collecting? 😅<span class="t">19:03</span></div>
+      <div class="b me">
+        <div class="lk"><div class="top"><img src="assets/LogoCharcoal.svg" alt=""></div>
+          <div class="meta"><b>Mr Davies’ end-of-term gift</b><span>Chip in and add your message</span><em>collectionpot.com</em></div></div>
+        Here’s the link 🎁 Chip in whatever you like and sign the card. That’s it!<span class="t">19:05 ✓✓</span></div>
+      <div class="b"><span class="n" style="color:#E566AB">Sam</span>Done in 30 seconds 🙌<span class="t">19:06</span></div>
+    </div>
+  </div></div>
+</section>
+
+</body></html>
