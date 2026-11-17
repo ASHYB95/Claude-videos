@@ -7,7 +7,7 @@ description: Edit a person's own talking-head footage (founder / expert to camer
 
 Reference build: `SM explainer/` (87 s, Purple Seed founder, "the only content that works on social media").
 Read its `TREATMENT.md`, `index.html` and `audio/mix.py` before starting — copy patterns, don't reinvent.
-Visual language comes from `thirty-one-years/` (see the `collage-story-video` skill for the collage look).
+Visual language comes from `collection-pot/thirty-one-years/` (see the `collage-story-video` skill for the collage look).
 
 ## The format (what the user approved)
 - 9:16, 1080×1920, 30 fps. Length = everything they say, tightened (pauses → 0.2 s jump cuts). No VO, no script

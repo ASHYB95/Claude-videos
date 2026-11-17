@@ -1,11 +1,11 @@
 ---
 name: screen-led-promo-ad
-description: Make a fast-paced vertical (9:16) brand/product promo ad that cuts AI-generated B-roll (Higgsfield) with on-brand recreations of the product's real app/website screens in a 3D phone, with ElevenLabs voiceover, synthesised music and SFX, rendered with HyperFrames. Use when the user wants a SaaS/app/website ad, "show how easy it is", a product walkthrough ad, or a professional social ad with B-roll + screens (reference: collection-pot/).
+description: Make a fast-paced vertical (9:16) brand/product promo ad that cuts AI-generated B-roll (Higgsfield) with on-brand recreations of the product's real app/website screens in a 3D phone, with ElevenLabs voiceover, synthesised music and SFX, rendered with HyperFrames. Use when the user wants a SaaS/app/website ad, "show how easy it is", a product walkthrough ad, or a professional social ad with B-roll + screens (reference: collection-pot/set-up-in-under-a-minute/).
 ---
 
 # Screen-led promo ad (B-roll + real screens)
 
-Reference build: `collection-pot/` (32 s ad). Read its `index.html`, `TREATMENT.md` and `audio/` before starting — copy patterns, don't reinvent.
+Reference build: `collection-pot/set-up-in-under-a-minute/` (32 s ad). Read its `index.html`, `TREATMENT.md` and `audio/` before starting — copy patterns, don't reinvent.
 
 ## The format
 - 9:16, 1080×1920, 30 fps, ~30–35 s. **Fast**: B-roll shots on screen 1.0–2.8 s, cut on VO beats.
@@ -16,7 +16,7 @@ Reference build: `collection-pot/` (32 s ad). Read its `index.html`, `TREATMENT.
 ## Workflow (get approval at each ★)
 1. **Research the brand**: fetch the site (add hosts to the cloud environment if blocked: site, app subdomain, image CDN). Extract real copy/claims, hex colours (CSS), fonts, logo + mascot SVGs. Only use claims the site makes.
 2. ★ **Script** as a table: time · visual (🎬 B-roll / 📱 screen) · VO. Keep VO ~70–80 words for 30 s.
-3. **Capture real screens** with Playwright through the proxy (`chromium.launch({proxy:{server:process.env.HTTPS_PROXY}})`, mobile 430×932 @2x). Stub trackers; if Next.js chunks 404 in Chrome, fulfil `/_next/static/chunks/` via `curl` (see `collection-pot/reference/capture-flow.js`). Click through the real flow and stop before sign-up.
+3. **Capture real screens** with Playwright through the proxy (`chromium.launch({proxy:{server:process.env.HTTPS_PROXY}})`, mobile 430×932 @2x). Stub trackers; if Next.js chunks 404 in Chrome, fulfil `/_next/static/chunks/` via `curl` (see `collection-pot/set-up-in-under-a-minute/reference/capture-flow.js`). Click through the real flow and stop before sign-up.
 4. ★ **Quote Higgsfield credits** (`generate_video` with `get_cost:true`) and get approval. B-roll: `seedance_2_5`, 9:16, 5 s, 1080p, `generate_audio:false` (~80 credits each). Prompts: "commercial", camera move, light, "no readable text, no logos". For the pickup shot ask for "the phone's softly glowing **blank** screen fills the frame" → screen replacement.
 5. Download clips (add the Higgsfield CDN host if blocked), **transcode HEVC → H.264** (`-c:v libx264 -crf 15 -pix_fmt yuv420p -r 30`) — headless Chrome can't decode HEVC.
 6. **Screen replacement**: retime the pickup clip, then `scripts/screen_replace.py <screenshot.png>` tracks the white screen per frame and composites the real homepage (thumb/notch stay on top). Freeze its last frame and start the UI scene with the phone screen at the exact same rect (clip-path iris out) for an invisible match cut.
