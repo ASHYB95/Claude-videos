@@ -2,7 +2,7 @@
 """Generate (once) the paper + UI sound-effect kit with ElevenLabs sound-generation.
 
 Usage: python3 sfx.py <out_dir> [name ...]     (no names = whole kit)
-Paper foley is copied from thirty-one-years/audio when that folder exists (same repo), otherwise generated.
+Paper foley is copied from collection-pot/thirty-one-years/audio when that folder exists (same repo), otherwise generated.
 The ElevenLabs key is injected by the session proxy. duration_seconds must be >= 0.5.
 A failed request can leave a 0-byte file — this script deletes empties first so a re-run retries them.
 
@@ -13,7 +13,7 @@ import json, os, shutil, sys, urllib.request
 
 out = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else '.')
 os.makedirs(out, exist_ok=True)
-ref = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', '..', 'thirty-one-years', 'audio')
+ref = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..', '..', 'collection-pot', 'thirty-one-years', 'audio')
 KIT = {
  # paper foley
  "tear":   ("a sheet of paper being torn quickly, crisp, close", 1.0),

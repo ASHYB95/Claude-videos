@@ -1,11 +1,11 @@
 ---
 name: collage-story-video
-description: Make a story-led, emotional, animated (no live footage) vertical brand video in Vox-style newspaper collage — halftone photo cut-outs on newsprint, serif headlines, marker scribbles, torn notes — duotoned into brand colours only, with narration plus character voices (ElevenLabs), piano/strings score and paper foley, rendered with HyperFrames. Use when the user wants a "real situation" story, emotion-led brand film, Vox/collage/paper-cut style, or animated documentary look (reference: thirty-one-years/).
+description: Make a story-led, emotional, animated (no live footage) vertical brand video in Vox-style newspaper collage — halftone photo cut-outs on newsprint, serif headlines, marker scribbles, torn notes — duotoned into brand colours only, with narration plus character voices (ElevenLabs), piano/strings score and paper foley, rendered with HyperFrames. Use when the user wants a "real situation" story, emotion-led brand film, Vox/collage/paper-cut style, or animated documentary look (reference: collection-pot/thirty-one-years/).
 ---
 
 # Collage story video (Vox-style, brand colours only)
 
-Reference build: `thirty-one-years/` (61 s). Read its `index.html`, `TREATMENT.md`, `art/` and `audio/` first.
+Reference build: `collection-pot/thirty-one-years/` (61 s). Read its `index.html`, `TREATMENT.md`, `art/` and `audio/` first.
 
 ## The look (what the user approved — and what they rejected)
 - ✅ **Black-and-white halftone photo cut-outs** (people, hands, objects) with rough paper edges; torn rectangular "clippings"; newsprint + graph-paper grounds; big high-contrast serif (Playfair Display 900/italic); bold labels on yellow bars (Figtree); Permanent Marker scribbles; Caveat handwritten notes; Courier stamps; a big brand-yellow circle behind the subject.
