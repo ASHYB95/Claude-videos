@@ -26,10 +26,14 @@ What's your wanted level this week? Tag the colleague who's on six stars. ⭐⭐
 ## Guardrails
 No Rockstar/GTA logos, art, characters or fonts; the wanted-level stars and "Vice City" carry the reference.
 
-## Chip's eyes
-Chip's pupils follow `ref/chip-eyes-reference.jpg`: large, glossy, slightly tilted black ovals with one upper-left highlight.
-The current Chips had small round pupils, so they were repainted with `chip/fix_eyes.py` (originals in `chip/orig/`).
-Run it on any new Chip render too: `python3 -I chip/fix_eyes.py in.png out.png --scale 1.1` (add `--center 0.6` if the pupils sit off to the side).
+## Chip's face (brand rule)
+Chip's white eye patches are shaped like an **upside-down Pot** (rounded dome on top, straight sides tapering down
+towards the beak), as in `ref/chip-eyes-reference.jpg`. The current Chips had round patches, so `chip/fix_face.py`
+paints the old face out and fits the reference face (eye patches, pupils, beak) onto each head; `--wink` closes the
+right eye. Originals are in `chip/orig/`. Run it on any new Chip render that comes out with round eyes:
+`python3 -I chip/fix_face.py in.png out.png [--wink] --blur 1.2` (use `--blur 0.6` for sharp, high-res renders).
+When generating new Chips, add to the prompt: "white eye patches shaped like an upside-down pot (rounded top, straight
+sides tapering towards the beak), not round".
 
 ## Finishing the Chip poses (needs ~16 Higgsfield credits)
 Placeholders are cut from `ref/chip-character-sheet.png` (low-res). To replace them:
