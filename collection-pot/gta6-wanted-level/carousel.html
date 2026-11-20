@@ -1,0 +1,83 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>GTA 6 week — Wanted level carousel</title>
+<style>
+@font-face{font-family:Fig;font-weight:900;src:url(fonts/figtree-latin-900-normal.woff2)}
+@font-face{font-family:Fig;font-weight:800;src:url(fonts/figtree-latin-800-normal.woff2)}
+/* Collection Pot palette (Chip character sheet + site) */
+:root{--ink:#2f2f32;--yel:#f9b910;--white:#ffffff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fff;width:6480px;height:1350px;overflow:hidden}
+#strip{position:relative;width:6480px;height:1350px;background:#fff;overflow:hidden;color:var(--ink);font-family:Fig}
+svg.bg{position:absolute;left:0;top:0}
+.a{position:absolute}
+.logo{position:absolute;top:72px;width:160px;height:90px}
+.logo .c{position:absolute;left:0;top:0;width:160px;height:20px;overflow:hidden}
+.logo .c img{position:absolute;left:-1px;top:0;width:226px}
+.logo .p{position:absolute;left:0;top:24px;width:160px;height:63px;overflow:hidden}
+.logo .p img{position:absolute;left:-548px;top:0;width:731px}
+.col{position:absolute;top:250px;width:880px;display:flex;flex-direction:column;gap:34px}
+.h{font:900 92px/1.02 Fig;letter-spacing:-.025em}
+.w{color:var(--white)}
+.num{font:900 250px/.9 Fig;letter-spacing:-.04em;color:var(--white)}
+.stars{display:flex;gap:14px}
+.stars svg{width:84px;height:84px}
+.chip{position:absolute;filter:drop-shadow(0 18px 24px rgba(47,47,50,.18))}
+.tag{display:inline-block;font:800 30px Fig;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:var(--yel);padding:12px 20px 10px;border-radius:10px}
+</style></head><body>
+<div id="strip">
+  <!-- one continuous yellow shape across all six slides; the white "bites" cross slide edges so the carousel reads as one image -->
+  <svg class="bg" width="6480" height="1350" viewBox="0 0 6480 1350">
+    <path fill="#f9b910" d="
+      M0 0 H6480 V1350
+      C6380 1350 6300 1200 6200 1180  C6000 1140 5860 1290 5650 1270  C5480 1255 5420 1160 5250 1150
+      C5050 1140 4980 1330 4760 1320  C4560 1310 4480 1180 4300 1190  C4120 1200 4060 1320 3880 1300
+      C3700 1280 3640 1150 3440 1160  C3240 1170 3180 1330 2980 1310  C2800 1290 2740 1170 2560 1180
+      C2380 1190 2300 1320 2120 1300  C1940 1280 1880 1160 1700 1170  C1500 1180 1440 1320 1240 1310
+      C1060 1300 980 1160 800 1170    C600 1180 540 1300 340 1290    C180 1282 80 1210 0 1180 Z"/>
+    <!-- white bites at the slide seams (top) -->
+    <path fill="#fff" d="M960 0 C1010 120 1120 210 1220 190 C1300 175 1290 60 1250 0 Z"/>
+    <path fill="#fff" d="M3150 0 C3180 90 3260 150 3340 130 C3400 115 3390 40 3370 0 Z"/>
+    <path fill="#fff" d="M5280 0 C5330 140 5460 200 5540 170 C5600 145 5580 50 5540 0 Z"/>
+  </svg>
+
+  <!-- ===== 1 · cover ===== -->
+  <div class="col" style="left:80px;top:260px"><div class="h" style="font-size:118px">Things that raised your <span class="w">wanted level</span> this week:</div><div class="stars" data-n="6"></div></div>
+  <img class="chip" src="chip/placeholder-wink.png" style="left:520px;top:860px;width:480px" alt="">
+
+  <!-- ===== 2 · 01 · 3 stars ===== -->
+  <div class="col" style="left:1160px"><div class="num">01.</div><div class="h">Blocking out Thursday 9–5 as <span class="w">“Deep focus. Do&nbsp;not&nbsp;disturb.”</span></div><div class="stars" data-n="3"></div></div>
+  <img class="chip" src="chip/placeholder-proud.png" style="left:1800px;top:950px;width:345px" alt="">
+
+  <!-- ===== 3 · 02 · 5 stars ===== -->
+  <div class="col" style="left:2240px"><div class="num">02.</div><div class="h" style="font-size:86px">Buying a mouse jiggler so your Teams status stays green <span class="w">while you’re in Vice City.</span></div><div class="stars" data-n="5"></div></div>
+  <img class="chip" src="chip/beanbag.png" style="left:2850px;top:960px;width:375px" alt="">
+
+  <!-- ===== 4 · 03 · 2 stars ===== -->
+  <div class="col" style="left:3320px"><div class="num">03.</div><div class="h">Camera off for Friday’s all-hands: <span class="w">“Sorry, my Wi-Fi’s really bad today.”</span></div><div class="stars" data-n="2"></div></div>
+  <img class="chip" src="chip/placeholder-happy.png" style="left:3970px;top:950px;width:335px" alt="">
+
+  <!-- ===== 5 · 04 · 6 stars ===== -->
+  <div class="col" style="left:4400px"><div class="num">04.</div><div class="h">Coming down with the Thursday–Friday flu. <span class="w">The whole team. Same day.</span></div><div class="stars" data-n="6"></div></div>
+  <img class="chip" src="chip/placeholder-excited.png" style="left:5040px;top:940px;width:345px" alt="">
+
+  <!-- ===== 6 · sign-off · 6 stars ===== -->
+  <div class="col" style="left:5480px;top:300px"><div class="h" style="font-size:132px;line-height:.98">Stay safe out there.<br><span class="w">HR is watching.</span></div><div class="stars" data-n="6"></div></div>
+  <img class="chip" src="chip/placeholder-wave.png" style="left:6120px;top:920px;width:350px" alt="">
+
+  <div id="logos"></div>
+</div>
+<script>
+// six-star wanted meter: filled = white with charcoal outline (the classic look), empty = outline only
+const STAR = 'M12 1.8l2.95 6.6 7.2.7-5.43 4.8 1.6 7.07L12 17.3 5.68 20.97l1.6-7.07L1.85 9.1l7.2-.7z';
+document.querySelectorAll('.stars').forEach(el => {
+  const n = +el.dataset.n; let h = '';
+  for (let i = 0; i < 6; i++) h += i < n
+    ? `<svg viewBox="0 0 24 24"><path d="${STAR}" fill="#fff" stroke="#2f2f32" stroke-width="1.7" stroke-linejoin="round"/></svg>`
+    : `<svg viewBox="0 0 24 24"><path d="${STAR}" fill="none" stroke="#2f2f32" stroke-opacity=".35" stroke-width="1.7" stroke-linejoin="round"/></svg>`;
+  el.innerHTML = h;
+});
+// stacked "COLLECTION / POT" logo in the top-right of every slide, cut from the official wordmark
+let L = ''; for (let s = 0; s < 6; s++) L += `<div class="logo" style="left:${s * 1080 + 1080 - 80 - 160}px"><div class="c"><img src="../set-up-in-under-a-minute/brand/LogoCharcoal.svg" alt=""></div><div class="p"><img src="../set-up-in-under-a-minute/brand/LogoCharcoal.svg" alt=""></div></div>`;
+document.getElementById('logos').innerHTML = L;
+</script>
+</body></html>
