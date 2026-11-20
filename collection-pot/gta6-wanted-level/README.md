@@ -26,6 +26,11 @@ What's your wanted level this week? Tag the colleague who's on six stars. ⭐⭐
 ## Guardrails
 No Rockstar/GTA logos, art, characters or fonts; the wanted-level stars and "Vice City" carry the reference.
 
+## Chip's eyes
+Chip's pupils follow `ref/chip-eyes-reference.jpg`: large, glossy, slightly tilted black ovals with one upper-left highlight.
+The current Chips had small round pupils, so they were repainted with `chip/fix_eyes.py` (originals in `chip/orig/`).
+Run it on any new Chip render too: `python3 -I chip/fix_eyes.py in.png out.png --scale 1.1` (add `--center 0.6` if the pupils sit off to the side).
+
 ## Finishing the Chip poses (needs ~16 Higgsfield credits)
 Placeholders are cut from `ref/chip-character-sheet.png` (low-res). To replace them:
 1. Generate with `nano_banana_pro`, 1:1, 2k, `image_references` = the uploaded character sheet (Higgsfield media `cd43c0d6-6f50-4f3e-a7ab-c81ead87bee9`).
