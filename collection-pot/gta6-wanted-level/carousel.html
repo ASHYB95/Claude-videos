@@ -1,78 +1,117 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><title>GTA 6 week — Wanted level carousel</title>
+<html lang="en-GB"><head><meta charset="utf-8"><title>GTA 6 week — Wanted level carousel (v3, Pot as a background)</title>
 <style>
 @font-face{font-family:Fig;font-weight:900;src:url(fonts/figtree-latin-900-normal.woff2)}
 @font-face{font-family:Fig;font-weight:800;src:url(fonts/figtree-latin-800-normal.woff2)}
-/* Collection Pot Brand Guidelines (Nov 2026): Pot of Gold, Work Bash Black, Wedding White */
-:root{--ink:#2F2F32;--yel:#F9B910;--white:#FFFCF8}
+/* Collection Pot Brand Guidelines (Nov 2026). Layouts follow p.44 "The Pot as a background":
+   the Pot is scaled far past the frame so its straight shoulders and soft base divide the space into gold and white. */
+:root{--gold:#F9B910;--ink:#2F2F32;--white:#FFFCF8}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--white);width:6480px;height:1350px;overflow:hidden}
-#strip{position:relative;width:6480px;height:1350px;background:var(--white);overflow:hidden;color:var(--ink);font-family:Fig}
-svg.bg{position:absolute;left:0;top:0}
+body{background:#d9d9d9;display:flex;flex-direction:column;gap:40px;padding:40px;font-family:Fig;color:var(--ink)}
+.slide{position:relative;width:1080px;height:1350px;overflow:hidden}
+.gold{background:var(--gold)}.white{background:var(--white)}
 .a{position:absolute}
-.logo{position:absolute;top:80px;width:180px}
-.col{position:absolute;top:250px;width:880px;display:flex;flex-direction:column;gap:34px}
-.h{font:900 92px/1.02 Fig;letter-spacing:-.025em}
-.w{color:var(--white)}
-.num{font:900 250px/.9 Fig;letter-spacing:-.04em;color:var(--white)}
-.stars{display:flex;gap:14px}
-.stars svg{width:84px;height:84px}
-.chip{position:absolute;filter:drop-shadow(0 18px 24px rgba(47,47,50,.18))}
-.tag{display:inline-block;font:800 30px Fig;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:var(--yel);padding:12px 20px 10px;border-radius:10px}
+svg.pot{position:absolute;overflow:visible}
+.h{font:900 104px/1 Fig;letter-spacing:-.03em}
+.sub{font:900 50px/1.12 Fig;letter-spacing:-.015em}
+.w{color:var(--white)}.g{color:var(--gold)}
+.num{font:900 230px/.86 Fig;letter-spacing:-.045em}
+.stars{display:flex;gap:12px}
+.stars svg{width:82px;height:82px}
+.chip{position:absolute;filter:drop-shadow(0 16px 22px rgba(47,47,50,.16))}
+.logo{position:absolute}
+.spark{position:absolute;width:56px;height:56px}
 </style></head><body>
-<div id="strip">
-  <!-- Brand device: the Pot. One giant Pot of Gold per slide on Wedding White (official PotShape.svg from the guidelines):
-       the rounded base shows at the bottom, the shoulders meet the neighbouring Pots so the carousel reads as one strip -->
-  <svg class="bg" width="6480" height="1350" viewBox="0 0 6480 1350">
-    <defs><symbol id="pot" viewBox="1018 100 852 880"><path d="M 1596.980469 100 L 1290.980469 100 C 1228.585938 100 1220.882812 120.351562 1203.972656 152.773438 C 1195.335938 171.796875 1041.378906 462.773438 1027.488281 491.195312 C 1018.324219 507.746094 1017.730469 526.679688 1018.011719 545.179688 C 1023.640625 837.699219 1233.628906 980 1443.683594 980 L 1444.273438 980 C 1654.347656 980 1864.316406 837.71875 1869.949219 545.179688 C 1870.230469 526.679688 1869.632812 507.746094 1860.46875 491.195312 C 1846.582031 462.773438 1692.621094 171.796875 1683.984375 152.773438 C 1667.078125 120.351562 1659.375 100 1596.980469 100"/></symbol></defs>
-    <g fill="#F9B910">
-    <use href="#pot" x="-115" y="-144" width="1350" height="1394" transform="rotate(-3 560 553)"/>
-    <use href="#pot" x="965" y="-159" width="1350" height="1394" transform="rotate(3 1640 538)"/>
-    <use href="#pot" x="2045" y="-139" width="1350" height="1394" transform="rotate(-3 2720 558)"/>
-    <use href="#pot" x="3125" y="-154" width="1350" height="1394" transform="rotate(3 3800 543)"/>
-    <use href="#pot" x="4205" y="-139" width="1350" height="1394" transform="rotate(-3 4880 558)"/>
-    <use href="#pot" x="5285" y="-149" width="1350" height="1394" transform="rotate(3 5960 548)"/>
-    </g>
-  </svg>
 
-  <!-- ===== 1 · cover ===== -->
-  <div class="col" style="left:80px;top:260px"><div class="h" style="font-size:118px">Things that raised your <span class="w">wanted level</span> this week:</div><div class="stars" data-n="6"></div></div>
-  <img class="chip" src="chip/placeholder-wink.png" style="left:520px;top:860px;width:480px" alt="">
+<!-- 1 · cover · "Impossible to forget" layout: gold, white Pot wedge cutting in from the right -->
+<section class="slide gold" id="s1">
+  <div class="pots"></div>
+  <img class="logo" src="brand/LogoStacked.svg" style="left:820px;top:76px;width:190px" alt="">
+  <div class="a h" style="left:72px;top:250px;width:760px;font-size:118px">Things that raised your <span class="w">wanted level</span> this week:</div>
+  <div class="a stars" style="left:72px;top:800px" data-n="6"></div>
+  <img class="chip" src="chip/placeholder-wink.png" style="left:560px;top:930px;width:400px" alt="">
+</section>
 
-  <!-- ===== 2 · 01 · 3 stars ===== -->
-  <div class="col" style="left:1160px"><div class="num">01.</div><div class="h">Blocking out Thursday 9–5 as <span class="w">“Deep focus. Do&nbsp;not&nbsp;disturb.”</span></div><div class="stars" data-n="3"></div></div>
-  <img class="chip" src="chip/placeholder-proud.png" style="left:1800px;top:950px;width:345px" alt="">
+<!-- 2 · 01 · 3★ · "Chill" layout: white above, the Pot's tilted top edge rising into gold below -->
+<section class="slide white" id="s2">
+  <div class="pots"></div>
+  <img class="logo" src="brand/LogoStacked.svg" style="left:820px;top:76px;width:190px" alt="">
+  <div class="a num g" style="left:66px;top:210px">01.</div>
+  <div class="a h" style="left:72px;top:440px;width:900px;font-size:88px">Blocking out Thursday 9–5 as “Deep focus. Do&nbsp;not&nbsp;disturb.”</div>
+  <div class="a stars" style="left:72px;top:1000px" data-n="3"></div>
+  <img class="chip" src="chip/placeholder-proud.png" style="left:680px;top:960px;width:340px" alt="">
+</section>
 
-  <!-- ===== 3 · 02 · 5 stars ===== -->
-  <div class="col" style="left:2240px"><div class="num">02.</div><div class="h" style="font-size:86px">Buying a mouse jiggler so your Teams status stays green <span class="w">while you’re in Vice City.</span></div><div class="stars" data-n="5"></div></div>
-  <img class="chip" src="chip/beanbag.png" style="left:2850px;top:960px;width:375px" alt="">
+<!-- 3 · 02 · 5★ · "So easy" layout: gold above, the Pot's rounded base sweeping over white below -->
+<section class="slide white" id="s3">
+  <div class="pots"></div>
+  <img class="logo" src="brand/LogoStacked.svg" style="left:820px;top:76px;width:190px" alt="">
+  <div class="a num w" style="left:66px;top:210px">02.</div>
+  <div class="a h" style="left:72px;top:440px;width:920px;font-size:84px">Buying a mouse jiggler so your Teams status stays green <span class="w">while you’re in Vice City.</span></div>
+  <div class="a stars" style="left:72px;top:850px" data-n="5"></div>
+  <img class="chip" src="chip/beanbag.png" style="left:600px;top:980px;width:390px" alt="">
+</section>
 
-  <!-- ===== 4 · 03 · 2 stars ===== -->
-  <div class="col" style="left:3320px"><div class="num">03.</div><div class="h">Camera off for Friday’s all-hands: <span class="w">“Sorry, my Wi-Fi’s really bad today.”</span></div><div class="stars" data-n="2"></div></div>
-  <img class="chip" src="chip/placeholder-happy.png" style="left:3970px;top:950px;width:335px" alt="">
+<!-- 4 · 03 · 2★ · "Chasing your mates" layout: gold, a white Pot corner bottom-right -->
+<section class="slide gold" id="s4">
+  <div class="pots"></div>
+  <img class="logo" src="brand/LogoStacked.svg" style="left:820px;top:76px;width:190px" alt="">
+  <div class="a num w" style="left:66px;top:210px">03.</div>
+  <div class="a h" style="left:72px;top:440px;width:920px;font-size:92px">Camera off for Friday’s all-hands: <span class="w">“Sorry, my Wi-Fi’s really bad today.”</span></div>
+  <div class="a stars" style="left:72px;top:880px" data-n="2"></div>
+  <img class="chip" src="chip/placeholder-happy.png" style="left:690px;top:990px;width:330px" alt="">
+</section>
 
-  <!-- ===== 5 · 04 · 6 stars ===== -->
-  <div class="col" style="left:4400px"><div class="num">04.</div><div class="h">Coming down with the Thursday–Friday flu. <span class="w">The whole team. Same day.</span></div><div class="stars" data-n="6"></div></div>
-  <img class="chip" src="chip/placeholder-excited.png" style="left:5040px;top:940px;width:345px" alt="">
+<!-- 5 · 04 · 6★ · "Make it one" layout: white, a giant tilted gold Pot from the bottom-right, punctuation Pots -->
+<section class="slide white" id="s5">
+  <div class="pots"></div>
+  <img class="logo" src="brand/LogoStacked.svg" style="left:820px;top:76px;width:190px" alt="">
+  <div class="a num g" style="left:66px;top:210px">04.</div>
+  <div class="a h" style="left:72px;top:440px;width:760px;font-size:90px">Coming down with the Thursday–Friday flu. <span class="g">The whole team. Same day.</span></div>
+  <div class="a stars" style="left:72px;top:1000px" data-n="6"></div>
+  <img class="chip" src="chip/placeholder-excited.png" style="left:640px;top:880px;width:400px" alt="">
+</section>
 
-  <!-- ===== 6 · sign-off · 6 stars ===== -->
-  <div class="col" style="left:5480px;top:300px"><div class="h" style="font-size:132px;line-height:.98">Stay safe out there.<br><span class="w">HR is watching.</span></div><div class="stars" data-n="6"></div></div>
-  <img class="chip" src="chip/placeholder-wave.png" style="left:6120px;top:920px;width:350px" alt="">
+<!-- 6 · sign-off · 6★ · gold, the logo sitting in a white Pot corner -->
+<section class="slide gold" id="s6">
+  <div class="pots"></div>
+  <div class="a h" style="left:72px;top:230px;width:920px;font-size:140px;line-height:.96">Stay safe out there. <span class="w">HR is watching.</span></div>
+  <div class="a stars" style="left:72px;top:800px" data-n="6"></div>
+  <img class="chip" src="chip/placeholder-wave.png" style="left:110px;top:950px;width:360px" alt="">
+  <img class="logo" src="brand/LogoStacked.svg" style="left:640px;top:1110px;width:330px" alt="">
+</section>
 
-  <div id="logos"></div>
-</div>
 <script>
-// six-star wanted meter: filled = white with charcoal outline (the classic look), empty = outline only
+// Official Pot outline (brand/PotShape.svg, from the guidelines). viewBox 852×880.
+const POT = 'M 1596.98 100 L 1290.98 100 C 1228.59 100 1220.88 120.35 1203.97 152.77 C 1195.34 171.8 1041.38 462.77 1027.49 491.2 C 1018.32 507.75 1017.73 526.68 1018.01 545.18 C 1023.64 837.7 1233.63 980 1443.68 980 L 1444.27 980 C 1654.35 980 1864.32 837.72 1869.95 545.18 C 1870.23 526.68 1869.63 507.75 1860.47 491.2 C 1846.58 462.77 1692.62 171.8 1683.98 152.77 C 1667.08 120.35 1659.38 100 1596.98 100 Z';
+// cx, cy = centre of the Pot; w = width; r = rotation (deg); fill / stroke
+const pot = (cx, cy, w, r, fill, stroke = 'none', sw = 0) => {
+  const h = w * 880 / 852;
+  return `<svg class="pot" viewBox="1018 100 852 880" style="left:${cx - w / 2}px;top:${cy - h / 2}px;width:${w}px;height:${h}px;transform:rotate(${r}deg)">`
+    + `<path d="${POT}" fill="${fill}" stroke="${stroke}" stroke-width="${sw * 852 / w}" stroke-linejoin="round"/></svg>`;
+};
+const W = '#FFFCF8', G = '#F9B910', K = '#2F2F32';
+const spark = (x, y, s, c = G) => `<svg class="spark" viewBox="0 0 24 24" style="left:${x}px;top:${y}px;width:${s}px;height:${s}px"><path d="M12 0C13 7 17 11 24 12C17 13 13 17 12 24C11 17 7 13 0 12C7 11 11 7 12 0Z" fill="${c}"/></svg>`;
+const LAYOUT = {
+  // giant white Pot: its left shoulder slices a wedge down the right-hand side
+  s1: pot(1720, 1500, 2300, -22, W) + pot(980, 1240, 150, 10, G) ,
+  // giant gold Pot: its tilted top edge rises across the lower half
+  s2: pot(560, 2340, 2700, -8, G) + pot(560, 1215, 170, -12, 'none', K, 7),
+  // giant gold Pot from above: its rounded base sweeps across the bottom third
+  s3: pot(470, -130, 2300, 6, G) + pot(980, 1190, 120, 14, K),
+  // white Pot corner bottom-right
+  s4: pot(1160, 1640, 1250, -18, W),
+  // giant tilted gold Pot rising from the bottom-right, with punctuation Pots and sparkles
+  s5: pot(1360, 1830, 1900, -32, G) + pot(940, 760, 120, 18, K) + pot(1015, 905, 110, -10, 'none', K, 6) + spark(860, 620, 46) + spark(1010, 650, 30),
+  // white Pot corner holding the logo
+  s6: pot(980, 1560, 1150, 14, W),
+};
+for (const [id, html] of Object.entries(LAYOUT)) document.querySelector(`#${id} .pots`).innerHTML = html;
+// six-star wanted meter
 const STAR = 'M12 1.8l2.95 6.6 7.2.7-5.43 4.8 1.6 7.07L12 17.3 5.68 20.97l1.6-7.07L1.85 9.1l7.2-.7z';
-document.querySelectorAll('.stars').forEach(el => {
-  const n = +el.dataset.n; let h = '';
-  for (let i = 0; i < 6; i++) h += i < n
-    ? `<svg viewBox="0 0 24 24"><path d="${STAR}" fill="#FFFCF8" stroke="#2F2F32" stroke-width="1.7" stroke-linejoin="round"/></svg>`
-    : `<svg viewBox="0 0 24 24"><path d="${STAR}" fill="none" stroke="#2F2F32" stroke-opacity=".35" stroke-width="1.7" stroke-linejoin="round"/></svg>`;
-  el.innerHTML = h;
-});
-// official stacked logo (LogoStacked.svg, from the guidelines) top-right on every slide
-let L = ''; for (let s = 0; s < 6; s++) L += `<img class="logo" src="brand/LogoStacked.svg" style="left:${s * 1080 + 730}px" alt="Collection Pot">`;
-document.getElementById('logos').innerHTML = L;
+document.querySelectorAll('.stars').forEach(el => { const n = +el.dataset.n; let h = '';
+  for (let i = 0; i < 6; i++) h += i < n ? `<svg viewBox="0 0 24 24"><path d="${STAR}" fill="${W}" stroke="${K}" stroke-width="1.7" stroke-linejoin="round"/></svg>`
+    : `<svg viewBox="0 0 24 24"><path d="${STAR}" fill="none" stroke="${K}" stroke-opacity=".35" stroke-width="1.7" stroke-linejoin="round"/></svg>`;
+  el.innerHTML = h; });
 </script>
 </body></html>

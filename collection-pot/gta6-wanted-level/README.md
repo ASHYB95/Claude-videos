@@ -3,10 +3,12 @@
 Topical, no hard sell. 6 slides, 1080×1350, built as one 6480×1350 strip in `carousel.html` and sliced by `render.js`.
 
 **Brand (Collection Pot Brand Guidelines, Nov 2026):** Pot of Gold #F9B910, Work Bash Black #2F2F32, Wedding White #FFFCF8.
-The only background shape is **the Pot** (`brand/PotShape.svg`, the official vector from the guidelines): one giant gold Pot per
-slide on Wedding White, with shoulders and rounded base visible; neighbouring Pots meet at the seams so the slides flow.
-Official stacked logo (`brand/LogoStacked.svg`) top-right on the gold. Headlines in sentence case (Figtree Black standing in for Faro Display Lucky).
-No free-form blobs or waves.
+Layouts follow guidelines p.44 "The Pot as a background" (`ref/guidelines-p44-pot-as-background.jpg`): the official Pot
+(`brand/PotShape.svg`) is scaled far beyond the frame so its straight shoulders and soft base divide each slide into gold and
+white, and every slide divides the space differently (white wedge · gold rising · gold base above · white corner · giant tilted
+Pot · Pot corner holding the logo). Small solid/outlined Pots and sparkles act as punctuation next to Chip.
+Official stacked logo (`brand/LogoStacked.svg`). Sentence-case headlines (Figtree Black standing in for Faro Display Lucky).
+No free-form blobs or waves. Previous version (Pots in a continuous strip) kept as `carousel-v2-strip.html`.
 
 | # | Copy | Wanted level | Chip |
 |---|---|---|---|

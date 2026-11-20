@@ -1,0 +1,78 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>GTA 6 week — Wanted level carousel</title>
+<style>
+@font-face{font-family:Fig;font-weight:900;src:url(fonts/figtree-latin-900-normal.woff2)}
+@font-face{font-family:Fig;font-weight:800;src:url(fonts/figtree-latin-800-normal.woff2)}
+/* Collection Pot Brand Guidelines (Nov 2026): Pot of Gold, Work Bash Black, Wedding White */
+:root{--ink:#2F2F32;--yel:#F9B910;--white:#FFFCF8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--white);width:6480px;height:1350px;overflow:hidden}
+#strip{position:relative;width:6480px;height:1350px;background:var(--white);overflow:hidden;color:var(--ink);font-family:Fig}
+svg.bg{position:absolute;left:0;top:0}
+.a{position:absolute}
+.logo{position:absolute;top:80px;width:180px}
+.col{position:absolute;top:250px;width:880px;display:flex;flex-direction:column;gap:34px}
+.h{font:900 92px/1.02 Fig;letter-spacing:-.025em}
+.w{color:var(--white)}
+.num{font:900 250px/.9 Fig;letter-spacing:-.04em;color:var(--white)}
+.stars{display:flex;gap:14px}
+.stars svg{width:84px;height:84px}
+.chip{position:absolute;filter:drop-shadow(0 18px 24px rgba(47,47,50,.18))}
+.tag{display:inline-block;font:800 30px Fig;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:var(--yel);padding:12px 20px 10px;border-radius:10px}
+</style></head><body>
+<div id="strip">
+  <!-- Brand device: the Pot. One giant Pot of Gold per slide on Wedding White (official PotShape.svg from the guidelines):
+       the rounded base shows at the bottom, the shoulders meet the neighbouring Pots so the carousel reads as one strip -->
+  <svg class="bg" width="6480" height="1350" viewBox="0 0 6480 1350">
+    <defs><symbol id="pot" viewBox="1018 100 852 880"><path d="M 1596.980469 100 L 1290.980469 100 C 1228.585938 100 1220.882812 120.351562 1203.972656 152.773438 C 1195.335938 171.796875 1041.378906 462.773438 1027.488281 491.195312 C 1018.324219 507.746094 1017.730469 526.679688 1018.011719 545.179688 C 1023.640625 837.699219 1233.628906 980 1443.683594 980 L 1444.273438 980 C 1654.347656 980 1864.316406 837.71875 1869.949219 545.179688 C 1870.230469 526.679688 1869.632812 507.746094 1860.46875 491.195312 C 1846.582031 462.773438 1692.621094 171.796875 1683.984375 152.773438 C 1667.078125 120.351562 1659.375 100 1596.980469 100"/></symbol></defs>
+    <g fill="#F9B910">
+    <use href="#pot" x="-115" y="-144" width="1350" height="1394" transform="rotate(-3 560 553)"/>
+    <use href="#pot" x="965" y="-159" width="1350" height="1394" transform="rotate(3 1640 538)"/>
+    <use href="#pot" x="2045" y="-139" width="1350" height="1394" transform="rotate(-3 2720 558)"/>
+    <use href="#pot" x="3125" y="-154" width="1350" height="1394" transform="rotate(3 3800 543)"/>
+    <use href="#pot" x="4205" y="-139" width="1350" height="1394" transform="rotate(-3 4880 558)"/>
+    <use href="#pot" x="5285" y="-149" width="1350" height="1394" transform="rotate(3 5960 548)"/>
+    </g>
+  </svg>
+
+  <!-- ===== 1 · cover ===== -->
+  <div class="col" style="left:80px;top:260px"><div class="h" style="font-size:118px">Things that raised your <span class="w">wanted level</span> this week:</div><div class="stars" data-n="6"></div></div>
+  <img class="chip" src="chip/placeholder-wink.png" style="left:520px;top:860px;width:480px" alt="">
+
+  <!-- ===== 2 · 01 · 3 stars ===== -->
+  <div class="col" style="left:1160px"><div class="num">01.</div><div class="h">Blocking out Thursday 9–5 as <span class="w">“Deep focus. Do&nbsp;not&nbsp;disturb.”</span></div><div class="stars" data-n="3"></div></div>
+  <img class="chip" src="chip/placeholder-proud.png" style="left:1800px;top:950px;width:345px" alt="">
+
+  <!-- ===== 3 · 02 · 5 stars ===== -->
+  <div class="col" style="left:2240px"><div class="num">02.</div><div class="h" style="font-size:86px">Buying a mouse jiggler so your Teams status stays green <span class="w">while you’re in Vice City.</span></div><div class="stars" data-n="5"></div></div>
+  <img class="chip" src="chip/beanbag.png" style="left:2850px;top:960px;width:375px" alt="">
+
+  <!-- ===== 4 · 03 · 2 stars ===== -->
+  <div class="col" style="left:3320px"><div class="num">03.</div><div class="h">Camera off for Friday’s all-hands: <span class="w">“Sorry, my Wi-Fi’s really bad today.”</span></div><div class="stars" data-n="2"></div></div>
+  <img class="chip" src="chip/placeholder-happy.png" style="left:3970px;top:950px;width:335px" alt="">
+
+  <!-- ===== 5 · 04 · 6 stars ===== -->
+  <div class="col" style="left:4400px"><div class="num">04.</div><div class="h">Coming down with the Thursday–Friday flu. <span class="w">The whole team. Same day.</span></div><div class="stars" data-n="6"></div></div>
+  <img class="chip" src="chip/placeholder-excited.png" style="left:5040px;top:940px;width:345px" alt="">
+
+  <!-- ===== 6 · sign-off · 6 stars ===== -->
+  <div class="col" style="left:5480px;top:300px"><div class="h" style="font-size:132px;line-height:.98">Stay safe out there.<br><span class="w">HR is watching.</span></div><div class="stars" data-n="6"></div></div>
+  <img class="chip" src="chip/placeholder-wave.png" style="left:6120px;top:920px;width:350px" alt="">
+
+  <div id="logos"></div>
+</div>
+<script>
+// six-star wanted meter: filled = white with charcoal outline (the classic look), empty = outline only
+const STAR = 'M12 1.8l2.95 6.6 7.2.7-5.43 4.8 1.6 7.07L12 17.3 5.68 20.97l1.6-7.07L1.85 9.1l7.2-.7z';
+document.querySelectorAll('.stars').forEach(el => {
+  const n = +el.dataset.n; let h = '';
+  for (let i = 0; i < 6; i++) h += i < n
+    ? `<svg viewBox="0 0 24 24"><path d="${STAR}" fill="#FFFCF8" stroke="#2F2F32" stroke-width="1.7" stroke-linejoin="round"/></svg>`
+    : `<svg viewBox="0 0 24 24"><path d="${STAR}" fill="none" stroke="#2F2F32" stroke-opacity=".35" stroke-width="1.7" stroke-linejoin="round"/></svg>`;
+  el.innerHTML = h;
+});
+// official stacked logo (LogoStacked.svg, from the guidelines) top-right on every slide
+let L = ''; for (let s = 0; s < 6; s++) L += `<img class="logo" src="brand/LogoStacked.svg" style="left:${s * 1080 + 730}px" alt="Collection Pot">`;
+document.getElementById('logos').innerHTML = L;
+</script>
+</body></html>
