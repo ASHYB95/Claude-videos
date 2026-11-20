@@ -1,7 +1,12 @@
 # GTA 6 week: "Things that raised your wanted level this week" (Instagram carousel)
 
-Topical, no hard sell. 6 slides, 1080×1350, Collection Pot yellow / charcoal / white, stacked logo top-right,
-yellow shapes flow across slide edges (built as one 6480×1350 strip in `carousel.html`, sliced by `render.js`).
+Topical, no hard sell. 6 slides, 1080×1350, built as one 6480×1350 strip in `carousel.html` and sliced by `render.js`.
+
+**Brand (Collection Pot Brand Guidelines, Nov 2026):** Pot of Gold #F9B910, Work Bash Black #2F2F32, Wedding White #FFFCF8.
+The only background shape is **the Pot** (`brand/PotShape.svg`, the official vector from the guidelines): one giant gold Pot per
+slide on Wedding White, with shoulders and rounded base visible; neighbouring Pots meet at the seams so the slides flow.
+Official stacked logo (`brand/LogoStacked.svg`) top-right on the gold. Headlines in sentence case (Figtree Black standing in for Faro Display Lucky).
+No free-form blobs or waves.
 
 | # | Copy | Wanted level | Chip |
 |---|---|---|---|
