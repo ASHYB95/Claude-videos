@@ -29,7 +29,7 @@ svg.pot{position:absolute;overflow:visible}
   <img class="logo" src="brand/LogoStacked.svg" style="left:820px;top:76px;width:190px" alt="">
   <div class="a h" style="left:72px;top:250px;width:760px;font-size:118px">Things that raised your <span class="w">wanted level</span> this week:</div>
   <div class="a stars" style="left:72px;top:800px" data-n="6"></div>
-  <img class="chip" src="chip/placeholder-wink.png" style="left:560px;top:930px;width:400px" alt="">
+  <img class="chip" src="chip/c1-wink-wave.png" style="left:640px;top:780px;width:400px" alt="Chip">
 </section>
 
 <!-- 2 · 01 · 3★ · "Chill" layout: white above, the Pot's tilted top edge rising into gold below -->
@@ -39,7 +39,7 @@ svg.pot{position:absolute;overflow:visible}
   <div class="a num g" style="left:66px;top:210px">01.</div>
   <div class="a h" style="left:72px;top:440px;width:900px;font-size:88px">Blocking out Thursday 9–5 as “Deep focus. Do&nbsp;not&nbsp;disturb.”</div>
   <div class="a stars" style="left:72px;top:1000px" data-n="3"></div>
-  <img class="chip" src="chip/placeholder-proud.png" style="left:680px;top:960px;width:340px" alt="">
+  <img class="chip" src="chip/c2-headphones.png" style="left:650px;top:879px;width:370px" alt="Chip">
 </section>
 
 <!-- 3 · 02 · 5★ · "So easy" layout: gold above, the Pot's rounded base sweeping over white below -->
@@ -49,7 +49,7 @@ svg.pot{position:absolute;overflow:visible}
   <div class="a num w" style="left:66px;top:210px">02.</div>
   <div class="a h" style="left:72px;top:440px;width:920px;font-size:84px">Buying a mouse jiggler so your Teams status stays green <span class="w">while you’re in Vice City.</span></div>
   <div class="a stars" style="left:72px;top:850px" data-n="5"></div>
-  <img class="chip" src="chip/beanbag.png" style="left:600px;top:980px;width:390px" alt="">
+  <img class="chip" src="chip/c3-beanbag-gaming.png" style="left:590px;top:891px;width:430px" alt="Chip">
 </section>
 
 <!-- 4 · 03 · 2★ · "Chasing your mates" layout: gold, a white Pot corner bottom-right -->
@@ -59,7 +59,7 @@ svg.pot{position:absolute;overflow:visible}
   <div class="a num w" style="left:66px;top:210px">03.</div>
   <div class="a h" style="left:72px;top:440px;width:920px;font-size:92px">Camera off for Friday’s all-hands: <span class="w">“Sorry, my Wi-Fi’s really bad today.”</span></div>
   <div class="a stars" style="left:72px;top:880px" data-n="2"></div>
-  <img class="chip" src="chip/placeholder-happy.png" style="left:690px;top:990px;width:330px" alt="">
+  <img class="chip" src="chip/c4-shrug.png" style="left:630px;top:880px;width:410px" alt="Chip">
 </section>
 
 <!-- 5 · 04 · 6★ · "Make it one" layout: white, a giant tilted gold Pot from the bottom-right, punctuation Pots -->
@@ -69,7 +69,7 @@ svg.pot{position:absolute;overflow:visible}
   <div class="a num g" style="left:66px;top:210px">04.</div>
   <div class="a h" style="left:72px;top:440px;width:760px;font-size:90px">Coming down with the Thursday–Friday flu. <span class="g">The whole team. Same day.</span></div>
   <div class="a stars" style="left:72px;top:1000px" data-n="6"></div>
-  <img class="chip" src="chip/placeholder-excited.png" style="left:640px;top:880px;width:400px" alt="">
+  <img class="chip" src="chip/c5-confused.png" style="left:680px;top:860px;width:330px" alt="Chip">
 </section>
 
 <!-- 6 · sign-off · 6★ · gold, the logo sitting in a white Pot corner -->
@@ -77,7 +77,7 @@ svg.pot{position:absolute;overflow:visible}
   <div class="pots"></div>
   <div class="a h" style="left:72px;top:230px;width:920px;font-size:140px;line-height:.96">Stay safe out there. <span class="w">HR is watching.</span></div>
   <div class="a stars" style="left:72px;top:800px" data-n="6"></div>
-  <img class="chip" src="chip/placeholder-wave.png" style="left:110px;top:950px;width:360px" alt="">
+  <img class="chip" src="chip/c6-headshot.png" style="left:80px;top:917px;width:430px" alt="Chip">
   <img class="logo" src="brand/LogoStacked.svg" style="left:700px;top:1110px;width:330px" alt="">
 </section>
 
@@ -94,15 +94,15 @@ const W = '#FFFCF8', G = '#F9B910', K = '#2F2F32';
 const spark = (x, y, s, c = G) => `<svg class="spark" viewBox="0 0 24 24" style="left:${x}px;top:${y}px;width:${s}px;height:${s}px"><path d="M12 0C13 7 17 11 24 12C17 13 13 17 12 24C11 17 7 13 0 12C7 11 11 7 12 0Z" fill="${c}"/></svg>`;
 const LAYOUT = {
   // giant white Pot: its left shoulder slices a wedge down the right-hand side
-  s1: pot(1720, 1500, 2300, -22, W) + pot(980, 1240, 150, 10, G) ,
+  s1: pot(1720, 1500, 2300, -22, W),
   // giant gold Pot: its tilted top edge rises across the lower half
-  s2: pot(560, 2340, 2700, -8, G) + pot(560, 1215, 170, -12, 'none', K, 7),
+  s2: pot(560, 2560, 2700, -8, G) + pot(500, 1225, 160, -12, 'none', K, 7),
   // giant gold Pot from above: its rounded base sweeps across the bottom third
-  s3: pot(470, -130, 2300, 6, G) + pot(980, 1190, 120, 14, K),
+  s3: pot(470, -130, 2300, 6, G) + pot(140, 1230, 120, 14, K),
   // white Pot corner bottom-right
   s4: pot(1160, 1640, 1250, -18, W),
   // giant tilted gold Pot rising from the bottom-right, with punctuation Pots and sparkles
-  s5: pot(1360, 1830, 1900, -32, G) + pot(940, 760, 120, 18, K) + pot(1015, 905, 110, -10, 'none', K, 6) + spark(860, 620, 46) + spark(1010, 650, 30),
+  s5: pot(1360, 1830, 1900, -32, G),
   // white Pot corner holding the logo
   s6: pot(980, 1560, 1150, 14, W),
 };
