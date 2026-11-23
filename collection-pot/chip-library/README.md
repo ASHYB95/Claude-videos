@@ -3,7 +3,14 @@
 Official Chip renders from the Collection Pot team's Google Drive folder "Examples"
 (https://drive.google.com/drive/folders/15rf7ePjnoYV3bwoQJZu996KW9IGTNMni), downloaded unchanged (transparent PNGs).
 
-**Rule: always use these Chips exactly as they are. Never redraw, regenerate or edit Chip** (trimming/scaling is fine).
+**Rule: always use these Chips exactly as they are. Never redraw, regenerate, recolour, trim, re-save or add effects
+(shadows, filters) to Chip.** Reference the files here directly and only set their size and position in the layout.
+
+**Check before use (issues in the source files themselves):**
+- `03-headshot-front` and `21-headshot-worried` have a transparent hole where the belly should be, so the background shows through.
+- `20-headshot-wink`, `22-headshot-neutral` and `23-headshot-laughing` have a pure-white belly strip at the bottom edge,
+  brighter than the cream belly on every other Chip.
+Prefer the full-body Chips; ask the team for corrected headshots if one is needed.
 If a pose is missing, ask the team for one rather than generating it.
 
 | File | Original name in Drive |
