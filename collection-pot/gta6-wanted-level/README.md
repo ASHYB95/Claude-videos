@@ -17,12 +17,14 @@ No free-form blobs or waves. Previous version (Pots in a continuous strip) kept 
 | 3 | 02. Buying a mouse jiggler so your Teams status stays green **while you're in Vice City.** | ★★★★★☆ | `01-beanbag-gaming` |
 | 4 | 03. Camera off for Friday's all-hands: **"Sorry, my Wi-Fi's really bad today."** | ★★☆☆☆☆ | `02-shrug` |
 | 5 | 04. Coming down with the Thursday–Friday flu. **The whole team. Same day.** | ★★★★★★ | `04-confused-head-scratch` |
-| 6 | Stay safe out there. **HR is watching.** | ★★★★★★ | `03-headshot-front` |
+| 6 | Stay safe out there. **HR is watching.** | ★★★★★★ | `22-headshot-neutral` |
 
 ## Chip
 Chip is used **exactly as supplied** by the Collection Pot team (Google Drive "Examples" folder → `collection-pot/chip-library/`).
 The files in `chip/` are those renders trimmed to their edges and nothing else. Never redraw, regenerate or edit Chip;
 if a pose is missing, ask the team for one.
+Check a Chip on the gold before using it: `03-headshot-front` and `21-headshot-worried` have a transparent hole where the
+belly should be, so the background shows through (gold looks like a yellow belly). Don't use those two on coloured backgrounds.
 
 ## Caption
 GTA 6 dropped and suddenly everyone's Wi-Fi is "really bad" 👀
