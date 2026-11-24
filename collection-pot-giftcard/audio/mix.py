@@ -1,6 +1,6 @@
 # Mix: VO (Alice, ElevenLabs) + music (score.py) + SFX → mix.wav at -14 LUFS.
 import numpy as np, subprocess, os
-SR = 44100; DUR = 23.8; N = int(SR * DUR)
+SR = 44100; DUR = 24.4; N = int(SR * DUR)
 here = os.path.dirname(os.path.abspath(__file__)); root = os.path.dirname(here)
 def load(p):
     raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', p, '-f', 'f32le', '-ac', '2', '-ar', str(SR), '-'], capture_output=True, check=True).stdout
@@ -12,7 +12,7 @@ def place(buf, x, t, g=1.0, maxlen=None):
     i = int(t * SR); j = min(N, i + len(x))
     if j > i: buf[i:j] += x[:j - i] * g
 
-VO = {'v1': 0.30, 'v2': 3.65, 'v3': 6.85, 'v4': 12.15, 'v5': 16.45, 'v6': 19.15}   # must match index.html timings
+VO = {'v1': 0.30, 'v2': 3.65, 'v3': 6.85, 'v4': 11.95, 'v5': 16.95, 'v6': 19.65}   # must match index.html timings
 for k, t in VO.items(): place(vo, load(f'{root}/voices/{k}.mp3'), t)
 
 mus = load(f'{here}/music.wav')[:N]; mus = np.pad(mus, ((0, N - len(mus)), (0, 0)))
@@ -28,18 +28,17 @@ TRIM = {'tap': 4, 'whoosh': -6, 'pop': 10, 'swipe': 8, 'shimmer': 2, 'notif': -6
 cues = [
     ('door', 1.72, -12), ('clink', 2.25, -12),
     ('whoosh', 3.12, -9), ('pop', 3.62, -13), ('pop', 4.0, -16), ('pop', 4.12, -17),
-    ('whoosh', 6.7, -15),
-    ('pop', 7.31, -14),
-    ('tap', 9.0, -9), ('swipe', 9.18, -13),
-    ('pop', 9.96, -12), ('shimmer', 10.0, -18),
-    ('tap', 10.62, -9), ('tap', 11.3, -9), ('swipe', 11.45, -13),
-    ('tap', 12.85, -9), ('pop', 12.93, -14), ('tap', 13.48, -9), ('swipe', 13.62, -13),
-    ('pop', 14.15, -15), ('typing', 14.05, -14, 0.95),
-    ('tap', 15.4, -8), ('send', 15.48, -11), ('popper', 15.62, -15), ('pop', 15.8, -12),
-    ('pop', 16.08, -13), ('pop', 16.32, -14), ('pop', 16.5, -15), ('notif', 16.1, -17),
-    ('whoosh', 18.72, -11),
-    ('swipe', 19.2, -13),
-    ('pop', 22.02, -12), ('shimmer', 22.05, -17),
+    ('tap', 4.55, -9), ('tap', 5.08, -9), ('swipe', 5.22, -13),          # Someone else · NEXT · page
+    ('tap', 5.85, -9), ('tap', 6.18, -10), ('typing', 6.22, -15, 0.3),   # Leaver · name field · "Jo"
+    ('swipe', 6.85, -13), ('whoosh', 6.85, -16), ('pop', 7.42, -14),     # → real Pot, push-in, card
+    ('whoosh', 9.0, -17),                                               # scroll messages
+    ('swipe', 11.85, -13),                                              # → gift cards
+    ('pop', 14.87, -12), ('pop', 15.16, -14),                           # sticker · John Lewis
+    ('whoosh', 15.46, -10), ('pop', 16.01, -12), ('shimmer', 16.05, -18),  # flick → Costa
+    ('swipe', 16.75, -13), ('popper', 17.0, -16),
+    ('pop', 17.14, -13), ('pop', 17.34, -14), ('pop', 17.54, -15),       # cards + message pop out
+    ('whoosh', 19.22, -11), ('swipe', 19.7, -13),
+    ('pop', 22.52, -12), ('shimmer', 22.55, -17),
 ]
 SFX_GAIN = -6   # all SFX at half amplitude (client note, v2)
 for c in cues:

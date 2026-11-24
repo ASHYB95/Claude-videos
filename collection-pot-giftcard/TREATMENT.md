@@ -31,3 +31,22 @@ Timings shared by `src/index.src.html` and `audio/mix.py` (VO starts 0.30 / 3.65
 
 ## v3 client note (applied)
 - No human faces: opener replaced with a POV cupboard reveal (GPT Image 2.6 start/end keyframes → Seedance 2.5, 4 s, 1080p). Door + mug-clink SFX replace the tissue rustle.
+
+## v4 (applied): real product screens only
+Every screen inside the phone is a real capture from app.collectionpot.com (no login), taken at 412px wide on 24 Nov 2026:
+`screens/who*.jpg` (Who's this Pot for? → Someone else), `screens/occ*.jpg` (What's the occasion? → Leaver, name "Jo"),
+`screens/pot_board.jpg` / `pot_card.jpg` (the public `/demo/leaver` Pot, Board and Card views),
+`screens/gift_strip.jpg` (the public UK gift card list on `/spend/giftCards`, John Lewis → Costa; stitched once mid-flick),
+`screens/card_*.png` (real card art from that list). The Chip chat widget was hidden for the capture.
+M&S is not on the public UK list, so the gift card scene names John Lewis and Costa instead (client choice).
+
+| # | Time | Visual | VO |
+|---|---|---|---|
+| 1 | 0–3.5 | Cupboard-of-mugs opener | "World's best boss… world's worst gift." |
+| 2 | 3.5–6.8 | Real create flow: Someone else → Leaver → "Jo". *The panic-buy era is over.* | "The era of the panic-bought office gift is over." |
+| 3 | 6.8–11.8 | Real leaver Pot: push in, scroll messages. *Everyone chips in… / …and signs the card.* | "With Collection Pot, everyone chips in and signs the card, all from one link." |
+| 4 | 11.8–16.7 | Real UK gift cards: John Lewis highlighted, flick to Costa. *Then pick a gift card they'll actually want.* + 100+ GIFT CARDS | "Then the Pot becomes a gift card they'll actually want, from John Lewis to Costa." |
+| 5 | 16.7–19.3 | Real Card view ("Goodbye and good luck from us!") + John Lewis / Costa cards and a real message pop out | "They pick the gift. You all get the credit." |
+| 6 | 19.3–24.4 | End card | "Collection Pot. Easy to sort. Impossible to forget." |
+
+The mock-screen version (Gift Card on Send flow) is kept at `src/index.mockscreens.src.html` for when the real feature screens are available.
