@@ -12,4 +12,5 @@ The Anti-Agency Marketplace. *Secure the bag.*
 - Feed shots **without** `__greenscreen` show real people and another company's branding. Use the `__greenscreen` versions and key in footage from LOOT creators who agreed to it.
 - `01 Onboarding/02-tutorial-1.png` shows a real retailer's name on the sample card — avoid it or cover the name.
 - `08 Account States/02-profile-disapproved.png` also shows the real-person feed clip.
+- `06 Studio/05-console-video-ready.png` shows a real company name as the video filename (the film uses a copy with it replaced by `take_01.mp4`).
 - All other names (Riya Kapoor, Brewbox, Glowlab, Paisa+, Nova Audio, FitFuel, Sneakr) are fictional demo data.

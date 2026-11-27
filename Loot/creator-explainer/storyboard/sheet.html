@@ -1,0 +1,52 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(../fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:SpaceMono;font-weight:400;src:url(../fonts/space-mono-latin-400-normal.woff2)}
+@font-face{font-family:SpaceMono;font-weight:700;src:url(../fonts/space-mono-latin-700-normal.woff2)}
+@font-face{font-family:Inter;font-weight:500;src:url(../fonts/inter-latin-500-normal.woff2)}
+@font-face{font-family:Inter;font-weight:700;src:url(../fonts/inter-latin-700-normal.woff2)}
+@font-face{font-family:Inter;font-weight:900;src:url(../fonts/inter-latin-900-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:2080px;background:#F5F5F5;font-family:Inter;color:#111;padding:56px 52px 60px}
+header{display:flex;align-items:flex-end;gap:30px;margin-bottom:38px;border-bottom:5px solid #111;padding-bottom:26px}
+header .logo{font:400 110px/0.9 Anton;letter-spacing:.01em;position:relative}
+header .logo img{position:absolute;left:-30px;width:calc(100% + 60px);top:22%;height:56%;transform:rotate(-14deg)}
+header h1{font:400 62px/1 Anton;text-transform:uppercase}
+header p{margin-left:auto;font:400 22px/1.55 SpaceMono;color:#7B7D9E;text-align:right}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.p{background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 8px 24px rgba(17,17,30,.07);border:2px solid #e6e6e6}
+.p img{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-bottom:2px solid #eee}
+.c{padding:20px 22px 22px}
+.h{display:flex;align-items:center;gap:12px;font:900 21px Inter;text-transform:uppercase;letter-spacing:.01em}
+.h .n{min-width:40px;height:34px;border-radius:8px;background:#111;color:#98FF98;display:flex;align-items:center;justify-content:center;font:700 19px SpaceMono}
+.h .t{margin-left:auto;font:700 17px SpaceMono;color:#7B7D9E;text-transform:none}
+.v{margin-top:12px;font:500 17.5px/1.5 Inter;color:#222}
+.vo{margin-top:12px;padding:11px 14px;border-radius:12px;background:#EFFFEF;border:2px solid #98FF98;font:700 17.5px/1.45 Inter}
+.vo b{font:700 15px SpaceMono;color:#1E7A35;margin-right:6px}
+.m{margin-top:10px;font:400 15px/1.5 SpaceMono;color:#7B7D9E}
+.legend{background:#111;color:#fff;border-radius:26px;padding:34px 32px;display:flex;flex-direction:column;gap:22px}
+.legend h2{font:400 54px/1 Anton;text-transform:uppercase}
+.legend h3{font:700 16px SpaceMono;color:#98FF98;letter-spacing:.1em;margin-bottom:8px}
+.sw{display:flex;gap:12px}.sw div{flex:1;height:90px;border-radius:14px;padding:10px;font:700 14px SpaceMono;display:flex;align-items:flex-end}
+.legend p{font:500 18px/1.5 Inter;color:#ddd}
+.legend .f1{font:400 44px Anton}.legend .f2{font:700 22px SpaceMono}.legend .f3{font:900 30px Inter}
+</style></head><body>
+<header><div class="logo">LOOT<img src="../brand/slash.svg"></div><h1>"Secure the Bag" · creator explainer · storyboard</h1>
+<p>9:16 · 1080×1920 · ≈63 s · screens only<br>real app screens in a 3D phone · VO: Liam (ElevenLabs, neutral)</p></header>
+<div class="grid" id="g"></div>
+<script>
+const P=[
+['Hook','0:00–0:05','Over-polished slate "agency ad" card reading PERFECT. gets ripped in half by the mint torn slash. RAW. / REAL. / YOU. slam in one per beat, YOU. on a mint block.','Brands don\'t want perfect ads anymore. They want raw. They want real. They want you.','Paper-rip SFX on the tear · bass hit per word · viewfinder HUD fades in'],
+['Brand reveal','0:05–0:10','LOOT slams in; the mint slash rips through it (the cover slide). SECURE THE BAG. + "The Anti-Agency Marketplace." Phone flips up from below on the Welcome screen.','This is LOOT. Brands drop paid video missions. You film them. You get paid.','Whoosh + rip · phone flip-up carries us into the app'],
+['01 · Enlist','0:10–0:14','Chip 01 + ENLIST. Phone: codename types riya.creates → profile questions flick past (industries, Instagram, videos per week). Answer cards pop out of the phone.','Step one: enlist. Pick a codename, build your hunter profile…','Typing ticks · card pops · screen flicks on each question'],
+['01 · Approved','0:14–0:17','The yellow "Pending approval from admin" banner slides in, then an APPROVED ✓ stamp hits it. Phone flips to the unlocked Home. Status → ENLISTED ✓.','…and once we approve you, the full app unlocks.','Stamp thud · mint flash · status line updates'],
+['02 · Pick a mission','0:17–0:24','Tap LOOT tab, marketplace scrolls; tap Morning Ritual Reel. The Guaranteed Reward ₹4,500 card lifts out in 3D ("5 spots left"); the Beginner / Advanced tier bar pops below.','Step two: hit the Loot tab. Every contract shows the brand, the brief, and a guaranteed reward, before you film a thing.','Push-in follows each tap · coin-tick on the reward · status HUNTING'],
+['02 · The brief','0:24–0:31','HOOKS. SCRIPTS. SHOTS. Brief tabs flip Hooks → Body → CTAs. Tap Copy Hook, the hook card flies out; scene-by-scene card and a do\'s & don\'ts tick fan out behind it.','Every brief comes loaded: hooks, scripts, scene-by-scene shots, do\'s and don\'ts. Just copy, and shoot.','Tab clicks · "copied" blip · ticks land in mint'],
+['02 · Secure the bag','0:31–0:37','Camera pushes in on the big mint SECURE THE BAG → button, tap. Escrow card pops: ✓ SPOT CONFIRMED · lock · ₹4,500 SECURELY HELD · pre-funded by the brand.','Tap Secure the Bag. Once the brand locks you in, the money\'s pre-funded and held for you.','Button press + ring · vault-lock clunk · status MISSION_SECURED'],
+['03 · Drop the loot','0:37–0:43','Chip 03 + DROP THE LOOT. Studio → Start mission → console: video selected (take_01.mp4) → tap TRANSMIT TO BRAND. Track fills Approved → Submitted.','Step three: drop the loot. Shoot it, open the Studio, and transmit your video to the brand.','Upload whoosh · track fill · status PENDING_DROP'],
+['Reshoot rule','0:43–0:49','Switch to slate. The brand\'s "Revision required" card slides in; the rule card stamps over it: beginner missions = reshoots only for technical glitches, verified by LOOT. NO CREATIVE CHANGES.','On beginner missions, reshoots only happen for technical glitches, and we verify them first.','Low synth drop · stamp · status UNDER_REVIEW'],
+['04 · Bag secured','0:49–0:55','Chip 04 + BAG SECURED. Console flips to Approved & Paid, mint field sweeps up. Stash: balance card lifts out, Withdrawal to UPI row highlights. Money-bag icon bounces.','Step four: bag secured. Approved videos get paid into your Stash, and you withdraw straight to UPI.','Cha-ching + counter roll · status BAG_SECURED ✓'],
+['The rules','0:55–1:00','NO BOSS. / NO SCHEDULE. / JUST THE MISSION. one per beat. Then READ THE RULES. DON\'T GET BANNED. with a quick tilted flash of the Access Revoked screen.','No boss. No schedule. Just the mission. Read the rules, don\'t get banned…','Hit per line · glitch stutter on "banned"'],
+['End card','1:00–1:03','The guide\'s lockup: bracket L + LOOT, SECURE THE BAG., mint money-bag icon, DOWNLOAD LOOT → button, "The Anti-Agency Marketplace."','…and secure the bag.','Final rip + bass hit · music button-ends']];
+document.getElementById('g').innerHTML=P.map((p,i)=>`<div class="p"><img src="${['f1','f2','f3','f3b','f4','f5','f6','f7','f8','f9','f10','f11'][i]}.jpg"><div class="c"><div class="h"><span class="n">${String(i+1).padStart(2,'0')}</span>${p[0]}<span class="t">${p[1]}</span></div><div class="v">${p[2]}</div><div class="vo"><b>VO</b>${p[3]}</div><div class="m">${p[4]}</div></div></div>`).join('');
+</script></body></html>

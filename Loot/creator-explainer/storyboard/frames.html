@@ -1,0 +1,218 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Anton;src:url(../fonts/anton-latin-400-normal.woff2)}
+@font-face{font-family:Anton;src:url(../fonts/anton-latin-ext-400-normal.woff2);unicode-range:U+0100-02AF,U+20A0-20C0}
+@font-face{font-family:SpaceMono;font-weight:400;src:url(../fonts/space-mono-latin-400-normal.woff2)}
+@font-face{font-family:SpaceMono;font-weight:700;src:url(../fonts/space-mono-latin-700-normal.woff2)}
+@font-face{font-family:SpaceMono;font-weight:700;src:url(../fonts/space-mono-latin-ext-700-normal.woff2);unicode-range:U+20A0-20C0}
+@font-face{font-family:Inter;font-weight:700;src:url(../fonts/inter-latin-700-normal.woff2)}
+@font-face{font-family:Inter;font-weight:800;src:url(../fonts/inter-latin-800-normal.woff2)}
+@font-face{font-family:Inter;font-weight:900;src:url(../fonts/inter-latin-900-normal.woff2)}
+@font-face{font-family:Inter;font-weight:900;src:url(../fonts/inter-latin-ext-900-normal.woff2);unicode-range:U+20A0-20C0}
+@font-face{font-family:Inter;font-weight:800;src:url(../fonts/inter-latin-ext-800-normal.woff2);unicode-range:U+20A0-20C0}
+:root{--mint:#98FF98;--slate:#7B7D9E;--paper:#F5F5F5;--ink:#111111;--green:#1E7A35}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#222;width:1080px}
+.frame{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--paper);margin-bottom:40px}
+.grid::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(123,125,158,.22) 2px,transparent 2.2px);background-size:54px 54px;background-position:27px 27px}
+.abs{position:absolute}
+.shout{position:absolute;font-family:Anton;text-transform:uppercase;line-height:1.02;color:var(--ink);letter-spacing:.005em}
+.mono{font-family:SpaceMono}
+.mintbox{display:inline-block;background:var(--mint);line-height:1.04;padding:.01em .07em 0;margin-left:-.07em}
+.hud{position:absolute;inset:0;z-index:50}
+/* HUD: the creator's viewfinder */
+.hud .c{position:absolute;width:66px;height:66px;border:0 solid var(--slate)}
+.hud .tl{left:46px;top:46px;border-left-width:5px;border-top-width:5px}
+.hud .tr{right:46px;top:46px;border-right-width:5px;border-top-width:5px}
+.hud .bl{left:46px;bottom:46px;border-left-width:5px;border-bottom-width:5px}
+.hud .br{right:46px;bottom:46px;border-right-width:5px;border-bottom-width:5px}
+.hud .step{position:absolute;left:96px;top:96px;font:700 27px SpaceMono;color:var(--ink);letter-spacing:.03em}
+.hud .step b{color:var(--slate)}
+.hud .step{background:var(--paper);padding:4px 12px;margin:-4px -12px;border-radius:6px}
+.dark .hud .step{background:transparent}
+.hud .rec{position:absolute;right:96px;top:96px;font:700 27px SpaceMono;color:var(--slate);display:flex;align-items:center;gap:12px}
+.hud .rec i{width:20px;height:20px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px var(--ink)}
+.hud .status{position:absolute;left:96px;bottom:150px;font:700 28px SpaceMono;color:#fff;background:var(--ink);padding:12px 22px;border-radius:10px;letter-spacing:.02em}
+.hud .status b{color:var(--mint)}
+.hud .mark{position:absolute;right:96px;bottom:150px;font:400 52px Anton;color:var(--ink);line-height:1}
+.dark .hud .c{border-color:rgba(255,255,255,.6)} .dark .hud .step,.dark .hud .mark{color:#fff} .dark .hud .step b{color:var(--ink)}
+.dark .hud .rec{color:#fff}
+/* phone */
+.stage{position:absolute;inset:0;perspective:2600px}
+.phone{position:absolute;width:600px;padding:16px;border-radius:94px;background:linear-gradient(145deg,#3a3a3e,#151517 40%,#2a2a2d);box-shadow:inset 0 0 0 3px #4a4a4f,inset 0 0 0 7px #0c0c0d,0 60px 120px rgba(17,17,30,.28),0 18px 40px rgba(17,17,30,.18)}
+.phone .scr{position:relative;width:568px;height:1231px;border-radius:78px;overflow:hidden;background:#fff}
+.phone .scr img{display:block;width:100%}
+.phone .island{position:absolute;left:50%;top:34px;width:168px;height:48px;margin-left:-84px;border-radius:30px;background:#000}
+/* pop-outs */
+.pop{position:absolute;display:block;box-shadow:0 50px 90px rgba(17,17,30,.25),0 14px 30px rgba(17,17,30,.16)}
+.tap{position:absolute;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:6px solid var(--ink);background:rgba(152,255,152,.55);box-shadow:0 0 0 18px rgba(152,255,152,.35)}
+.callout{position:absolute;font:700 26px SpaceMono;color:var(--slate);letter-spacing:.03em}
+.chip{display:inline-block;font:700 40px SpaceMono;background:var(--mint);color:var(--ink);padding:4px 16px;border-radius:8px}
+/* app-style cards (rebuilt in the app's look) */
+.acard{position:absolute;background:#fff;border:2px solid #e3e3e3;border-radius:30px;padding:24px 30px;box-shadow:0 40px 80px rgba(17,17,30,.18),0 10px 24px rgba(17,17,30,.10)}
+.acard .l{font:700 21px SpaceMono;color:var(--slate);letter-spacing:.08em}
+.acard .v{font:800 42px Inter;color:var(--ink);margin-top:6px;letter-spacing:-.01em}
+.slash{position:absolute;display:block}
+.bracket{position:absolute}
+.bracket::before,.bracket::after{content:"";position:absolute;background:var(--ink)}
+.bracket::before{left:0;top:0;bottom:0;width:var(--t)}
+.bracket::after{left:0;right:0;bottom:0;height:var(--t)}
+</style></head><body>
+
+<!-- F1 HOOK -->
+<section class="frame grid" id="f1">
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">INCOMING_TRANSMISSION</div><div class="rec"><i></i>REC</div><div class="mark">LOOT</div></div>
+ <div class="abs" id="ad" style="left:130px;top:250px;width:820px;height:560px">
+  <div class="abs half" style="inset:0;clip-path:polygon(0 0,100% 0,100% 40%,0 64%);transform:translate(-12px,-22px) rotate(-1.5deg)"><div class="adface"></div></div>
+  <div class="abs half" style="inset:0;clip-path:polygon(0 64%,100% 40%,100% 100%,0 100%);transform:translate(12px,22px) rotate(1deg)"><div class="adface"></div></div>
+ </div>
+ <img class="slash" src="../brand/slash.svg" style="left:-110px;top:448px;width:1300px;height:140px;transform:rotate(-9.3deg)">
+ <div class="callout" style="left:130px;top:845px">AD_v12_FINAL_final_FINAL.mp4 <span style="color:#c44">✕ REJECTED BY GEN Z</span></div>
+ <div class="shout" style="left:90px;top:930px;font-size:250px">RAW.<br>REAL.<br><span class="mintbox">YOU.</span></div>
+</section>
+
+<!-- F2 LOGO -->
+<section class="frame grid" id="f2">
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">LOOT <b>//</b> CREATOR_APP</div><div class="rec"><i></i>REC</div></div>
+ <div class="shout" style="left:0;width:1080px;text-align:center;top:250px;font-size:540px">LOOT</div>
+ <img class="slash" src="../brand/slash.svg" style="left:-90px;top:420px;width:1260px;height:270px;transform:rotate(-19deg)">
+ <div class="shout" style="left:0;width:1080px;text-align:center;top:810px;font-size:150px">SECURE THE BAG.</div>
+ <div class="abs mono" style="left:0;width:1080px;text-align:center;top:990px;font-size:36px;color:var(--ink)">The Anti-Agency Marketplace.</div>
+ <div class="stage"><div class="phone" style="left:240px;top:1180px;transform:rotateX(24deg) rotateZ(-2deg)"><div class="scr"><img src="../reference/screens/welcome.png"></div><div class="island"></div></div></div>
+</section>
+
+<!-- F3 ENLIST -->
+<section class="frame grid" id="f3">
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">STEP_01 <b>//</b> ENLIST</div><div class="rec"><i></i>REC</div><div class="status">STATUS: <b>ENLISTED ✓</b></div><div class="mark">LOOT</div></div>
+ <div class="abs" style="left:96px;top:190px"><span class="chip">01</span></div>
+ <div class="shout" style="left:90px;top:260px;font-size:230px">ENLIST.</div>
+ <div class="stage"><div class="phone" style="left:430px;top:560px;transform:rotateY(-18deg) rotateZ(2deg)"><div class="scr"><img src="../reference/screens/profile-industries.png"></div><div class="island"></div></div></div>
+ <div class="acard" style="left:70px;top:640px;width:470px;transform:rotate(-4deg)"><div class="l">CODENAME</div><div class="v">riya.creates</div></div>
+ <div class="acard" style="left:110px;top:850px;width:500px;transform:rotate(3deg)"><div class="l">INSTAGRAM</div><div class="v">@riya.creates</div></div>
+ <div class="acard" style="left:60px;top:1060px;width:420px;transform:rotate(-2deg)"><div class="l">VIDEOS / WEEK</div><div class="v">3–5</div></div>
+ <div class="callout" style="left:96px;top:1290px">13 QUICK<br>QUESTIONS</div>
+</section>
+
+<!-- F3b APPROVED -->
+<section class="frame grid" id="f3b">
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">STEP_01 <b>//</b> ENLIST</div><div class="rec"><i></i>REC</div><div class="status">STATUS: <b>ENLISTED ✓</b></div><div class="mark">LOOT</div></div>
+ <div class="shout" style="left:90px;top:190px;font-size:170px">FULL APP:<br><span class="mintbox">UNLOCKED.</span></div>
+ <div class="stage"><div class="phone" style="left:240px;top:640px;transform:rotateX(8deg) rotateZ(-3deg)"><div class="scr"><img src="../reference/screens/home-clean.png"></div><div class="island"></div></div></div>
+ <div class="acard" style="left:70px;top:760px;width:940px;background:#FFF8DD;border-color:#F2DC8B;transform:rotate(-2deg);padding:30px">
+  <div style="font:700 29px SpaceMono;color:#8A6A00;text-align:center">⚠ PENDING APPROVAL FROM ADMIN.<br>FULL APP UNLOCKS AFTER THAT.</div></div>
+ <div class="abs" style="left:560px;top:850px;transform:rotate(-9deg);font:900 64px Inter;color:var(--ink);background:var(--mint);border:7px solid var(--ink);border-radius:20px;padding:10px 30px">APPROVED ✓</div>
+</section>
+
+<!-- F4 PICK A MISSION -->
+<section class="frame grid" id="f4">
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">STEP_02 <b>//</b> PICK A MISSION</div><div class="rec"><i></i>REC</div><div class="status">STATUS: <b>HUNTING</b></div><div class="mark">LOOT</div></div>
+ <div class="abs" style="left:96px;top:190px"><span class="chip">02</span></div>
+ <div class="shout" style="left:90px;top:250px;font-size:170px">PICK A<br>MISSION.</div>
+ <div class="stage"><div class="phone" style="left:440px;top:600px;transform:rotateY(-16deg) rotateZ(3deg)"><div class="scr"><img src="../reference/screens/mission.png"></div><div class="island"></div></div></div>
+ <img class="pop" src="../assets/pops/reward.png" style="left:70px;top:1060px;width:880px;border-radius:52px;transform:rotate(-5deg)">
+ <div class="callout" style="left:110px;top:1000px">GUARANTEED_REWARD ↓</div>
+ <img class="pop" src="../assets/pops/tiers.png" style="left:150px;top:1380px;width:800px;border-radius:26px;transform:rotate(3deg)">
+ <div class="callout" style="left:170px;top:1560px;background:var(--paper);padding:2px 8px">TWO TIERS · PICK YOUR LEVEL</div>
+</section>
+
+<!-- F5 BRIEF -->
+<section class="frame grid" id="f5">
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">STEP_02 <b>//</b> READ THE BRIEF</div><div class="rec"><i></i>REC</div><div class="status">STATUS: <b>HUNTING</b></div><div class="mark">LOOT</div></div>
+ <div class="shout" style="left:90px;top:180px;font-size:150px">HOOKS.<br>SCRIPTS.<br><span class="mintbox">SHOTS.</span></div>
+ <div class="stage"><div class="phone" style="left:540px;top:420px;transform:rotateY(-16deg) rotateZ(2deg)"><div class="scr"><img src="../reference/screens/brief-hooks.png"></div><div class="island"></div></div></div>
+ <img class="pop" src="../assets/pops/scene.png" style="left:110px;top:1110px;width:760px;border-radius:30px;transform:rotate(4deg)">
+ <img class="pop" src="../assets/pops/hook.png" style="left:50px;top:850px;width:840px;border-radius:30px;transform:rotate(-4deg)">
+ <div class="tap" style="left:790px;top:890px"></div>
+ <img class="pop" src="../assets/pops/do1.png" style="left:80px;top:1440px;width:720px;border-radius:26px;transform:rotate(-2deg)">
+</section>
+
+<!-- F6 SECURE THE BAG -->
+<section class="frame grid" id="f6">
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">STEP_02 <b>//</b> APPLY</div><div class="rec"><i></i>REC</div><div class="status">STATUS: <b>MISSION_SECURED</b></div><div class="mark">LOOT</div></div>
+ <div class="stage"><div class="phone" style="left:20px;top:-560px;width:1040px;padding:26px;border-radius:150px;transform:rotateX(10deg) rotateZ(-3deg)"><div class="scr" style="width:988px;height:2142px;border-radius:126px"><img src="../reference/screens/brief-hooks.png"></div></div></div>
+ <div class="tap" style="left:560px;top:1400px;width:190px;height:190px;margin:-95px 0 0 -95px"></div>
+ <div class="acard" style="left:130px;top:230px;width:820px;transform:rotate(-2deg);text-align:center;padding:40px 40px 44px;border-radius:44px">
+  <div style="display:inline-block;font:700 26px SpaceMono;color:var(--green);background:#EFFFEF;border:3px solid #9BE59B;border-radius:12px;padding:6px 18px">✓ SPOT CONFIRMED</div>
+  <div style="width:150px;height:150px;margin:28px auto 22px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 12px #fff,0 0 0 18px var(--mint);display:flex;align-items:center;justify-content:center">
+   <svg width="64" height="76" viewBox="0 0 64 76"><path d="M14 34 V22 a18 18 0 0 1 36 0 V34" fill="none" stroke="#98FF98" stroke-width="9"/><rect x="4" y="32" width="56" height="42" rx="8" fill="#98FF98"/><circle cx="32" cy="52" r="6" fill="#111"/></svg></div>
+  <div style="font:700 24px SpaceMono;color:var(--slate);letter-spacing:.1em">ESCROW GUARANTEE</div>
+  <div style="display:inline-block;margin-top:16px;font:900 58px Inter;letter-spacing:-.02em;color:var(--ink);background:#EFFFEF;border:4px solid var(--mint);border-radius:22px;padding:10px 30px">₹4,500 SECURELY HELD</div>
+  <div style="margin-top:18px;font:400 25px SpaceMono;color:var(--slate)">Pre-funded by the brand. Locked in.</div>
+ </div>
+</section>
+
+<!-- F7 DROP THE LOOT -->
+<section class="frame grid" id="f7">
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">STEP_03 <b>//</b> DROP THE LOOT</div><div class="rec"><i></i>REC</div><div class="status">STATUS: <b>PENDING_DROP</b></div><div class="mark">LOOT</div></div>
+ <div class="abs" style="left:96px;top:190px"><span class="chip">03</span></div>
+ <div class="shout" style="left:90px;top:260px;font-size:200px">DROP THE<br>LOOT.</div>
+ <div class="stage"><div class="phone" style="left:430px;top:560px;transform:rotateY(-15deg) rotateZ(2deg)"><div class="scr"><img src="../reference/screens/console-ready.png"></div><div class="island"></div></div></div>
+ <img class="pop" src="../assets/pops/transmit.png" style="left:80px;top:1130px;width:840px;border-radius:44px;transform:rotate(-3deg)">
+ <div class="tap" style="left:640px;top:1215px"></div>
+ <img class="pop" src="../assets/pops/track-review.png" style="left:60px;top:1420px;width:800px;border-radius:40px;transform:rotate(2deg)">
+ <div class="callout" style="left:80px;top:1080px">TRANSMIT_TO_BRAND ↓</div>
+</section>
+
+<!-- F8 RESHOOT RULE -->
+<section class="frame dark" id="f8" style="background:var(--slate)">
+ <div class="abs" style="inset:0;background-image:linear-gradient(rgba(255,255,255,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.07) 2px,transparent 2px);background-size:108px 108px"></div>
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">PROTOCOL <b>//</b> RESHOOTS</div><div class="rec"><i></i>REC</div><div class="status">STATUS: <b>UNDER_REVIEW</b></div><div class="mark">LOOT</div></div>
+ <img class="pop" src="../assets/pops/revision.png" style="left:110px;top:230px;width:860px;border-radius:44px;transform:rotate(-4deg);opacity:.96">
+ <div class="acard" style="left:130px;top:860px;width:820px;transform:rotate(2deg);background:var(--paper);border:5px solid var(--ink);border-radius:30px;padding:34px 38px">
+  <div style="font:700 24px SpaceMono;color:var(--slate);letter-spacing:.08em">RULE // BEGINNER_MISSIONS</div>
+  <div style="font:900 46px/1.12 Inter;color:var(--ink);margin-top:12px;letter-spacing:-.01em">Reshoots only for technical glitches.</div>
+  <div style="font:400 26px SpaceMono;color:var(--ink);margin-top:14px">blurry video · low audio</div>
+  <div style="font:700 28px SpaceMono;color:var(--green);margin-top:18px">✓ Verified by the LOOT team first</div>
+ </div>
+ <div class="shout" style="left:90px;top:1300px;font-size:200px;color:#fff">NO CREATIVE<br>CHANGES.</div>
+</section>
+
+<!-- F9 BAG SECURED -->
+<section class="frame grid" id="f9">
+ <div class="abs" style="left:-100px;top:900px;width:1300px;height:1300px;background:var(--mint);transform:rotate(-8deg)"></div>
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">STEP_04 <b>//</b> BAG SECURED</div><div class="rec"><i></i>REC</div><div class="status">STATUS: <b>BAG_SECURED ✓</b></div><div class="mark">LOOT</div></div>
+ <div class="abs" style="left:96px;top:190px"><span class="chip" style="background:var(--ink);color:var(--mint)">04</span></div>
+ <div class="shout" style="left:90px;top:250px;font-size:210px">BAG<br>SECURED.</div>
+ <div class="stage"><div class="phone" style="left:480px;top:760px;transform:rotateY(-14deg) rotateZ(4deg)"><div class="scr"><img src="../reference/screens/stash.png"></div><div class="island"></div></div></div>
+  <img class="pop" src="../assets/pops/balance.png" style="left:90px;top:870px;width:700px;border-radius:56px;transform:rotate(3deg)">
+ <img class="pop" src="../assets/pops/upi.png" style="left:110px;top:1360px;width:800px;border-radius:36px;transform:rotate(-2deg);box-shadow:0 0 0 8px var(--ink),0 40px 80px rgba(17,17,30,.25)">
+ <img class="abs" src="../brand/bag.svg" style="left:840px;top:250px;width:150px;transform:rotate(12deg)">
+</section>
+
+<!-- F10 RULES -->
+<section class="frame grid" id="f10">
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">THE_RULES</div><div class="rec"><i></i>REC</div><div class="status">STATUS: <b>BAG_SECURED ✓</b></div><div class="mark">LOOT</div></div>
+ <div class="shout" style="left:90px;top:180px;font-size:128px">NO BOSS.<br>NO SCHEDULE.<br><span class="mintbox">JUST THE MISSION.</span></div>
+ <div class="stage"><div class="phone" style="left:600px;top:820px;width:420px;padding:12px;border-radius:66px;transform:rotateZ(7deg)"><div class="scr" style="width:396px;height:858px;border-radius:55px"><img src="../reference/screens/banned.png"></div></div></div>
+ <div class="shout" style="left:90px;top:900px;font-size:118px">READ THE<br>RULES.<br><span style="color:var(--slate)">DON'T GET<br>BANNED.</span></div>
+</section>
+
+<!-- F11 END CARD -->
+<section class="frame grid" id="f11">
+ <div class="hud"><i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <div class="step">MISSION_COMPLETE</div><div class="rec"><i></i>REC</div></div>
+ <div class="bracket" style="--t:96px;left:100px;top:420px;width:470px;height:560px"></div>
+ <div class="shout" style="left:236px;top:356px;font-size:372px;line-height:1">LOOT</div>
+ <div class="shout" style="left:0;width:1080px;text-align:center;top:1010px;font-size:140px">SECURE THE BAG.</div>
+ <img class="abs" src="../brand/bag.svg" style="left:460px;top:1200px;width:160px">
+ <div class="abs" style="left:0;width:1080px;text-align:center;top:1430px"><span style="display:inline-block;font:900 46px Inter;color:var(--mint);background:var(--ink);border-radius:999px;padding:24px 56px;letter-spacing:.01em">DOWNLOAD LOOT →</span></div>
+ <div class="abs mono" style="left:0;width:1080px;text-align:center;top:1590px;font-size:32px;color:var(--slate)">The Anti-Agency Marketplace.</div>
+</section>
+
+<style>
+.adface{position:absolute;inset:0;border-radius:40px;background:linear-gradient(160deg,#A9ABC6,#7B7D9E 60%,#6A6C8D);overflow:hidden}
+.adface::before{content:"PERFECT.";position:absolute;left:0;right:0;top:150px;text-align:center;font:400 210px/1.1 Anton;color:#fff;letter-spacing:.02em}
+.adface::after{content:"✦  ✦  ✦      SPONSORED · AGENCY_CUT_v12";position:absolute;left:44px;top:40px;font:700 24px SpaceMono;color:rgba(255,255,255,.8);letter-spacing:.04em}
+</style>
+</body></html>
