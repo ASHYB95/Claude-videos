@@ -1,0 +1,16 @@
+LOOT — "Secure the Bag" · creator explainer (9:16, 60.5 s)
+
+Screens: the LOOT creator app's own screenshots (Loot/assets/creator-app), demo data only
+  (creator "Riya Kapoor"; brands Brewbox, Glowlab, Paisa+, FitFuel, Sneakr are fictional).
+  Edits for publishing: the home feed's green-screen area is filled with a slate placeholder
+  (no real person shown); a real company name used as a video filename was replaced with take_01.mp4.
+  Screens showing real people or a real retailer were not used.
+Brand: LOOT brand guidelines (Loot/brand/Branding_A.pdf) — Digital Mint #98FF98, Slate #7B7D9E,
+  off-white #F5F5F5; torn-slash, bracket-L and money-bag marks redrawn in code (tools/gen_brand.py).
+Voiceover: Higgsfield Text to Speech V2 (ElevenLabs engine), preset voice "Dylan", sped 1.06×.
+Music: original synthesis (audio/score.py), 140 BPM, F minor.
+SFX: synthesised (audio/sfx.py: rip, cha-ching, lock, glitch, shutter, keys) + generic UI sounds
+  reused from oneclickdrive/audio in this repo.
+Fonts: Anton, Space Mono, Inter (SIL OFL); DejaVu Sans Mono (Bitstream Vera licence) for typed app text.
+  Brand fonts Druk Wide (commercial) → Anton as the free look-alike.
+Animation: HyperFrames + GSAP.

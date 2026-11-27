@@ -1,12 +1,52 @@
 [
- ["v01","TX3LPaxmHKxFdv7VOQHJ","Brands don't want perfect ads anymore. They want raw. They want real. They want you."],
- ["v02","TX3LPaxmHKxFdv7VOQHJ","This is LOOT. Brands drop paid video missions. You film them. You get paid."],
- ["v03","TX3LPaxmHKxFdv7VOQHJ","Step one: enlist. Pick a codename, build your hunter profile, and once we approve you, the full app unlocks."],
- ["v04","TX3LPaxmHKxFdv7VOQHJ","Step two: hit the Loot tab. Every contract shows the brand, the brief, and a guaranteed reward, before you film a thing."],
- ["v05","TX3LPaxmHKxFdv7VOQHJ","Every brief comes loaded: hooks, scripts, scene-by-scene shots, do's and don'ts. Just copy, and shoot."],
- ["v06","TX3LPaxmHKxFdv7VOQHJ","Tap Secure the Bag. Once the brand locks you in, the money's pre-funded and held for you."],
- ["v07","TX3LPaxmHKxFdv7VOQHJ","Step three: drop the loot. Shoot it, open the Studio, and transmit your video to the brand."],
- ["v08","TX3LPaxmHKxFdv7VOQHJ","On beginner missions, reshoots only happen for technical glitches, and we verify them first."],
- ["v09","TX3LPaxmHKxFdv7VOQHJ","Step four: bag secured. Approved videos get paid into your Stash, and you withdraw straight to UPI."],
- ["v10","TX3LPaxmHKxFdv7VOQHJ","No boss. No schedule. Just the mission. Read the rules, don't get banned... and secure the bag."]
+ [
+  "d01",
+  "higgsfield text2speech_v2 · variant elevenlabs · preset voice Dylan (b847bc29-f184-583a-8ad9-d1f1e16d1a60)",
+  "Brands don't want perfect ads anymore. They want raw. They want real. They want you."
+ ],
+ [
+  "d02",
+  "higgsfield text2speech_v2 · variant elevenlabs · preset voice Dylan (b847bc29-f184-583a-8ad9-d1f1e16d1a60)",
+  "This is LOOT. Brands drop paid video missions. You film them. You get paid."
+ ],
+ [
+  "d03",
+  "higgsfield text2speech_v2 · variant elevenlabs · preset voice Dylan (b847bc29-f184-583a-8ad9-d1f1e16d1a60)",
+  "Step one: enlist. Pick a codename, build your hunter profile, and once we approve you, the full app unlocks."
+ ],
+ [
+  "d04",
+  "higgsfield text2speech_v2 · variant elevenlabs · preset voice Dylan (b847bc29-f184-583a-8ad9-d1f1e16d1a60)",
+  "Step two: hit the Loot tab. Every contract shows the brand, the brief, and a guaranteed reward, before you film a thing."
+ ],
+ [
+  "d05",
+  "higgsfield text2speech_v2 · variant elevenlabs · preset voice Dylan (b847bc29-f184-583a-8ad9-d1f1e16d1a60)",
+  "Every brief comes loaded: hooks, scripts, scene-by-scene shots, do's and don'ts. Just copy, and shoot."
+ ],
+ [
+  "d06",
+  "higgsfield text2speech_v2 · variant elevenlabs · preset voice Dylan (b847bc29-f184-583a-8ad9-d1f1e16d1a60)",
+  "Tap Secure the Bag. Once the brand locks you in, the money's pre-funded and held for you."
+ ],
+ [
+  "d07",
+  "higgsfield text2speech_v2 · variant elevenlabs · preset voice Dylan (b847bc29-f184-583a-8ad9-d1f1e16d1a60)",
+  "Step three: drop the loot. Shoot it, open the Studio, and transmit your video to the brand."
+ ],
+ [
+  "d08",
+  "higgsfield text2speech_v2 · variant elevenlabs · preset voice Dylan (b847bc29-f184-583a-8ad9-d1f1e16d1a60)",
+  "On beginner missions, reshoots only happen for technical glitches, and we verify them first."
+ ],
+ [
+  "d09",
+  "higgsfield text2speech_v2 · variant elevenlabs · preset voice Dylan (b847bc29-f184-583a-8ad9-d1f1e16d1a60)",
+  "Step four: bag secured. Approved videos get paid into your Stash, and you withdraw straight to UPI."
+ ],
+ [
+  "d10",
+  "higgsfield text2speech_v2 · variant elevenlabs · preset voice Dylan (b847bc29-f184-583a-8ad9-d1f1e16d1a60)",
+  "No boss. No schedule. Just the mission. Read the rules, don't get banned... and secure the bag."
+ ]
 ]

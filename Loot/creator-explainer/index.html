@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>LOOT — Secure the Bag</title>
+<script src="vendor/gsap.min.js"></script>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:Anton;src:url(fonts/anton-latin-ext-400-normal.woff2);unicode-range:U+0100-02AF,U+20A0-20C0;font-display:block}
+@font-face{font-family:SpaceMono;font-weight:400;src:url(fonts/space-mono-latin-400-normal.woff2);font-display:block}
+@font-face{font-family:SpaceMono;font-weight:700;src:url(fonts/space-mono-latin-700-normal.woff2);font-display:block}
+@font-face{font-family:SpaceMono;font-weight:700;src:url(fonts/space-mono-latin-ext-700-normal.woff2);unicode-range:U+20A0-20C0;font-display:block}
+@font-face{font-family:Inter;font-weight:700;src:url(fonts/inter-latin-700-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:800;src:url(fonts/inter-latin-800-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:900;src:url(fonts/inter-latin-900-normal.woff2);font-display:block}
+@font-face{font-family:Inter;font-weight:900;src:url(fonts/inter-latin-ext-900-normal.woff2);unicode-range:U+20A0-20C0;font-display:block}
+@font-face{font-family:AppMono;src:url(fonts/DejaVuSansMono.ttf);font-display:block}
+:root{--mint:#98FF98;--slate:#7B7D9E;--paper:#F5F5F5;--ink:#111111;--green:#1E7A35}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--paper)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--paper);font-family:Inter,sans-serif;color:var(--ink)}
+.clip{position:absolute;inset:0}
+.abs{position:absolute}
+#bg{position:absolute;inset:0;background-color:var(--paper);background-image:radial-gradient(rgba(123,125,158,.22) 2px,transparent 2.2px);background-size:54px 54px;background-position:27px 27px}
+#mintBand{position:absolute;left:-160px;top:880px;width:1400px;height:1500px;background:var(--mint)}
+
+/* type */
+.shout{position:absolute;font-family:Anton;text-transform:uppercase;line-height:1.02;color:var(--ink);letter-spacing:.005em;white-space:nowrap}
+.ln{display:block;overflow:hidden;padding:0 .1em;margin:0 -.1em}
+.li{display:inline-block}
+.mb{background:var(--mint);padding:.01em .07em 0;margin-left:-.07em;line-height:1.04}
+.chip{position:absolute;font:700 40px SpaceMono;background:var(--mint);color:var(--ink);padding:4px 16px;border-radius:8px}
+.callout{position:absolute;font:700 28px SpaceMono;color:var(--slate);letter-spacing:.03em;white-space:nowrap}
+.mono{font-family:SpaceMono}
+
+/* phone */
+#stage{position:absolute;inset:0;perspective:2600px;perspective-origin:50% 45%}
+#rig{position:absolute;left:540px;top:960px;width:0;height:0;transform-style:preserve-3d}
+#phone{position:absolute;left:-300px;top:-631px;width:600px;height:1263px;border-radius:94px;background:linear-gradient(145deg,#3a3a3e,#151517 40%,#2a2a2d);box-shadow:inset 0 0 0 3px #4a4a4f,inset 0 0 0 7px #0c0c0d,0 60px 120px rgba(17,17,30,.28),0 18px 40px rgba(17,17,30,.18)}
+#scr{position:absolute;left:16px;top:16px;width:568px;height:1231px;border-radius:78px;overflow:hidden;background:var(--paper)}
+.sv{position:absolute;left:0;top:0;width:568px;height:1231px;overflow:hidden;background:var(--paper)}
+.sv img{display:block;width:568px}
+#island{position:absolute;left:200px;top:18px;width:168px;height:48px;border-radius:30px;background:#000;z-index:80}
+#glare{position:absolute;inset:0;z-index:79;background:linear-gradient(115deg,rgba(255,255,255,.12) 0%,rgba(255,255,255,0) 32%)}
+#tap{position:absolute;left:0;top:0;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:rgba(17,17,17,.22);border:4px solid #fff;z-index:90}
+#ring{position:absolute;left:0;top:0;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;border:5px solid var(--mint);z-index:89}
+#typeCover{position:absolute;left:112px;top:340px;width:400px;height:50px;background:#fff}
+#typed{position:absolute;left:120px;top:351px;font:400 21px AppMono;color:#111;white-space:pre}
+#typed i{font-style:normal}
+#caret{display:inline-block;width:2px;height:24px;background:#111;vertical-align:-4px;margin-left:1px}
+#redTint{position:absolute;inset:0;background:rgba(220,40,40,.16);z-index:78}
+
+/* pop-outs and app-style cards */
+.pop{position:absolute;display:block;box-shadow:0 50px 90px rgba(17,17,30,.25),0 14px 30px rgba(17,17,30,.16)}
+.acard{position:absolute;background:#fff;border:2px solid #e3e3e3;border-radius:30px;padding:24px 30px;box-shadow:0 40px 80px rgba(17,17,30,.18),0 10px 24px rgba(17,17,30,.10)}
+.acard .l{font:700 28px SpaceMono;color:var(--slate);letter-spacing:.08em}
+.acard .v{font:800 42px Inter;color:var(--ink);margin-top:6px;letter-spacing:-.01em;white-space:nowrap}
+.stamp{position:absolute;font:900 64px Inter;color:var(--ink);background:var(--mint);border:7px solid var(--ink);border-radius:20px;padding:10px 30px;white-space:nowrap}
+.ptap{position:absolute;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:6px solid var(--ink);background:rgba(152,255,152,.55)}
+
+/* HUD */
+#hud .c{position:absolute;width:66px;height:66px;border:0 solid var(--slate)}
+#hud .tl{left:46px;top:46px;border-left-width:5px;border-top-width:5px}
+#hud .tr{right:46px;top:46px;border-right-width:5px;border-top-width:5px}
+#hud .bl{left:46px;bottom:46px;border-left-width:5px;border-bottom-width:5px}
+#hud .br{right:46px;bottom:46px;border-right-width:5px;border-bottom-width:5px}
+#hud .step{position:absolute;left:96px;top:96px;height:40px}
+#hud .step span{position:absolute;left:0;top:0;font:700 28px SpaceMono;color:var(--ink);letter-spacing:.03em;white-space:nowrap;background:var(--paper);padding:4px 12px;margin:-4px -12px;border-radius:6px}
+#hud .step b{color:var(--slate)}
+#hud .rec{position:absolute;right:96px;top:96px;font:700 28px SpaceMono;color:var(--slate);display:flex;align-items:center;gap:12px}
+#recDot{width:20px;height:20px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px var(--ink)}
+#hud .status{position:absolute;left:96px;bottom:150px;height:56px}
+#hud .status span{position:absolute;left:0;top:0;font:700 28px SpaceMono;color:#fff;background:var(--ink);padding:12px 22px;border-radius:10px;letter-spacing:.02em;white-space:nowrap}
+#hud .status span b{color:var(--mint)}
+#hud .mark{position:absolute;right:96px;bottom:150px;font:400 52px Anton;color:var(--ink);line-height:1}
+
+/* hook */
+.adface{position:absolute;inset:0;border-radius:40px;background:linear-gradient(160deg,#A9ABC6,#7B7D9E 60%,#6A6C8D);overflow:hidden}
+.adface .w{position:absolute;left:0;right:0;top:150px;text-align:center;font:400 210px/1.1 Anton;color:#fff;letter-spacing:.02em}
+.adface .s{position:absolute;left:44px;top:40px;font:700 24px SpaceMono;color:rgba(255,255,255,.85);letter-spacing:.04em;white-space:nowrap}
+.adface .gl{position:absolute;top:-100px;left:0;width:160px;height:800px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.45),rgba(255,255,255,0))}
+.slash{position:absolute;display:block}
+
+/* slate scene */
+#slateP{position:absolute;left:-160px;top:-340px;width:1400px;height:2600px}
+#slateP .bgimg{position:absolute;inset:0;width:100%;height:100%}
+#slateGrid{position:absolute;left:160px;top:340px;width:1080px;height:1920px;background-image:linear-gradient(rgba(255,255,255,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.07) 2px,transparent 2px);background-size:108px 108px}
+#slateIn{position:absolute;left:160px;top:340px;width:1080px;height:1920px}
+
+/* end */
+.bracket{position:absolute}
+.bracket i{position:absolute;background:var(--ink)}
+.wipe{position:absolute;display:block}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="60.5" data-width="1080" data-height="1920" data-motion-blur="on" data-motion-blur-shutter="180">
+
+  <div id="bgL" class="clip" data-start="0" data-duration="60.5" data-track-index="0">
+    <div id="bg"></div>
+    <div id="mintBand"></div>
+  </div>
+
+  <!-- ===== S1 hook ===== -->
+  <div id="hook" class="clip" data-start="0" data-duration="6.3" data-track-index="1">
+    <div class="abs" id="ad" style="left:130px;top:250px;width:820px;height:560px" data-layout-allow-overlap>
+      <div class="abs" id="adTop" style="inset:0;clip-path:polygon(0 0,100% 0,100% 40%,0 64%)"><div class="adface"><div class="s">✦ ✦ ✦ &nbsp; SPONSORED · AGENCY_CUT_v12</div><div class="w">PERFECT.</div><div class="gl"></div></div></div>
+      <div class="abs" id="adBot" style="inset:0;clip-path:polygon(0 64%,100% 40%,100% 100%,0 100%)"><div class="adface"><div class="s">✦ ✦ ✦ &nbsp; SPONSORED · AGENCY_CUT_v12</div><div class="w">PERFECT.</div><div class="gl"></div></div></div>
+    </div>
+    <img class="slash" id="hookSlash" src="brand/slash.svg" alt="" style="left:-110px;top:448px;width:1300px;height:140px" data-layout-allow-overlap>
+    <div class="callout" id="adCall" style="left:130px;top:845px">AD_v12_FINAL_final_FINAL.mp4 <span style="color:#c44">✕ REJECTED BY GEN Z</span></div>
+    <div class="shout" id="hkW" style="left:90px;top:930px;font-size:250px" data-layout-allow-overlap><span class="ln"><span class="li">RAW.</span></span><span class="ln"><span class="li">REAL.</span></span><span class="ln"><span class="li mb">YOU.</span></span></div>
+  </div>
+
+  <!-- ===== S2 brand ===== -->
+  <div id="brand" class="clip" data-start="5.7" data-duration="4.8" data-track-index="2">
+    <div class="shout" id="bLoot" style="left:0;width:1080px;text-align:center;top:250px;font-size:540px">LOOT</div>
+    <img class="slash" id="bSlash" src="brand/slash.svg" alt="" style="left:-90px;top:420px;width:1260px;height:270px" data-layout-allow-overlap>
+    <div class="shout" id="bSec" style="left:0;width:1080px;text-align:center;top:810px;font-size:150px"><span class="ln"><span class="li">SECURE THE BAG.</span></span></div>
+    <div class="abs mono" id="bTag" style="left:0;width:1080px;text-align:center;top:990px;font-size:36px;color:var(--ink)">The Anti-Agency Marketplace.</div>
+  </div>
+
+  <!-- ===== phone stage (S2–S10) ===== -->
+  <div id="stageWrap" class="clip" data-start="5.7" data-duration="51.3" data-track-index="3">
+    <div id="stage">
+      <div id="rig">
+        <div id="phone">
+          <div id="scr" data-layout-ignore>
+            <div class="sv" id="v_welcome"><img src="reference/screens/welcome.png" alt=""></div>
+            <div class="sv" id="v_signup0"><img src="reference/screens/signup-empty.png" alt=""><div id="typeCover"></div><div id="typed"></div></div>
+            <div class="sv" id="v_signup1"><img src="reference/screens/signup.png" alt=""></div>
+            <div class="sv" id="v_hobbies"><img src="reference/screens/profile-hobbies.png" alt=""></div>
+            <div class="sv" id="v_industries"><img src="reference/screens/profile-industries.png" alt=""></div>
+            <div class="sv" id="v_instagram"><img src="reference/screens/profile-instagram.png" alt=""></div>
+            <div class="sv" id="v_videos"><img src="reference/screens/profile-videos.png" alt=""></div>
+            <div class="sv" id="v_home"><img src="reference/screens/home-clean.png" alt=""></div>
+            <div class="sv" id="v_loot"><img src="reference/screens/loot.png" alt=""></div>
+            <div class="sv" id="v_mission"><img src="reference/screens/mission.png" alt=""></div>
+            <div class="sv" id="v_hooks"><img src="reference/screens/brief-hooks.png" alt=""></div>
+            <div class="sv" id="v_body"><img src="reference/screens/brief-body.png" alt=""></div>
+            <div class="sv" id="v_hooks2"><img src="reference/screens/brief-hooks.png" alt=""></div>
+            <div class="sv" id="v_studio"><img src="reference/screens/studio.png" alt=""></div>
+            <div class="sv" id="v_cstart"><img src="reference/screens/console-start.png" alt=""></div>
+            <div class="sv" id="v_cready"><img src="reference/screens/console-ready.png" alt=""></div>
+            <div class="sv" id="v_paid"><img src="reference/screens/console-paid.png" alt=""></div>
+            <div class="sv" id="v_stash"><img src="reference/screens/stash.png" alt=""></div>
+            <div class="sv" id="v_banned"><img src="reference/screens/banned.png" alt=""><div id="redTint"></div></div>
+            <div id="glare"></div>
+            <div id="island"></div>
+            <div id="ring"></div>
+            <div id="tap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== overlays for the steps (S3–S10) ===== -->
+  <div id="ovl" class="clip" data-start="9.6" data-duration="47.4" data-track-index="4">
+    <!-- S3 enlist -->
+    <div class="chip" id="c01" style="left:96px;top:190px">01</div>
+    <div class="shout" id="h3" style="left:90px;top:260px;font-size:230px"><span class="ln"><span class="li">ENLIST.</span></span></div>
+    <div class="acard" id="k1" style="left:70px;top:640px;width:470px" data-layout-allow-overlap><div class="l">CODENAME</div><div class="v">riya.creates</div></div>
+    <div class="acard" id="k2" style="left:110px;top:850px;width:500px" data-layout-allow-overlap><div class="l">INSTAGRAM</div><div class="v">@riya.creates</div></div>
+    <div class="acard" id="k3" style="left:60px;top:1060px;width:420px" data-layout-allow-overlap><div class="l">VIDEOS / WEEK</div><div class="v">3–5</div></div>
+    <div class="callout" id="q13" style="left:96px;top:1290px">13 QUICK<br>QUESTIONS</div>
+    <!-- S3b approved -->
+    <div class="shout" id="h3b" style="left:90px;top:190px;font-size:170px"><span class="ln"><span class="li">FULL APP:</span></span><span class="ln"><span class="li mb">UNLOCKED.</span></span></div>
+    <div class="acard" id="pend" style="left:70px;top:760px;width:940px;background:#FFF8DD;border-color:#F2DC8B;padding:30px" data-layout-allow-overlap><div style="font:700 29px SpaceMono;color:#8A6A00;text-align:center">⚠ PENDING APPROVAL FROM ADMIN.<br>FULL APP UNLOCKS AFTER THAT.</div></div>
+    <div class="stamp" id="appr" style="left:560px;top:850px" data-layout-allow-overlap>APPROVED ✓</div>
+    <!-- S4 pick a mission -->
+    <div class="chip" id="c02" style="left:96px;top:190px">02</div>
+    <div class="shout" id="h4" style="left:90px;top:250px;font-size:170px"><span class="ln"><span class="li">PICK A</span></span><span class="ln"><span class="li">MISSION.</span></span></div>
+    <div class="callout" id="cb1" style="left:96px;top:640px;color:var(--ink)">✓ THE BRAND</div>
+    <div class="callout" id="cb2" style="left:96px;top:690px;color:var(--ink)">✓ THE BRIEF</div>
+    <div class="callout" id="cb3" style="left:110px;top:1000px">GUARANTEED_REWARD ↓</div>
+    <img class="pop" id="pReward" src="assets/pops/reward.png" alt="" style="left:70px;top:1060px;width:880px;border-radius:52px" data-layout-allow-overlap>
+    <img class="pop" id="pTiers" src="assets/pops/tiers.png" alt="" style="left:150px;top:1380px;width:800px;border-radius:26px" data-layout-allow-overlap>
+    <div class="callout" id="cb4" style="left:170px;top:1560px;background:var(--paper);padding:2px 8px">TWO TIERS · PICK YOUR LEVEL</div>
+    <!-- S5 brief -->
+    <div class="shout" id="h5" style="left:90px;top:180px;font-size:150px"><span class="ln"><span class="li">HOOKS.</span></span><span class="ln"><span class="li">SCRIPTS.</span></span><span class="ln"><span class="li mb">SHOTS.</span></span></div>
+    <img class="pop" id="pScene" src="assets/pops/scene.png" alt="" style="left:110px;top:1110px;width:760px;border-radius:30px" data-layout-allow-overlap>
+    <img class="pop" id="pHook" src="assets/pops/hook.png" alt="" style="left:50px;top:850px;width:840px;border-radius:30px" data-layout-allow-overlap>
+    <div class="stamp" id="copied" style="left:600px;top:800px;font-size:40px;border-width:5px;padding:6px 18px;border-radius:14px" data-layout-allow-overlap>COPIED ✓</div>
+    <img class="pop" id="pDo1" src="assets/pops/do1.png" alt="" style="left:80px;top:1440px;width:720px;border-radius:26px" data-layout-allow-overlap>
+    <img class="pop" id="pDo3" src="assets/pops/do3.png" alt="" style="left:150px;top:1610px;width:720px;border-radius:26px" data-layout-allow-overlap>
+    <div class="ptap" id="pt1" style="left:790px;top:890px"></div>
+    <!-- S6 escrow -->
+    <div class="acard" id="escrow" style="left:130px;top:230px;width:820px;text-align:center;padding:40px 40px 44px;border-radius:44px" data-layout-allow-overlap>
+      <div id="eConf" style="display:inline-block;font:700 28px SpaceMono;color:var(--green);background:#EFFFEF;border:3px solid #9BE59B;border-radius:12px;padding:6px 18px">✓ SPOT CONFIRMED</div>
+      <div style="width:150px;height:150px;margin:28px auto 22px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 12px #fff,0 0 0 18px var(--mint);display:flex;align-items:center;justify-content:center">
+        <svg width="64" height="86" viewBox="0 -10 64 86"><path id="shackle" d="M14 34 V22 a18 18 0 0 1 36 0 V34" fill="none" stroke="#98FF98" stroke-width="9"/><rect x="4" y="32" width="56" height="42" rx="8" fill="#98FF98"/><circle cx="32" cy="52" r="6" fill="#111"/></svg></div>
+      <div style="font:700 28px SpaceMono;color:var(--slate);letter-spacing:.1em">ESCROW GUARANTEE</div>
+      <div id="eHeld" style="display:inline-block;margin-top:16px;font:900 58px Inter;letter-spacing:-.02em;color:var(--ink);background:#EFFFEF;border:4px solid var(--mint);border-radius:22px;padding:10px 30px;white-space:nowrap">₹4,500 SECURELY HELD</div>
+      <div id="eSub" style="margin-top:18px;font:400 28px SpaceMono;color:var(--slate)">Pre-funded by the brand. Locked in.</div>
+    </div>
+    <div class="ptap" id="pt2" style="left:540px;top:1460px;width:190px;height:190px;margin:-95px 0 0 -95px"></div>
+    <!-- S7 drop -->
+    <div class="chip" id="c03" style="left:96px;top:190px">03</div>
+    <div class="shout" id="h7" style="left:90px;top:260px;font-size:200px"><span class="ln"><span class="li">DROP THE</span></span><span class="ln"><span class="li">LOOT.</span></span></div>
+    <div class="stamp" id="recChip" style="left:110px;top:760px;font:700 40px SpaceMono;background:var(--ink);color:#fff;border-color:var(--ink);padding:8px 22px;border-radius:12px" data-layout-allow-overlap><span style="color:var(--mint)">●</span> REC</div>
+    <div class="callout" id="cb7" style="left:80px;top:1080px">TRANSMIT_TO_BRAND ↓</div>
+    <img class="pop" id="pTransmit" src="assets/pops/transmit.png" alt="" style="left:80px;top:1130px;width:840px;border-radius:44px" data-layout-allow-overlap>
+    <div class="ptap" id="pt3" style="left:640px;top:1215px"></div>
+    <img class="pop" id="pTrack" src="assets/pops/track-review.png" alt="" style="left:60px;top:1420px;width:800px;border-radius:40px" data-layout-allow-overlap>
+    <!-- S9 bag secured -->
+    <div class="chip" id="c04" style="left:96px;top:190px;background:var(--ink);color:var(--mint)">04</div>
+    <div class="shout" id="h9" style="left:90px;top:250px;font-size:210px"><span class="ln"><span class="li">BAG</span></span><span class="ln"><span class="li">SECURED.</span></span></div>
+    <img class="abs" id="bag9" src="brand/bag.svg" alt="" style="left:840px;top:250px;width:150px">
+    <img class="pop" id="pBalance" src="assets/pops/balance.png" alt="" style="left:90px;top:870px;width:700px;border-radius:56px" data-layout-allow-overlap>
+    <img class="pop" id="pUpi" src="assets/pops/upi.png" alt="" style="left:110px;top:1360px;width:800px;border-radius:36px;box-shadow:0 0 0 8px var(--ink),0 40px 80px rgba(17,17,30,.25)" data-layout-allow-overlap>
+    <div class="callout" id="cb9" style="left:130px;top:1580px;color:var(--ink)">→ STRAIGHT TO UPI</div>
+    <!-- S10 rules -->
+    <div class="shout" id="h10a" style="left:90px;top:180px;font-size:128px"><span class="ln"><span class="li">NO BOSS.</span></span><span class="ln"><span class="li">NO SCHEDULE.</span></span><span class="ln"><span class="li mb">JUST THE MISSION.</span></span></div>
+    <div class="shout" id="h10b" style="left:90px;top:900px;font-size:118px"><span class="ln"><span class="li">READ THE</span></span><span class="ln"><span class="li">RULES.</span></span><span class="ln"><span class="li" style="color:var(--slate)">DON'T GET</span></span><span class="ln"><span class="li" style="color:var(--slate)">BANNED.</span></span></div>
+  </div>
+
+  <!-- ===== S8 slate: reshoot rule ===== -->
+  <div id="slate" class="clip" data-start="40.4" data-duration="6.1" data-track-index="5">
+    <div id="slateP">
+      <img class="bgimg" src="brand/tear_slate.svg" alt="">
+      <div id="slateGrid"></div>
+      <div id="slateIn">
+        <img class="pop" id="pRev" src="assets/pops/revision.png" alt="" style="left:110px;top:230px;width:860px;border-radius:44px" data-layout-allow-overlap>
+        <div class="acard" id="rule" style="left:130px;top:860px;width:820px;background:var(--paper);border:5px solid var(--ink);border-radius:30px;padding:34px 38px" data-layout-allow-overlap>
+          <div style="font:700 28px SpaceMono;color:var(--slate);letter-spacing:.06em">RULE // BEGINNER_MISSIONS</div>
+          <div style="font:900 46px/1.12 Inter;color:var(--ink);margin-top:12px;letter-spacing:-.01em">Reshoots only for technical glitches.</div>
+          <div style="font:400 28px SpaceMono;color:var(--ink);margin-top:14px">blurry video · low audio</div>
+          <div id="verif" style="display:inline-block;font:700 28px SpaceMono;color:var(--green);margin-top:18px;padding:4px 10px;margin-left:-10px;border-radius:8px">✓ Verified by the LOOT team first</div>
+        </div>
+        <div class="shout" id="h8" style="left:90px;top:1300px;font-size:200px;color:#fff"><span class="ln"><span class="li">NO CREATIVE</span></span><span class="ln"><span class="li">CHANGES.</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== S11 end card ===== -->
+  <div id="end" class="clip" data-start="56.6" data-duration="3.9" data-track-index="6">
+    <div class="bracket" id="brk" style="left:100px;top:420px;width:470px;height:560px"><i id="brkV" style="left:0;top:0;width:96px;height:560px"></i><i id="brkH" style="left:0;top:464px;width:470px;height:96px"></i></div>
+    <div class="shout" id="eLoot" style="left:236px;top:356px;font-size:372px;line-height:1">LOOT</div>
+    <div class="shout" id="eSec" style="left:0;width:1080px;text-align:center;top:1010px;font-size:140px"><span class="ln"><span class="li">SECURE THE BAG.</span></span></div>
+    <img class="abs" id="eBag" src="brand/bag.svg" alt="" style="left:460px;top:1200px;width:160px">
+    <div class="abs" id="eBtn" style="left:0;width:1080px;text-align:center;top:1430px"><span style="display:inline-block;font:900 46px Inter;color:var(--mint);background:var(--ink);border-radius:999px;padding:24px 56px;letter-spacing:.01em">DOWNLOAD LOOT →</span></div>
+    <div class="abs mono" id="eTag" style="left:0;width:1080px;text-align:center;top:1590px;font-size:32px;color:var(--slate)">The Anti-Agency Marketplace.</div>
+  </div>
+
+  <!-- ===== wipes ===== -->
+  <div id="wipes" class="clip" data-start="0" data-duration="60.5" data-track-index="7">
+    <img class="wipe" id="wM" src="brand/tear_mint.svg" alt="" style="left:-310px;top:-440px;width:1700px;height:2800px" data-layout-allow-overlap>
+  </div>
+
+  <!-- ===== HUD ===== -->
+  <div id="hud" class="clip" data-start="0" data-duration="60.5" data-track-index="8">
+    <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+    <div class="step" id="step"></div>
+    <div class="rec" id="rec"><i id="recDot"></i><span id="recT">REC</span></div>
+    <div class="status" id="status"></div>
+    <div class="mark" id="mark">LOOT</div>
+  </div>
+
+  <audio id="mix" src="audio/mix.wav" data-start="0" data-duration="60.5" data-track-index="9"></audio>
+</div>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const K = 568 / 1179;            // screenshot px → phone-screen px
+
+/* ---------- HUD states ---------- */
+const STEPS = [[0, 'INCOMING_TRANSMISSION'], [5.85, 'LOOT <b>//</b> CREATOR_APP'], [10.0, 'STEP_01 <b>//</b> ENLIST'], [16.95, 'STEP_02 <b>//</b> PICK A MISSION'],
+  [23.6, 'STEP_02 <b>//</b> READ THE BRIEF'], [30.1, 'STEP_02 <b>//</b> APPLY'], [35.3, 'STEP_03 <b>//</b> DROP THE LOOT'], [40.8, 'PROTOCOL <b>//</b> RESHOOTS'],
+  [45.95, 'STEP_04 <b>//</b> BAG SECURED'], [52.25, 'THE_RULES'], [56.8, 'MISSION_COMPLETE']];
+const STATUS = [[10.0, 'ENLISTING…'], [15.95, 'ENLISTED ✓'], [16.95, 'HUNTING'], [32.3, 'MISSION_SECURED'], [36.35, 'PENDING_DROP'], [40.0, 'UNDER_REVIEW'], [47.0, 'BAG_SECURED ✓'], [56.8, null]];
+$('#step').innerHTML = STEPS.map((s, i) => '<span id="st' + i + '">' + s[1] + '</span>').join('');
+$('#status').innerHTML = STATUS.map((s, i) => s[1] ? '<span id="ss' + i + '">STATUS: <b>' + s[1] + '</b></span>' : '').join('');
+
+// typed codename
+$('#typed').innerHTML = 'riya.creates'.split('').map(c => '<i>' + c + '</i>').join('') + '<span id="caret"></span>';
+
+/* ---------- timeline ---------- */
+const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.out' } });
+const lines = (sel, t, st = 0.12, d = 0.6) => tl.set(sel, { autoAlpha: 1 }, t).fromTo(sel + ' .li', { yPercent: 115 }, { yPercent: 0, duration: d, ease: 'expo.out', stagger: st, immediateRender: false }, t);
+const line = (sel, i, t, d = 0.55) => tl.set(sel, { autoAlpha: 1 }, t).fromTo($$(sel + ' .li')[i], { yPercent: 115 }, { yPercent: 0, duration: d, ease: 'expo.out', immediateRender: false }, t);
+const out = (sel, t, d = 0.3) => tl.to(sel, { autoAlpha: 0, y: '-=40', filter: 'blur(8px)', duration: d, ease: 'power2.in' }, t);
+const fadeIn = (sel, t, d = 0.4, from = {}) => tl.fromTo(sel, Object.assign({ autoAlpha: 0, y: 20 }, from), { autoAlpha: 1, y: 0, duration: d, immediateRender: false }, t);
+// pop-out: flies out of the phone toward the camera and settles at its rotation
+const pop = (sel, t, rot = 0, fx = 0, fy = 60) => tl.fromTo(sel, { autoAlpha: 0, scale: 0.55, x: fx, y: fy, rotation: rot * 3, rotationX: 30, transformPerspective: 1600, filter: 'blur(6px)' },
+  { autoAlpha: 1, scale: 1, x: 0, y: 0, rotation: rot, rotationX: 0, filter: 'blur(0px)', duration: 0.6, ease: 'back.out(1.6)', immediateRender: false }, t);
+const popOut = (sel, t, dx = -120) => tl.to(sel, { autoAlpha: 0, x: dx, scale: 0.8, filter: 'blur(6px)', duration: 0.32, ease: 'power2.in' }, t);
+const stamp = (sel, t, rot = -8) => tl.fromTo(sel, { autoAlpha: 0, scale: 1.8, rotation: rot - 6 }, { autoAlpha: 1, scale: 1, rotation: rot, duration: 0.32, ease: 'back.out(2.2)', immediateRender: false }, t);
+// screens: each later view sits above earlier ones
+const showV = (id, t, how = 'slide', d = 0.38) => {
+  if (how === 'slide') tl.fromTo('#v_' + id, { autoAlpha: 1, xPercent: 100 }, { autoAlpha: 1, xPercent: 0, duration: d, ease: 'power3.inOut', immediateRender: false }, t);
+  else if (how === 'up') tl.fromTo('#v_' + id, { autoAlpha: 1, yPercent: 100 }, { autoAlpha: 1, yPercent: 0, duration: d, ease: 'power3.inOut', immediateRender: false }, t);
+  else if (how === 'fade') tl.fromTo('#v_' + id, { autoAlpha: 0 }, { autoAlpha: 1, duration: d, ease: 'power1.inOut', immediateRender: false }, t);
+  else tl.set('#v_' + id, { autoAlpha: 1 }, t);
+};
+const tap = (x, y, t) => {
+  tl.set(['#tap', '#ring'], { x: x * K, y: y * K }, t - 0.2);
+  tl.fromTo('#tap', { autoAlpha: 0, scale: 1.6 }, { autoAlpha: 1, scale: 1, duration: 0.16, ease: 'power2.out', immediateRender: false }, t - 0.2)
+    .to('#tap', { scale: 0.78, duration: 0.08, ease: 'power2.in' }, t - 0.04)
+    .to('#tap', { scale: 1, autoAlpha: 0, duration: 0.22, ease: 'power2.out' }, t + 0.06)
+    .fromTo('#ring', { autoAlpha: 0.95, scale: 0.6 }, { autoAlpha: 0, scale: 2.4, duration: 0.45, ease: 'expo.out', immediateRender: false }, t);
+};
+const ptap = (sel, t) => tl.fromTo(sel, { autoAlpha: 0, scale: 1.5 }, { autoAlpha: 1, scale: 1, duration: 0.18, immediateRender: false }, t - 0.18)
+  .to(sel, { scale: 0.82, duration: 0.08, ease: 'power2.in' }, t).to(sel, { autoAlpha: 0, scale: 1.6, duration: 0.35, ease: 'expo.out' }, t + 0.1);
+const press = (sel, t) => tl.to(sel, { scale: 0.94, duration: 0.07, ease: 'power2.in' }, t - 0.03).to(sel, { scale: 1, duration: 0.3, ease: 'back.out(3)' }, t + 0.05);
+const rig = (t, d, p, ease = 'expo.inOut') => tl.to('#rig', Object.assign({ duration: d, ease }, p), t);
+// mint torn-paper wipe; fully covers the frame at time `t`
+const wipe = (t, d = 0.8) => tl.fromTo('#wM', { x: -2300, autoAlpha: 1 }, { x: 2300, autoAlpha: 1, duration: d, ease: 'power2.inOut', immediateRender: false }, t - d / 2);
+const slashGrow = (sel, t, d = 0.28) => tl.fromTo(sel, { clipPath: 'inset(0% 100% 0% 0%)', autoAlpha: 1 }, { clipPath: 'inset(0% 0% 0% 0%)', autoAlpha: 1, duration: d, ease: 'power3.out', immediateRender: false }, t);
+
+/* initial state */
+gsap.set('.sv', { autoAlpha: 0 });
+gsap.set(['#tap', '#ring'], { autoAlpha: 0 });
+gsap.set('#typed i, #caret', { autoAlpha: 0 });
+gsap.set('#ovl > *', { autoAlpha: 0 });
+gsap.set(['#hkW', '#bSec', '#h8', '#eSec'], { autoAlpha: 0 });
+gsap.set('.li', { yPercent: 115 });
+gsap.set(['#ad', '#adCall', '#hookSlash', '#bLoot', '#bSlash', '#bTag'], { autoAlpha: 0 });
+gsap.set(['#pRev', '#rule', '#escrow', '#eHeld', '#eSub'], { autoAlpha: 0 });
+gsap.set('#escrow', { autoAlpha: 0 });
+gsap.set('#shackle', { y: -10 });
+gsap.set('#rig', { x: 0, y: 1500, rotationX: 40, rotationY: 0, rotationZ: 0, scale: 1, autoAlpha: 0 });
+gsap.set('#wM', { x: -2300, rotation: 14 });
+gsap.set('#hookSlash', { rotation: -9.3 });
+gsap.set('#bSlash', { rotation: -19 });
+gsap.set('#mintBand', { y: 1400, rotation: -8 });
+gsap.set('#slateP', { y: 2400 });
+gsap.set(['#hud .step span', '#hud .status span'], { autoAlpha: 0 });
+gsap.set(['#brkV'], { scaleY: 0, transformOrigin: '50% 100%' });
+gsap.set(['#brkH'], { scaleX: 0, transformOrigin: '0% 50%' });
+gsap.set(['#eLoot', '#eBag', '#eBtn', '#eTag'], { autoAlpha: 0 });
+gsap.set('#hud .c', { scale: 1, autoAlpha: 1 });
+gsap.set(['#mark', '#rec'], { autoAlpha: 0 });
+
+/* HUD timeline */
+tl.to(['#rec', '#mark'], { autoAlpha: 1, duration: 0.3 }, 0.3);
+for (let k = 0; k < 120; k++) tl.set('#recDot', { autoAlpha: k % 2 ? 0.25 : 1 }, 0.5 + k * 0.5);
+STEPS.forEach((s, i) => {
+  tl.fromTo('#st' + i, { autoAlpha: 0, x: -14 }, { autoAlpha: 1, x: 0, duration: 0.25, immediateRender: false }, s[0] + 0.05);
+  if (i < STEPS.length - 1) tl.set('#st' + i, { autoAlpha: 0 }, STEPS[i + 1][0]);
+});
+STATUS.forEach((s, i) => {
+  if (!s[1]) return;
+  tl.fromTo('#ss' + i, { autoAlpha: 0, scale: 1.25, transformOrigin: '0% 50%' }, { autoAlpha: 1, scale: 1, duration: 0.3, ease: 'back.out(2.5)', immediateRender: false }, s[0]);
+  tl.fromTo('#ss' + i, { backgroundColor: '#98FF98' }, { backgroundColor: '#111111', duration: 0.5, ease: 'power1.out', immediateRender: false }, s[0]);
+  if (i < STATUS.length - 1) tl.set('#ss' + i, { autoAlpha: 0 }, STATUS[i + 1][0]);
+});
+// slate scene: HUD in white
+tl.set(['#hud .c'], { borderColor: 'rgba(255,255,255,.6)' }, 40.8).set(['#mark', '#rec'], { color: '#ffffff' }, 40.8).set('#st7', { color: '#ffffff', backgroundColor: 'rgba(0,0,0,0)' }, 40.8);
+tl.set(['#hud .c'], { borderColor: '#7B7D9E' }, 45.95).set('#mark', { color: '#111111' }, 45.95).set('#rec', { color: '#7B7D9E' }, 45.95);
+
+/* --- S1 HOOK (0–5.85) · VO d01 @0.40 --- */
+tl.fromTo('#ad', { autoAlpha: 1, scale: 1.06, y: 0 }, { autoAlpha: 1, scale: 1, y: 0, duration: 1.6, ease: 'power2.out' }, 0);
+tl.fromTo('#ad .gl', { x: -200 }, { x: 900, duration: 1.0, ease: 'power2.inOut', immediateRender: false }, 0.7);
+slashGrow('#hookSlash', 1.72, 0.22);
+tl.to('#adTop', { x: -12, y: -22, rotation: -1.5, duration: 0.35, ease: 'back.out(2)' }, 1.8);
+tl.to('#adBot', { x: 12, y: 22, rotation: 1, duration: 0.35, ease: 'back.out(2)' }, 1.8);
+tl.to('#ad', { filter: 'saturate(0.6)', duration: 0.4 }, 1.9);
+fadeIn('#adCall', 2.05, 0.35);
+line('#hkW', 0, 3.2); line('#hkW', 1, 4.18); line('#hkW', 2, 5.12, 0.45);
+tl.fromTo('#hkW .mb', { scale: 1.12, transformOrigin: '0% 50%' }, { scale: 1, duration: 0.4, ease: 'back.out(3)', immediateRender: false }, 5.12);
+wipe(5.85);
+
+/* --- S2 BRAND (5.85–10) · VO d02 @6.00 --- */
+tl.fromTo('#bLoot', { autoAlpha: 0, scale: 1.35 }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: 'power4.out' }, 6.38);
+slashGrow('#bSlash', 6.6, 0.26);
+tl.fromTo('#bLoot', { x: 0 }, { keyframes: [{ x: -8, duration: 0.04 }, { x: 7, duration: 0.04 }, { x: -4, duration: 0.04 }, { x: 0, duration: 0.04 }], immediateRender: false }, 6.62);
+line('#bSec', 0, 6.95);
+fadeIn('#bTag', 7.3, 0.4);
+showV('welcome', 7.2, 'cut');
+tl.set('#rig', { y: 1500, rotationX: 40, scale: 1, autoAlpha: 1 }, 7.2);
+rig(7.35, 0.9, { y: 780, rotationX: 22, rotationZ: -2 }, 'expo.out');
+tap(590, 1670, 9.45);
+press('#rig', 9.45);
+out(['#bLoot', '#bSlash', '#bSec', '#bTag'], 9.5, 0.3);
+rig(9.6, 0.85, { x: 190, y: 231, rotationX: 0, rotationY: -18, rotationZ: 2, scale: 1 });
+showV('signup0', 9.75, 'slide');
+
+/* --- S3 ENLIST (10–14.3) · VO d03 @10.25 --- */
+fadeIn('#c01', 10.95, 0.3, { y: 0, scale: 0.6 });
+lines('#h3', 11.08);
+tl.set('#caret', { autoAlpha: 1 }, 11.75);
+$$('#typed i').forEach((el, i) => tl.set(el, { autoAlpha: 1 }, 11.95 + i * 0.05));
+pop('#k1', 12.4, -4, 300, 0);
+showV('signup1', 12.62, 'fade', 0.15);
+tap(590, 1590, 12.85);
+showV('hobbies', 12.98, 'slide', 0.3);
+fadeIn('#q13', 13.1, 0.3);
+showV('industries', 13.32, 'slide', 0.3);
+showV('instagram', 13.66, 'slide', 0.3);
+pop('#k2', 13.7, 3, 300, 0);
+showV('videos', 14.0, 'slide', 0.3);
+pop('#k3', 13.95, -2, 300, 0);
+
+/* --- S3b APPROVED (14.3–16.95) --- */
+out(['#c01', '#h3', '#q13'], 14.25);
+popOut(['#k1', '#k2', '#k3'], 14.6);
+rig(14.25, 0.75, { x: 0, y: 311, rotationX: 8, rotationY: 0, rotationZ: -3 });
+showV('home', 14.35, 'slide', 0.35);
+pop('#pend', 14.6, -2, 0, -120);
+stamp('#appr', 14.98, -9);
+lines('#h3b', 15.38, 0.55);
+tl.to(['#pend', '#appr'], { autoAlpha: 0, y: -260, rotation: '-=6', duration: 0.4, ease: 'power3.in' }, 16.3);
+tl.fromTo('#phone', { boxShadow: 'inset 0 0 0 3px #4a4a4f,inset 0 0 0 7px #0c0c0d,0 0 0 0 rgba(152,255,152,.9),0 60px 120px rgba(17,17,30,.28)' },
+  { boxShadow: 'inset 0 0 0 3px #4a4a4f,inset 0 0 0 7px #0c0c0d,0 0 0 60px rgba(152,255,152,0),0 60px 120px rgba(17,17,30,.28)', duration: 0.7, ease: 'expo.out', immediateRender: false }, 15.95);
+rig(15.95, 0.6, { rotationX: 0, rotationZ: 0, y: 290 }, 'back.out(2)');
+wipe(16.95);
+
+/* --- S4 PICK A MISSION (16.95–23.6) · VO d04 @16.95 --- */
+tl.set(['#h3b'], { autoAlpha: 0 }, 16.95);
+tl.set('#rig', { x: 200, y: 271, rotationX: 0, rotationY: -16, rotationZ: 3, scale: 1 }, 16.95);
+fadeIn('#c02', 17.05, 0.3, { y: 0, scale: 0.6 });
+lines('#h4', 17.12, 0.14);
+tap(460, 2410, 17.98);
+showV('loot', 18.12, 'slide');
+tap(590, 1960, 18.82);
+showV('mission', 18.96, 'slide');
+fadeIn('#cb1', 19.55, 0.3, { x: -20, y: 0 });
+fadeIn('#cb2', 20.25, 0.3, { x: -20, y: 0 });
+rig(20.9, 0.6, { scale: 1.04, rotationY: -12 }, 'power2.inOut');
+fadeIn('#cb3', 21.2, 0.3);
+pop('#pReward', 21.32, -5, 160, -200);
+tl.fromTo('#pReward', { boxShadow: '0 0 0 0 rgba(17,17,17,1),0 50px 90px rgba(17,17,30,.25)' }, { boxShadow: '0 0 0 10px rgba(17,17,17,1),0 50px 90px rgba(17,17,30,.25)', duration: 0.2, immediateRender: false }, 21.9);
+pop('#pTiers', 22.25, 3, 160, -100);
+fadeIn('#cb4', 22.4, 0.3);
+out(['#c02', '#h4', '#cb1', '#cb2', '#cb3', '#cb4'], 23.5);
+popOut(['#pReward', '#pTiers'], 23.5);
+
+/* --- S5 BRIEF (23.6–30.1) · VO d05 @23.75 --- */
+rig(23.55, 0.7, { x: 300, y: 91, rotationY: -16, rotationZ: 2, scale: 1 });
+showV('hooks', 23.8, 'up', 0.5);
+line('#h5', 0, 25.08); line('#h5', 1, 25.55); line('#h5', 2, 26.15, 0.45);
+tap(920, 593, 25.02);
+pop('#pHook', 25.12, -4, 350, -250);
+tap(582, 390, 25.5);
+showV('body', 25.58, 'fade', 0.12);
+pop('#pScene', 26.22, 4, 350, -250);
+pop('#pDo1', 27.2, -2, 300, -200);
+pop('#pDo3', 27.52, 2, 300, -200);
+ptap('#pt1', 28.3);
+stamp('#copied', 28.4, -6);
+tl.fromTo('#recDot', { scale: 1 }, { scale: 2.2, duration: 0.18, yoyo: true, repeat: 3, ease: 'power1.inOut', immediateRender: false }, 29.25);
+tl.fromTo('#hud .c', { borderColor: '#7B7D9E' }, { borderColor: '#98FF98', duration: 0.12, yoyo: true, repeat: 3, immediateRender: false }, 29.25);
+popOut(['#pHook', '#copied', '#pScene', '#pDo1', '#pDo3'], 29.85, -200);
+out('#h5', 29.85);
+showV('hooks2', 29.85, 'cut');
+
+/* --- S6 SECURE THE BAG (30.1–35.3) · VO d06 @30.20 --- */
+rig(29.95, 0.95, { x: 0, y: -425, rotationX: 10, rotationY: 0, rotationZ: -3, scale: 1.733 });
+tap(590, 2385, 30.98);
+ptap('#pt2', 30.98);
+rig(30.95, 0.35, { scale: 1.70 }, 'power2.out');
+pop('#escrow', 31.58, -2, 0, 300);
+tl.to('#shackle', { y: 0, duration: 0.18, ease: 'power4.in' }, 32.25);
+tl.fromTo('#escrow', { x: 0 }, { keyframes: [{ x: -6, duration: 0.04 }, { x: 5, duration: 0.04 }, { x: 0, duration: 0.05 }], immediateRender: false }, 32.43);
+pop('#eHeld', 33.05, 0, 0, 30);
+fadeIn('#eSub', 33.4, 0.35);
+tl.set('#escrow', { autoAlpha: 0 }, 35.3);
+wipe(35.3);
+
+/* --- S7 DROP THE LOOT (35.3–40.8) · VO d07 @35.45 --- */
+showV('studio', 35.3, 'cut');
+tl.set('#rig', { x: 190, y: 231, rotationX: 0, rotationY: -15, rotationZ: 2, scale: 1 }, 35.3);
+fadeIn('#c03', 36.3, 0.3, { y: 0, scale: 0.6 });
+lines('#h7', 36.38, 0.16);
+stamp('#recChip', 37.33, -4);
+tl.fromTo('#recChip span', { autoAlpha: 1 }, { autoAlpha: 0.2, duration: 0.15, yoyo: true, repeat: 3, immediateRender: false }, 37.5);
+tl.to('#recChip', { autoAlpha: 0, duration: 0.25 }, 38.1);
+tap(590, 895, 38.2);
+showV('cstart', 38.34, 'slide');
+tap(590, 1740, 38.78);
+showV('cready', 38.92, 'fade', 0.2);
+fadeIn('#cb7', 39.15, 0.3);
+pop('#pTransmit', 39.0, -3, 250, -300);
+tap(590, 850, 39.66);
+ptap('#pt3', 39.66);
+press('#pTransmit', 39.68);
+pop('#pTrack', 39.95, 2, 250, -200);
+
+/* --- S8 RESHOOT RULE (40.8–45.95) · VO d08 @41.00 --- */
+tl.to('#slateP', { y: 0, duration: 0.6, ease: 'power3.inOut' }, 40.5);
+tl.set(['#c03', '#h7', '#cb7', '#pTransmit', '#pTrack', '#rig'], { autoAlpha: 0 }, 41.1);
+pop('#pRev', 41.2, -4, 400, 0);
+stamp('#rule', 42.2, 2);
+tl.fromTo('#rule', { x: 0 }, { keyframes: [{ x: -8, duration: 0.04 }, { x: 6, duration: 0.04 }, { x: 0, duration: 0.05 }], immediateRender: false }, 42.5);
+line('#h8', 0, 43.0); line('#h8', 1, 43.4);
+tl.fromTo('#verif', { backgroundColor: 'rgba(152,255,152,0)' }, { backgroundColor: 'rgba(152,255,152,1)', duration: 0.3, immediateRender: false }, 44.3);
+tl.to('#slateP', { y: -2700, duration: 0.6, ease: 'power3.inOut' }, 45.65);
+
+/* --- S9 BAG SECURED (45.95–52.25) · VO d09 @46.05 --- */
+showV('paid', 45.6, 'cut');
+tl.set('#rig', { autoAlpha: 1, x: 240, y: 520, rotationX: 0, rotationY: -14, rotationZ: 4, scale: 1 }, 45.6);
+tl.to('#mintBand', { y: 0, duration: 0.8, ease: 'expo.out' }, 45.85);
+rig(45.85, 0.8, { y: 431 }, 'expo.out');
+fadeIn('#c04', 46.85, 0.3, { y: 0, scale: 0.6 });
+line('#h9', 0, 46.93); line('#h9', 1, 47.28);
+tl.fromTo('#bag9', { autoAlpha: 0, y: -200, rotation: -30 }, { autoAlpha: 1, y: 0, rotation: 12, duration: 0.7, ease: 'bounce.out', immediateRender: false }, 47.35);
+tap(1000, 2410, 48.75);
+showV('stash', 48.9, 'slide');
+pop('#pBalance', 49.3, 3, 300, 0);
+tl.fromTo('#pBalance', { filter: 'brightness(1)' }, { filter: 'brightness(1.12)', duration: 0.15, yoyo: true, repeat: 1, immediateRender: false }, 49.9);
+pop('#pUpi', 50.55, -2, 300, 100);
+fadeIn('#cb9', 50.9, 0.3);
+out(['#c04', '#h9', '#bag9', '#pBalance', '#pUpi', '#cb9'], 52.0);
+wipe(52.25);
+
+/* --- S10 RULES (52.25–56.8) · VO d10 @52.40 --- */
+tl.set('#mintBand', { autoAlpha: 0 }, 52.25);
+tl.set('#rig', { autoAlpha: 0 }, 52.25);
+line('#h10a', 0, 52.38); line('#h10a', 1, 53.22); line('#h10a', 2, 54.18);
+showV('banned', 54.8, 'cut');
+tl.set('#rig', { autoAlpha: 1, x: 900, y: 302, rotationX: 0, rotationY: 0, rotationZ: 7, scale: 0.7 }, 54.8);
+rig(54.85, 0.5, { x: 270 }, 'expo.out');
+line('#h10b', 0, 55.02); line('#h10b', 1, 55.25); line('#h10b', 2, 55.78); line('#h10b', 3, 56.02);
+tl.fromTo(['#rig'], { x: 270 }, { keyframes: [{ x: 250, duration: 0.03 }, { x: 292, duration: 0.03 }, { x: 262, duration: 0.03 }, { x: 270, duration: 0.03 }], immediateRender: false }, 56.1);
+tl.fromTo('#h10b', { x: 0 }, { keyframes: [{ x: 10, duration: 0.03 }, { x: -12, duration: 0.03 }, { x: 6, duration: 0.03 }, { x: 0, duration: 0.03 }], immediateRender: false }, 56.12);
+wipe(56.8);
+tl.set(['#h10a', '#h10b', '#rig'], { autoAlpha: 0 }, 56.8);
+
+/* --- S11 END CARD (56.8–60.5) --- */
+tl.to('#brkV', { scaleY: 1, duration: 0.3, ease: 'power3.out' }, 56.85);
+tl.to('#brkH', { scaleX: 1, duration: 0.3, ease: 'power3.out' }, 57.05);
+tl.fromTo('#eLoot', { autoAlpha: 0, scale: 1.3 }, { autoAlpha: 1, scale: 1, duration: 0.32, ease: 'power4.out', immediateRender: false }, 56.95);
+line('#eSec', 0, 57.2);
+tl.fromTo('#eBag', { autoAlpha: 0, y: -160, rotation: -20 }, { autoAlpha: 1, y: 0, rotation: 0, duration: 0.7, ease: 'bounce.out', immediateRender: false }, 57.55);
+tl.fromTo('#eBtn', { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: 'back.out(2.4)', immediateRender: false }, 57.95);
+fadeIn('#eTag', 58.3, 0.4);
+tl.to('#eBtn', { scale: 1.05, duration: 0.25, yoyo: true, repeat: 1, ease: 'power1.inOut' }, 59.1);
+tl.set({}, {}, 60.5);
+
+window.__timelines = window.__timelines || {};
+window.__timelines['main'] = tl;
+</script>
+</body>
+</html>

@@ -45,3 +45,30 @@ bag = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220">
 </svg>'''
 open(os.path.join(here, "brand/bag.svg"), "w").write(bag)
 print("ok")
+
+# ---- torn wipe panels ----
+def jag_line(n_pts, length, amp, seed):
+    r = random.Random(seed); pts = []; wob = 0.0
+    for i in range(n_pts + 1):
+        wob = wob * 0.8 + r.uniform(-1, 1) * amp * 0.35
+        pts.append((i * length / n_pts, wob + (r.uniform(0, 1) ** 2) * amp))
+    return pts
+def panel(color, W, Hh, edge_axis, name, fringe=10):
+    # band of size W x Hh; torn on the two edges perpendicular to edge_axis ('x' = left/right torn)
+    if edge_axis == 'x':
+        L1 = jag_line(220, Hh, 12, 3); L2 = jag_line(220, Hh, 12, 5)
+        left = [(40 + d, y) for y, d in L1]; right = [(W - 40 - d, y) for y, d in L2][::-1]
+        lf = [(40 + d - fringe * (0.5 + random.Random(int(y)).random()), y) for y, d in L1]
+        rf = [(W - 40 - d + fringe * (0.5 + random.Random(int(y) + 7).random()), y) for y, d in L2][::-1]
+    else:
+        L1 = jag_line(220, W, 12, 3); L2 = jag_line(220, W, 12, 5)
+        left = [(x, 40 + d) for x, d in L1]; right = [(x, Hh - 40 - d) for x, d in L2][::-1]
+        lf = [(x, 40 + d - fringe * (0.5 + random.Random(int(x)).random())) for x, d in L1]
+        rf = [(x, Hh - 40 - d + fringe * (0.5 + random.Random(int(x) + 7).random())) for x, d in L2][::-1]
+    P = lambda pts: "M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in pts) + "Z"
+    s = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {Hh}" preserveAspectRatio="none">
+<path d="{P(lf + rf)}" fill="{PAPER}"/><path d="{P(left + right)}" fill="{color}"/></svg>'''
+    open(os.path.join(here, f"brand/{name}.svg"), "w").write(s)
+panel(MINT, 1500, 2800, 'x', 'tear_mint')
+panel("#7B7D9E", 1400, 2400, 'y', 'tear_slate', fringe=12)
+print("panels ok")

@@ -2,7 +2,7 @@
 
 9:16 · 1080×1920 · ~60 s (≈63 s with the real VO; final timings in storyboard/storyboard.jpg) · **screens only**: the real app screenshots in a 3D phone on an off-white stage, brand kinetic type, 3D pop-outs lifted from the screens. No AI footage.
 Audience: creators who might sign up. Goal: show the whole loop (enlist → pick a mission → film and submit → get paid) in one minute.
-VO: young, energetic, neutral-accent English voice (ElevenLabs), quick and confident: unapologetic, direct, electric.
+VO: young, energetic, neutral-accent English voice ("Dylan", Higgsfield TTS), quick and confident: unapologetic, direct, electric.
 
 **Look:** off-white `#F5F5F5` stage · black ALL-CAPS condensed "shout" type · Digital Mint `#98FF98` for wins and money · Slate `#7B7D9E` for system and rules · Space Mono HUD labels · the **corner-bracket L** framing the phone · **mint torn-paper slash** as the transition between steps.
 **Running device:** a mono status line in the corner that updates each step, like the brand guide's code block: `STATUS: ENLISTED` → `MISSION_SECURED` → `PENDING_DROP` → `BAG_SECURED`.
